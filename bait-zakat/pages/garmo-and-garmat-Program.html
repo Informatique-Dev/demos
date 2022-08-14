@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="shortcut icon" type="image/x-icon" href="../imgs/logo.png" />
+    <link rel="icon" href="../imgs/logo.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;1,400&family=Lalezar&family=Montserrat:ital,wght@1,500&family=Nunito&family=Tajawal:wght@300;400;700&display=swap"
       rel="stylesheet"
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../Css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>برنامج ذوي الهمم</title>
+    <title>برنامج ( غارمون وغارمات )</title>
   </head>
   <body>
     <div class=" navapp container">
@@ -41,36 +41,34 @@
       <!-- *****************NavBar******************* -->
       
 
-      <aside class="sidebar ms-auto">
-        <h3>خدمات بيت الزكاة</h3>
-        <hr />
-        <nav class="menu">
-          <a href="index.html" class="menu-item is-active">دعم نقدي للاسر</a>
-          <hr />
-          <a href="دعم الزواج.html" class="menu-item is-active "
-            >دعم تيسير الزواج</a
-          >
-          <hr />
-          <a href="كفاله يتيم.html" class="menu-item is-active">برنامج كفاله يتيم</a>
-          <hr />
-          <a href="zu-hamam-program.html" class="menu-item is-active active">برنامج ذو الهمم </a>
-          <hr />
-          <a href="productive-projects-program.html" class="menu-item is-active">برنامج المشروعات الانتجايه</a>
-          <hr />
-          <a href="garmo-and-garmat-Program.html" class="menu-item is-active">برنامج (غارمون وغارمات) </a>
-          <hr />
+<aside class="sidebar ms-auto">
+  <h3>خدمات بيت الزكاة</h3>
+  <hr />
+  <nav class="menu">
+    <a href="../index.html" class="menu-item is-active">دعم نقدي للاسر</a>
+    <hr />
+    <a href="#" class="menu-item is-active">دعم تيسير الزواج</a>
+    <hr />
+    <a href="#" class="menu-item is-active">برنامج كفاله يتيم</a>
+    <hr />
+    <a href="zu-hamam-program.html" class="menu-item is-active">برنامج ذو الهمم </a>
+    <hr />
+    <a href="productive-projects-program.html" class="menu-item is-active">برنامج المشروعات الانتجايه</a>
+    <hr />
+    <a href="garmo-and-garmat-Program.html" class="menu-item is-active active">برنامج (غارمون وغارمات) </a>
+    <hr />
 
-          <a href="#" class="menu-item is-active"
-            >برنامج (إسكان ووصلات مياه)
-          </a>
-          <hr />
+    <a href="#" class="menu-item is-active"
+      >برنامج (إسكان ووصلات مياه)
+    </a>
+    <hr />
 
-          <a href="#" class="menu-item is-active">برنامج (اغاثه انسانيه) </a>
-          <hr />
+    <a href="#" class="menu-item is-active">برنامج (اغاثه انسانيه) </a>
+    <hr />
 
-          <a href="#" class="menu-item is-active"> برنامج (التعليم) </a>
-        </nav>
-      </aside>  
+    <a href="#" class="menu-item is-active"> برنامج (التعليم) </a>
+  </nav>
+</aside>    
 
       <main class="content container">
         <h1 class="d-flex flex-row-reverse text-black">:البيانات الاساسيه</h1>
@@ -86,7 +84,7 @@
                     for="form6Example1"
                     >الاسم رباعي  : 
                   </label>
-                  <input type="number"  id="form6Example1" class="form-control" dir="rtl" placeholder="الاسم كما في بطاقه الرقم القومي" />
+                  <input type="text" id="form6Example1" class="form-control" dir="rtl" placeholder="الاسم كما في بطاقه الرقم القومي" />
                 </div>
               </div>
               <div class="col">
@@ -96,7 +94,7 @@
                     for="form6Example2"
                     >:  الرقم القومي
                   </label>
-                  <input type="number" id="form6Example2" class="form-control" placeholder="الرجاء ادخال 14 رقم" dir="rtl" />
+                  <input type="text" id="form6Example2" class="form-control" placeholder="الرجاء ادخال 14 رقم" dir="rtl" />
                 </div>
               </div>
             </div>
@@ -121,20 +119,28 @@
             <div class="row">
               <div class="mb-1">
                 <div class="form-outline" dir="rtl">
-                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto" for="form6Example3">
+                 
+  
+                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto"
+                  for="form6Example3">
                   الحاله  :
                 </label>
         
-                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl">
-                  <option dir="rtl" selected>اختر</option>
-                  <option dir="rtl" value="1"> ترمل </option>
-                  <option dir="rtl" value="2">طلاق</option>
-                  <option dir="rtl" value="2">عدم عمل </option>
-                </select>
+                <select
+                class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl">
+                <option dir="rtl" selected>اختر</option>
+                <option dir="rtl" value="1">ارمل</option>
+                <option dir="rtl" value="2">مطلق</option>
+                <option dir="rtl" value="2">بدون عمل</option>
+              </select>
+  
+  
+  
                 </div>
               </div>
-              <!-- work check-Box -->
-              <div class="row">
+            </div>
+
+            <div class="row">
                 <div class="col-10 form-outline mb-2 d-flex" >
                     <input type="number" id="salary" class="form-control w-25 ms-auto" disabled/>
                     <label class="d-flex mb-2 fw-bold mx-2" for="salary">:قيمة المرتب</label
@@ -211,11 +217,8 @@
                 </form>
               </div>
             </div>
-
-            </div>
-                     
           <!-- *********************** -->
-          </div>   
+          </div>         
           <!-- ******************thirdsection************************************ -->
           <div class="thirdsection mt-3">
             <h2 class="d-flex flex-row-reverse text-black mb-5">:مستندات الزامية</h2>
@@ -224,15 +227,7 @@
               <label
                 for="formFile"
                 class="form-label d-flex flex-row-reverse fw-bold"
-                >صورة بطاقه شخصيه , شهاده ميلاد في حالة قصر</label
-              >
-              <input class="form-control w-50 ms-auto" dir="rtl" type="file" id="formFile" />
-            </div>
-            <div class="mb-3">
-              <label
-                for="formFile"
-                class="form-label d-flex flex-row-reverse fw-bold"
-                >   نوع الجهاز والمواصفات الفنية المناسبة له</label
+                >  (قيمته وفقا للأوراق الثبوتية) صورة من الحكم القضائي لأثبات الغرم</label
               >
               <input class="form-control w-50 ms-auto" dir="rtl" type="file" id="formFile" />
             </div>
@@ -296,7 +291,5 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    
-   
   </body>
 </html>
