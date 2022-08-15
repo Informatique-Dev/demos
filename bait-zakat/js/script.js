@@ -1,6 +1,12 @@
 function openForm() {
   document.getElementById("popupForm").style.display = "block";
 }
+
+function isWork() {
+  document.getElementById("salary").value = ''
+  document.getElementById("salary").disabled = !document.getElementById("salary").disabled;
+}
+
 // Customer table Data
 var customerContainer=[];
 var customerName = document.getElementById("customerName");
