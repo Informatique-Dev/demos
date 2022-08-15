@@ -45,6 +45,7 @@ function displayProducts() {
         <td>${customerContainer[i].relation}</td>
    
         <td><button onclick='deleteproduct(${i})' class="btn btn-outline-danger">مسح</button></td>
+        <td><button onclick='' class="btn btn-outline-primary">تعديل</button></td>
         
         </tr>`;
   }
