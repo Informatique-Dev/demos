@@ -27,7 +27,7 @@ input[type]{
 }
 .navapp{
   display:flex;
-  min-height: 19vh;
+  min-height: 14vh;
 }
 .navapp nav{
   background-color:#778A35;
