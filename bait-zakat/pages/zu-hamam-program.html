@@ -50,9 +50,8 @@
         <nav class="menu">
           <a href="../index.html" class="menu-item is-active">دعم نقدي للاسر</a>
           <hr />
-          <a href="دعم الزواج.html" class="menu-item is-active "
-            >دعم تيسير الزواج</a
-          >
+          <a href="دعم الزواج.html" class="menu-item is-active">(فرحة)دعم تيسير الزواج</a>
+
           <hr />
           <a href="كفاله يتيم.html" class="menu-item is-active">برنامج كفاله يتيم</a>
           <hr />
@@ -87,7 +86,7 @@
                   <label
                     class="d-flex flex-row-reverse mb-2 fw-bold"
                     for="form6Example1"
-                    >الاسم رباعي  : 
+                    >: الاسم رباعي  
                   </label>
                   <input type="text" id="customerName" class="form-control" dir="rtl" placeholder="الاسم كما في بطاقه الرقم القومي" />
                 </div>
@@ -112,31 +111,26 @@
               >
               <input type="text" id="form6Example3" class="form-control" dir="rtl" placeholder="العنوان كما في بطاقه الرقم القومي" />
             </div>
-            <div class="form-outline mb-2">
-              <label
-                class="d-flex flex-row-reverse mb-2 fw-bold"
-                for="form6Example3"
-              >
-                عدد الابناءمن سن 18 اذا وجد</label
-              >
-              <input type="number" id="form6Example3" class="form-control" />
-            </div>
             <div class="row">
               <div class="col-6 mb-1">
                 <div class="form-outline" dir="rtl">
-                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto" for="form6Example3">
+                 
+  
+                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto"
+                  for="form6Example3">
                   الحاله  :
                 </label>
         
-                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-75" dir="rtl">
-                  <option dir="rtl" selected>اختر</option>
-                  <option dir="rtl" value="1"> ترمل </option>
-                  <option dir="rtl" value="2">طلاق</option>
-                  <option dir="rtl" value="2">عدم عمل </option>
-                </select>
+                <select
+                class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-75" dir="rtl">
+                <option dir="rtl" selected>اختر</option>
+                <option dir="rtl" value="1"> ترمل </option>
+                <option dir="rtl" value="2">طلاق</option>
+                <option dir="rtl" value="2">عدم عمل </option>
+              </select>
                 </div>
               </div>
-              
+
               <div class="col-6 mb-1">
                 <div class="form-outline" dir="rtl">   
                <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto"
@@ -148,11 +142,12 @@
                 <option dir="rtl" selected>اختر</option>
                 <option dir="rtl" value="زوج">زوج</option>
                 <option dir="rtl" value="زوجه">زوجه</option>
-                <option dir="rtl" value="أخت">اخت</option>
-                <option dir="rtl" value="أخ">اخ</option>
+                <option dir="rtl" value="اخت">اخت</option>
+                <option dir="rtl" value="اخ">اخ</option>
               </select>
                 </div>
               </div>
+  
               <!-- work check-Box -->
               <div class="row mt-3">
                 <div class="col-10 form-outline mb-2 d-flex" >
@@ -166,42 +161,34 @@
                     <input class="mb-3 mx-2" type="checkbox" id="work" name="work" value="work" onclick="isWork()">
                 </div>    
             </div>
-
-            <form class="">              
-            <div class="row">
-                <!---------------------------------addition part------------------------------------->
-              <div class=""  >
-                <!-- addition part -->
-                <div class="form-outline" dir="rtl">
-                  <input type="button" onclick="openForm(); addCustomer()" class="btn text-dark fw-bolder" value="اضافه">
-                </div>
-                <!-- Customer Data -->
-                <table class="table text-center table-striped w-75 m-auto py-3" id="popupForm" dir="rtl">
-                  
-                  <div class="w-75 mx-auto">
-                    <!-- Using onkeyup => makes real time value -->
-                  </div>
-    
-                  <thead style="background-color: #778a35; color: white;">
-                    <th>الاسم</th>
-                    <th>الرقم القومي</th>
-                    <th>الحاله</th>
-                    <th>مسح</th>
-                    <th>تعديل</th>
-                  
-                  
-                  </thead>
-                  <tbody id="tableBody"></tbody>
-                </table>    
-                </form>
-              </div>
+            
+            
+            <!-- addition part -->
+            <div class="form-outline" dir="rtl">
+              <input type="button" onclick="openForm(); addCustomer()" class="btn text-dark fw-bolder" value="اضافه">
             </div>
+            <!-- Customer Data -->
+            <table class="table text-center table-striped w-75 m-auto py-3" id="popupForm" dir="rtl">
+                  
+              <div class="w-75 mx-auto">
+                <!-- Using onkeyup => makes real time value -->
+              </div>
 
+              <thead style="background-color: #778a35; color: white;">
+                <th>الاسم</th>
+                <th>الرقم القومي</th>
+                <th>الحاله</th>
+                <th>مسح</th>
+                <th>تعديل</th>
+              
+              
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table> 
             </div>
                      
           <!-- *********************** -->
-          </div>   
-          <!-- ******************thirdsection************************************ -->
+          </div>
           <div class="thirdsection mt-3">
             <h2 class="d-flex flex-row-reverse text-black mb-5">:مستندات الزامية</h2>
 
@@ -271,6 +258,12 @@
                 <input class="form-control w-50 ms-auto" dir="rtl" type="file" id="formFile" />
             </div>
           </div>
+            </div>
+                     
+          <!-- *********************** -->
+          </div>   
+          <!-- ******************thirdsection************************************ -->
+
           
         </form>
       </main>
