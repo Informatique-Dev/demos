@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.active {
+	color: #778a35;
+  border-right: 5px solid #778a35;
+}
 hr {
   width: 90%;
   height: 250%;
@@ -11,6 +15,7 @@ hr {
 input[type]{
     background-color:#D1E2C4;
 }
+
 .app {
   display: flex;
   min-height: 90vh;
@@ -112,7 +117,7 @@ input[type]{
     padding-top: 8rem;
   }
   .sidebar {
-    poition: fixed;
+    position: fixed;
     top: 0;
     left: -300px;
     height: 100vh;
