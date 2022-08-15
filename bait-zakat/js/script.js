@@ -1,6 +1,9 @@
 function openForm() {
   document.getElementById("popupForm").style.display = "block";
 }
+ function openFormInput(){
+  document.getElementById("popupFormInput").style.display = "block";
+ }
 
 function isWork() {
   document.getElementById("salary").value = ''

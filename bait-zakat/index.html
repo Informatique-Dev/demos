@@ -177,10 +177,10 @@
                     عمل
                 </label>
                 <input type="checkbox"style="transform: scale(2);
-                margin: 5px;" onclick="openForm()">
+                margin: 5px;" onclick="openFormInput()">
                 </div>
                 <div class=" mt-3" dir="rtl">
-                  <input class="form-control w-50" type="number" name="Salary" id="popupForm" placeholder="قيمه الراتب" dir="rtl">
+                  <input class="form-control w-50" type="number" name="Salary" id="popupFormInput" placeholder="قيمه الراتب" dir="rtl">
                 </div>
               </div>
              </div>
@@ -202,11 +202,10 @@
                 <select
                 class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl" id="customerRelation">
                 <option dir="rtl" selected>اختر</option>
-                <option dir="rtl" value="1">زوج</option>
-                <option dir="rtl" value="2">زوجه</option>
-                <option dir="rtl" value="3">اخت</option>
-                <option dir="rtl" value="4">اخ</option>
-                <option dir="rtl" value="5">اخت</option>
+                <option dir="rtl" value="زوج">زوج</option>
+                <option dir="rtl" value="زوجه">زوجه</option>
+                <option dir="rtl" value="اخت">اخت</option>
+                <option dir="rtl" value="اخ">اخ</option>
               </select>
                 </div>
               </div>
@@ -238,8 +237,8 @@
               <div class=""  >
                 <!-- addition part -->
                 <div class="form-outline" dir="rtl">
-                <button onclick="openForm();addCustomer()" class="btn"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                   اضافه</button>
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  <input type="button" onclick="openForm(); addCustomer()" class="btn text-dark" value="اضافه">
                 </div>
 <!-- Customer Data -->
 <table class="table text-center w-75 m-auto py-3" id="popupForm" dir="rtl">
