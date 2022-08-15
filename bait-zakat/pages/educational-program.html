@@ -68,7 +68,7 @@
         </aside>
 
         <main class="content container">
-            <h1 class="d-flex flex-row-reverse text-black">:البيانات الاساسيه</h1>
+            <h1 class="d-flex flex-row-reverse text-black">:بيانات المستفيدين</h1>
 
             <form class=" ">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -78,7 +78,7 @@
                             <div class="form-outline">
                                 <label class="d-flex flex-row-reverse mb-2 fw-bold" for="form6Example1">الاسم رباعي :
                                 </label>
-                                <input type="text" id="form6Example1" class="form-control" dir="rtl"
+                                <input type="text" id="customerName" class="form-control" dir="rtl"
                                     placeholder="الاسم كما في بطاقه الرقم القومي" />
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="form-outline">
                                 <label class="d-flex flex-row-reverse mb-2 fw-bold" for="form6Example2">: الرقم القومي
                                 </label>
-                                <input type="text" id="form6Example2" class="form-control"
+                                <input type="number" id="customerId" class="form-control"
                                     placeholder="الرجاء ادخال 14 رقم" dir="rtl" />
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <input type="number" id="form6Example3" class="form-control" />
                     </div>
                     <div class="row">
-                        <div class="col-6 mb-1">
+                        <div class="col-4 mb-1">
                             <div class="form-outline" dir="rtl">
 
 
@@ -111,7 +111,7 @@
                                     الصفه :
                                 </label>
 
-                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl">
+                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-100" dir="rtl">
                                     <option dir="rtl" selected>اختر</option>
                                     <option dir="rtl" value="1">بالغ</option>
                                     <option dir="rtl" value="2">قاصر</option>
@@ -122,7 +122,7 @@
 
                             </div>
                         </div>
-                        <div class="col-6 mb-1">
+                        <div class="col-4 mb-1">
                             <div class="form-outline" dir="rtl">
 
 
@@ -130,7 +130,7 @@
                                     الحاله :
                                 </label>
 
-                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl">
+                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-100" dir="rtl">
                                     <option dir="rtl" selected>اختر</option>
                                     <option dir="rtl" value="1">ارمل</option>
                                     <option dir="rtl" value="2">مطلق</option>
@@ -141,21 +141,13 @@
 
                             </div>
                         </div>
-                    </div>
-
-                    <!-- *********************** -->
-                </div>
-            </form>
-            <div class="secondsection mt-3">
-                <h2 class="d-flex flex-row-reverse text-black">:بيانات المستفيدين</h2>
-                <form class="">
-                    <div class="row">
+                        
                         <div class="col-4 mb-1">
                             <div class="form-outline" dir="rtl">
                                 <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto">
                                     صله القرابه :
                                 </label>
-                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-50" dir="rtl" id="customerRelation">
+                                <select class="form-select d-flex flex-row-reverse mb-2 fw-bold  w-100" dir="rtl" id="customerRelation">
                                     <option dir="rtl" selected>اختر</option>
                                     <option dir="rtl" value="زوج">زوج</option>
                                     <option dir="rtl" value="زوجه">زوجه</option>
@@ -164,63 +156,34 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-4 mb-1">
-                            <div class="form-outline" dir="rtl">
+                    </div>
 
+                    <!-- *********************** -->
+                    <div class="form-outline" dir="rtl">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        <input type="button" onclick="openForm(); addCustomer()" class="btn text-dark" value="اضافه">
+                    </div>
 
-                                <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto" for="form6Example3">
-                                    الرقم القومي
-                                </label>
-                                <input type="text" id="customerId" class="form-control" dir="rtl"
-                                    placeholder="الرجاء اخال 14 رقم" />
-
-                            </div>
+                    <table class="table text-center table-striped w-75 m-auto py-3" id="popupForm" dir="rtl">
+                  
+                        <div class="w-75 mx-auto">
+                          <!-- Using onkeyup => makes real time value -->
                         </div>
-                        <div class="col-4 mb-1">
-                            <div class="form-outline" dir="rtl">
-
-
-                                <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto" for="form6Example3">
-                                    الاسم رباعي:
-                                </label>
-                                <input type="text" id="customerName" class="form-control" dir="rtl"
-                                    placeholder="الاسم كما في بطاقه الرقم القومي" />
-
-                            </div>
-                        </div>
-                        <!---------------------------------addition part------------------------------------->
-                        <div class="">
-                            <!-- addition part -->
-                            <div class="form-outline" dir="rtl">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                <input type="button" onclick="openForm(); addCustomer()" class="btn text-dark" value="اضافه">
-                              </div>
-                            <!-- form part -->
-
-                            <!-- Customer Data -->
-<table class="table text-center w-75 m-auto py-3" id="popupForm" dir="rtl">
-      
-    <div class="w-75 mx-auto">
-      <!-- Using onkeyup => makes real time value -->
-    </div>
-  
-    <thead>
-      <th>الاسم</th>
-      <th>الرقم القومي</th>
-      <th>الحاله</th>
-     
-     
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>   
-
-                </form>
-            </div>
-
-            <!-- ****************************************************** -->
-
-    </div>
-    </div>
+          
+                        <thead style="background-color: #778a35; color: white;">
+                          <th>الاسم</th>
+                          <th>الرقم القومي</th>
+                          <th>الحاله</th>
+                          <th>مسح</th>
+                          <th>تعديل</th>
+                        
+                        
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                      </table>   
+                </div>
+                
+            </form>
     <div class="thirdsection mt-3">
         <h2 class="d-flex flex-row-reverse text-black mb-5">:مستندات الزامية</h2>
 
