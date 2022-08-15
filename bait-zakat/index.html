@@ -159,31 +159,18 @@
                 </div>
               </div>
               <!-- work check-Box -->
-             <div class="row">
-              <div class="col-6 mb-1">
-                <div class="form-outline" dir="rtl">
-                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto">
-                    بدون عمل
-                </label>
-                <input type="checkbox" style="transform: scale(2);
-                margin: 5px;">
-
-                    
+              <div class="row mt-3">
+                <div class="col-10 form-outline mb-2 d-flex" >
+                    <input type="number" id="salary" class="form-control w-25 ms-auto" disabled/>
+                    <label class="d-flex mb-2 fw-bold mx-2" for="salary">:قيمة المرتب</label
+                    >
                 </div>
-              </div>
-              <div class="col-6 mb-1">
-                <div class="form-outline" dir="rtl">
-                  <label class="d-flex flex-row-revers  mb-2 fw-bold ms-auto">
-                    عمل
-                </label>
-                <input type="checkbox"style="transform: scale(2);
-                margin: 5px;" onclick="openFormInput()">
-                </div>
-                <div class=" mt-3" dir="rtl">
-                  <input class="form-control w-50" type="number" name="Salary" id="popupFormInput" placeholder="قيمه الراتب" dir="rtl">
-                </div>
-              </div>
-             </div>
+                
+                <div class="col-2 d-flex" dir="rtl">
+                    <label for="work"> يعمل </label><br>
+                    <input class="mb-3 mx-2" type="checkbox" id="work" name="work" value="work" onclick="isWork()">
+                </div>    
+            </div>
             </div>
                      
           <!-- *********************** -->
