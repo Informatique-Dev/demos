@@ -106,7 +106,7 @@ input[type]{
 
 @media (max-width: 1024px) {
   .sidebar {
-    max-width: 200px;
+    max-width: 250px;
   }
 }
 @media (max-width: 768px) {
@@ -124,6 +124,8 @@ input[type]{
     width: 100%;
     max-width: 300px;
     transition: 0.2s linear;
+    font-size:50px;
+    text-align:center;
   }
   .sidebar .is-active {
     left: 0;
