@@ -110,6 +110,12 @@ input[type]{
   }
 }
 @media (max-width: 768px) {
+.navbar{
+  max-width: 150;
+}
+
+
+
   .menu-toggle {
     display: block;
   }
