@@ -11,3 +11,11 @@ app.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/login'
     });
 }])
+.run(function($rootScope){
+    $rootScope.$on('$locationChangeStart', function(){
+       var token = localStorage.getItem('Authorization') || '';
+       if(!token){
+        // window.location.href = '/index.html#!/login';
+       }
+    })
+})
