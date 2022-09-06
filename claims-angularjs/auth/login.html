@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .background {
+          background: url('img/law-wallpaper.png') no-repeat center center;
+          width: 100%;
+          height: 100vh;
+      }
+      .card{
+          width: 35%;
+      }
+      .logo{
+          margin-top: -15%;
+          background-color: white;
+          border-radius: 50%;
+      }
+      .container{
+          padding-top: 10%;
+      }
+      .field{
+          width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div class="container" dir="rtl">
+        <div class="card mx-auto">
+          <div class="logo mx-auto">
+            <img width="100" height="100" src="img/logo.png" alt="" />
+          </div>
+          <div class="card-form">
+            <form class="mx-auto py-4">
+              <div class="mb-4 mx-auto field">
+                <label for="name" class="form-label">الاسم:</label>
+                <input type="text" class="form-control" id="name" ng-model="userName">
+              </div>
+              <div class="mb-4 mx-auto field">
+                <label for="password" class="form-label">كلمه المرور:</label>
+                <input type="password" class="form-control" id="password" ng-model="password">
+              </div>
+              <div class="text-center">
+                <button class="btn text-danger" ng-click="login(userName, password)">تسجيل الدخول</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
