@@ -15,7 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $rootScope.$on('$locationChangeStart', function(){
        var token = localStorage.getItem('Authorization') || '';
        if(!token){
-        // window.location.href = '/index.html#!/login';
+        window.location.href = '/index.html#!/login';
        }
     })
 })
