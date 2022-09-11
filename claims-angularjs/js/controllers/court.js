@@ -6,7 +6,6 @@ claimApp.controller('courtController', function ($scope, $http){
 
     //get govarnment
     $scope.getGov = function() {
-        $scope.token = localStorage.getItem('Authorization') || '';
         $http.get("http://41.38.83.137:8085/governorate?size=30&page=0", {
             headers: { Authorization: `Bearer ${$scope.token}` }
           }).then(function(mydata){
@@ -16,7 +15,6 @@ claimApp.controller('courtController', function ($scope, $http){
 
     //get court
     $scope.getCourt = function(gov){
-        $scope.token = localStorage.getItem('Authorization') || '';
         $http.get(`http://41.38.83.137:8085/governorate/${gov.id}/court?page=0&size=30`, {
             headers: { Authorization: `Bearer ${$scope.token}` }
           }).then(function(mydata){
@@ -25,22 +23,24 @@ claimApp.controller('courtController', function ($scope, $http){
     }
 
     //save(add,update)
-    $scope.save = function(court, gov) {
-        if(!court.id) $scope.add(court, gov)
+    $scope.save = function(court, gov, formNotValid) {
+        if(!court.id) $scope.add(court, gov, formNotValid)
         else $scope.update(court, gov)
     };
 
     //add
-    $scope.add = function(court, gov) {
+    $scope.add = function(court, gov, formNotValid) {
         if(!court.enabled){
             court.enabled = false;
         }
-        $http.post(`http://41.38.83.137:8085/governorate/${gov.id}/court`, court, {
-            headers: { Authorization: `Bearer ${$scope.token}` }
-            }).then(function(){
-            $scope.getCourt(gov)
-            $scope.reset()
-        })
+        if(!formNotValid) {
+            $http.post(`http://41.38.83.137:8085/governorate/${gov.id}/court`, court, {
+                headers: { Authorization: `Bearer ${$scope.token}` }
+                }).then(function(){
+                $scope.getCourt(gov)
+                $scope.reset()
+            })
+        }
     };
 
     //fetch
@@ -54,7 +54,6 @@ claimApp.controller('courtController', function ($scope, $http){
 
     //update
     $scope.update = function(court, gov) {
-        $scope.token = localStorage.getItem('Authorization') || '';
         $http.put(`http://41.38.83.137:8085/court/${court.id}`, court, {
             headers: { Authorization: `Bearer ${$scope.token}` }
             }).then(function(){
@@ -65,7 +64,6 @@ claimApp.controller('courtController', function ($scope, $http){
 
     //delete
     $scope.deleteCourt = function(id, gov){
-        $scope.token = localStorage.getItem('Authorization') || '';
         $http.delete(`http://41.38.83.137:8085/court/${id}`, {
             headers: { Authorization: `Bearer ${$scope.token}` }
             }).then(function(){
