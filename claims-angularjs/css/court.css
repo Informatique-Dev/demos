@@ -1,0 +1,35 @@
+.background{
+    background-color: rgb(248, 247, 247);
+    height: 100vh;
+  }
+  .card{
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-top: 40px;
+    }
+    .card-header {
+      position: absolute;
+      text-align: center;
+      background: #dad8d8;
+      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(173, 157, 157, 0.4);
+      border-radius: 3px;
+      padding: 6px;
+      top: -23px;
+    }
+    .card-header i {
+      font-size: 15px;
+      width: 33px;
+      height: 33px;
+      line-height: 33px;
+      color: brown;
+    }
+    .card-header p {
+      display: inline;
+      font-size: 15px;
+      color: brown;
+    }
+    .card-content{
+      margin-top: 15px;
+    }
+    
