@@ -1,0 +1,35 @@
+version: '3.2'
+services:
+  rms-db:
+    container_name: rms-db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: rms-develop
+      POSTGRES_USER: rms-develop
+      POSTGRES_PASSWORD: rms-pass
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - rms-net
+  rms-api:
+    container_name: rms-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - rms-db
+    ports:
+      - "8080:8080"
+    networks:
+      - rms-net
+networks:
+  rms-net:
+    driver: bridge
+    ipam:
+      driver: default
+volumes:
+  pgdata:
+    driver: local
