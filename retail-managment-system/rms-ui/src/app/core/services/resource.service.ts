@@ -2,8 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
-import { Response } from '../models/response';
 import { SettingsService } from './settings.service';
 
 @Injectable({
@@ -26,22 +24,20 @@ export abstract class ResourceService<T> {
     return json;
   }
 
-  getList(p: {} = { page: 0, size: 30 }): Observable<Response<T>> {
+  getList(p: {} = {}): Observable<T> {
     const params = new HttpParams({ fromObject: p });
-    return this.httpClient
-      .get<Response<T>>(`${this.APIUrl}?${params.toString()}`)
-      .pipe(
-        map((list) => list),
-        catchError((err) => {
-          throw new Error(err.message);
-        })
-      );
+    return this.httpClient.get<T>(`${this.APIUrl}?${params.toString()}`).pipe(
+      map((list) => list),
+      catchError((err) => {
+        throw new Error(err.message);
+      })
+    );
   }
 
-  getListById(url: string, p: {} = {}): Observable<Response<any>> {
+  getListById(url: string, p: {} = {}): Observable<any> {
     const params = new HttpParams({ fromObject: p });
     return this.httpClient
-      .get<Response<any>>(`${this.APIUrl}/${url}?${params.toString()}`)
+      .get<T>(`${this.APIUrl}/${url}?${params.toString()}`)
       .pipe(
         map((list) => list),
         catchError((err) => {
