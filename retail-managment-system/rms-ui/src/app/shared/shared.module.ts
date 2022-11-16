@@ -13,7 +13,6 @@ import { MaterialModuleModule } from './material-module/material-module.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule,
     RouterModule,
   ],
   exports: [
