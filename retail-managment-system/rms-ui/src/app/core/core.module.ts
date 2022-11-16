@@ -1,16 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
-// import { MaterialModuleModule } from './material-module/material-module.module';
-
 @NgModule({
   declarations: [],
   imports: [
-    // MaterialModuleModule,
-
-    RouterModule,
+    RouterModule
   ],
-  exports: [],
+  exports: []
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
