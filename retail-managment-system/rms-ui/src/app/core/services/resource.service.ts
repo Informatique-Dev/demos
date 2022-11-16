@@ -24,9 +24,9 @@ export abstract class ResourceService<T> {
     return json;
   }
 
-  getList(p: {} = {}): Observable<T> {
+  getList(p: {} = {}): Observable<T[]> {
     const params = new HttpParams({ fromObject: p });
-    return this.httpClient.get<T>(`${this.APIUrl}?${params.toString()}`).pipe(
+    return this.httpClient.get<T[]>(`${this.APIUrl}?${params.toString()}`).pipe(
       map((list) => list),
       catchError((err) => {
         throw new Error(err.message);

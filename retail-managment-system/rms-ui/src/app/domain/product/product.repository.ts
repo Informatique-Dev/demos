@@ -16,8 +16,12 @@ export class ProductRepository extends ResourceService<Product> {
   toServerModel(entity: Product): any {
     if (!entity.id) {
       return {
-        id: entity.id,
         name: entity.name,
+        modelNo: entity.modelNo,
+        brand: entity.brand,
+        cashPrice: entity.cashPrice,
+        quantity: entity.quantity,
+        productCategoryDto: entity.productCategoryDto,
       };
     } else {
       return {
