@@ -9,7 +9,6 @@ import { RootComponent } from './layout/root/root.component';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, RootComponent],
   imports: [RouterModule, SharedModule, CommonModule],
-  exports: [SharedModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
