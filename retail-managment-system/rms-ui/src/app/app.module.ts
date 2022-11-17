@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './core/services/config.service';
+import { CoreModule } from './core/core.module';
 
 export function configServiceFactory(
   config: ConfigService
@@ -19,6 +20,7 @@ export function configServiceFactory(
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    CoreModule,
   ],
   providers: [
     ConfigService,
