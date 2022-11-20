@@ -1,4 +1,16 @@
 .navbar {
-  min-height: 100px;
-  background-color: #222;
+  min-height: 80px;
+  background-color: #002d40;
+}
+li a {
+  color: white;
+}
+li a:hover {
+  cursor: pointer;
+  color: #1aa6b7;
+}
+@media (min-width: 991px) {
+  .menu {
+    display: none;
+  }
 }
