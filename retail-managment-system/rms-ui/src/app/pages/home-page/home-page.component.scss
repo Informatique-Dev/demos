@@ -3,7 +3,7 @@ $secondary-color: #1aa6b7;
 
 .about {
   height: 94vh;
-  background: url(././../../../assets/home-page.jpg) center/cover;
+  background: url(../../../assets/home-page.jpg) center/cover;
 }
 .about p {
   font-size: 120px;
@@ -15,26 +15,15 @@ $secondary-color: #1aa6b7;
   }
 }
 .about span,
-.products h6,
-.category h6,
-.cards h6,
-.customers h6,
-.investor h6,
-.investor h4,
-.installment h6,
-.order h6 {
+.main-section h4,
+h6 {
   color: $secondary-color;
 }
 
-.products h3,
+.main-section h3,
+h5,
 a,
-.category h3,
-.category .card h5,
-.cards h4 a,
-.cards h3,
-.investor h3,
-.installment h3,
-.order h3 {
+.cards h4 a {
   color: $main-color;
 }
 
@@ -84,20 +73,15 @@ a,
 footer {
   min-height: 400px;
 }
-.columns-2 ul li a,
-.columns-3 ul li a,
-.columns-4 ul li a,
-.columns-5 i {
+.columns ul li a {
   color: $main-color;
   transition: 0.5s;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
+  cursor: pointer;
 }
-.columns-2 ul li a:hover,
-.columns-3 ul li a:hover,
-.columns-4 ul li a:hover,
-.columns-5 i {
+.columns ul li a:hover {
   color: $secondary-color;
 }

@@ -5,15 +5,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RootComponent } from './layout/root/root.component';
-import { HomePageComponent } from '../pages/home-page/home-page.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    RootComponent,
-    HomePageComponent,
-  ],
+  declarations: [HeaderComponent, FooterComponent, RootComponent],
   imports: [RouterModule, SharedModule, CommonModule],
 })
 export class CoreModule {
