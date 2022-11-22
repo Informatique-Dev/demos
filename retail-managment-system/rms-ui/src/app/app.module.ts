@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './core/services/config.service';
 import { CoreModule } from './core/core.module';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
 
 export function configServiceFactory(
   config: ConfigService
@@ -14,7 +15,7 @@ export function configServiceFactory(
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CategoryPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
