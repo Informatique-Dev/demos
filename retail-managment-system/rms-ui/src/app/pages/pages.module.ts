@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'category', component: CategoryPageComponent },
 ];
 @NgModule({
+  declarations: [CategoryPageComponent],
   imports: [RouterModule.forChild(routes), SharedModule],
 })
 export class PagesModule {}
