@@ -1,57 +1,228 @@
 <div class="candidate-layout">
-  <h1 fxLayoutAlign="center center">Categories</h1>
-  <div fxLayoutAlign="center center">
-    <table
-      mat-table
-      class="mat-elevation-z8 table"
-      fxFlex.lt-sm="80%"
-      [dataSource]="allCategory"
-    >
-      <ng-container matColumnDef="ID">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let allCategories">
-          {{ allCategories.ID }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
-      </ng-container>
-      <ng-container matColumnDef="version">
-        <th mat-header-cell *matHeaderCellDef>version</th>
-        <td mat-cell *matCellDef="let element">{{ element.version }}</td>
-      </ng-container>
-      <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          class="update-icon"
-          (click)="openInputField(); fetchData(element)"
-        >
-          <mat-icon>edit</mat-icon>
-        </td>
-      </ng-container>
+  <fieldset>
+    <h1 fxLayoutAlign="center center">Categories</h1>
+    <div fxLayoutAlign="center center">
+      <table
+        mat-table
+        class="mat-elevation-z8 table"
+        fxFlex.lt-sm="80%"
+        [dataSource]="allCategory"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          class="delete-icon"
-          (click)="deleteCategory(element)"
-        >
-          <mat-icon>person_remove</mat-icon>
-        </td>
-      </ng-container>
-    </table>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>status</th>
+          <td mat-cell *matCellDef="let allCandidates">
+            {{ allCandidates.status }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="version">
+          <th mat-header-cell *matHeaderCellDef>Version</th>
+          <td mat-cell *matCellDef="let element">{{ element.version }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="update-icon"
+            (click)="openInputField(); fetchData(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <div>
+      <mat-paginator
+        class="paginator"
+        fxFlex.lt-lg="90%"
+        showFirstLastButtons
+        [length]="totalRows"
+        [pageSize]="10"
+        [pageIndex]="page"
+        (page)="pageChanged($event)"
+      >
+      </mat-paginator>
+      <div
+        fxLayoutAlign.lt-sm="start start"
+        (click)="changeVisibility()"
+        class="show-btn"
+      >
+        <button type="submit" mat-raised-button color="primary" fxFlex="50">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+  <br />
+  <br /><br />
+  <div>
+    <!--*ngIf="isVisible"-->
+    <br />
+    <hr />
+    <br />
+    <br />
+    <form [formGroup]="categoryForm">
+      <fieldset>
+        <legend>Category info</legend>
+        <div class="all-Inpt">
+          <!--Adding Name-->
+          <div fxLayoutAlign="center center">
+            <mat-form-field
+              appearance="outline"
+              fxFlex.lt-lg="80%"
+              fxFlex="70"
+              (click)="appearRest()"
+            >
+              <mat-label>Name</mat-label>
+              <input
+                formControlName="name"
+                type="text"
+                matInput
+                placeholder="enter your name"
+                fxFlex="60"
+              />
+              <mat-error
+                *ngIf="
+                  categoryForm.controls['name'].hasError('name') &&
+                  !categoryForm.controls['name'].hasError('required')
+                "
+              >
+                Please enter a name
+              </mat-error>
+              <mat-error
+                *ngIf="categoryForm.controls['name'].hasError('required')"
+              >
+                name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!--Adding ID Number-->
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+              <mat-label>ID Number</mat-label>
+              <input
+                formControlName="id"
+                type="number"
+                matInput
+                placeholder="enter your ID"
+              />
+              <mat-error
+                *ngIf="
+                  categoryForm.controls['phone'].hasError('pattern') &&
+                  !categoryForm.controls['phone'].hasError('required')
+                "
+              >
+                Please Add ID Number
+              </mat-error>
+              <mat-error
+                *ngIf="categoryForm.controls['phone'].hasError('required')"
+              >
+                ID Number is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!--Adding Status -->
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+              <mat-label>Status</mat-label>
+              <input
+                formControlName="status"
+                type="text"
+                matInput
+                placeholder="Status"
+              />
+              <mat-error
+                *ngIf="
+                  categoryForm.controls['status'].hasError('pattern') &&
+                  !categoryForm.controls['status'].hasError('required')
+                "
+              >
+                Please enter your status
+              </mat-error>
+
+              <mat-error
+                *ngIf="categoryForm.controls['status'].hasError('required')"
+              >
+                status is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!--Adding Version -->
+          <div fxLayoutAlign="center center">
+            <mat-form-field appearance="outline" fxFlex="70" fxFlex.lt-lg="80%">
+              <mat-label>Version</mat-label>
+              <input
+                formControlName="version"
+                type="text"
+                matInput
+                placeholder="version"
+              />
+              <mat-error
+                *ngIf="
+                  categoryForm.controls['version'].hasError('pattern') &&
+                  !categoryForm.controls['version'].hasError('required')
+                "
+              >
+                Please enter your version
+              </mat-error>
+
+              <mat-error
+                *ngIf="categoryForm.controls['status'].hasError('required')"
+              >
+                status is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayoutAlign="center center">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              fxFlex.lt-lg="80%"
+              fxFlex="30"
+              (click)="onSubmit()"
+              [disabled]="!categoryForm.valid"
+            >
+              {{
+                categoryForm.controls["id"].value
+                  ? "Update Category"
+                  : "Add Category"
+              }}
+            </button>
+
+            <div *ngIf="isAppear">
+              <button
+                (click)="resetTheForm()"
+                mat-raised-button
+                type="submit"
+                color="primary"
+                class="rest-Icon"
+                fxFlex.lt-lg="2%"
+                fxFlex="2"
+                [disabled]="submit"
+              >
+                <mat-icon>restart_alt</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
 </div>

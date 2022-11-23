@@ -1,7 +1,13 @@
 import { CategoryRepository } from '../../domain/category/category.repository';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/domain/category/models/category';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-category-page',
@@ -12,13 +18,12 @@ export class CategoryPageComponent implements OnInit {
   categoryForm!: FormGroup;
   allCategory: CategoryPageComponent[] = [];
   isAppear!: boolean;
-  displayedColumns: string[] = ['id', 'name', 'version', 'statue'];
+  displayedColumns: string[] = ['id', 'name', 'version', 'status'];
   dataimage: any;
   submit: boolean = false;
   submitted: boolean = false;
   isVisible!: boolean;
   formBuilder: any;
-
   size: number = 10;
   page: number = 0;
   totalRows: number = 0;
@@ -29,11 +34,12 @@ export class CategoryPageComponent implements OnInit {
     private categoryRepository: CategoryRepository
   ) {}
 
-  ngOnInit(): void {
-    this.categoryForm;
-  }
   resetTheForm(): void {
     this.categoryForm.reset();
+  }
+  ngOnInit(): void {
+    this.categoriForm();
+    this.getAllCategory();
   }
   categoriForm() {
     this.categoryForm = this.formBuilder.group({
@@ -57,8 +63,13 @@ export class CategoryPageComponent implements OnInit {
           ),
         ],
       ],
+      // this.name=this.form.controls.name as FormControl,
+      // this.id=this.form.controls.id as FormControl,
+      // this.version=this.form.controls.version as FormControl,
+      // this.status=this.form.controls.status as FormControl
     });
   }
+
   //addCategory
   addCategory() {
     this.categoryRepository.add(this.categoryForm.value).subscribe(() => {
@@ -73,16 +84,10 @@ export class CategoryPageComponent implements OnInit {
       this.changeVisibility();
     });
   }
-  //delete values
-  deleteCategory(candidate: Category) {
-    this.message
-      .deleteConfirmation('', 'Are you sure you want to delete this candidate?')
-      .subscribe((res: any) => {
-        if (res.success)
-          this.categoryRepository
-            .delete(candidate.id)
-            .subscribe((_) => this.getAllCategory());
-      });
+  pageChanged(event: PageEvent): void {
+    this.size = event.pageSize;
+    this.page = event.pageIndex;
+    this.getAllCategory();
   }
   //Get all data
   getAllCategory(): void {
@@ -96,12 +101,23 @@ export class CategoryPageComponent implements OnInit {
         this.totalRows = result.pagination.itemCount;
       });
   }
-
+  onSubmit() {
+    if (this.categoryForm.valid) {
+      this.submitted = true;
+      this.categoryForm.controls['id'].value
+        ? this.UpdateCategory()
+        : this.addCategory();
+      this.categoryForm.reset();
+    }
+  }
   changeVisibility() {
     this.isVisible = !this.isVisible;
   }
   openInputField() {
     this.isVisible = true;
+  }
+  appearRest() {
+    this.isAppear = true;
   }
   fetchData(category: Category): void {
     this.resetTheForm();
