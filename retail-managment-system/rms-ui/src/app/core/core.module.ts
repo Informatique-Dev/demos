@@ -5,9 +5,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RootComponent } from './layout/root/root.component';
+import { AddProductComponent } from '../pages/add-product/add-product.component';
+import { UpdateProductComponent } from '../pages/update-product/update-product.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, RootComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    RootComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+  ],
   imports: [RouterModule, SharedModule, CommonModule],
 })
 export class CoreModule {
