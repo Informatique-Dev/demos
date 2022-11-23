@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
-import { AddProductComponent } from '../add-product/add-product.component';
-import { UpdateProductComponent } from '../update-product/update-product.component';
+import { ManageProductComponent } from './manage-product/manage-product.component';
 
 @Component({
   selector: 'app-product',
@@ -28,8 +27,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productRepository: ProductRepository,
-    public dialog: MatDialog,
-    private build: FormBuilder
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -64,10 +62,11 @@ export class ProductComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(AddProductComponent);
+    this.dialog.open(ManageProductComponent);
   }
+
   openUpdateDialog(element: Product) {
-    this.dialog.open(UpdateProductComponent, {
+    this.dialog.open(ManageProductComponent, {
       data: element,
     });
   }
