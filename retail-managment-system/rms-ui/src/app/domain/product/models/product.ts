@@ -1,3 +1,5 @@
+import { temporaryCat } from "../../temporary cat/models/temporary-cat";
+
 export interface Product {
   id: number;
   version: number;
@@ -6,5 +8,5 @@ export interface Product {
   brand: string;
   cashPrice: number;
   quantity: number;
-  productCategoryDto: null;
+  productCategoryDto: temporaryCat;
 }
