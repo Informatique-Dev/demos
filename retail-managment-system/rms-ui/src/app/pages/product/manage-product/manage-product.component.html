@@ -64,7 +64,9 @@
                 class="form-control"
                 name="name"
               >
-                <option value=""></option>
+                <option value="{{cat}}" *ngFor="let cat of allCats">
+                  {{ cat.name }}
+                </option>
               </select>
             </div>
           </div>
