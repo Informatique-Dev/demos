@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
+import { temporaryCat } from 'src/app/domain/temporary cat/models/temporary-cat';
+import { temporaryCatRepository } from 'src/app/domain/temporary cat/temporaryCat.repository';
 
 @Component({
   selector: 'app-manage-product',
@@ -12,9 +14,11 @@ import { ProductRepository } from 'src/app/domain/product/product.repository';
 export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
   allProducts: Product[] = [];
+  allCats: temporaryCat[] = [];
   submit: boolean = false;
   submitted: boolean = false;
   constructor(
+    private temporaryCatRepository: temporaryCatRepository,
     private productRepository: ProductRepository,
     private build: FormBuilder,
     public dialogRef: MatDialogRef<ManageProductComponent>,
@@ -23,14 +27,15 @@ export class ManageProductComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProducts();
+    this.getAllTempCat();
     this.productForm = this.build.group({
       id: [''],
       name: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
+      brand: [''],
       cashPrice: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
-      productCategoryDto: ['', [Validators.required]],
-      modelNo: ['', [Validators.required]],
+      quantity: [''],
+      productCategoryDto: [''],
+      modelNo: [''],
     });
     this.fetchData();
   }
@@ -43,8 +48,10 @@ export class ManageProductComponent implements OnInit {
     this.productForm.patchValue(this.data);
   }
   updateProduct() {
+    console.log(this.productForm.value);
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
+      this.getAllTempCat();
     });
   }
   resetTheForm(): void {
@@ -53,6 +60,13 @@ export class ManageProductComponent implements OnInit {
   addProduct() {
     this.productRepository.add(this.productForm.value).subscribe(() => {
       this.getAllProducts();
+    });
+  }
+
+  getAllTempCat(): void {
+    this.temporaryCatRepository.getList().subscribe((result) => {
+      console.log(result);
+      this.allCats = result;
     });
   }
 
