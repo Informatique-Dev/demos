@@ -8,23 +8,20 @@ import { Category } from './models/category';
 })
 export class CategoryRepository extends ResourceService<Category> {
   getResourceUrl(): string {
-    return 'category';
+    return 'categories';
   }
-  toServerModel(entity: Category): any {
-    if (!entity.id) {
-      return {
-        name: entity.name,
-        status: entity.status,
-        version: entity.version,
-        id: entity.id,
-      };
-    } else {
-      return {
-        name: entity.name,
-        status: entity.status,
-        version: entity.version,
-        id: entity.id,
-      };
-    }
-  }
+  // toServerModel(entity: Category): any {
+  //   if (!entity.id) {
+  //     return {
+  //       name: entity.name,
+  //       status: entity.status,
+  //     };
+  //   } else {
+  //     return {
+  //       name: entity.name,
+  //       status: entity.status,
+  //       id: entity.id,
+  //     };
+  //   }
+  //}
 }
