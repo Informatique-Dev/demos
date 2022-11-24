@@ -42,8 +42,9 @@ export class CategoryPageComponent implements OnInit {
   }
   categoriForm() {
     this.categoryForm = this.formBuilder.group({
-      name: ['', Validators.required],
       id: [''],
+      name: [],
+
       status: [],
     });
   }
@@ -55,7 +56,7 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   //update all value
-  UpdateCategory() {
+  UpdateCategory(): void {
     this.categoryRepository.update(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
     });

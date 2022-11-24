@@ -73,17 +73,26 @@ export abstract class ResourceService<T> {
     );
   }
 
-  update(resource: T): Observable<any> {
+  // update(resource: T): Observable<any> {
+  //   // @ts-ignore
+  //   return this.httpClient
+  //     .put(`${this.APIUrl}/${resource.id}`, this.toServerModel(resource))
+  //     .pipe(
+  //       catchError((err) => {
+  //         throw new Error(err.message);
+  //       })
+  //     );
+  // }
+  update(resource: any): Observable<any> {
     // @ts-ignore
     return this.httpClient
-      .put(`${this.APIUrl}/${resource}`, this.toServerModel(resource))
+      .put(`${this.APIUrl}/${resource.id}`, this.toServerModel(resource))
       .pipe(
         catchError((err) => {
           throw new Error(err.message);
         })
       );
   }
-
   addAttachment(picture: string, id: number): Observable<any> {
     return this.httpClient
       .post(`${this.APIUrl}/${id}/document`, { content: btoa(picture) })
