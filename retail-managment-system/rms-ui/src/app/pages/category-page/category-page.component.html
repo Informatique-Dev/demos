@@ -201,16 +201,7 @@
                   />
                 </div>
               </div>
-              <div class="col-lg-4">
-                <div class="mb-3">
-                  <input
-                    formControlName="id"
-                    type="number"
-                    matInput
-                    placeholder="enter your ID"
-                  />
-                </div>
-              </div>
+
               <div class="col-lg-4">
                 <div class="mb-3">
                   <input
@@ -264,7 +255,7 @@
                   <th>NO.</th>
                   <th>Name</th>
                   <th>Status</th>
-                  <th>ID</th>
+
                   <th></th>
                 </tr>
               </thead>
@@ -273,7 +264,6 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ categori.name }}</td>
                   <td>{{ categori.status }}</td>
-                  <td>{{ categori.id }}</td>
                   <td>
                     <button (click)="fetchData(categori)" class="action-icon">
                       <i class="mdi mdi-square-edit-outline">Edit</i>
