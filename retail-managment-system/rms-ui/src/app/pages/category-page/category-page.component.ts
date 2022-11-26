@@ -47,14 +47,11 @@ export class CategoryPageComponent implements OnInit {
       status: [],
     });
   }
-
-  //addCategory
   addCategory() {
     this.categoryRepository.add(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
     });
   }
-  //update all value
   UpdateCategory(): void {
     this.categoryRepository.update(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
@@ -65,11 +62,10 @@ export class CategoryPageComponent implements OnInit {
     this.page = event.pageIndex;
     this.getAllCategory();
   }
-  //Get all data
   getAllCategory(): void {
     this.categoryRepository.getList().subscribe((result: any) => {
       this.allCategory = result;
-      // this.totalRows = result.pagination.itemCount;
+
       console.log(this.allCategory);
     });
   }
