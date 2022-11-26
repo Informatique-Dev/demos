@@ -73,17 +73,6 @@ export class CategoryPageComponent implements OnInit {
       console.log(this.allCategory);
     });
   }
-
-  onSubmit() {
-    if (this.categoryForm.valid) {
-      this.submitted = true;
-      this.categoryForm.controls['id'].value
-        ? this.UpdateCategory()
-        : this.addCategory();
-      this.categoryForm.reset();
-    }
-  }
-
   fetchData(category: Category): void {
     this.resetTheForm();
     this.categoryForm.patchValue({
