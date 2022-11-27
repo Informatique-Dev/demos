@@ -40,32 +40,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  addProduct() {
-    this.productRepository.add(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-    });
-  }
-
-  updateProduct() {
-    this.productRepository.update(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-    });
-  }
-
-  fetchData(product: Product): void {
-    this.resetTheForm();
-    this.productForm.patchValue(product);
-  }
-
-  resetTheForm(): void {
-    this.productForm.reset();
-  }
-
-  openDialog() {
-    this.dialog.open(ManageProductComponent);
-  }
-
-  openUpdateDialog(element: Product) {
+  openDialog(element: Product | null) {
     this.dialog.open(ManageProductComponent, {
       data: element,
     });
