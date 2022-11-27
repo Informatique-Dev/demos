@@ -6,82 +6,97 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="productForm">
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">Name</label>
-            <div class="col-sm-12">
+          <fieldset>
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Product Name</mat-label>
               <input
                 formControlName="name"
                 type="text"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter product name"
               />
-            </div>
-          </div>
+              <mat-error
+                *ngIf="
+                  productForm.controls['name'].hasError('name') &&
+                  !productForm.controls['name'].hasError('required')
+                "
+              >
+                Please enter product name
+              </mat-error>
+              <mat-error
+                *ngIf="productForm.controls['name'].hasError('required')"
+              >
+                product name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
 
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">Brand</label>
-            <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Brand</mat-label>
               <input
                 formControlName="brand"
                 type="text"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter brand name"
               />
-            </div>
-          </div>
+            </mat-form-field>
 
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">Price</label>
-            <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Price</mat-label>
               <input
                 formControlName="cashPrice"
                 type="number"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter product Price"
               />
-            </div>
-          </div>
+              <mat-error
+                *ngIf="
+                  productForm.controls['cashPrice'].hasError('cashPrice') &&
+                  !productForm.controls['cashPrice'].hasError('required')
+                "
+              >
+                Please enter product Price
+              </mat-error>
+              <mat-error
+                *ngIf="productForm.controls['cashPrice'].hasError('required')"
+              >
+                product Price is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
 
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">Quantity</label>
-            <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Quantity</mat-label>
               <input
                 formControlName="quantity"
                 type="number"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter product quantity"
               />
-            </div>
-          </div>
+            </mat-form-field>
 
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">Category</label>
-            <div class="col-sm-12">
-              <select
-                class="form-control"
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Category</mat-label>
+              <mat-select
                 formControlName="productCategoryDto"
                 type="text"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter product Category"
               >
-                <option value="{{cat}}" *ngFor="let cat of allCats">
+                <mat-option *ngFor="let cat of allCats" [value]="cat">
                   {{ cat.name }}
-                </option>
-              </select>
-            </div>
-          </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <div class="form-group mb-3">
-            <label for="name" class="col-sm-3 control-label">ModelNo</label>
-            <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>ModelNo</mat-label>
               <input
                 formControlName="modelNo"
                 type="text"
-                class="form-control"
-                name="name"
+                matInput
+                placeholder="enter product modelNo"
               />
-            </div>
-          </div>
+            </mat-form-field>
+          </fieldset>
         </form>
       </div>
 
@@ -99,6 +114,13 @@
             }}
           </button>
         </div>
+        <button
+          class="btn btn-warning me-3 mb-3"
+          mat-button
+          (click)="resetForm()"
+        >
+          Reset
+        </button>
 
         <button class="btn btn-light me-3 mb-3" mat-button mat-dialog-close>
           Cancel
