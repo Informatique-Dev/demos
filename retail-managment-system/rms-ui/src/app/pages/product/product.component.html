@@ -1,7 +1,7 @@
 <div class="container text-center mt-5">
   <div>
     <h3 class="panel-title fw-bold">Our Products</h3>
-    <button class="btn btn-success w-50" mat-button (click)="openDialog()">
+    <button class="btn btn-success w-50" mat-button (click)="openDialog(null)">
       Add Product
     </button>
   </div>
@@ -46,7 +46,7 @@
             mat-cell
             *matCellDef="let element"
             class="update-icon"
-            (click)="openUpdateDialog(element)"
+            (click)="openDialog(element)"
           >
             <button class="btn btn-primary">
               <mat-icon>edit</mat-icon>

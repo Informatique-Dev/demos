@@ -9,7 +9,7 @@ import { temporaryCatRepository } from 'src/app/domain/temporary cat/temporaryCa
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
-  styles: ['.update-product  { width: 800px; height: 630px; }'],
+  styles: ['.update-product  { min-width: 250px; min-height: 430px; }'],
 })
 export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
@@ -26,8 +26,17 @@ export class ManageProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getAllProducts();
     this.getAllTempCat();
+    this.prodForm();
+    this.fetchData();
+  }
+  getAllProducts(): void {
+    this.productRepository.getList().subscribe((result) => {
+      this.allProducts = result;
+    });
+  }
+
+  prodForm() {
     this.productForm = this.build.group({
       id: [''],
       name: ['', [Validators.required]],
@@ -37,35 +46,26 @@ export class ManageProductComponent implements OnInit {
       productCategoryDto: [''],
       modelNo: [''],
     });
-    this.fetchData();
   }
-  getAllProducts(): void {
-    this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result;
-    });
-  }
+
   fetchData(): void {
     this.productForm.patchValue(this.data);
   }
   updateProduct() {
-    console.log(this.productForm.value);
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
-      this.getAllTempCat();
     });
   }
   resetTheForm(): void {
     this.productForm.reset();
   }
   addProduct() {
-    this.productRepository.add(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-    });
+    this.productRepository.add(this.productForm.value).subscribe(() => {});
+    this.getAllProducts();
   }
 
   getAllTempCat(): void {
     this.temporaryCatRepository.getList().subscribe((result) => {
-      console.log(result);
       this.allCats = result;
     });
   }
@@ -78,5 +78,9 @@ export class ManageProductComponent implements OnInit {
         : this.addProduct();
       this.productForm.reset();
     }
+  }
+
+  resetForm() {
+    this.productForm.reset();
   }
 }
