@@ -8,7 +8,6 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/domain/category/models/category';
 import { PageEvent } from '@angular/material/paginator';
-
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
@@ -56,11 +55,6 @@ export class CategoryPageComponent implements OnInit {
     this.categoryRepository.update(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
     });
-  }
-  pageChanged(event: PageEvent): void {
-    this.size = event.pageSize;
-    this.page = event.pageIndex;
-    this.getAllCategory();
   }
   getAllCategory(): void {
     this.categoryRepository.getList().subscribe((result: any) => {

@@ -10,18 +10,4 @@ export class CategoryRepository extends ResourceService<Category> {
   getResourceUrl(): string {
     return 'categories';
   }
-  toServerModel(entity: Category): any {
-    if (!entity.id) {
-      return {
-        name: entity.name,
-        status: entity.status,
-      };
-    } else {
-      return {
-        id: entity.id,
-        name: entity.name,
-        status: entity.status,
-      };
-    }
-  }
 }
