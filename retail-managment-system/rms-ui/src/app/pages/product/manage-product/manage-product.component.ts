@@ -43,7 +43,7 @@ export class ManageProductComponent implements OnInit {
       brand: [''],
       cashPrice: ['', [Validators.required]],
       quantity: [''],
-      productCategoryDto: [''],
+      productCategoryDto: ['', [Validators.required]],
       modelNo: [''],
     });
   }
@@ -52,10 +52,10 @@ export class ManageProductComponent implements OnInit {
     this.productForm.patchValue(this.data);
   }
   updateProduct() {
-    this.productRepository.update(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-    });
+    this.productRepository.update(this.productForm.value).subscribe(() => {});
+    this.getAllProducts();
   }
+
   resetTheForm(): void {
     this.productForm.reset();
   }

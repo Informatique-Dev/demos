@@ -22,7 +22,7 @@ export class ProductRepository extends ResourceService<Product> {
       brand: entity.brand,
       cashPrice: entity.cashPrice,
       quantity: entity.quantity,
-      productCategoryDto: entity.productCategoryDto,
+      productCategoryDto: { id: entity.productCategoryDto.id },
     };
   }
 }
