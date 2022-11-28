@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
 import { Category } from 'src/app/domain/category/models/category';
@@ -28,8 +33,8 @@ export class PopUpComponent implements OnInit {
   categoriForm() {
     this.popupForm = this.formBuilder.group({
       id: [''],
-      name: [''],
-      status: [''],
+      name: ['', [Validators.required]],
+      status: ['', [Validators.required]],
     });
   }
   getAllCategory(): void {
