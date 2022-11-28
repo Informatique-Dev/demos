@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="page-title-box">
+                <h2 class="text-center">Add here</h2>
+              </div>
+            </div>
+          </div>
+          <form class="row" [formGroup]="popupForm" class="text-center">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <input
+                    class="text-center"
+                    formControlName="name"
+                    type="text"
+                    matInput
+                    placeholder="enter your name"
+                    fxFlex="60"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <input
+                    class="text-center"
+                    formControlName="status"
+                    type="text"
+                    matInput
+                    placeholder="Status"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-6">
+              <div class="page-footer-box text-center">
+                <button class="btn btn-primary" (click)="onSubmit()">
+                  {{
+                    popupForm.controls["id"].value
+                      ? "Update Product"
+                      : "Add Product"
+                  }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

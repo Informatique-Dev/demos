@@ -6,56 +6,16 @@
           <div class="row">
             <div class="col-12">
               <div class="page-title-box">
-                <h4 class="page-title">
-                  <i class="mdi mdi-plus-circle me-1"></i>
-                </h4>
+                <h2 class="text-center">Our Category</h2>
               </div>
             </div>
           </div>
-          <form class="row" [formGroup]="categoryForm">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="mb-3">
-                  <input
-                    formControlName="name"
-                    type="text"
-                    matInput
-                    placeholder="enter your name"
-                    fxFlex="60"
-                  />
-                </div>
-              </div>
 
-              <div class="col-lg-4">
-                <div class="mb-3">
-                  <input
-                    formControlName="status"
-                    type="text"
-                    matInput
-                    placeholder="Status"
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
           <div class="row">
-            <div class="col-12">
-              <div class="page-footer-box">
-                <button
-                  type="submit"
-                  class="btn btn-primary me-2"
-                  (click)="addCategory()"
-                  [disabled]="submitted"
-                >
-                  <i class="mdi mdi-plus-circle me-2"></i>add
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary me-2"
-                  (click)="UpdateCategory()"
-                  [disabled]="submitted"
-                >
-                  <i class="mdi mdi-plus-circle me-2"></i>update
+            <div class="col-6">
+              <div class="page-footer-box text-center">
+                <button class="btn btn-primary" (click)="openDialog(null)">
+                  Add Category
                 </button>
               </div>
             </div>
@@ -85,26 +45,21 @@
                   <td>{{ categori.name }}</td>
                   <td>{{ categori.status }}</td>
                   <td>
-                    <button (click)="fetchData(categori)" class="action-icon">
-                      <i class="mdi mdi-square-edit-outline">Edit</i>
+                    <button
+                      class="btn btn-primary"
+                      (click)="openDialog(categori)"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">
+                      <mat-icon>delete</mat-icon>
                     </button>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="page-footer-box">
-                <mat-paginator
-                  [length]="totalRows"
-                  [pageSize]="10"
-                  [pageIndex]="page"
-                  aria-label="Select page"
-                >
-                </mat-paginator>
-              </div>
-            </div>
           </div>
         </div>
       </div>
