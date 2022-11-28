@@ -28,9 +28,8 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   openDialog(element: Category | null) {
-    this.dialog.open(PopUpComponent),
-      {
-        data: element,
-      };
+    this.dialog.open(PopUpComponent, {
+      data: element,
+    });
   }
 }
