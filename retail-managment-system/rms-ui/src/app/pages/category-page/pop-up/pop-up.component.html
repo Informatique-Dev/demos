@@ -6,7 +6,7 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="popupForm">
-          <fieldset class="w-150">
+          <fieldset class="w-200">
             <mat-form-field appearance="outline" class="m-2">
               <mat-label>Product Name</mat-label>
               <input
@@ -16,6 +16,19 @@
                 placeholder="Enter your name"
                 fxFlex="40"
               />
+              <mat-error
+                *ngIf="
+                  popupForm.controls['name'].hasError('name') &&
+                  !popupForm.controls['name'].hasError('required')
+                "
+              >
+                Please enter Category name
+              </mat-error>
+              <mat-error
+                *ngIf="popupForm.controls['name'].hasError('required')"
+              >
+                Category name is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -26,6 +39,19 @@
                 matInput
                 placeholder="Status"
               />
+              <mat-error
+                *ngIf="
+                  popupForm.controls['status'].hasError('status') &&
+                  !popupForm.controls['status'].hasError('required')
+                "
+              >
+                Please enter Category status
+              </mat-error>
+              <mat-error
+                *ngIf="popupForm.controls['status'].hasError('required')"
+              >
+                Category status is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
           </fieldset>
         </form>
@@ -33,19 +59,19 @@
           <div class="row">
             <div class="col-12">
               <div class="page-footer-box">
-                <button class="btn btn-success me-2 mb-2" (click)="onSubmit()">
+                <button class="btn btn-success me-2 mb-1" (click)="onSubmit()">
                   {{ popupForm.controls["id"].value ? "Update" : "Add" }}
                 </button>
-                <br />
+
                 <button
-                  class="btn btn-warning me-2 mb-2"
+                  class="btn btn-warning me-0 mb-0"
                   mat-button
                   (click)="resetTheForm()"
                 >
                   Reset
                 </button>
                 <button
-                  class="btn btn-light me-2 mb-2"
+                  class="btn btn-light me-0 mb-0"
                   mat-button
                   mat-dialog-close
                 >
