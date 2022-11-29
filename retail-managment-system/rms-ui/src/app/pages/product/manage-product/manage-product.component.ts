@@ -5,26 +5,24 @@ import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 
 @Component({
-  selector: 'app-update-product',
-  templateUrl: './update-product.component.html',
+  selector: 'app-manage-product',
+  templateUrl: './manage-product.component.html',
   styles: ['.update-product  { width: 800px; height: 630px; }'],
 })
-export class UpdateProductComponent implements OnInit {
+export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
   allProducts: Product[] = [];
-  isVisible: boolean = false;
-
+  submit: boolean = false;
+  submitted: boolean = false;
   constructor(
     private productRepository: ProductRepository,
     private build: FormBuilder,
-    public dialogRef: MatDialogRef<UpdateProductComponent>,
+    public dialogRef: MatDialogRef<ManageProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) {}
 
   ngOnInit() {
     this.getAllProducts();
-    console.log(this.data.brand);
-    // this.fetchData(product);
     this.productForm = this.build.group({
       id: [''],
       name: ['', [Validators.required]],
@@ -51,5 +49,20 @@ export class UpdateProductComponent implements OnInit {
   }
   resetTheForm(): void {
     this.productForm.reset();
+  }
+  addProduct() {
+    this.productRepository.add(this.productForm.value).subscribe(() => {
+      this.getAllProducts();
+    });
+  }
+
+  onSubmit() {
+    if (this.productForm.valid) {
+      this.submitted = true;
+      this.productForm.controls['id'].value
+        ? this.updateProduct()
+        : this.addProduct();
+      this.productForm.reset();
+    }
   }
 }
