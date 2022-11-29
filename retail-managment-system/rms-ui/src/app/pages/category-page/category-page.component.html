@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <br /><br />
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box">
+              <h3 class="panel-title fw-bold text-center">Our Category</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-12">
+            <div class="page-footer-box">
+              <button class="btn btn-success w-50" (click)="openDialog(null)">
+                Add Category
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <table class="table table-centered mb-0">
+              <thead>
+                <tr>
+                  <th>NO.</th>
+                  <th>Name</th>
+                  <th>Status</th>
+
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let categori of allCategory; index as i">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ categori.name }}</td>
+                  <td>{{ categori.status }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      (click)="openDialog(categori)"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

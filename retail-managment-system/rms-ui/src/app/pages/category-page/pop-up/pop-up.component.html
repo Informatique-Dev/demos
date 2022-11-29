@@ -1,0 +1,87 @@
+<div class="update-product">
+  <div class="container shadow-lg">
+    <section class="panel panel-default">
+      <div class="panel-heading pt-5">
+        <h3 class="panel-title">Manage Category</h3>
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="popupForm">
+          <fieldset class="w-200">
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> Name</mat-label>
+              <input
+                formControlName="name"
+                type="text"
+                matInput
+                placeholder="Enter your name"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupForm.controls['name'].hasError('name') &&
+                  !popupForm.controls['name'].hasError('required')
+                "
+              >
+                Please enter Category name
+              </mat-error>
+              <mat-error
+                *ngIf="popupForm.controls['name'].hasError('required')"
+              >
+                Category name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <input
+                formControlName="status"
+                type="number"
+                matInput
+                placeholder="Status"
+              />
+              <mat-error
+                *ngIf="
+                  popupForm.controls['status'].hasError('status') &&
+                  !popupForm.controls['status'].hasError('required')
+                "
+              >
+                Please enter Category status
+              </mat-error>
+              <mat-error
+                *ngIf="popupForm.controls['status'].hasError('required')"
+              >
+                Category status is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </fieldset>
+        </form>
+        <mat-dialog-actions align="end">
+          <div class="row">
+            <div class="col-12">
+              <div class="page-footer-box">
+                <button class="btn btn-success me-2" (click)="onSubmit()">
+                  {{ popupForm.controls["id"].value ? "Update" : "Add" }}
+                </button>
+
+                <button
+                  class="btn btn-warning me-0 mb-0"
+                  mat-button
+                  (click)="resetTheForm()"
+                >
+                  Reset
+                </button>
+                <button
+                  class="btn btn-light me-0 mb-0"
+                  mat-button
+                  mat-dialog-close
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-dialog-actions>
+      </div>
+    </section>
+  </div>
+</div>
