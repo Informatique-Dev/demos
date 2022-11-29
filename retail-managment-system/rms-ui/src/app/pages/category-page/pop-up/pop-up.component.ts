@@ -1,10 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
 import { Category } from 'src/app/domain/category/models/category';
@@ -24,7 +19,7 @@ export class PopUpComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.categoriForm();
-    this.getAllCategory();
+
     this.fetchData(this.data);
   }
   categoriForm() {
@@ -34,11 +29,7 @@ export class PopUpComponent implements OnInit {
       status: ['', [Validators.required]],
     });
   }
-  getAllCategory(): void {
-    this.categorRepository.getList().subscribe((result: any) => {
-      this.allCategory = result;
-    });
-  }
+
   onSubmit() {
     if (this.popupForm.valid) {
       this.submitted = true;
@@ -51,13 +42,11 @@ export class PopUpComponent implements OnInit {
   addCategory() {
     this.categorRepository.add(this.popupForm.value).subscribe(() => {
       this.dialogRef.close();
-      this.getAllCategory();
     });
   }
   UpdateCategory(): void {
     this.categorRepository.update(this.popupForm.value).subscribe(() => {
       this.dialogRef.close();
-      this.getAllCategory();
     });
   }
   resetTheForm(): void {
