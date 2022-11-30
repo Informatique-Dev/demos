@@ -46,7 +46,6 @@
               <mat-label>National Id</mat-label>
               <input
                 formControlName="nationalId"
-                type="number"
                 matInput
                 placeholder="enter customer National Id"
                 minlength="14"
@@ -121,7 +120,7 @@
           <button
             class="btn btn-success me-3 mb-3"
             (click)="onSubmit()"
-            [disabled]="!customersForm.valid"
+            [disabled]="!customersForm.valid || submit"
           >
             {{
               customersForm.controls["id"].value

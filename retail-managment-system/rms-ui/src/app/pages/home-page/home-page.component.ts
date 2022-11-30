@@ -13,6 +13,10 @@ export class HomePageComponent {
     this.router.navigate(['/product']);
   }
 
+  openCategory() {
+    this.router.navigate(['/category']);
+  }
+
   openCustomers() {
     this.router.navigate(['/customers']);
   }

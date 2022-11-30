@@ -7,7 +7,7 @@ import { customers } from 'src/app/domain/customers/models/customers';
 @Component({
   selector: 'app-manage-customers',
   templateUrl: './manage-customers.component.html',
-  styles: ['.manage-customer { min-width: 250px; min-height: 430px; }'],
+  styles: ['.manage-customer { min-width: 250px; min-height: 520px; }'],
 })
 export class ManageCustomersComponent implements OnInit {
   customersForm!: FormGroup;
@@ -44,6 +44,7 @@ export class ManageCustomersComponent implements OnInit {
         '',
         [
           Validators.required,
+          Validators.pattern('^[0-9]*$'),
           Validators.minLength(14),
           Validators.maxLength(14),
         ],
@@ -60,14 +61,18 @@ export class ManageCustomersComponent implements OnInit {
   }
 
   updateCustomer() {
-    this.customersRepository
-      .update(this.customersForm.value)
-      .subscribe(() => {});
+    this.submit = true;
+    this.customersRepository.update(this.customersForm.value).subscribe(() => {
+      this.submit = false;
+    });
     this.getAllCustomers();
   }
 
   addCustomer() {
-    this.customersRepository.add(this.customersForm.value).subscribe(() => {});
+    this.submit = true;
+    this.customersRepository.add(this.customersForm.value).subscribe(() => {
+      this.submit = false;
+    });
     this.getAllCustomers();
     console.log(this.customersForm.value);
   }

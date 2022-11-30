@@ -13,10 +13,18 @@ const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
+  { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
 ];
 @NgModule({
-  declarations: [ProductComponent, ManageProductComponent, CustomersComponent, ManageCustomersComponent],
+  declarations: [
+    ProductComponent,
+    ManageProductComponent,
+    CategoryPageComponent,
+    PopUpComponent,
+    CustomersComponent,
+    ManageCustomersComponent,
+  ],
   imports: [RouterModule.forChild(routes), SharedModule],
 })
 export class PagesModule {}

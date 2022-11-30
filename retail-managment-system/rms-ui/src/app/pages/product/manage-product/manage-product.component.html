@@ -16,14 +16,6 @@
                 placeholder="enter product name"
               />
               <mat-error
-                *ngIf="
-                  productForm.controls['name'].hasError('name') &&
-                  !productForm.controls['name'].hasError('required')
-                "
-              >
-                Please enter product name
-              </mat-error>
-              <mat-error
                 *ngIf="productForm.controls['name'].hasError('required')"
               >
                 product name is <strong>required</strong>
@@ -49,14 +41,6 @@
                 placeholder="enter product Price"
               />
               <mat-error
-                *ngIf="
-                  productForm.controls['cashPrice'].hasError('cashPrice') &&
-                  !productForm.controls['cashPrice'].hasError('required')
-                "
-              >
-                Please enter product Price
-              </mat-error>
-              <mat-error
                 *ngIf="productForm.controls['cashPrice'].hasError('required')"
               >
                 product Price is <strong>required</strong>
@@ -80,11 +64,21 @@
                 type="text"
                 matInput
                 placeholder="enter product Category"
+                [compareWith]="compareFn"
               >
                 <mat-option *ngFor="let cat of allCats" [value]="cat">
                   {{ cat.name }}
                 </mat-option>
               </mat-select>
+              <mat-error
+                *ngIf="
+                  productForm.controls['productCategoryDto'].hasError(
+                    'required'
+                  )
+                "
+              >
+                product Category is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="w-50">
@@ -105,7 +99,7 @@
           <button
             class="btn btn-success me-3 mb-3"
             (click)="onSubmit()"
-            mat-dialog-close
+            [disabled]="submit"
           >
             {{
               productForm.controls["id"].value
