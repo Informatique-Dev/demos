@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
-import { temporaryCat } from 'src/app/domain/temporary cat/models/temporary-cat';
-import { temporaryCatRepository } from 'src/app/domain/temporary cat/temporaryCat.repository';
+import { Category } from 'src/app/domain/category/models/category';
+import { CategoryRepository } from 'src/app/domain/category/category.repository';
 
 @Component({
   selector: 'app-manage-product',
@@ -14,11 +14,11 @@ import { temporaryCatRepository } from 'src/app/domain/temporary cat/temporaryCa
 export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
   allProducts: Product[] = [];
-  allCats: temporaryCat[] = [];
+  allCats: Category[] = [];
   submit: boolean = false;
   submitted: boolean = false;
   constructor(
-    private temporaryCatRepository: temporaryCatRepository,
+    private categoryRepository: CategoryRepository,
     private productRepository: ProductRepository,
     private build: FormBuilder,
     public dialogRef: MatDialogRef<ManageProductComponent>,
@@ -65,7 +65,7 @@ export class ManageProductComponent implements OnInit {
   }
 
   getAllTempCat(): void {
-    this.temporaryCatRepository.getList().subscribe((result) => {
+    this.categoryRepository.getList().subscribe((result) => {
       this.allCats = result;
     });
   }

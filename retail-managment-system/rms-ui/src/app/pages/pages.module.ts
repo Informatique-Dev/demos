@@ -10,9 +10,16 @@ import { ManageProductComponent } from './product/manage-product/manage-product.
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'category', component: CategoryPageComponent },
 ];
 @NgModule({
-  declarations: [ProductComponent, ManageProductComponent],
+  declarations: [
+    ProductComponent,
+    ManageProductComponent,
+    CategoryPageComponent,
+    PopUpComponent,
+  ],
   imports: [RouterModule.forChild(routes), SharedModule],
 })
 export class PagesModule {}

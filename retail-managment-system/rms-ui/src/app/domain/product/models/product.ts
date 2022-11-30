@@ -1,4 +1,4 @@
-import { temporaryCat } from "../../temporary cat/models/temporary-cat";
+import { Category } from '../../category/models/category';
 
 export interface Product {
   id: number;
@@ -8,5 +8,5 @@ export interface Product {
   brand: string;
   cashPrice: number;
   quantity: number;
-  productCategoryDto: temporaryCat;
+  productCategoryDto: Category;
 }
