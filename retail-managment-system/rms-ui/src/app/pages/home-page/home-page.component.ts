@@ -12,4 +12,8 @@ export class HomePageComponent {
   openProducts() {
     this.router.navigate(['/product']);
   }
+
+  openCustomers() {
+    this.router.navigate(['/customers']);
+  }
 }
