@@ -23,7 +23,7 @@ export class ManageCustomersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.CustForm();
+    this.custForm();
     this.fetchData();
   }
 
@@ -33,7 +33,7 @@ export class ManageCustomersComponent implements OnInit {
     });
   }
 
-  CustForm() {
+  custForm() {
     this.customersForm = this.build.group({
       id: [''],
       fullName: ['', [Validators.required]],
@@ -66,6 +66,7 @@ export class ManageCustomersComponent implements OnInit {
       this.submit = false;
     });
     this.getAllCustomers();
+    this.dialogRef.close();
   }
 
   addCustomer() {

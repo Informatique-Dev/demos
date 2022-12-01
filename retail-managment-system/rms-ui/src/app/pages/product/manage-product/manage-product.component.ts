@@ -56,6 +56,7 @@ export class ManageProductComponent implements OnInit {
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
       this.submit = false;
+      this.dialogRef.close();
     });
   }
   resetTheForm(): void {
@@ -91,6 +92,6 @@ export class ManageProductComponent implements OnInit {
 
   compareFn(a: Category, b: Category) {
     if (!a || !b) return false;
-    return a.name === b.name;
+    return a.id === b.id;
   }
 }
