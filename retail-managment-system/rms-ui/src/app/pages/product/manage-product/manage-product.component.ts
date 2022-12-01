@@ -9,7 +9,7 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
-  styles: ['.update-product  { min-width: 250px; min-height: 430px; }'],
+  styles: ['.update-product  { min-width: 250px; min-height: 430px;}'],
 })
 export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
@@ -71,7 +71,6 @@ export class ManageProductComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      this.submitted = true;
       this.productForm.controls['id'].value
         ? this.updateProduct()
         : this.addProduct();

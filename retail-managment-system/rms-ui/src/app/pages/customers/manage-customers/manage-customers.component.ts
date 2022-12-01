@@ -75,7 +75,6 @@ export class ManageCustomersComponent implements OnInit {
 
   onSubmit() {
     if (this.customersForm.valid) {
-      this.submitted = true;
       this.customersForm.controls['id'].value
         ? this.updateCustomer()
         : this.addCustomer();

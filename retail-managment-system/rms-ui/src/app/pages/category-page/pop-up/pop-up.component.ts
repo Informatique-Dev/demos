@@ -33,7 +33,6 @@ export class PopUpComponent implements OnInit {
 
   onSubmit() {
     if (this.popupForm.valid) {
-      this.submitted = true;
       this.popupForm.controls['id'].value
         ? this.UpdateCategory()
         : this.addCategory();

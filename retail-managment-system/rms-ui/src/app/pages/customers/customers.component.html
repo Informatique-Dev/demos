@@ -10,102 +10,90 @@
 <div
   class="container customers d-flex justify-content-center align-items-center mt-5 mb-5"
 >
-  <form>
-    <fieldset>
-      <table
-        class="bg-light shadow-lg table table-responsive"
-        mat-table
-        [dataSource]="allCustomers"
-      >
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-        </ng-container>
+  <div class="table table-responsive">
+    <table class="bg-light shadow-lg" mat-table [dataSource]="allCustomers">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Fullname
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
-        </ng-container>
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Fullname</th>
+        <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="nickName" class="nickName">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Nickname
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.nickName }}</td>
-        </ng-container>
+      <ng-container matColumnDef="nickName" class="nickName">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Nickname</th>
+        <td mat-cell *matCellDef="let element">{{ element.nickName }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="customerCode" class="customerCode">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Code</th>
-          <td mat-cell *matCellDef="let element">{{ element.customerCode }}</td>
-        </ng-container>
+      <ng-container matColumnDef="customerCode" class="customerCode">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Code</th>
+        <td mat-cell *matCellDef="let element">{{ element.customerCode }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="nationalId" class="nationalId">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            National Id
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.nationalId }}</td>
-        </ng-container>
+      <ng-container matColumnDef="nationalId" class="nationalId">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+          National Id
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.nationalId }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="primaryPhoneNo" class="primaryPhoneNo">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Primary Phone
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.primaryPhoneNo }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="primaryPhoneNo" class="primaryPhoneNo">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+          Primary Phone
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.primaryPhoneNo }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="secondaryPhoneNo" class="secondaryPhoneNo">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Secondary Phone
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.secondaryPhoneNo }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="secondaryPhoneNo" class="secondaryPhoneNo">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+          Secondary Phone
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.secondaryPhoneNo }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="address" class="address">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Address
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
-        </ng-container>
+      <ng-container matColumnDef="address" class="address">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="trustReceiptNo" class="trustReceiptNo">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            Trust Receipt No
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.trustReceiptNo }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="trustReceiptNo" class="trustReceiptNo">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+          Trust Receipt No
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.trustReceiptNo }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td
-            mat-cell
-            *matCellDef="let element"
-            class="update-icon"
-            (click)="openDialog(element)"
-          >
-            <button class="btn btn-primary">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="update-icon"
+          (click)="openDialog(element)"
+        >
+          <button class="btn btn-primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="delete-icon">
-            <button class="btn btn-danger"><mat-icon>delete</mat-icon></button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="delete-icon">
+          <button class="btn btn-danger"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </fieldset>
-  </form>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
 </div>

@@ -101,11 +101,7 @@
             (click)="onSubmit()"
             [disabled]="submit"
           >
-            {{
-              productForm.controls["id"].value
-                ? "Update Product"
-                : "Add Product"
-            }}
+            {{ productForm.controls["id"].value ? "Update" : "Add" }}
           </button>
         </div>
         <button

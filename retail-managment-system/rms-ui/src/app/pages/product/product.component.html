@@ -10,64 +10,63 @@
 <div
   class="container product d-flex justify-content-center align-items-center mt-5 mb-5"
 >
-  <form>
-    <fieldset>
-      <table
-        class="bg-light shadow-lg table table-responsive"
-        mat-table
-        [dataSource]="allProducts"
-      >
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-        </ng-container>
+  <div class="table table-responsive">
+    <table class="bg-light shadow-lg" mat-table [dataSource]="allProducts">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-        </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="brand" class="brand">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">brand</th>
-          <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
-        </ng-container>
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Category</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.productCategoryDto.name }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="price" class="price">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Price</th>
-          <td mat-cell *matCellDef="let element">{{ element.cashPrice }}</td>
-        </ng-container>
+      <ng-container matColumnDef="brand" class="brand">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">brand</th>
+        <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="quantity" class="quantity">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            quantity
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
-        </ng-container>
+      <ng-container matColumnDef="price" class="price">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.cashPrice }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td
-            mat-cell
-            *matCellDef="let element"
-            class="update-icon"
-            (click)="openDialog(element)"
-          >
-            <button class="btn btn-primary">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="quantity" class="quantity">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="delete-icon">
-            <button class="btn btn-danger"><mat-icon>delete</mat-icon></button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="update-icon"
+          (click)="openDialog(element)"
+        >
+          <button class="btn btn-primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </fieldset>
-  </form>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="delete-icon">
+          <button class="btn btn-danger"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
 </div>

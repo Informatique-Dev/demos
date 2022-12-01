@@ -165,11 +165,7 @@
             (click)="onSubmit()"
             [disabled]="!customersForm.valid || submit"
           >
-            {{
-              customersForm.controls["id"].value
-                ? "Update Customers"
-                : "Add Customers"
-            }}
+            {{ customersForm.controls["id"].value ? "Update" : "Add" }}
           </button>
         </div>
         <button
