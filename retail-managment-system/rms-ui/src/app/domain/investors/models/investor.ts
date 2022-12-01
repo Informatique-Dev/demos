@@ -1,5 +1,4 @@
 export interface Investors {
-  name: any;
   id: number;
   fullName: string;
   nickName: string;
@@ -7,7 +6,11 @@ export interface Investors {
   primaryPhoneNo: number;
   secondaryPhoneNo: number;
   address: string;
-  investorType: string;
   balance: number;
-  startDate: number;
+  startDate: Date;
+  investorType: InvestorType;
+}
+export enum InvestorType {
+  CONTRIBUTOR,
+  MANAGER,
 }

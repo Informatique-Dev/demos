@@ -64,7 +64,9 @@
                 type="number"
                 matInput
                 placeholder="Enter nationalId"
-                fxFlex="14"
+                fxFlex="40"
+                min="0"
+                max="14"
               />
               <mat-error
                 *ngIf="
@@ -92,6 +94,7 @@
                 matInput
                 placeholder="Enter primaryPhoneNo"
                 fxFlex="40"
+                maxlength="11"
               />
               <mat-error
                 *ngIf="
@@ -124,6 +127,8 @@
                 matInput
                 placeholder="Enter secondaryPhoneNo"
                 fxFlex="40"
+                min="0"
+                max="11"
               />
               <mat-error
                 *ngIf="
@@ -155,6 +160,8 @@
                 matInput
                 placeholder="Enter address"
                 fxFlex="40"
+                min="0"
+                max="11"
               />
               <mat-error
                 *ngIf="

@@ -2,80 +2,76 @@
   <br /><br />
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <div class="page-title-box">
-              <h3 class="panel-title fw-bold text-center">Our Investors</h3>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box">
+            <h3 class="panel-title fw-bold text-center">Our Investors</h3>
           </div>
         </div>
-        <div class="row text-center">
-          <div class="col-12">
-            <div class="page-footer-box">
-              <button class="btn btn-success w-50" (click)="openDialog(null)">
-                Add Investor
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-lg-15 offset-lg-0">
-            <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <table class="table table-centered mb-0">
-                    <thead>
-                      <tr>
-                        <th>NO.</th>
-                        <th>Full Name</th>
-                        <th>Nick Name</th>
-                        <th>NationalId</th>
-                        <th>PrimaryPhoneNo</th>
-                        <th>SecondaryPhoneNo</th>
-                        <th>Address</th>
-                        <th>InvestorType</th>
-                        <th>balance</th>
-                        <th>startDate</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let investor of allInvestors; index as i">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ investor.fullName }}</td>
-                        <td>{{ investor.nickName }}</td>
-                        <td>{{ investor.nationalId }}</td>
-                        <td>{{ investor.primaryPhoneNo }}</td>
-                        <td>{{ investor.secondaryPhoneNo }}</td>
-                        <td>{{ investor.address }}</td>
-                        <td>{{ investor.investorType }}</td>
-                        <td>{{ investor.balance }}</td>
-                        <td>{{ investor.startDate }}</td>
-                        <td>
-                          <button
-                            class="btn btn-primary"
-                            (click)="openDialog(investor)"
-                          >
-                            <mat-icon>edit</mat-icon>
-                          </button>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger">
-                            <mat-icon>delete</mat-icon>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
       </div>
+      <div class="row text-center">
+        <div class="col-12">
+          <div class="page-footer-box">
+            <button class="btn btn-success w-50" (click)="openDialog(null)">
+              Add Investor
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-lg-15 offset-lg-0">
+          <div class="card">
+            <div class="row">
+              <table class="table table-centered mb-0">
+                <thead>
+                  <tr>
+                    <th>NO.</th>
+                    <th>Full Name</th>
+                    <th>Nick Name</th>
+                    <th>NationalId</th>
+                    <th>PrimaryPhoneNo</th>
+                    <th>SecondaryPhoneNo</th>
+                    <th>Address</th>
+                    <th>InvestorType</th>
+                    <th>balance</th>
+                    <th>startDate</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let investor of allInvestors; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ investor.fullName }}</td>
+                    <td>{{ investor.nickName }}</td>
+                    <td>{{ investor.nationalId }}</td>
+                    <td>{{ investor.primaryPhoneNo }}</td>
+                    <td>{{ investor.secondaryPhoneNo }}</td>
+                    <td>{{ investor.address }}</td>
+                    <td>{{ investor.investorType }}</td>
+                    <td>{{ investor.balance }}</td>
+                    <td>{{ investor.startDate }}</td>
+                    <td>
+                      <button
+                        class="btn btn-primary"
+                        (click)="openDialog(investor)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
     </div>
   </div>
 </div>
