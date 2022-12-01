@@ -57,6 +57,7 @@
                 Investor nickName is <strong>required</strong>
               </mat-error>
             </mat-form-field>
+            <br />
             <mat-form-field appearance="outline" class="m-2">
               <mat-label> NationalId</mat-label>
               <input
@@ -65,8 +66,7 @@
                 matInput
                 placeholder="Enter nationalId"
                 fxFlex="40"
-                min="0"
-                max="14"
+                maxlength="14"
               />
               <mat-error
                 *ngIf="
@@ -93,8 +93,7 @@
                 type="number"
                 matInput
                 placeholder="Enter primaryPhoneNo"
-                fxFlex="40"
-                maxlength="11"
+                max="11"
               />
               <mat-error
                 *ngIf="
@@ -127,7 +126,6 @@
                 matInput
                 placeholder="Enter secondaryPhoneNo"
                 fxFlex="40"
-                min="0"
                 max="11"
               />
               <mat-error
@@ -179,14 +177,24 @@
                 Investor address is <strong>required</strong>
               </mat-error>
             </mat-form-field>
+            <br />
             <mat-form-field appearance="outline" class="m-2">
               <mat-label> investorType</mat-label>
-              <input
+              <!-- <input
                 formControlName="investorType"
                 type="string"
                 matInput
                 placeholder="Enter investorType Manager or CONTRIBUTOR"
-              />
+              /> -->
+              <mat-select
+                placeholder="investorType"
+                name="option"
+                formControlName="investorType"
+                matInput
+              >
+                <mat-option>CONTRIBUTOR</mat-option>
+                <mat-option>Manager</mat-option>
+              </mat-select>
               <mat-error
                 *ngIf="
                   popupInvestorForm.controls['investorType'].hasError(
@@ -269,7 +277,12 @@
           <div class="row">
             <div class="col-12">
               <div class="page-footer-box">
-                <button class="btn btn-success me-2" (click)="onSubmit()">
+                <button
+                  class="btn btn-success me-2"
+                  (click)="onSubmit()"
+                  (click)="onButtonClick()"
+                  [disabled]="click"
+                >
                   {{
                     popupInvestorForm.controls["id"].value ? "Update" : "Add"
                   }}

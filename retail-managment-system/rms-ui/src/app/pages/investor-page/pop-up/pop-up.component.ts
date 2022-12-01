@@ -12,6 +12,7 @@ export class PopUpInvestorComponent implements OnInit {
   popupInvestorForm!: FormGroup;
   allInvestors: Investors[] = [];
   submitted: boolean = false;
+  click: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private investorsRepository: InvestorsRepository,
@@ -26,14 +27,14 @@ export class PopUpInvestorComponent implements OnInit {
     this.popupInvestorForm = this.formBuilder.group({
       id: [''],
       fullName: ['', [Validators.required]],
-      nickName: ['', [Validators.required]],
+      nickName: [''],
       nationalId: ['', [Validators.required]],
       primaryPhoneNo: ['', [Validators.required]],
-      secondaryPhoneNo: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      secondaryPhoneNo: [''],
+      address: [''],
       investorType: ['', [Validators.required]],
-      balance: ['', [Validators.required]],
-      startDate: ['', [Validators.required]],
+      balance: [''],
+      startDate: [''],
     });
   }
 
@@ -47,16 +48,20 @@ export class PopUpInvestorComponent implements OnInit {
     }
   }
   addInvestors() {
-    this.investorsRepository.add(this.popupInvestorForm.value).subscribe(() => {
-      this.dialogRef.close();
-    });
+    this.investorsRepository
+      .add(this.popupInvestorForm.value)
+      .subscribe(() => {});
   }
+
   UpdateInvestors(): void {
     this.investorsRepository
       .update(this.popupInvestorForm.value)
       .subscribe(() => {
         this.dialogRef.close();
       });
+  }
+  onButtonClick() {
+    this.click = !this.click;
   }
   resetTheForm(): void {
     this.popupInvestorForm.reset();
