@@ -10,6 +10,7 @@ import { Category } from 'src/app/domain/category/models/category';
 export class PopUpComponent implements OnInit {
   popupForm!: FormGroup;
   allCategory: Category[] = [];
+  submit: boolean = false;
   submitted: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -40,12 +41,15 @@ export class PopUpComponent implements OnInit {
     }
   }
   addCategory() {
+    this.submit = true;
     this.categorRepository.add(this.popupForm.value).subscribe(() => {
-      this.dialogRef.close();
+      this.submit = false;
     });
   }
   UpdateCategory(): void {
+    this.submit = true;
     this.categorRepository.update(this.popupForm.value).subscribe(() => {
+      this.submit = false;
       this.dialogRef.close();
     });
   }

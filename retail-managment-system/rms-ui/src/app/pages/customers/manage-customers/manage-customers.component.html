@@ -1,0 +1,189 @@
+<div class="manage-customer">
+  <div class="container shadow-lg">
+    <section class="panel panel-default">
+      <div class="panel-heading pt-5">
+        <h3 class="panel-title">Manage Customers</h3>
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="customersForm">
+          <fieldset>
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Customer Name</mat-label>
+              <input
+                formControlName="fullName"
+                type="text"
+                matInput
+                placeholder="enter Customer name"
+              />
+              <mat-error
+                *ngIf="customersForm.controls['fullName'].hasError('required')"
+              >
+                Customer name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Nickname</mat-label>
+              <input
+                formControlName="nickName"
+                type="text"
+                matInput
+                placeholder="enter Customer nickName"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>customer Code</mat-label>
+              <input
+                formControlName="customerCode"
+                type="number"
+                matInput
+                placeholder="enter customer Code"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>National Id</mat-label>
+              <input
+                formControlName="nationalId"
+                matInput
+                placeholder="enter customer National Id"
+                minlength="14"
+                maxlength="14"
+              />
+              <mat-error
+                *ngIf="
+                  customersForm.controls['nationalId'].hasError('required')
+                "
+              >
+                Customer National Id is <strong>required</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  customersForm.controls['nationalId'].hasError('minlength')
+                "
+              >
+                National Id must be <strong>14 number</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Primary No</mat-label>
+              <input
+                formControlName="primaryPhoneNo"
+                type="tel"
+                matInput
+                placeholder="enter customer Primary Phone No"
+                minlength="11"
+                maxlength="11"
+              />
+              <mat-error
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('required')
+                "
+              >
+                phone Number is <strong>required</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('minlength')
+                "
+              >
+                Please phone Number must be <strong>11 number</strong>
+              </mat-error>
+              <mat-error
+                class="mt-2"
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('pattern')
+                "
+              >
+                phone Number must start with <strong>010, 011, 012, 015</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50">
+              <mat-label>Secondary Phone No</mat-label>
+              <input
+                formControlName="secondaryPhoneNo"
+                type="tel"
+                matInput
+                placeholder="enter customer secondary Phone No"
+                minlength="11"
+                maxlength="11"
+              />
+              <mat-error
+                *ngIf="
+                  customersForm.controls['secondaryPhoneNo'].hasError(
+                    'minlength'
+                  )
+                "
+              >
+                Please phone Number must be <strong>11 number</strong>
+              </mat-error>
+              <mat-error
+                class="mt-2"
+                *ngIf="
+                  customersForm.controls['secondaryPhoneNo'].hasError('pattern')
+                "
+              >
+                phone Number must start with <strong>010, 011, 012, 015</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50 pt-3">
+              <mat-label>address</mat-label>
+              <input
+                formControlName="address"
+                type="text"
+                matInput
+                placeholder="enter Customer address"
+              />
+              <mat-error
+                *ngIf="customersForm.controls['address'].hasError('required')"
+              >
+                Customer address is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-50 pt-3">
+              <mat-label>Trust Receipt No</mat-label>
+              <input
+                formControlName="trustReceiptNo"
+                type="text"
+                matInput
+                placeholder="enter customer Trust Receipt No"
+              />
+            </mat-form-field>
+          </fieldset>
+        </form>
+      </div>
+
+      <mat-dialog-actions align="end">
+        <div>
+          <button
+            class="btn btn-success me-3 mb-3"
+            (click)="onSubmit()"
+            [disabled]="!customersForm.valid || submit"
+          >
+            {{
+              customersForm.controls["id"].value
+                ? "Update Customers"
+                : "Add Customers"
+            }}
+          </button>
+        </div>
+        <button
+          class="btn btn-warning me-3 mb-3"
+          mat-button
+          (click)="resetForm()"
+        >
+          Reset
+        </button>
+
+        <button class="btn btn-light me-3 mb-3" mat-button mat-dialog-close>
+          Cancel
+        </button>
+      </mat-dialog-actions>
+    </section>
+  </div>
+</div>

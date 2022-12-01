@@ -14,26 +14,15 @@ export class ProductRepository extends ResourceService<Product> {
   }
 
   toServerModel(entity: Product): any {
-    if (!entity.id) {
-      return {
-        name: entity.name,
-        modelNo: entity.modelNo,
-        brand: entity.brand,
-        cashPrice: entity.cashPrice,
-        quantity: entity.quantity,
-        productCategoryDto: entity.productCategoryDto,
-      };
-    } else {
-      return {
-        id: entity.id,
-        name: entity.name,
-        modelNo: entity.modelNo,
-        version: entity.version,
-        brand: entity.brand,
-        cashPrice: entity.cashPrice,
-        quantity: entity.quantity,
-        productCategoryDto: entity.productCategoryDto,
-      };
-    }
+    return {
+      id: entity.id,
+      name: entity.name,
+      modelNo: entity.modelNo,
+      version: entity.version,
+      brand: entity.brand,
+      cashPrice: entity.cashPrice,
+      quantity: entity.quantity,
+      productCategoryDto: { id: entity.productCategoryDto.id },
+    };
   }
 }

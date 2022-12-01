@@ -9,9 +9,10 @@
       Menu
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Products</button>
+      <button mat-menu-item routerLink="">Home</button>
+      <button mat-menu-item routerLink="product">Products</button>
       <button mat-menu-item routerLink="category">Category</button>
-      <button mat-menu-item>Customers</button>
+      <button mat-menu-item routerLink="customers">Customers</button>
       <button mat-menu-item>Investors</button>
       <button mat-menu-item>Installment</button>
       <button mat-menu-item>Order</button>
@@ -20,16 +21,16 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page">Home</a>
+          <a class="nav-link" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Products</a>
+          <a class="nav-link" routerLink="product">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="category">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Customers</a>
+          <a class="nav-link" routerLink="customers">Customers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link">Investors</a>

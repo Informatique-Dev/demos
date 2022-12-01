@@ -72,13 +72,13 @@ export abstract class ResourceService<T> {
       })
     );
   }
-  update(resource: any): Observable<any> {
-    return this.httpClient
-      .put(`${this.APIUrl}/${resource.id}`, this.toServerModel(resource))
-      .pipe(
-        catchError((err) => {
-          throw new Error(err.message);
-        })
+
+  update(resource: T): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.put(`${this.APIUrl}/${resource.id}`, this.toServerModel(resource)).pipe(
+      catchError((err) => {
+        throw new Error(err.message);
+      })
       );
   }
   addAttachment(picture: string, id: number): Observable<any> {
