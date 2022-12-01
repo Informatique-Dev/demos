@@ -9,7 +9,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
   selector: 'app-product',
   templateUrl: './product.component.html',
   styles: [
-    '.product { min-height: 850px; } table { min-width: 1200px; min-height: 800px; }',
+    '.product { min-height: auto; } table { min-width: 1200px; min-height: auto; }',
   ],
 })
 export class ProductComponent implements OnInit {

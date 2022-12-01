@@ -92,6 +92,7 @@
                 Please phone Number must be <strong>11 number</strong>
               </mat-error>
               <mat-error
+                class="mt-2"
                 *ngIf="
                   customersForm.controls['primaryPhoneNo'].hasError('pattern')
                 "
@@ -120,6 +121,7 @@
                 Please phone Number must be <strong>11 number</strong>
               </mat-error>
               <mat-error
+                class="mt-2"
                 *ngIf="
                   customersForm.controls['secondaryPhoneNo'].hasError('pattern')
                 "
@@ -128,7 +130,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="w-50 pt-3">
               <mat-label>address</mat-label>
               <input
                 formControlName="address"
@@ -143,7 +145,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="w-50 pt-3">
               <mat-label>Trust Receipt No</mat-label>
               <input
                 formControlName="trustReceiptNo"

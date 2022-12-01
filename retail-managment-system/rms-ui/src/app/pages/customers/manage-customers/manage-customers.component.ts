@@ -7,7 +7,7 @@ import { customers } from 'src/app/domain/customers/models/customers';
 @Component({
   selector: 'app-manage-customers',
   templateUrl: './manage-customers.component.html',
-  styles: ['.manage-customer { min-width: 250px; min-height: 520px; }'],
+  styles: ['.manage-customer { min-width: 250px; min-height: 540px; }'],
 })
 export class ManageCustomersComponent implements OnInit {
   customersForm!: FormGroup;
