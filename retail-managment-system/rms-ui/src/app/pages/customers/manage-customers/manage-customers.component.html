@@ -71,20 +71,61 @@
               <mat-label>Primary No</mat-label>
               <input
                 formControlName="primaryPhoneNo"
-                type="number"
+                type="tel"
                 matInput
                 placeholder="enter customer Primary Phone No"
+                minlength="11"
+                maxlength="11"
               />
+              <mat-error
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('required')
+                "
+              >
+                phone Number is <strong>required</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('minlength')
+                "
+              >
+                Please phone Number must be <strong>11 number</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  customersForm.controls['primaryPhoneNo'].hasError('pattern')
+                "
+              >
+                phone Number must start with <strong>010, 011, 012, 015</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="w-50">
               <mat-label>Secondary Phone No</mat-label>
               <input
                 formControlName="secondaryPhoneNo"
-                type="number"
+                type="tel"
                 matInput
                 placeholder="enter customer secondary Phone No"
+                minlength="11"
+                maxlength="11"
               />
+              <mat-error
+                *ngIf="
+                  customersForm.controls['secondaryPhoneNo'].hasError(
+                    'minlength'
+                  )
+                "
+              >
+                Please phone Number must be <strong>11 number</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  customersForm.controls['secondaryPhoneNo'].hasError('pattern')
+                "
+              >
+                phone Number must start with <strong>010, 011, 012, 015</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="w-50">

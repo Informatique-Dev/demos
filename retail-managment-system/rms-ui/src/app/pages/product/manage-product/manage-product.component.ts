@@ -30,11 +30,6 @@ export class ManageProductComponent implements OnInit {
     this.prodForm();
     this.fetchData();
   }
-  getAllProducts(): void {
-    this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result;
-    });
-  }
 
   prodForm() {
     this.productForm = this.build.group({
@@ -54,7 +49,6 @@ export class ManageProductComponent implements OnInit {
   updateProduct() {
     this.submit = true;
     this.productRepository.update(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
       this.submit = false;
       this.dialogRef.close();
     });
@@ -67,7 +61,6 @@ export class ManageProductComponent implements OnInit {
     this.productRepository.add(this.productForm.value).subscribe(() => {
       this.submit = false;
     });
-    this.getAllProducts();
   }
 
   getAllTempCat(): void {

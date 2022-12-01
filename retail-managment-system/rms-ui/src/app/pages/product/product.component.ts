@@ -41,8 +41,13 @@ export class ProductComponent implements OnInit {
   }
 
   openDialog(element: Product | null) {
-    this.dialog.open(ManageProductComponent, {
-      data: element,
-    });
+    const dialogRef = this.dialog
+      .open(ManageProductComponent, {
+        data: element,
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.getAllProducts();
+      });
   }
 }

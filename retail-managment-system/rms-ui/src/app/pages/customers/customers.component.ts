@@ -41,8 +41,13 @@ export class CustomersComponent implements OnInit {
     });
   }
   openDialog(element: customers | null) {
-    this.dialog.open(ManageCustomersComponent, {
-      data: element,
-    });
+    this.dialog
+      .open(ManageCustomersComponent, {
+        data: element,
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.getAllCustomers();
+      });
   }
 }

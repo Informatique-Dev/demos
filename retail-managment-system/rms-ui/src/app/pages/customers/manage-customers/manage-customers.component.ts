@@ -27,12 +27,6 @@ export class ManageCustomersComponent implements OnInit {
     this.fetchData();
   }
 
-  getAllCustomers(): void {
-    this.customersRepository.getList().subscribe((result) => {
-      this.allCustomers = result;
-    });
-  }
-
   custForm() {
     this.customersForm = this.build.group({
       id: [''],
@@ -49,8 +43,11 @@ export class ManageCustomersComponent implements OnInit {
           Validators.maxLength(14),
         ],
       ],
-      primaryPhoneNo: [''],
-      secondaryPhoneNo: [''],
+      primaryPhoneNo: [
+        '',
+        [Validators.required, Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')],
+      ],
+      secondaryPhoneNo: ['', [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
       address: ['', [Validators.required]],
       trustReceiptNo: [''],
     });
@@ -64,9 +61,8 @@ export class ManageCustomersComponent implements OnInit {
     this.submit = true;
     this.customersRepository.update(this.customersForm.value).subscribe(() => {
       this.submit = false;
+      this.dialogRef.close();
     });
-    this.getAllCustomers();
-    this.dialogRef.close();
   }
 
   addCustomer() {
@@ -74,7 +70,6 @@ export class ManageCustomersComponent implements OnInit {
     this.customersRepository.add(this.customersForm.value).subscribe(() => {
       this.submit = false;
     });
-    this.getAllCustomers();
     console.log(this.customersForm.value);
   }
 
