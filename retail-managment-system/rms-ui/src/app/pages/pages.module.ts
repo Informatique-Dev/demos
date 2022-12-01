@@ -1,3 +1,4 @@
+import { InvestorPageComponent } from './investor-page/investor-page.component';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
+  { path: 'investor', component: InvestorPageComponent },
 ];
 @NgModule({
   declarations: [
