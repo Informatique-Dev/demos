@@ -9,7 +9,9 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
-  styles: ['.update-product  { min-width: 250px; min-height: 430px;}'],
+  styles: [
+    '.update-product  { min-width: 250px; min-height: 430px;} .btn {background-color: #002d40; color: white; width: 80px}',
+  ],
 })
 export class ManageProductComponent implements OnInit {
   productForm!: FormGroup;
@@ -79,7 +81,7 @@ export class ManageProductComponent implements OnInit {
   }
 
   resetForm() {
-    this.productForm.reset();
+    this.productForm.patchValue(this.data);
   }
 
   compareFn(a: Category, b: Category) {

@@ -7,7 +7,9 @@ import { customers } from 'src/app/domain/customers/models/customers';
 @Component({
   selector: 'app-manage-customers',
   templateUrl: './manage-customers.component.html',
-  styles: ['.manage-customer { min-width: 250px; min-height: 540px; }'],
+  styles: [
+    '.manage-customer { min-width: 250px; min-height: 540px; } .btn {background-color: #002d40; color: white; width: 80px}',
+  ],
 })
 export class ManageCustomersComponent implements OnInit {
   customersForm!: FormGroup;
@@ -83,6 +85,6 @@ export class ManageCustomersComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.customersForm.reset();
+    this.customersForm.patchValue(this.data);
   }
 }

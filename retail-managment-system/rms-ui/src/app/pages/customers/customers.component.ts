@@ -8,7 +8,7 @@ import { ManageCustomersComponent } from './manage-customers/manage-customers.co
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styles: [
-    '.customers { min-height: auto; } table { min-width: 1200px; min-height: auto; }',
+    '.customers { min-height: auto; } table { min-width: 1200px; min-height: auto; } .btn {background-color: #002d40; color: white;}',
   ],
 })
 export class CustomersComponent implements OnInit {

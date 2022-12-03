@@ -6,48 +6,48 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="customersForm">
-          <fieldset>
-            <mat-form-field appearance="outline" class="w-50">
+          <fieldset class="row justify-content-center">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Customer Name</mat-label>
               <input
                 formControlName="fullName"
                 type="text"
                 matInput
-                placeholder="enter Customer name"
+                placeholder="Enter Customer Name"
               />
               <mat-error
                 *ngIf="customersForm.controls['fullName'].hasError('required')"
               >
-                Customer name is <strong>required</strong>
+                Customer Name is <strong>required</strong>
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Nickname</mat-label>
               <input
                 formControlName="nickName"
                 type="text"
                 matInput
-                placeholder="enter Customer nickName"
+                placeholder="Enter Customer Nickname"
               />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
-              <mat-label>customer Code</mat-label>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Customer Code</mat-label>
               <input
                 formControlName="customerCode"
                 type="number"
                 matInput
-                placeholder="enter customer Code"
+                placeholder="Enter Customer Code"
               />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>National Id</mat-label>
               <input
                 formControlName="nationalId"
                 matInput
-                placeholder="enter customer National Id"
+                placeholder="Enter Customer National Id"
                 minlength="14"
                 maxlength="14"
               />
@@ -67,13 +67,13 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
-              <mat-label>Primary No</mat-label>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Primary Phone No</mat-label>
               <input
                 formControlName="primaryPhoneNo"
                 type="tel"
                 matInput
-                placeholder="enter customer Primary Phone No"
+                placeholder="Enter Customer Primary Phone No"
                 minlength="11"
                 maxlength="11"
               />
@@ -82,7 +82,7 @@
                   customersForm.controls['primaryPhoneNo'].hasError('required')
                 "
               >
-                phone Number is <strong>required</strong>
+                Phone Number is <strong>required</strong>
               </mat-error>
               <mat-error
                 *ngIf="
@@ -97,17 +97,17 @@
                   customersForm.controls['primaryPhoneNo'].hasError('pattern')
                 "
               >
-                phone Number must start with <strong>010, 011, 012, 015</strong>
+                Phone Number must start with <strong>010, 011, 012, 015</strong>
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Secondary Phone No</mat-label>
               <input
                 formControlName="secondaryPhoneNo"
                 type="tel"
                 matInput
-                placeholder="enter customer secondary Phone No"
+                placeholder="Enter Customer Secondary Phone No"
                 minlength="11"
                 maxlength="11"
               />
@@ -130,13 +130,13 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50 pt-3">
-              <mat-label>address</mat-label>
+            <mat-form-field appearance="outline" class="col-6 pt-3">
+              <mat-label>Address</mat-label>
               <input
                 formControlName="address"
                 type="text"
                 matInput
-                placeholder="enter Customer address"
+                placeholder="Enter Customer Address"
               />
               <mat-error
                 *ngIf="customersForm.controls['address'].hasError('required')"
@@ -145,13 +145,13 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50 pt-3">
+            <mat-form-field appearance="outline" class="col-6 pt-3">
               <mat-label>Trust Receipt No</mat-label>
               <input
                 formControlName="trustReceiptNo"
                 type="text"
                 matInput
-                placeholder="enter customer Trust Receipt No"
+                placeholder="Enter Customer Trust Receipt No"
               />
             </mat-form-field>
           </fieldset>
@@ -161,22 +161,18 @@
       <mat-dialog-actions align="end">
         <div>
           <button
-            class="btn btn-success me-3 mb-3"
+            class="btn me-3 mb-3"
             (click)="onSubmit()"
             [disabled]="!customersForm.valid || submit"
           >
             {{ customersForm.controls["id"].value ? "Update" : "Add" }}
           </button>
         </div>
-        <button
-          class="btn btn-warning me-3 mb-3"
-          mat-button
-          (click)="resetForm()"
-        >
+        <button class="btn me-3 mb-3" mat-button (click)="resetForm()">
           Reset
         </button>
 
-        <button class="btn btn-light me-3 mb-3" mat-button mat-dialog-close>
+        <button class="btn me-3 mb-3" mat-button mat-dialog-close>
           Cancel
         </button>
       </mat-dialog-actions>

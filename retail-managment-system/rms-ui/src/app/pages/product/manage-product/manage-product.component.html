@@ -6,14 +6,14 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="productForm">
-          <fieldset>
-            <mat-form-field appearance="outline" class="w-50">
+          <fieldset class="row justify-content-center">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Product Name</mat-label>
               <input
                 formControlName="name"
                 type="text"
                 matInput
-                placeholder="enter product name"
+                placeholder="Enter Product Name"
               />
               <mat-error
                 *ngIf="productForm.controls['name'].hasError('required')"
@@ -22,23 +22,23 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Brand</mat-label>
               <input
                 formControlName="brand"
                 type="text"
                 matInput
-                placeholder="enter brand name"
+                placeholder="Enter Brand Name"
               />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Price</mat-label>
               <input
                 formControlName="cashPrice"
                 type="number"
                 matInput
-                placeholder="enter product Price"
+                placeholder="Enter Product Price"
               />
               <mat-error
                 *ngIf="productForm.controls['cashPrice'].hasError('required')"
@@ -47,23 +47,23 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Quantity</mat-label>
               <input
                 formControlName="quantity"
                 type="number"
                 matInput
-                placeholder="enter product quantity"
+                placeholder="Enter Product Quantity"
               />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>Category</mat-label>
               <mat-select
                 formControlName="productCategoryDto"
                 type="text"
                 matInput
-                placeholder="enter product Category"
+                placeholder="Enter Product Category"
                 [compareWith]="compareFn"
               >
                 <mat-option *ngFor="let cat of allCats" [value]="cat">
@@ -81,13 +81,13 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="w-50">
+            <mat-form-field appearance="outline" class="col-6">
               <mat-label>ModelNo</mat-label>
               <input
                 formControlName="modelNo"
                 type="text"
                 matInput
-                placeholder="enter product modelNo"
+                placeholder="Enter Product ModelNo"
               />
             </mat-form-field>
           </fieldset>
@@ -97,22 +97,18 @@
       <mat-dialog-actions align="end">
         <div>
           <button
-            class="btn btn-success me-3 mb-3"
+            class="btn me-3 mb-3"
             (click)="onSubmit()"
             [disabled]="submit"
           >
             {{ productForm.controls["id"].value ? "Update" : "Add" }}
           </button>
         </div>
-        <button
-          class="btn btn-warning me-3 mb-3"
-          mat-button
-          (click)="resetForm()"
-        >
+        <button class="btn me-3 mb-3" mat-button (click)="resetForm()">
           Reset
         </button>
 
-        <button class="btn btn-light me-3 mb-3" mat-button mat-dialog-close>
+        <button class="btn me-3 mb-3" mat-button mat-dialog-close>
           Cancel
         </button>
       </mat-dialog-actions>

@@ -9,7 +9,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
   selector: 'app-product',
   templateUrl: './product.component.html',
   styles: [
-    '.product { min-height: auto; } table { min-width: 1200px; min-height: auto; }',
+    '.product { min-height: auto; } table { min-width: 1200px; min-height: auto; } .btn {background-color: #002d40; color: white;}',
   ],
 })
 export class ProductComponent implements OnInit {
