@@ -73,4 +73,3 @@ export class PopUpInvestorComponent implements OnInit {
     this.popupInvestorForm.patchValue(this.data);
   }
 }
-4;
