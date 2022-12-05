@@ -10,7 +10,7 @@
             <mat-form-field appearance="outline" class="m-1 col-4">
               <mat-label>Full Name</mat-label>
               <input
-                formControlName="FullName"
+                formControlName="fullName"
                 type="text"
                 matInput
                 placeholder="Enter your FullName"
@@ -34,7 +34,7 @@
             <mat-form-field appearance="outline" class="m-1 col-4">
               <mat-label>NickName</mat-label>
               <input
-                formControlName="NickName"
+                formControlName="nickName"
                 type="text"
                 matInput
                 placeholder="Enter your NickName"
@@ -59,7 +59,7 @@
             <mat-form-field appearance="outline" class="m-1 col-4">
               <mat-label> NationalId</mat-label>
               <input
-                formControlName="NationalId"
+                formControlName="nationalId"
                 type="number"
                 matInput
                 placeholder="Enter NationalId"
@@ -86,7 +86,7 @@
             <mat-form-field appearance="outline" class="m-1 col-4">
               <mat-label> PrimaryPhoneNo</mat-label>
               <input
-                formControlName="PrimaryPhoneNo"
+                formControlName="primaryPhoneNo"
                 type="number"
                 matInput
                 placeholder="Enter PrimaryPhoneNo"
@@ -175,12 +175,10 @@
               <mat-label> InvestorType</mat-label>
 
               <mat-select
-                type="string"
+                type="text"
                 placeholder="InvestorType"
-                name="option"
                 formControlName="investorType"
                 matInput
-                multiple
               >
                 <mat-option
                   *ngFor="let investor of allInvestors"
@@ -239,7 +237,7 @@
             <mat-form-field appearance="outline" class="m-1 col-6">
               <mat-label> StartDate</mat-label>
               <input
-                formControlName="StartDate"
+                formControlName="startDate"
                 type="date"
                 matInput
                 placeholder="Enter startDate"
