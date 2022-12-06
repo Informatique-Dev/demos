@@ -16,6 +16,7 @@ export class PopUpInvestorComponent implements OnInit {
   allInvestors: Investors[] = [];
   submitted: boolean = false;
   click: boolean = false;
+  value: string | undefined;
   constructor(
     private formBuilder: FormBuilder,
     private investorsRepository: InvestorsRepository,
@@ -40,7 +41,10 @@ export class PopUpInvestorComponent implements OnInit {
       startDate: [''],
     });
   }
-
+  // investorType: [] = [
+  //   { value: 'CONTRIBUTOR' },
+  //   { value: 'MANAGER' },
+  // ];
   onSubmit() {
     if (this.popupInvestorForm.valid) {
       this.submitted = true;
@@ -54,6 +58,7 @@ export class PopUpInvestorComponent implements OnInit {
     this.investorsRepository
       .add(this.popupInvestorForm.value)
       .subscribe(() => {});
+    console.log(this.popupInvestorForm.value);
   }
 
   UpdateInvestors(): void {

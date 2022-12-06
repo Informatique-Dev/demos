@@ -21,7 +21,6 @@ export class PopUpComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.categoriForm();
-
     this.fetchData(this.data);
   }
   categoriForm() {
@@ -60,4 +59,3 @@ export class PopUpComponent implements OnInit {
     this.popupForm.patchValue(this.data);
   }
 }
-4;
