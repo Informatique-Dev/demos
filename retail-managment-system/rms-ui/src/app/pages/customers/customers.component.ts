@@ -7,7 +7,7 @@ import { customers } from 'src/app/domain/customers/models/customers';
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styles: [
-    '.main{min-height:800px} .data-table::-webkit-scrollbar{ display: none} .btn {background-color: #002d40; color: white; width: 80px; height:40px} .btnn {background-color: transparent; color: #002d40; width: 50px; height:40px;} .btnn:hover {color:red;} mat-icon { font-size:30px} th,td{line-height: 4; min-width: 140px;}',
+    '.main{min-height:800px} .btn {background-color: #002d40; color: white; width: 80px; height:40px} .btnn {background-color: transparent; color: #002d40; width: 50px; height:40px;} .btnn:hover {color:red;} mat-icon { font-size:30px} th,td{line-height: 4; min-width: 140px;}',
   ],
 })
 export class CustomersComponent implements OnInit {
