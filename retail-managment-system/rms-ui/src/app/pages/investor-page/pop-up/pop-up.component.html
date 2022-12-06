@@ -178,13 +178,14 @@
                 type="text"
                 placeholder="InvestorType"
                 formControlName="investorType"
+                value=""
                 matInput
               >
                 <mat-option
                   *ngFor="let investor of allInvestors"
-                  [value]="investor"
-                  >{{ investor.investorType }}</mat-option
+                  [value]="investor.investorType"
                 >
+                </mat-option>
               </mat-select>
               <mat-error
                 *ngIf="

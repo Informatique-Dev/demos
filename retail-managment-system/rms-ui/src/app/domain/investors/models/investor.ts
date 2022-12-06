@@ -8,9 +8,9 @@ export interface Investors {
   address: string;
   balance: number;
   startDate: Date;
-  investorType: InvestorType;
+  investorType: InvestorTypes;
 }
-export enum InvestorType {
+export enum InvestorTypes {
   'CONTRIBUTOR',
   'MANAGER',
 }
