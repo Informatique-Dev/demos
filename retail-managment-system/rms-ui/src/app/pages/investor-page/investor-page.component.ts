@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-import { Investors } from './../../domain/investors/models/investor';
+import {
+  Investors,
+  InvestorTypes,
+} from './../../domain/investors/models/investor';
 
 @Component({
   selector: 'app-investor-page',
@@ -13,6 +16,7 @@ import { Investors } from './../../domain/investors/models/investor';
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
   allInvestors: Investors[] = [];
+  investorOptions!: InvestorTypes;
   investormForm!: FormGroup;
   isAppear!: boolean;
   click: boolean = false;
@@ -20,6 +24,7 @@ export class InvestorPageComponent implements OnInit {
   submitted: boolean = false;
   submit: boolean = false;
   data!: Investors;
+  currentInvestor!: Investors;
   displayedColumns: string[] = [
     'id',
     'fullName',
@@ -40,7 +45,6 @@ export class InvestorPageComponent implements OnInit {
   ngOnInit(): void {
     this.getAllInvestors();
     this.investorsForm();
-    this.fetchData();
   }
   investorsForm() {
     this.investorForm = this.formBuilder.group({
@@ -56,8 +60,9 @@ export class InvestorPageComponent implements OnInit {
       startDate: [''],
     });
   }
-  fetchData(): void {
-    this.investorForm.patchValue(this.data);
+  fetchData(investor: Investors): void {
+    this.investorForm.patchValue(investor);
+    this.currentInvestor = investor;
   }
   getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
@@ -74,19 +79,22 @@ export class InvestorPageComponent implements OnInit {
     }
   }
   addInvestors() {
-    this.investorsRepository.add(this.investorForm.value).subscribe(() => {});
-    console.log(this.investorForm.value);
+    this.investorsRepository.add(this.investorForm.value).subscribe(() => {
+      this.getAllInvestors();
+      this.submit = false;
+    });
   }
 
   UpdateInvestors(): void {
-    this.investorsRepository
-      .update(this.investorForm.value)
-      .subscribe(() => {});
+    this.investorsRepository.update(this.investorForm.value).subscribe(() => {
+      this.getAllInvestors();
+      this.submit = false;
+    });
   }
   onButtonClick() {
     this.click = !this.click;
   }
   resetTheForm(): void {
-    this.investorForm.reset();
+    this.fetchData(this.currentInvestor);
   }
 }
