@@ -1,72 +1,186 @@
-<div class="container text-center mt-5">
-  <div>
-    <h3 class="panel-title fw-bold">Our Products</h3>
-    <button class="btn w-50" mat-button (click)="openDialog(null)">
-      Add Product
-    </button>
+<div class="main">
+  <div class="container text-center mt-5">
+    <div>
+      <h3 class="panel-title fw-bold">Our Products</h3>
+    </div>
   </div>
-</div>
 
-<div
-  class="container product d-flex justify-content-center align-items-center mt-5 mb-5"
->
-  <div class="table table-responsive">
-    <table class="bg-light shadow-lg" mat-table [dataSource]="allProducts">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Category</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.productCategoryDto.name }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="brand" class="brand">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">brand</th>
-        <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="price" class="price">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Price</th>
-        <td mat-cell *matCellDef="let element">{{ element.cashPrice }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="quantity" class="quantity">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">quantity</th>
-        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          class="update-icon"
-          (click)="openDialog(element)"
+  <div class="container-fluid col-11 mt-5 mb-5 shadow-lg">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table">
+        <table
+          class="table table-responsive"
+          mat-table
+          [dataSource]="allProducts"
         >
-          <button class="btn">
-            <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
 
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" class="delete-icon">
-          <button class="btn"><mat-icon>delete</mat-icon></button>
-        </td>
-      </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              Category
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.productCategoryDto.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              brand
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              Price
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.cashPrice }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              quantity
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon">
+              <button class="btn btnn" (click)="fetchData(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="btn btnn" (click)="deleteProduct(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6 bg-light">
+        <section>
+          <div class="panel-heading pt-3 ps-1">
+            <h3 class="panel-title">
+              {{ productForm.controls["id"].value ? "Update" : "Add" }} Product
+            </h3>
+          </div>
+          <div class="panel-body ps-1">
+            <form [formGroup]="productForm">
+              <fieldset>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Product Name</mat-label>
+                  <input
+                    formControlName="name"
+                    type="text"
+                    matInput
+                    placeholder="Enter Product Name"
+                  />
+                  <mat-error
+                    *ngIf="productForm.controls['name'].hasError('required')"
+                  >
+                    product name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Brand</mat-label>
+                  <input
+                    formControlName="brand"
+                    type="text"
+                    matInput
+                    placeholder="Enter Brand Name"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Price</mat-label>
+                  <input
+                    formControlName="cashPrice"
+                    type="number"
+                    matInput
+                    placeholder="Enter Product Price"
+                  />
+                  <mat-error
+                    *ngIf="
+                      productForm.controls['cashPrice'].hasError('required')
+                    "
+                  >
+                    product Price is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Quantity</mat-label>
+                  <input
+                    formControlName="quantity"
+                    type="number"
+                    matInput
+                    placeholder="Enter Product Quantity"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Category</mat-label>
+                  <mat-select
+                    formControlName="productCategoryDto"
+                    type="text"
+                    matInput
+                    placeholder="Enter Product Category"
+                    [compareWith]="compareFn"
+                  >
+                    <mat-option *ngFor="let cat of categories" [value]="cat">
+                      {{ cat.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                      productForm.controls['productCategoryDto'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    product Category is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>ModelNo</mat-label>
+                  <input
+                    formControlName="modelNo"
+                    type="text"
+                    matInput
+                    placeholder="Enter Product ModelNo"
+                  />
+                </mat-form-field>
+              </fieldset>
+            </form>
+          </div>
+
+          <mat-dialog-actions align="end">
+            <div class="actions pb-2">
+              <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+                {{ productForm.controls["id"].value ? "Update" : "Add" }}
+              </button>
+              <button class="btn" mat-button (click)="resetForm()">
+                {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
+              </button>
+            </div>
+          </mat-dialog-actions>
+        </section>
+      </div>
+    </div>
   </div>
 </div>
