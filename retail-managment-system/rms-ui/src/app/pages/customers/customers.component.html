@@ -100,11 +100,17 @@
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-4">
-            <h3 class="panel-title">
+          <div class="panel-heading pt-3 ps-1 mb-5">
+            <h3 class="panel-title float-start">
               {{ customersForm.controls["id"].value ? "Update" : "Add" }}
               Customers
             </h3>
+            <mat-icon
+              class="me-4 float-end"
+              (click)="resetTheForm(); isButtonVisible = true"
+              [hidden]="isButtonVisible"
+              >add</mat-icon
+            >
           </div>
           <div class="panel-body">
             <form [formGroup]="customersForm">
@@ -198,7 +204,7 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-50 mb-5">
+                <mat-form-field appearance="outline" class="w-50 mb-4">
                   <mat-label>Primary Phone No</mat-label>
                   <input
                     formControlName="primaryPhoneNo"
@@ -239,7 +245,7 @@
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-50 mb-5">
+                <mat-form-field appearance="outline" class="w-50 mb-4">
                   <mat-label>Secondary Phone No</mat-label>
                   <input
                     formControlName="secondaryPhoneNo"
@@ -281,13 +287,6 @@
               </button>
               <button class="btn" mat-button (click)="resetForm()">
                 {{ customersForm.controls["id"].value ? "Reset" : "Clear" }}
-              </button>
-              <button
-                class="btn float-start"
-                (click)="resetTheForm(); isButtonVisible = true"
-                [hidden]="isButtonVisible"
-              >
-                Add
               </button>
             </div>
           </mat-dialog-actions>

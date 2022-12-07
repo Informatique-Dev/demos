@@ -74,10 +74,17 @@
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-1">
-            <h3 class="panel-title">
+          <div class="panel-heading pt-3 ps-1 mb-5">
+            <h3 class="panel-title float-start">
               {{ productForm.controls["id"].value ? "Update" : "Add" }} Product
             </h3>
+
+            <mat-icon
+              class="me-4 float-end"
+              (click)="resetTheForm(); isButtonVisible = true"
+              [hidden]="isButtonVisible"
+              >add</mat-icon
+            >
           </div>
           <div class="panel-body ps-1">
             <form [formGroup]="productForm">
@@ -158,7 +165,7 @@
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100 mb-5">
+                <mat-form-field appearance="outline" class="w-100 mb-4">
                   <mat-label>ModelNo</mat-label>
                   <input
                     formControlName="modelNo"
@@ -172,19 +179,12 @@
           </div>
 
           <mat-dialog-actions align="end" class="mt-5">
-            <div class="actions pb-3">
+            <div class="actions pb-5">
               <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
                 {{ productForm.controls["id"].value ? "Update" : "Add" }}
               </button>
               <button class="btn" mat-button (click)="resetForm()">
                 {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
-              </button>
-              <button
-                class="btn float-start"
-                (click)="resetTheForm(); isButtonVisible = true"
-                [hidden]="isButtonVisible"
-              >
-                Add
               </button>
             </div>
           </mat-dialog-actions>
