@@ -58,10 +58,10 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" class="update-icon">
-              <button class="btn btnn" (click)="fetchData(element)">
+              <button class="btn table-button" (click)="fetchData(element)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button class="btn btnn" (click)="deleteProduct(element)">
+              <button class="btn table-button" (click)="deleteProduct(element)">
                 <mat-icon>delete</mat-icon>
               </button>
             </td>
@@ -80,8 +80,8 @@
             </h3>
 
             <mat-icon
-              class="me-4 float-end"
-              (click)="resetTheForm(); isButtonVisible = true"
+              class="add-icon me-4 float-end"
+              (click)="restartForm(); isButtonVisible = true"
               [hidden]="isButtonVisible"
               >add</mat-icon
             >

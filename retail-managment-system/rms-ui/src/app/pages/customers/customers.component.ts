@@ -107,7 +107,7 @@ export class CustomersComponent implements OnInit {
       : this.customersForm.reset();
   }
 
-  resetTheForm(): void {
+  restartForm(): void {
     this.customersForm.reset();
   }
 

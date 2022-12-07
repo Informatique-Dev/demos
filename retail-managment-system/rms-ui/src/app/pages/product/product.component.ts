@@ -106,7 +106,7 @@ export class ProductComponent implements OnInit {
     return a.id === b.id;
   }
 
-  resetTheForm(): void {
+  restartForm(): void {
     this.productForm.reset();
   }
 
