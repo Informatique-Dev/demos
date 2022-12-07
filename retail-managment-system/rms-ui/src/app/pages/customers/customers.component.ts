@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
-import { customers } from 'src/app/domain/customers/models/customers';
-import { ManageCustomersComponent } from './manage-customers/manage-customers.component';
+import { Customers } from 'src/app/domain/customers/models/customers';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styles: [
-    '.customers { min-height: auto; } table { min-width: 1200px; min-height: auto; }',
-  ],
+  styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
-  allCustomers: customers[] = [];
+  allCustomers: Customers[] = [];
+  customersForm!: FormGroup;
+  submit: boolean = false;
+  currentData!: Customers;
+  isButtonVisible: boolean = true;
   displayedColumns: string[] = [
     'id',
     'fullName',
@@ -23,31 +24,96 @@ export class CustomersComponent implements OnInit {
     'secondaryPhoneNo',
     'address',
     'trustReceiptNo',
-    'update',
-    'delete',
+    'actions',
   ];
 
   constructor(
     private customersRepository: CustomersRepository,
-    public dialog: MatDialog
+    private build: FormBuilder
   ) {}
 
   ngOnInit() {
     this.getAllCustomers();
+    this.custForm();
   }
+
+  custForm() {
+    this.customersForm = this.build.group({
+      id: [''],
+      fullName: ['', [Validators.required]],
+      nickName: [''],
+      customerCode: [''],
+      version: [''],
+      nationalId: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.minLength(14),
+          Validators.maxLength(14),
+        ],
+      ],
+      primaryPhoneNo: [
+        '',
+        [Validators.required, Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')],
+      ],
+      secondaryPhoneNo: ['', [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
+      address: ['', [Validators.required]],
+      trustReceiptNo: [''],
+    });
+  }
+
   getAllCustomers(): void {
     this.customersRepository.getList().subscribe((result) => {
       this.allCustomers = result;
     });
   }
-  openDialog(element: customers | null) {
-    this.dialog
-      .open(ManageCustomersComponent, {
-        data: element,
-      })
-      .afterClosed()
-      .subscribe(() => {
-        this.getAllCustomers();
-      });
+
+  fetchData(customer: Customers): void {
+    this.isButtonVisible = false;
+    this.customersForm.patchValue(customer);
+    this.currentData = customer;
+  }
+
+  updateCustomer() {
+    this.isButtonVisible = true;
+    this.submit = true;
+    this.customersRepository.update(this.customersForm.value).subscribe(() => {
+      this.getAllCustomers();
+      this.submit = false;
+    });
+  }
+
+  addCustomer() {
+    this.isButtonVisible = true;
+    this.submit = true;
+    this.customersRepository.add(this.customersForm.value).subscribe(() => {
+      this.getAllCustomers();
+      this.submit = false;
+    });
+  }
+
+  onSubmit() {
+    if (this.customersForm.valid) {
+      this.customersForm.controls['id'].value
+        ? this.updateCustomer()
+        : this.addCustomer();
+      this.customersForm.reset();
+    }
+  }
+  resetForm(): void {
+    this.customersForm.controls['id'].value
+      ? this.fetchData(this.currentData)
+      : this.customersForm.reset();
+  }
+
+  restartForm(): void {
+    this.customersForm.reset();
+  }
+
+  deleteCustomer(customer: Customers) {
+    this.customersRepository.delete(customer.id).subscribe(() => {
+      this.getAllCustomers();
+    });
   }
 }
