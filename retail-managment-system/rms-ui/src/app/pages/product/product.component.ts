@@ -8,16 +8,13 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styles: [
-    '.main{min-height:800px} .btn {background-color: #002d40; color: white; width: 80px; height:40px} .btnn {background-color: transparent; color: #002d40; width: 50px; height:40px;} .btnn:hover {color:red;} mat-icon { font-size:30px} th,td{line-height: 4; min-width: 140px}',
-  ],
+  styleUrls: ['./product.scss'],
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
   productForm!: FormGroup;
   categories: Category[] = [];
   submit: boolean = false;
-  submitted: boolean = false;
   currentData!: Product;
   displayedColumns: string[] = [
     'id',
@@ -103,6 +100,10 @@ export class ProductComponent implements OnInit {
   compareFn(a: Category, b: Category) {
     if (!a || !b) return false;
     return a.id === b.id;
+  }
+
+  resetTheForm(): void {
+    this.productForm.reset();
   }
 
   deleteProduct(product: Product) {

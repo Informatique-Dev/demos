@@ -177,6 +177,9 @@
               <button class="btn" mat-button (click)="resetForm()">
                 {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
               </button>
+              <button class="btn float-start" (click)="resetTheForm()">
+                <mat-icon>refresh</mat-icon>
+              </button>
             </div>
           </mat-dialog-actions>
         </section>

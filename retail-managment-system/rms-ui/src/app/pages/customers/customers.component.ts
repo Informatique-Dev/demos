@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
-import { customers } from 'src/app/domain/customers/models/customers';
+import { Customers } from 'src/app/domain/customers/models/customers';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styles: [
-    '.main{min-height:800px} .btn {background-color: #002d40; color: white; width: 80px; height:40px} .btnn {background-color: transparent; color: #002d40; width: 50px; height:40px;} .btnn:hover {color:red;} mat-icon { font-size:30px} th,td{line-height: 4; min-width: 140px;}',
-  ],
+  styleUrls: ['./customers.scss'],
 })
 export class CustomersComponent implements OnInit {
-  allCustomers: customers[] = [];
+  allCustomers: Customers[] = [];
   customersForm!: FormGroup;
   submit: boolean = false;
-  submitted: boolean = false;
-  currentData!: customers;
+  currentData!: Customers;
   displayedColumns: string[] = [
     'id',
     'fullName',
@@ -71,7 +68,7 @@ export class CustomersComponent implements OnInit {
     });
   }
 
-  fetchData(customer: customers): void {
+  fetchData(customer: Customers): void {
     this.customersForm.patchValue(customer);
     this.currentData = customer;
   }
@@ -90,7 +87,6 @@ export class CustomersComponent implements OnInit {
       this.getAllCustomers();
       this.submit = false;
     });
-    console.log(this.customersForm.value);
   }
 
   onSubmit() {
@@ -107,7 +103,11 @@ export class CustomersComponent implements OnInit {
       : this.customersForm.reset();
   }
 
-  deleteProduct(customer: customers) {
+  resetTheForm(): void {
+    this.customersForm.reset();
+  }
+
+  deleteCustomer(customer: Customers) {
     this.customersRepository.delete(customer.id).subscribe(() => {
       this.getAllCustomers();
     });
