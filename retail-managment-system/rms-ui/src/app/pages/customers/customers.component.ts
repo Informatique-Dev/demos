@@ -6,13 +6,14 @@ import { Customers } from 'src/app/domain/customers/models/customers';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.scss'],
+  styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
   allCustomers: Customers[] = [];
   customersForm!: FormGroup;
   submit: boolean = false;
   currentData!: Customers;
+  isButtonVisible: boolean = true;
   displayedColumns: string[] = [
     'id',
     'fullName',
@@ -69,11 +70,13 @@ export class CustomersComponent implements OnInit {
   }
 
   fetchData(customer: Customers): void {
+    this.isButtonVisible = false;
     this.customersForm.patchValue(customer);
     this.currentData = customer;
   }
 
   updateCustomer() {
+    this.isButtonVisible = true;
     this.submit = true;
     this.customersRepository.update(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();
@@ -82,6 +85,7 @@ export class CustomersComponent implements OnInit {
   }
 
   addCustomer() {
+    this.isButtonVisible = true;
     this.submit = true;
     this.customersRepository.add(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();

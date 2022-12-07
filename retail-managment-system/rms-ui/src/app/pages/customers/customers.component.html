@@ -1,13 +1,15 @@
 <div class="main">
-  <div class="container text-center mt-5">
+  <div class="container text-center mt-4">
     <div>
       <h3 class="panel-title fw-bold">Our Customers</h3>
     </div>
   </div>
 
-  <div class="container-fluid col-11 mt-5 mb-5 shadow-lg">
+  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
     <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table">
+      <div
+        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table"
+      >
         <table
           class="table table-responsive"
           mat-table
@@ -96,7 +98,7 @@
         </table>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-6 bg-light">
+      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
           <div class="panel-heading pt-3 ps-4">
             <h3 class="panel-title">
@@ -169,7 +171,34 @@
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>Address</mat-label>
+                  <input
+                    formControlName="address"
+                    type="text"
+                    matInput
+                    placeholder="Enter Customer Address"
+                  />
+                  <mat-error
+                    *ngIf="
+                      customersForm.controls['address'].hasError('required')
+                    "
+                  >
+                    Customer address is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>Trust Receipt No</mat-label>
+                  <input
+                    formControlName="trustReceiptNo"
+                    type="text"
+                    matInput
+                    placeholder="Enter Customer Trust Receipt No"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50 mb-5">
                   <mat-label>Primary Phone No</mat-label>
                   <input
                     formControlName="primaryPhoneNo"
@@ -210,7 +239,7 @@
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100 pt-3">
+                <mat-form-field appearance="outline" class="w-50 mb-5">
                   <mat-label>Secondary Phone No</mat-label>
                   <input
                     formControlName="secondaryPhoneNo"
@@ -241,33 +270,6 @@
                     <strong>010, 011, 012, 015</strong>
                   </mat-error>
                 </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-50 pt-3">
-                  <mat-label>Address</mat-label>
-                  <input
-                    formControlName="address"
-                    type="text"
-                    matInput
-                    placeholder="Enter Customer Address"
-                  />
-                  <mat-error
-                    *ngIf="
-                      customersForm.controls['address'].hasError('required')
-                    "
-                  >
-                    Customer address is <strong>required</strong>
-                  </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-50 pt-3">
-                  <mat-label>Trust Receipt No</mat-label>
-                  <input
-                    formControlName="trustReceiptNo"
-                    type="text"
-                    matInput
-                    placeholder="Enter Customer Trust Receipt No"
-                  />
-                </mat-form-field>
               </fieldset>
             </form>
           </div>
@@ -280,8 +282,12 @@
               <button class="btn" mat-button (click)="resetForm()">
                 {{ customersForm.controls["id"].value ? "Reset" : "Clear" }}
               </button>
-              <button class="btn float-start" (click)="resetTheForm()">
-                <mat-icon>refresh</mat-icon>
+              <button
+                class="btn float-start"
+                (click)="resetTheForm(); isButtonVisible = true"
+                [hidden]="isButtonVisible"
+              >
+                Add
               </button>
             </div>
           </mat-dialog-actions>

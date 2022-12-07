@@ -8,7 +8,7 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.scss'],
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   categories: Category[] = [];
   submit: boolean = false;
   currentData!: Product;
+  isButtonVisible: boolean = true;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -57,11 +58,13 @@ export class ProductComponent implements OnInit {
   }
 
   fetchData(product: Product): void {
+    this.isButtonVisible = false;
     this.productForm.patchValue(product);
     this.currentData = product;
   }
 
   updateProduct() {
+    this.isButtonVisible = true;
     this.submit = true;
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
@@ -70,6 +73,7 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct() {
+    this.isButtonVisible = true;
     this.submit = true;
     this.productRepository.add(this.productForm.value).subscribe(() => {
       this.getAllProducts();
