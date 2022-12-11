@@ -1,122 +1,123 @@
-<div class="container text-center mt-5">
-  <div>
+<div class="mx-auto content-size text-center my-5">
+  <div class="container text-center mt-5">
     <h3 class="panel-title fw-bold">Our Category</h3>
   </div>
-</div>
-<div class="row my-5 bg-light">
-  <div class="col-8">
-    <table class="w-100" mat-table [dataSource]="allCategory">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-        <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
-        <td mat-cell *matCellDef="let category">{{ category.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="status" class="status">
-        <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">status</th>
-        <td mat-cell *matCellDef="let category">{{ category.status }}</td>
-      </ng-container>
+  <div class="row shadow-lg">
+    <div class="col-8">
+      <table
+        class="w-100 overflow-scroll text-start"
+        mat-table
+        [dataSource]="allCategory"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+          <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="status" class="status">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">status</th>
+          <td mat-cell *matCellDef="let category">
+            {{ category.status }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="update">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" class="update-icon">
-          <mat-icon (click)="fetchData(element)">edit</mat-icon>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="DeleteCategory(element)">delete</mat-icon>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-  </div>
+        <ng-container matColumnDef="update">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            class="d-flex border-spacing:0;border-width:0;color:red"
+          ></th>
+          <td mat-cell *matCellDef="let element" class="update-icon">
+            <mat-icon (click)="fetchData(element)">edit</mat-icon>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete" class="">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="DeleteCategory(element)">delete</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
 
-  <div class="col-4">
-    <section>
-      <div class="panel-heading pt-3 ps-4">
-        <h3 class="panel-tittle">
-          {{ categoryform.controls["id"].value ? "Update" : "Add" }}
+    <div class="col-4 bg-light">
+      <div class="">
+        <h3 class="panel-title float-start mt-3 ms-1">
+          {{ categoryform.controls["id"].value ? "Update" : "Add" }} Category
         </h3>
+        <mat-icon
+          class="add-icon me-4 pt-4 float-end"
+          (click)="restartForm()"
+          [hidden]="!categoryform.controls['id'].value"
+        >
+          add</mat-icon
+        >
       </div>
-      <div class="panel-body pt-3 ps-4">
-        <form [formGroup]="categoryform">
-          <fieldset class="w-200 text-align:center">
-            <mat-form-field appearance="outline" class="m-2">
-              <mat-label> Name</mat-label>
-              <input
-                formControlName="name"
-                type="text"
-                matInput
-                placeholder="Enter your Name"
-                fxFlex="40"
-              />
-              <mat-error
-                *ngIf="
-                  categoryform.controls['name'].hasError('name') &&
-                  !categoryform.controls['name'].hasError('required')
-                "
-              >
-                Please enter Category Name
-              </mat-error>
-              <mat-error
-                *ngIf="categoryform.controls['name'].hasError('required')"
-              >
-                Category name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
+      <div class="clearfix"></div>
+      <form [formGroup]="categoryform">
+        <mat-form-field appearance="outline" class="test me-3">
+          <mat-label> Name</mat-label>
+          <input
+            formControlName="name"
+            type="text"
+            matInput
+            placeholder="Enter your Name"
+            fxFlex="40"
+          />
+          <mat-error
+            *ngIf="
+              categoryform.controls['name'].hasError('name') &&
+              !categoryform.controls['name'].hasError('required')
+            "
+          >
+            Please enter Category Name
+          </mat-error>
+          <mat-error *ngIf="categoryform.controls['name'].hasError('required')">
+            Category name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Status</mat-label>
-              <input
-                formControlName="status"
-                type="boolen"
-                matInput
-                placeholder="Status"
-              />
-              <mat-error
-                *ngIf="
-                  categoryform.controls['status'].hasError('status') &&
-                  !categoryform.controls['status'].hasError('required')
-                "
-              >
-                Please enter Category status
-              </mat-error>
-              <mat-error
-                *ngIf="categoryform.controls['status'].hasError('required')"
-              >
-                Category status is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </fieldset>
-        </form>
-      </div>
-      <mat-dialog-actions align="end">
-        <div class="row text-align:center">
-          <div class="col-lg-12">
+        <mat-form-field appearance="outline" class="test me-3">
+          <mat-label>Status</mat-label>
+
+          <mat-select placeholder="Statue" formControlName="status">
+            <mat-option value="True">True</mat-option>
+            <mat-option value="False">False</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              categoryform.controls['status'].hasError('status') &&
+              !categoryform.controls['status'].hasError('required')
+            "
+          >
+            Please enter Category status
+          </mat-error>
+          <mat-error
+            *ngIf="categoryform.controls['status'].hasError('required')"
+          >
+            Category status is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <mat-dialog-actions align="end" class="">
+        <div class="row">
+          <div class="col-12">
             <div class="page-footer-box">
-              <button
-                class="btn me-2 mb-1"
-                (click)="onSubmit()"
-                [disabled]="submit"
-              >
+              <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
                 {{ categoryform.controls["id"].value ? "Update" : "Add" }}
               </button>
-
-              <button class="btn me-1 mb-1" (click)="resetTheForm()" mat-button>
-                Reset
-              </button>
-              <button class="btn me-1 mb-1" (click)="clearTheForm()" mat-button>
-                Clear
+              <button class="btn me-2" mat-button (click)="resetTheForm()">
+                {{ categoryform.controls["id"].value ? "Reset" : "Clear" }}
               </button>
             </div>
           </div>
         </div>
       </mat-dialog-actions>
-    </section>
+    </div>
   </div>
 </div>

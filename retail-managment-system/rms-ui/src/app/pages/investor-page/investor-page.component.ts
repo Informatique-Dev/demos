@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-import {
-  Investors,
-  InvestorTypes,
-} from './../../domain/investors/models/investor';
+import { Investors } from './../../domain/investors/models/investor';
 
 @Component({
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
   styles: [
-    '.investors { min-height: auto; } table { }mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
+    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;} .test{ width: 46%}',
   ],
 })
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
   allInvestors: Investors[] = [];
-  investorOptions!: Investors;
   click: boolean = false;
   value: string | undefined;
   submit: boolean = false;
@@ -87,12 +83,12 @@ export class InvestorPageComponent implements OnInit {
       this.submit = false;
     });
   }
-  onButtonClick() {
-    this.click = !this.click;
+  resetForm(): void {
+    this.investorForm.controls['id'].value
+      ? this.fetchData(this.currentInvestor)
+      : this.clearTheForm();
   }
-  resetTheForm(): void {
-    this.fetchData(this.currentInvestor);
-  }
+
   DeleteInvestors(investors: Investors): void {
     this.submit = true;
     this.investorsRepository.delete(investors.id).subscribe(() => {
@@ -102,5 +98,8 @@ export class InvestorPageComponent implements OnInit {
   }
   clearTheForm(): void {
     this.investorForm.reset();
+  }
+  restartForm(): void {
+    this.clearTheForm();
   }
 }

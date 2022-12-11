@@ -6,7 +6,7 @@ import { Category } from 'src/app/domain/category/models/category';
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
   styles: [
-    '.category { min-height: auto; } mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
+    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}.test{ width: 46%}',
   ],
 })
 export class CategoryPageComponent implements OnInit {
@@ -64,16 +64,19 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   resetTheForm(): void {
-    this.fetchData(this.currentCategory);
+    this.categoryform.controls['id'].value
+      ? this.fetchData(this.currentCategory)
+      : this.clearTheForm();
   }
   DeleteCategory(Categori: Category): void {
-    this.submit = true;
     this.categorRepository.delete(Categori.id).subscribe(() => {
       this.getAllCategory();
-      this.submit = false;
     });
   }
   clearTheForm(): void {
     this.categoryform.reset();
+  }
+  restartForm(): void {
+    this.clearTheForm();
   }
 }
