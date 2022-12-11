@@ -1,67 +1,52 @@
-<div class="container-fluid">
-  <br /><br />
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <div class="page-title-box">
-              <h3 class="panel-title fw-bold text-center">Our Category</h3>
-            </div>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-12">
-            <div class="page-footer-box">
-              <button class="btn btn-success w-50" (click)="openDialog(null)">
-                Add Category
-              </button>
-            </div>
-          </div>
-        </div>
-        <br />
-      </div>
-    </div>
+<div class="container text-center mt-5">
+  <div>
+    <h3 class="panel-title fw-bold text-center">Our Category</h3>
+    <button class="btn w-50" (click)="openDialog(null)">Add Category</button>
   </div>
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <table class="table table-centered mb-0">
-              <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Name</th>
-                  <th>Status</th>
+</div>
 
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let categori of allCategory; index as i">
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ categori.name }}</td>
-                  <td>{{ categori.status }}</td>
-                  <td>
-                    <button
-                      class="btn btn-primary"
-                      (click)="openDialog(categori)"
-                    >
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div
+  class="container product d-flex justify-content-center align-items-center mt-5 mb-5"
+>
+  <table
+    class="bg-light shadow-lg table table-responsive"
+    mat-table
+    [dataSource]="allCategory"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+      <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+      <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="status" class="status">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">status</th>
+      <td mat-cell *matCellDef="let category">{{ category.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td
+        mat-cell
+        *matCellDef="let category"
+        class="update-icon"
+        (click)="openDialog(category)"
+      >
+        <button class="btn">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="" class="delete-icon">
+        <button class="btn"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

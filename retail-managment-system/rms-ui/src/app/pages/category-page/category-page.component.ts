@@ -6,11 +6,12 @@ import { PopUpComponent } from './pop-up/pop-up.component';
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
+  styles: ['.btn{background-color:#002d40;color:white;width:50px}'],
 })
 export class CategoryPageComponent implements OnInit {
   allCategory: Category[] = [];
   isAppear!: boolean;
-  displayedColumns: string[] = ['id', 'name', 'status'];
+  displayedColumns: string[] = ['id', 'name', 'status', 'update', 'delete'];
   dataimage: any;
   submit: boolean = false;
   submitted: boolean = false;
