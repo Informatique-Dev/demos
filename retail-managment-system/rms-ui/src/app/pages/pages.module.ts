@@ -1,3 +1,4 @@
+import { PopUpInvestorComponent } from './investor-page/pop-up/pop-up.component';
 import { InvestorPageComponent } from './investor-page/investor-page.component';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -22,7 +23,9 @@ const routes: Routes = [
     CategoryPageComponent,
     PopUpComponent,
     CustomersComponent,
+    InvestorPageComponent,
   ],
+
   imports: [RouterModule.forChild(routes), SharedModule],
 })
 export class PagesModule {}

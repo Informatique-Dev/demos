@@ -2,55 +2,258 @@
   <div class="container shadow-lg">
     <section class="panel panel-default">
       <div class="panel-heading pt-5">
-        <h3 class="panel-title">Manage Category</h3>
+        <h3 class="panel-title">Manage Investors</h3>
       </div>
       <div class="panel-body">
-        <form [formGroup]="popupForm">
+        <form [formGroup]="popupInvestorForm">
           <fieldset class="w-200">
             <mat-form-field appearance="outline" class="m-2">
-              <mat-label> Name</mat-label>
+              <mat-label>Full Name</mat-label>
               <input
-                formControlName="name"
+                formControlName="fullName"
                 type="text"
                 matInput
-                placeholder="Enter your name"
+                placeholder="Enter your fullName"
                 fxFlex="40"
               />
               <mat-error
                 *ngIf="
-                  popupForm.controls['name'].hasError('name') &&
-                  !popupForm.controls['name'].hasError('required')
+                  popupInvestorForm.controls['fullName'].hasError('fullName') &&
+                  !popupInvestorForm.controls['fullName'].hasError('required')
                 "
               >
-                Please enter Category name
+                Please enter Investor fullName
               </mat-error>
               <mat-error
-                *ngIf="popupForm.controls['name'].hasError('required')"
+                *ngIf="
+                  popupInvestorForm.controls['fullName'].hasError('required')
+                "
               >
-                Category name is <strong>required</strong>
+                Investor fullName is <strong>required</strong>
               </mat-error>
             </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Status</mat-label>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label>nickName</mat-label>
               <input
-                formControlName="status"
-                type="number"
+                formControlName="nickName"
+                type="text"
                 matInput
-                placeholder="Status"
+                placeholder="Enter your nickName"
+                fxFlex="40"
               />
               <mat-error
                 *ngIf="
-                  popupForm.controls['status'].hasError('status') &&
-                  !popupForm.controls['status'].hasError('required')
+                  popupInvestorForm.controls['nickName'].hasError('nickName') &&
+                  !popupInvestorForm.controls['nickName'].hasError('required')
                 "
               >
-                Please enter Category status
+                Please enter Investor nickName
               </mat-error>
               <mat-error
-                *ngIf="popupForm.controls['status'].hasError('required')"
+                *ngIf="
+                  popupInvestorForm.controls['nickName'].hasError('required')
+                "
               >
-                Category status is <strong>required</strong>
+                Investor nickName is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> NationalId</mat-label>
+              <input
+                formControlName="nationalId"
+                type="number"
+                matInput
+                placeholder="Enter nationalId"
+                fxFlex="14"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['nationalId'].hasError(
+                    'version'
+                  ) &&
+                  !popupInvestorForm.controls['nationalId'].hasError('required')
+                "
+              >
+                Please enter Investor nationalId
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['nationalId'].hasError('required')
+                "
+              >
+                Investor nationalId is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> primaryPhoneNo</mat-label>
+              <input
+                formControlName="primaryPhoneNo"
+                type="number"
+                matInput
+                placeholder="Enter primaryPhoneNo"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['primaryPhoneNo'].hasError(
+                    'primaryPhoneNo'
+                  ) &&
+                  !popupInvestorForm.controls['primaryPhoneNo'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Please enter Investor primaryPhoneNo
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['primaryPhoneNo'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Investor primaryPhoneNo is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> secondaryPhoneNo</mat-label>
+              <input
+                formControlName="secondaryPhoneNo"
+                type="number"
+                matInput
+                placeholder="Enter secondaryPhoneNo"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['secondaryPhoneNo'].hasError(
+                    'secondaryPhoneNo'
+                  ) &&
+                  !popupInvestorForm.controls['secondaryPhoneNo'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Please enter Investor secondaryPhoneNo
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['secondaryPhoneNo'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Investor secondaryPhoneNo is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> address</mat-label>
+              <input
+                formControlName="address"
+                type="text"
+                matInput
+                placeholder="Enter address"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['address'].hasError('address') &&
+                  !popupInvestorForm.controls['address'].hasError('required')
+                "
+              >
+                Please enter Investor address
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['address'].hasError('required')
+                "
+              >
+                Investor address is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> investorType</mat-label>
+              <input
+                formControlName="investorType"
+                type="string"
+                matInput
+                placeholder="Enter investorType Manager or CONTRIBUTOR"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['investorType'].hasError(
+                    'investorType'
+                  ) &&
+                  !popupInvestorForm.controls['investorType'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Please enter Investor investorType
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['investorType'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Investor investorType is Enter investorType Manager or
+                CONTRIBUTOR<strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> balance</mat-label>
+              <input
+                formControlName="balance"
+                type="number"
+                matInput
+                placeholder="Enter balance"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['balance'].hasError('balance') &&
+                  !popupInvestorForm.controls['balance'].hasError('required')
+                "
+              >
+                Please enter Investor balance
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['balance'].hasError('required')
+                "
+              >
+                Investor balance is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="m-2">
+              <mat-label> startDate</mat-label>
+              <input
+                formControlName="startDate"
+                type="date"
+                matInput
+                placeholder="Enter startDate"
+                fxFlex="40"
+              />
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['startDate'].hasError(
+                    'startDate'
+                  ) &&
+                  !popupInvestorForm.controls['startDate'].hasError('required')
+                "
+              >
+                Please enter Investor startDate
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  popupInvestorForm.controls['startDate'].hasError('required')
+                "
+              >
+                Investor startDate is <strong>required</strong>
               </mat-error>
             </mat-form-field>
           </fieldset>
@@ -60,7 +263,9 @@
             <div class="col-12">
               <div class="page-footer-box">
                 <button class="btn btn-success me-2" (click)="onSubmit()">
-                  {{ popupForm.controls["id"].value ? "Update" : "Add" }}
+                  {{
+                    popupInvestorForm.controls["id"].value ? "Update" : "Add"
+                  }}
                 </button>
 
                 <button
