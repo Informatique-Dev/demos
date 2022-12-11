@@ -124,13 +124,15 @@ export class ProductComponent implements OnInit {
     this.productForm.reset();
   }
 
-  deleteProduct(product: Product) {
-    this.productRepository.delete(product.id).subscribe(() => {
-      this.getAllProducts();
-      this._snackBar.open('Product Deleted Successfuly!', 'Close');
+  OpenConfirmationDialog(product: Product) {
+    let dialogRef = this.dialog.open(this.confirmationDialog);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.productRepository.delete(product.id).subscribe(() => {
+          this.getAllProducts();
+          this._snackBar.open('Product Deleted Successfuly!', 'Close');
+        });
+      }
     });
-  }
-  OpenConfirmationDialog() {
-    this.dialog.open(this.confirmationDialog);
   }
 }

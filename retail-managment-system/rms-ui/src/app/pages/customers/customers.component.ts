@@ -125,13 +125,15 @@ export class CustomersComponent implements OnInit {
     this.customersForm.reset();
   }
 
-  deleteCustomer(customer: Customers) {
-    this.customersRepository.delete(customer.id).subscribe(() => {
-      this.getAllCustomers();
-      this._snackBar.open('Customer Deleted Successfuly!', 'Close');
+  OpenConfirmationDialog(customer: Customers) {
+    let dialogRef = this.dialog.open(this.confirmationDialog);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.customersRepository.delete(customer.id).subscribe(() => {
+          this.getAllCustomers();
+          this._snackBar.open('Customer Deleted Successfuly!', 'Close');
+        });
+      }
     });
-  }
-  OpenConfirmationDialog() {
-    this.dialog.open(this.confirmationDialog);
   }
 }

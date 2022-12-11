@@ -26,7 +26,6 @@ mat-icon {
 th,
 td {
   line-height: 4;
-  min-width: 140px;
 }
 .add-icon {
   cursor: pointer;
@@ -38,4 +37,11 @@ td {
 }
 .mat-snack-bar-container button {
   color: #002d40;
+}
+@media (max-width: 992px) {
+  th,
+  td {
+    line-height: 4;
+    min-width: 125px;
+  }
 }
