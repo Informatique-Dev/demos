@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
 
@@ -7,6 +15,7 @@ import { Customers } from 'src/app/domain/customers/models/customers';
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CustomersComponent implements OnInit {
   allCustomers: Customers[] = [];
@@ -14,6 +23,7 @@ export class CustomersComponent implements OnInit {
   submit: boolean = false;
   currentData!: Customers;
   isButtonVisible: boolean = true;
+  @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
   displayedColumns: string[] = [
     'id',
     'fullName',
@@ -29,7 +39,9 @@ export class CustomersComponent implements OnInit {
 
   constructor(
     private customersRepository: CustomersRepository,
-    private build: FormBuilder
+    private build: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -81,6 +93,7 @@ export class CustomersComponent implements OnInit {
     this.customersRepository.update(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();
       this.submit = false;
+      this._snackBar.open('Customer Updated Successfuly!', 'Close');
     });
   }
 
@@ -90,6 +103,7 @@ export class CustomersComponent implements OnInit {
     this.customersRepository.add(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();
       this.submit = false;
+      this._snackBar.open('Customer Added Successfuly!', 'Close');
     });
   }
 
@@ -114,6 +128,10 @@ export class CustomersComponent implements OnInit {
   deleteCustomer(customer: Customers) {
     this.customersRepository.delete(customer.id).subscribe(() => {
       this.getAllCustomers();
+      this._snackBar.open('Customer Deleted Successfuly!', 'Close');
     });
+  }
+  OpenConfirmationDialog() {
+    this.dialog.open(this.confirmationDialog);
   }
 }

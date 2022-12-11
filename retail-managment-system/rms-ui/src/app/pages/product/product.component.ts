@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/domain/category/models/category';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
@@ -17,6 +26,7 @@ export class ProductComponent implements OnInit {
   submit: boolean = false;
   currentData!: Product;
   isButtonVisible: boolean = true;
+  @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -30,7 +40,9 @@ export class ProductComponent implements OnInit {
   constructor(
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
-    private build: FormBuilder
+    private build: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -69,6 +81,7 @@ export class ProductComponent implements OnInit {
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
       this.submit = false;
+      this._snackBar.open('Product Updated Successfuly!', 'Close');
     });
   }
 
@@ -78,6 +91,7 @@ export class ProductComponent implements OnInit {
     this.productRepository.add(this.productForm.value).subscribe(() => {
       this.getAllProducts();
       this.submit = false;
+      this._snackBar.open('Product Added Successfuly!', 'Close');
     });
   }
 
@@ -113,6 +127,10 @@ export class ProductComponent implements OnInit {
   deleteProduct(product: Product) {
     this.productRepository.delete(product.id).subscribe(() => {
       this.getAllProducts();
+      this._snackBar.open('Product Deleted Successfuly!', 'Close');
     });
+  }
+  OpenConfirmationDialog() {
+    this.dialog.open(this.confirmationDialog);
   }
 }

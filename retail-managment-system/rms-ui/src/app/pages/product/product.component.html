@@ -61,9 +61,27 @@
               <button class="btn table-button" (click)="fetchData(element)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button class="btn table-button" (click)="deleteProduct(element)">
+              <button
+                class="btn table-button"
+                (click)="OpenConfirmationDialog()"
+              >
                 <mat-icon>delete</mat-icon>
               </button>
+              <ng-template #confirmationDialog>
+                <h2 matDialogTitle>
+                  Are you sure you want to delete this product ?
+                </h2>
+                <mat-dialog-actions align="end">
+                  <button mat-button matDialogClose="no">No</button>
+                  <button
+                    mat-button
+                    matDialogClose="yes"
+                    (click)="deleteProduct(element)"
+                  >
+                    Yes
+                  </button>
+                </mat-dialog-actions>
+              </ng-template>
             </td>
           </ng-container>
 
@@ -178,16 +196,14 @@
             </form>
           </div>
 
-          <mat-dialog-actions align="end" class="mt-5">
-            <div class="actions pb-5">
-              <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
-                {{ productForm.controls["id"].value ? "Update" : "Add" }}
-              </button>
-              <button class="btn" mat-button (click)="resetForm()">
-                {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
-              </button>
-            </div>
-          </mat-dialog-actions>
+          <div class="actions pb-5 float-end">
+            <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+              {{ productForm.controls["id"].value ? "Update" : "Add" }}
+            </button>
+            <button class="btn" mat-button (click)="resetForm()">
+              {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
+            </button>
+          </div>
         </section>
       </div>
     </div>
