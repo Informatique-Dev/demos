@@ -6,6 +6,7 @@ import { Category } from 'src/app/domain/category/models/category';
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
+  styles: ['.btn{background-color:#002d40;color:white;width:80px;}'],
 })
 export class PopUpComponent implements OnInit {
   popupForm!: FormGroup;

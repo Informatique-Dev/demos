@@ -1,77 +1,100 @@
-<div class="container-fluid">
-  <br /><br />
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <div class="row">
-        <div class="col-12">
-          <div class="page-title-box">
-            <h3 class="panel-title fw-bold text-center">Our Investors</h3>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-12">
-          <div class="page-footer-box">
-            <button class="btn btn-success w-50" (click)="openDialog(null)">
-              Add Investor
-            </button>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col-lg-15 offset-lg-0">
-          <div class="card">
-            <div class="row">
-              <table class="table table-centered mb-0">
-                <thead>
-                  <tr>
-                    <th>NO.</th>
-                    <th>Full Name</th>
-                    <th>Nick Name</th>
-                    <th>NationalId</th>
-                    <th>PrimaryPhoneNo</th>
-                    <th>SecondaryPhoneNo</th>
-                    <th>Address</th>
-                    <th>InvestorType</th>
-                    <th>balance</th>
-                    <th>startDate</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let investor of allInvestors; index as i">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ investor.fullName }}</td>
-                    <td>{{ investor.nickName }}</td>
-                    <td>{{ investor.nationalId }}</td>
-                    <td>{{ investor.primaryPhoneNo }}</td>
-                    <td>{{ investor.secondaryPhoneNo }}</td>
-                    <td>{{ investor.address }}</td>
-                    <td>{{ investor.investorType }}</td>
-                    <td>{{ investor.balance }}</td>
-                    <td>{{ investor.startDate }}</td>
-                    <td>
-                      <button
-                        class="btn btn-primary"
-                        (click)="openDialog(investor)"
-                      >
-                        <mat-icon>edit</mat-icon>
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn btn-danger">
-                        <mat-icon>delete</mat-icon>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-    </div>
+<div class="container text-center mt-5">
+  <div>
+    <h3 class="panel-title fw-bold text-center">Our Investors</h3>
+    <button class="btn btn-success w-50" (click)="openDialog(null)">
+      Add Investor
+    </button>
   </div>
+</div>
+
+<div
+  class="container product d-flex justify-content-center align-items-center mt-5 mb-5"
+>
+  <table
+    class="bg-light shadow-lg table table-responsive"
+    mat-table
+    [dataSource]="allInvestors"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+      <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+    </ng-container>
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.fullName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nickName" class="nickName">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">nickName</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.nickName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nationalId" class="nationalId">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">nationalId</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.nationalId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="primaryPhoneNo" class="primaryPhoneNo">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+        primaryPhoneNo
+      </th>
+      <td mat-cell *matCellDef="let investor">
+        {{ investor.primaryPhoneNo }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="secondaryPhoneNo" class="secondaryPhoneNo">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+        secondaryPhoneNo
+      </th>
+      <td mat-cell *matCellDef="let investor">
+        {{ investor.secondaryPhoneNo }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address" class="address">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">address</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.address }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="investorType" class="investorType">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+        investorType
+      </th>
+      <td mat-cell *matCellDef="let investor of allInvestors">
+        {{ investor.InvestorType }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="balance" class="balance">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">balance</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.balance }}</td>
+    </ng-container>
+    <ng-container matColumnDef="startDate" class="startDate">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">startDate</th>
+      <td mat-cell *matCellDef="let investor">{{ investor.startDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td
+        mat-cell
+        *matCellDef="let investor"
+        class="update-icon"
+        (click)="openDialog(investor)"
+      >
+        <button class="btn">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="delete-icon">
+        <button class="btn"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

@@ -11,6 +11,6 @@ export interface Investors {
   investorType: InvestorType;
 }
 export enum InvestorType {
-  CONTRIBUTOR,
-  MANAGER,
+  'CONTRIBUTOR',
+  'MANAGER',
 }

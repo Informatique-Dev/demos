@@ -7,6 +7,9 @@ import { Investors } from 'src/app/domain/investors/models/investor';
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
+  styles: [
+    '.manageinvestors{min-width:200px;min-height:300px;margin-top:10px} .btn{background-color:#002d40;color:white;width:80px}',
+  ],
 })
 export class PopUpInvestorComponent implements OnInit {
   popupInvestorForm!: FormGroup;
