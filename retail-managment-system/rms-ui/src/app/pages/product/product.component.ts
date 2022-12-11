@@ -12,6 +12,7 @@ import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -81,7 +82,9 @@ export class ProductComponent implements OnInit {
     this.productRepository.update(this.productForm.value).subscribe(() => {
       this.getAllProducts();
       this.submit = false;
-      this._snackBar.open('Product Updated Successfuly!', 'Close');
+      this._snackBar.open('Product Updated Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 
@@ -91,7 +94,9 @@ export class ProductComponent implements OnInit {
     this.productRepository.add(this.productForm.value).subscribe(() => {
       this.getAllProducts();
       this.submit = false;
-      this._snackBar.open('Product Added Successfuly!', 'Close');
+      this._snackBar.open('Product Added Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 
@@ -125,12 +130,14 @@ export class ProductComponent implements OnInit {
   }
 
   OpenConfirmationDialog(product: Product) {
-    let dialogRef = this.dialog.open(this.confirmationDialog);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
         this.productRepository.delete(product.id).subscribe(() => {
           this.getAllProducts();
-          this._snackBar.open('Product Deleted Successfuly!', 'Close');
+          this._snackBar.open('Product Deleted Successfuly!', 'Close', {
+            duration: 2000,
+          });
         });
       }
     });

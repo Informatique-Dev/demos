@@ -6,6 +6,7 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { PopUpComponent } from './category-page/pop-up/pop-up.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     CategoryPageComponent,
     PopUpComponent,
     CustomersComponent,
+    ConfirmDialogComponent
   ],
   imports: [RouterModule.forChild(routes), SharedModule],
 })

@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-customers',
@@ -93,7 +94,9 @@ export class CustomersComponent implements OnInit {
     this.customersRepository.update(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();
       this.submit = false;
-      this._snackBar.open('Customer Updated Successfuly!', 'Close');
+      this._snackBar.open('Customer Updated Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 
@@ -103,7 +106,9 @@ export class CustomersComponent implements OnInit {
     this.customersRepository.add(this.customersForm.value).subscribe(() => {
       this.getAllCustomers();
       this.submit = false;
-      this._snackBar.open('Customer Added Successfuly!', 'Close');
+      this._snackBar.open('Customer Added Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 
@@ -126,12 +131,14 @@ export class CustomersComponent implements OnInit {
   }
 
   OpenConfirmationDialog(customer: Customers) {
-    let dialogRef = this.dialog.open(this.confirmationDialog);
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
         this.customersRepository.delete(customer.id).subscribe(() => {
           this.getAllCustomers();
-          this._snackBar.open('Customer Deleted Successfuly!', 'Close');
+          this._snackBar.open('Customer Deleted Successfuly!', 'Close', {
+            duration: 2000,
+          });
         });
       }
     });
