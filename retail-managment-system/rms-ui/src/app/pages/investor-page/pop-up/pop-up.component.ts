@@ -1,59 +1,68 @@
+import { InvestorsRepository } from './../../../domain/investors/investor.repository';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoryRepository } from 'src/app/domain/category/category.repository';
-import { Category } from 'src/app/domain/category/models/category';
+import { Investors } from 'src/app/domain/investors/models/investor';
+
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
 })
-export class PopUpComponent implements OnInit {
-  popupForm!: FormGroup;
-  allCategory: Category[] = [];
+export class PopUpInvestorComponent implements OnInit {
+  popupInvestorForm!: FormGroup;
+  allInvestors: Investors[] = [];
   submitted: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
-    private categorRepository: CategoryRepository,
-    public dialogRef: MatDialogRef<PopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Category
+    private investorsRepository: InvestorsRepository,
+    public dialogRef: MatDialogRef<PopUpInvestorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Investors
   ) {}
   ngOnInit(): void {
-    this.categoriForm();
-
+    this.investorsForm();
     this.fetchData(this.data);
   }
-  categoriForm() {
-    this.popupForm = this.formBuilder.group({
+  investorsForm() {
+    this.popupInvestorForm = this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required]],
-      status: ['', [Validators.required]],
+      fullName: ['', [Validators.required]],
+      nickName: ['', [Validators.required]],
+      nationalId: ['', [Validators.required]],
+      primaryPhoneNo: ['', [Validators.required]],
+      secondaryPhoneNo: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      investorType: ['', [Validators.required]],
+      balance: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
-    if (this.popupForm.valid) {
+    if (this.popupInvestorForm.valid) {
       this.submitted = true;
-      this.popupForm.controls['id'].value
-        ? this.UpdateCategory()
-        : this.addCategory();
-      this.popupForm.reset();
+      this.popupInvestorForm.controls['id'].value
+        ? this.UpdateInvestors()
+        : this.addInvestors();
+      this.popupInvestorForm.reset();
     }
   }
-  addCategory() {
-    this.categorRepository.add(this.popupForm.value).subscribe(() => {
+  addInvestors() {
+    this.investorsRepository.add(this.popupInvestorForm.value).subscribe(() => {
       this.dialogRef.close();
     });
   }
-  UpdateCategory(): void {
-    this.categorRepository.update(this.popupForm.value).subscribe(() => {
-      this.dialogRef.close();
-    });
+  UpdateInvestors(): void {
+    this.investorsRepository
+      .update(this.popupInvestorForm.value)
+      .subscribe(() => {
+        this.dialogRef.close();
+      });
   }
   resetTheForm(): void {
-    this.popupForm.reset();
+    this.popupInvestorForm.reset();
   }
-  fetchData(element: Category): void {
-    this.popupForm.patchValue(this.data);
+  fetchData(element: Investors): void {
+    this.popupInvestorForm.patchValue(this.data);
   }
 }
 4;

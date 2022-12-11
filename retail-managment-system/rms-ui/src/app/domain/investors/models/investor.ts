@@ -1,13 +1,13 @@
 export interface Investors {
+  name: any;
   id: number;
-  version: number;
   fullName: string;
   nickName: string;
   nationalId: string;
   primaryPhoneNo: number;
   secondaryPhoneNo: number;
   address: string;
-  investorType: boolean;
+  investorType: string;
   balance: number;
   startDate: number;
 }

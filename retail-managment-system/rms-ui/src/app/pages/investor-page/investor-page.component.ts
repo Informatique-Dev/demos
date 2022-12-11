@@ -1,8 +1,8 @@
+import { PopUpInvestorComponent } from './pop-up/pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Investors } from './../../domain/investors/models/investor';
 import { Component, OnInit } from '@angular/core';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-import { PopUpComponent } from './pop-up/pop-up.component';
 
 @Component({
   selector: 'app-investor-page',
@@ -15,14 +15,16 @@ export class InvestorPageComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
-  getAllCategory(): void {
+  ngOnInit(): void {
+    this.getAllInvestors();
+  }
+  getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
       this.allInvestors = result;
     });
   }
   openDialog(element: Investors | null) {
-    this.dialog.open(PopUpComponent, {
+    this.dialog.open(PopUpInvestorComponent, {
       data: element,
     });
   }
