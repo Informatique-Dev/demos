@@ -3,9 +3,9 @@
     <h3 class="panel-title fw-bold text-center">Our Investors</h3>
   </div>
 </div>
-<div class="main row mt-5 mb-5 bg-light shadow-lg ms-2">
-  <div class="row investors justify-content-center">
-    <table class="col-4" mat-table [dataSource]="allInvestors">
+<div class="row my-5 bg-light">
+  <div class="col-8">
+    <table class="w-100" mat-table [dataSource]="allInvestors">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
         <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
@@ -67,293 +67,294 @@
       <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" class="update-icon">
-          <!--  (click)="openDialog(investor)" -->
-
           <mat-icon (click)="fetchData(element)">edit</mat-icon>
         </td>
       </ng-container>
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" class="delete-icon">
-          <mat-icon>delete</mat-icon>
+        <td mat-cell class="delete-icon" *matCellDef="let element">
+          <mat-icon (click)="DeleteInvestors(element)">delete</mat-icon>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <div class="col-2">
-      <section>
-        <div class="panel-heading pt-3 ps-4">
-          <h3 class="panel-tittle">
-            {{ investorForm.controls["id"].value ? "Update" : "Add" }}
+  </div>
+  <div class="col-4">
+    <section>
+      <div class="panel-bofy">
+        <div class="pt-3">
+          <h3>
+            {{ investorForm.controls["id"].value ? "Update" : "Add" }} Investor
           </h3>
         </div>
-        <div class="panel-bofy ps-4">
-          <form [formGroup]="investorForm">
-            <fieldset class="manageinvestors row justify-content-center">
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label>Full Name</mat-label>
-                <input
-                  formControlName="fullName"
-                  type="text"
-                  matInput
-                  placeholder="Enter your FullName"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['fullName'].hasError('fullName') &&
-                    !investorForm.controls['fullName'].hasError('required')
-                  "
-                >
-                  Please Enter Investor FullName
-                </mat-error>
-                <mat-error
-                  *ngIf="investorForm.controls['fullName'].hasError('required')"
-                >
-                  Investor FullName is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label>NickName</mat-label>
-                <input
-                  formControlName="nickName"
-                  type="text"
-                  matInput
-                  placeholder="Enter your NickName"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['nickName'].hasError('nickName') &&
-                    !investorForm.controls['nickName'].hasError('required')
-                  "
-                >
-                  Please enter Investor NickName
-                </mat-error>
-                <mat-error
-                  *ngIf="investorForm.controls['nickName'].hasError('required')"
-                >
-                  Investor NickName is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <br />
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> NationalId</mat-label>
-                <input
-                  formControlName="nationalId"
-                  type="number"
-                  matInput
-                  placeholder="Enter NationalId"
-                  onKeyPress="if(this.value.length==14) return false;"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['nationalId'].hasError('version') &&
-                    !investorForm.controls['nationalId'].hasError('required')
-                  "
-                >
-                  Please enter Investor nationalId
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['nationalId'].hasError('required')
-                  "
-                >
-                  Investor nationalId is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> PrimaryPhoneNo</mat-label>
-                <input
-                  formControlName="primaryPhoneNo"
-                  type="number"
-                  matInput
-                  placeholder="Enter PrimaryPhoneNo"
-                  onKeyPress="if(this.value.length==11) return false;"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['primaryPhoneNo'].hasError(
-                      'primaryPhoneNo'
-                    ) &&
-                    !investorForm.controls['primaryPhoneNo'].hasError(
-                      'required'
-                    )
-                  "
-                >
-                  Please enter Investor primaryPhoneNo
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['primaryPhoneNo'].hasError('required')
-                  "
-                >
-                  Investor primaryPhoneNo is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <br />
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> SecondaryPhoneNo</mat-label>
-                <input
-                  formControlName="secondaryPhoneNo"
-                  type="number"
-                  matInput
-                  placeholder="Enter secondaryPhoneNo"
-                  onKeyPress="if(this.value.length==11) return false;"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['secondaryPhoneNo'].hasError(
-                      'secondaryPhoneNo'
-                    ) &&
-                    !investorForm.controls['secondaryPhoneNo'].hasError(
-                      'required'
-                    )
-                  "
-                >
-                  Please enter Investor SecondaryPhoneNo
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['secondaryPhoneNo'].hasError(
-                      'required'
-                    )
-                  "
-                >
-                  Investor SecondaryPhoneNo is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> Address</mat-label>
-                <input
-                  formControlName="address"
-                  type="text"
-                  matInput
-                  placeholder="Enter Address"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['address'].hasError('address') &&
-                    !investorForm.controls['address'].hasError('required')
-                  "
-                >
-                  Please enter Investor Address
-                </mat-error>
-                <mat-error
-                  *ngIf="investorForm.controls['address'].hasError('required')"
-                >
-                  Investor Address is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <br />
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> InvestorType</mat-label>
 
-                <mat-select
-                  type="text"
-                  placeholder="InvestorType"
-                  formControlName="investorType"
-                  value=""
-                  matInput
-                >
-                  <mat-option>
-                    <mat-option value="CONTRIBUTOR">CONTRIBUTOR</mat-option>
-                    <mat-option value="MANAGER">MANAGER</mat-option>
-                  </mat-option>
-                </mat-select>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['investorType'].hasError(
-                      'investorType'
-                    ) &&
-                    !investorForm.controls['investorType'].hasError('required')
-                  "
-                >
-                  Please enter Investor investorType
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['investorType'].hasError('required')
-                  "
-                >
-                  Investor investorType is Enter investorType Manager or
-                  CONTRIBUTOR<strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="m-1 col-4">
-                <mat-label> Balance</mat-label>
-                <input
-                  formControlName="balance"
-                  type="number"
-                  matInput
-                  placeholder="Enter Balance"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['balance'].hasError('balance') &&
-                    !investorForm.controls['balance'].hasError('required')
-                  "
-                >
-                  Please enter Investor balance
-                </mat-error>
-                <mat-error
-                  *ngIf="investorForm.controls['balance'].hasError('required')"
-                >
-                  Investor Balance is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <br />
-              <mat-form-field appearance="outline" class="m-1 col-6">
-                <mat-label> StartDate</mat-label>
-                <input
-                  formControlName="startDate"
-                  type="date"
-                  matInput
-                  placeholder="Enter startDate"
-                />
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['startDate'].hasError('startDate') &&
-                    !investorForm.controls['startDate'].hasError('required')
-                  "
-                >
-                  Please enter Investor StartDate
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    investorForm.controls['startDate'].hasError('required')
-                  "
-                >
-                  Investor StartDate is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-            </fieldset>
-          </form>
-          <mat-dialog-actions align="end">
-            <div class="row">
-              <div class="col-12">
-                <div class="page-footer-box">
-                  <button
-                    class="btn btn-success me-2"
-                    (click)="onSubmit()"
-                    (click)="onButtonClick()"
-                    [disabled]="click"
-                  >
-                    {{ investorForm.controls["id"].value ? "Update" : "Add" }}
-                  </button>
+        <form [formGroup]="investorForm">
+          <fieldset class="manageinvestors row justify-content-center">
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Full Name</mat-label>
+              <input
+                formControlName="fullName"
+                type="text"
+                matInput
+                placeholder="Enter your FullName"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['fullName'].hasError('fullName') &&
+                  !investorForm.controls['fullName'].hasError('required')
+                "
+              >
+                Please Enter Investor FullName
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['fullName'].hasError('required')"
+              >
+                Investor FullName is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label>NickName</mat-label>
+              <input
+                formControlName="nickName"
+                type="text"
+                matInput
+                placeholder="Enter your NickName"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['nickName'].hasError('nickName') &&
+                  !investorForm.controls['nickName'].hasError('required')
+                "
+              >
+                Please enter Investor NickName
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['nickName'].hasError('required')"
+              >
+                Investor NickName is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> NationalId</mat-label>
+              <input
+                formControlName="nationalId"
+                type="number"
+                matInput
+                placeholder="Enter NationalId"
+                onKeyPress="if(this.value.length==14) return false;"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['nationalId'].hasError('version') &&
+                  !investorForm.controls['nationalId'].hasError('required')
+                "
+              >
+                Please enter Investor nationalId
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['nationalId'].hasError('required')"
+              >
+                Investor nationalId is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> PrimaryPhoneNo</mat-label>
+              <input
+                formControlName="primaryPhoneNo"
+                type="number"
+                matInput
+                placeholder="Enter PrimaryPhoneNo"
+                onKeyPress="if(this.value.length==11) return false;"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['primaryPhoneNo'].hasError(
+                    'primaryPhoneNo'
+                  ) &&
+                  !investorForm.controls['primaryPhoneNo'].hasError('required')
+                "
+              >
+                Please enter Investor primaryPhoneNo
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  investorForm.controls['primaryPhoneNo'].hasError('required')
+                "
+              >
+                Investor primaryPhoneNo is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> SecondaryPhoneNo</mat-label>
+              <input
+                formControlName="secondaryPhoneNo"
+                type="number"
+                matInput
+                placeholder="Enter secondaryPhoneNo"
+                onKeyPress="if(this.value.length==11) return false;"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['secondaryPhoneNo'].hasError(
+                    'secondaryPhoneNo'
+                  ) &&
+                  !investorForm.controls['secondaryPhoneNo'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Please enter Investor SecondaryPhoneNo
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  investorForm.controls['secondaryPhoneNo'].hasError('required')
+                "
+              >
+                Investor SecondaryPhoneNo is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> Address</mat-label>
+              <input
+                formControlName="address"
+                type="text"
+                matInput
+                placeholder="Enter Address"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['address'].hasError('address') &&
+                  !investorForm.controls['address'].hasError('required')
+                "
+              >
+                Please enter Investor Address
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['address'].hasError('required')"
+              >
+                Investor Address is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> InvestorType</mat-label>
 
-                  <button
-                    class="btn btn-warning me-3 mb-3"
-                    mat-button
-                    (click)="resetTheForm()"
-                  >
-                    Reset
-                  </button>
-                </div>
+              <mat-select
+                type=""
+                placeholder="InvestorType"
+                formControlName="investorType"
+                value=""
+                matInput
+              >
+                <mat-option
+                  *ngFor="let investor of allInvestors"
+                  [value]="investor.investorType"
+                >
+                  <mat-option value="CONTRIBUTOR">CONTRIBUTOR</mat-option>
+                  <mat-option value="MANAGER">MANAGER</mat-option>
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  investorForm.controls['investorType'].hasError(
+                    'investorType'
+                  ) &&
+                  !investorForm.controls['investorType'].hasError('required')
+                "
+              >
+                Please enter Investor investorType
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  investorForm.controls['investorType'].hasError('required')
+                "
+              >
+                Investor investorType is Enter investorType Manager or
+                CONTRIBUTOR<strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> Balance</mat-label>
+              <input
+                formControlName="balance"
+                type="number"
+                matInput
+                placeholder="Enter Balance"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['balance'].hasError('balance') &&
+                  !investorForm.controls['balance'].hasError('required')
+                "
+              >
+                Please enter Investor balance
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['balance'].hasError('required')"
+              >
+                Investor Balance is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label> StartDate</mat-label>
+              <input
+                formControlName="startDate"
+                type="date"
+                matInput
+                placeholder="Enter startDate"
+              />
+              <mat-error
+                *ngIf="
+                  investorForm.controls['startDate'].hasError('startDate') &&
+                  !investorForm.controls['startDate'].hasError('required')
+                "
+              >
+                Please enter Investor StartDate
+              </mat-error>
+              <mat-error
+                *ngIf="investorForm.controls['startDate'].hasError('required')"
+              >
+                Investor StartDate is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </fieldset>
+        </form>
+        <mat-dialog-actions align="end">
+          <div class="row">
+            <div class="col-12">
+              <div class="page-footer-box">
+                <button
+                  class="btn btn-success me-2"
+                  (click)="onSubmit()"
+                  (click)="onButtonClick()"
+                  [disabled]="click"
+                >
+                  {{ investorForm.controls["id"].value ? "Update" : "Add" }}
+                </button>
+
+                <button
+                  class="btn btn-warning me-3 mb-3"
+                  mat-button
+                  (click)="resetTheForm()"
+                >
+                  Reset
+                </button>
+                <button
+                  class="btn btn-warning me-3 mb-3"
+                  mat-button
+                  (click)="clearTheForm()"
+                >
+                  Clear
+                </button>
               </div>
             </div>
-          </mat-dialog-actions>
-        </div>
-      </section>
-    </div>
+          </div>
+        </mat-dialog-actions>
+      </div>
+    </section>
   </div>
 </div>

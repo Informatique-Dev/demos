@@ -10,18 +10,15 @@ import {
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
   styles: [
-    '.investors { min-height: auto; } table { min-width: 1200px; min-height: auto; }mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
+    '.investors { min-height: auto; } table { }mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
   ],
 })
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
   allInvestors: Investors[] = [];
-  investorOptions!: InvestorTypes;
-  investormForm!: FormGroup;
-  isAppear!: boolean;
+  investorOptions!: Investors;
   click: boolean = false;
   value: string | undefined;
-  submitted: boolean = false;
   submit: boolean = false;
   data!: Investors;
   currentInvestor!: Investors;
@@ -55,7 +52,7 @@ export class InvestorPageComponent implements OnInit {
       primaryPhoneNo: ['', [Validators.required]],
       secondaryPhoneNo: [''],
       address: [''],
-      investorType: ['', [Validators.required]],
+      investorType: [''],
       balance: [''],
       startDate: [''],
     });
@@ -71,7 +68,6 @@ export class InvestorPageComponent implements OnInit {
   }
   onSubmit() {
     if (this.investorForm.valid) {
-      this.submitted = true;
       this.investorForm.controls['id'].value
         ? this.UpdateInvestors()
         : this.addInvestors();
@@ -96,5 +92,15 @@ export class InvestorPageComponent implements OnInit {
   }
   resetTheForm(): void {
     this.fetchData(this.currentInvestor);
+  }
+  DeleteInvestors(investors: Investors): void {
+    this.submit = true;
+    this.investorsRepository.delete(investors.id).subscribe(() => {
+      this.getAllInvestors();
+      this.submit = false;
+    });
+  }
+  clearTheForm(): void {
+    this.investorForm.reset();
   }
 }

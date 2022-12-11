@@ -6,17 +6,14 @@ import { Category } from 'src/app/domain/category/models/category';
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
   styles: [
-    '.category { min-height: auto; } table { min-width: 1100px; min-height: auto; }mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
+    '.category { min-height: auto; } mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
   ],
 })
 export class CategoryPageComponent implements OnInit {
   categoryform!: FormGroup;
   allCategory: Category[] = [];
-  isAppear!: boolean;
   displayedColumns: string[] = ['id', 'name', 'status', 'update', 'delete'];
   submit: boolean = false;
-  submitted: boolean = false;
-  data!: Category;
   currentCategory!: Category;
 
   constructor(
@@ -46,7 +43,6 @@ export class CategoryPageComponent implements OnInit {
   }
   onSubmit() {
     if (this.categoryform.valid) {
-      this.submitted = true;
       this.categoryform.controls['id'].value
         ? this.UpdateCategory()
         : this.addCategory();
@@ -69,5 +65,15 @@ export class CategoryPageComponent implements OnInit {
   }
   resetTheForm(): void {
     this.fetchData(this.currentCategory);
+  }
+  DeleteCategory(Categori: Category): void {
+    this.submit = true;
+    this.categorRepository.delete(Categori.id).subscribe(() => {
+      this.getAllCategory();
+      this.submit = false;
+    });
+  }
+  clearTheForm(): void {
+    this.categoryform.reset();
   }
 }
