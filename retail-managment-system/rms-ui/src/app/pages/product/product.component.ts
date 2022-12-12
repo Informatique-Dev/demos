@@ -12,7 +12,7 @@ import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product',
@@ -129,17 +129,21 @@ export class ProductComponent implements OnInit {
     this.productForm.reset();
   }
 
-  OpenConfirmationDialog(product: Product) {
+  openConfirmationDialog(product: Product) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
-        this.productRepository.delete(product.id).subscribe(() => {
-          this.getAllProducts();
-          this._snackBar.open('Product Deleted Successfuly!', 'Close', {
-            duration: 2000,
-          });
-        });
+        this.deleteProduct(product);
       }
+    });
+  }
+
+  deleteProduct(product: Product) {
+    this.productRepository.delete(product.id).subscribe(() => {
+      this.getAllProducts();
+      this._snackBar.open('Product Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 }

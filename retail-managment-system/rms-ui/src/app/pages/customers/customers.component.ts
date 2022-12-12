@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-customers',
@@ -130,17 +130,21 @@ export class CustomersComponent implements OnInit {
     this.customersForm.reset();
   }
 
-  OpenConfirmationDialog(customer: Customers) {
+  openConfirmationDialog(customer: Customers) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
-        this.customersRepository.delete(customer.id).subscribe(() => {
-          this.getAllCustomers();
-          this._snackBar.open('Customer Deleted Successfuly!', 'Close', {
-            duration: 2000,
-          });
-        });
+        this.deleteCustomer(customer);
       }
+    });
+  }
+
+  deleteCustomer(customer: Customers) {
+    this.customersRepository.delete(customer.id).subscribe(() => {
+      this.getAllCustomers();
+      this._snackBar.open('Customer Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 }
