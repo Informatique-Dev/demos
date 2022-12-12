@@ -53,7 +53,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   private notFoundMessage(): void {
     this._snackBar.open(
-      'Error 404: The requested URL/error was not foundon this server!'
+      'Error 404: The requested URL/error was not found on this server!'
     );
   }
   private errormessage(): void {
@@ -73,7 +73,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   private hasDependentsMessage(): void {
     this._snackBar.open(
-      'Error 400: Your request could not be implement, there is data associated with it!'
+      'Error 400: This is an input error, Please enter Right data!'
     );
   }
   private serverErrorMessage(): void {
