@@ -54,7 +54,7 @@ export class CustomersComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[0-9]*$'),
+          Validators.pattern('^[0-9]{1,14}$'),
           Validators.minLength(14),
           Validators.maxLength(14),
         ],
@@ -106,6 +106,7 @@ export class CustomersComponent implements OnInit {
   }
 
   onSubmit() {
+    this.customersForm.markAllAsTouched();
     if (this.customersForm.valid) {
       this.customersForm.controls['id'].value
         ? this.updateCustomer()

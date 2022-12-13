@@ -100,6 +100,7 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit() {
+    this.productForm.markAllAsTouched();
     if (this.productForm.valid) {
       this.productForm.controls['id'].value
         ? this.updateProduct()

@@ -165,7 +165,7 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
+                <mat-form-field appearance="outline" class="w-100 pb-2">
                   <mat-label>National Id</mat-label>
                   <input
                     formControlName="nationalId"
@@ -187,6 +187,13 @@
                     "
                   >
                     National Id must be <strong>14 number</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      customersForm.controls['nationalId'].hasError('pattern')
+                    "
+                  >
+                    National Id must be <strong>number only</strong>
                   </mat-error>
                 </mat-form-field>
 
