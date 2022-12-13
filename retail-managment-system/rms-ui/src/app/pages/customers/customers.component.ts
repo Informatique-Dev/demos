@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CustomersComponent implements OnInit {
   allCustomers: Customers[] = [];
@@ -29,7 +33,9 @@ export class CustomersComponent implements OnInit {
 
   constructor(
     private customersRepository: CustomersRepository,
-    private build: FormBuilder
+    private build: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -48,7 +54,7 @@ export class CustomersComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[0-9]*$'),
+          Validators.pattern('^[0-9]{1,14}$'),
           Validators.minLength(14),
           Validators.maxLength(14),
         ],
@@ -78,22 +84,39 @@ export class CustomersComponent implements OnInit {
   updateCustomer() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.customersRepository.update(this.customersForm.value).subscribe(() => {
-      this.getAllCustomers();
-      this.submit = false;
-    });
+    this.customersRepository.update(this.customersForm.value).subscribe(
+      () => {
+        this.getAllCustomers();
+        this.submit = false;
+        this._snackBar.open('Customer Updated Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   addCustomer() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.customersRepository.add(this.customersForm.value).subscribe(() => {
-      this.getAllCustomers();
-      this.submit = false;
-    });
+    this.customersRepository.add(this.customersForm.value).subscribe(
+      () => {
+        this.getAllCustomers();
+        this.submit = false;
+        this._snackBar.open('Customer Added Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   onSubmit() {
+    this.customersForm.markAllAsTouched();
     if (this.customersForm.valid) {
       this.customersForm.controls['id'].value
         ? this.updateCustomer()
@@ -111,9 +134,21 @@ export class CustomersComponent implements OnInit {
     this.customersForm.reset();
   }
 
+  openConfirmationDialog(customer: Customers) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.deleteCustomer(customer);
+      }
+    });
+  }
+
   deleteCustomer(customer: Customers) {
     this.customersRepository.delete(customer.id).subscribe(() => {
       this.getAllCustomers();
+      this._snackBar.open('Customer Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 }

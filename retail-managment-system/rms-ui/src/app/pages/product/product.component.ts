@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/domain/category/models/category';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
@@ -30,7 +34,9 @@ export class ProductComponent implements OnInit {
   constructor(
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
-    private build: FormBuilder
+    private build: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -66,19 +72,35 @@ export class ProductComponent implements OnInit {
   updateProduct() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.productRepository.update(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-      this.submit = false;
-    });
+    this.productRepository.update(this.productForm.value).subscribe(
+      () => {
+        this.getAllProducts();
+        this.submit = false;
+        this._snackBar.open('Product Updated Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   addProduct() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.productRepository.add(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-      this.submit = false;
-    });
+    this.productRepository.add(this.productForm.value).subscribe(
+      () => {
+        this.getAllProducts();
+        this.submit = false;
+        this._snackBar.open('Product Added Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   getAllTempCat(): void {
@@ -88,6 +110,7 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmit() {
+    this.productForm.markAllAsTouched();
     if (this.productForm.valid) {
       this.productForm.controls['id'].value
         ? this.updateProduct()
@@ -110,9 +133,21 @@ export class ProductComponent implements OnInit {
     this.productForm.reset();
   }
 
+  openConfirmationDialog(product: Product) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.deleteProduct(product);
+      }
+    });
+  }
+
   deleteProduct(product: Product) {
     this.productRepository.delete(product.id).subscribe(() => {
       this.getAllProducts();
+      this._snackBar.open('Product Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
   }
 }

@@ -1,5 +1,5 @@
 .main {
-  height: 820px;
+  min-height: 820px;
 }
 .content {
   height: 600px;
@@ -23,11 +23,10 @@
 mat-icon {
   font-size: 30px;
 }
-th,
-td {
-  line-height: 4;
-  min-width: 140px;
-}
 .add-icon {
   cursor: pointer;
+}
+th,
+td {
+  line-height: 2;
 }
