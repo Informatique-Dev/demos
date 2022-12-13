@@ -24,7 +24,6 @@ export class CustomersComponent implements OnInit {
   submit: boolean = false;
   currentData!: Customers;
   isButtonVisible: boolean = true;
-  @ViewChild('confirmationDialog') confirmationDialog!: TemplateRef<any>;
   displayedColumns: string[] = [
     'id',
     'fullName',
