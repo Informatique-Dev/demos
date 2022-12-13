@@ -95,7 +95,6 @@ export class InvestorPageComponent implements OnInit {
   }
 
   DeleteInvestors(investors: Investors): void {
-    this.submit = true;
     this.investorsRepository.delete(investors.id).subscribe(() => {
       this.getAllInvestors();
       this.submit = false;

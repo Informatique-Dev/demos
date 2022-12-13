@@ -33,9 +33,9 @@ export class CategoryPageComponent implements OnInit {
   }
 
   fetchData(category: Category): void {
-    this.categoryForm.get('id')!.setValue(category.id);
-    this.categoryForm.get('name')!.setValue(category.name);
-    this.categoryForm.get('status')!.setValue(category.status.toString());
+    this.categoryForm.get('id')?.setValue(category.id);
+    this.categoryForm.get('name')?.setValue(category.name);
+    this.categoryForm.get('status')?.setValue(category.status.toString());
     this.currentCategory = category;
   }
   getAllCategory(): void {
