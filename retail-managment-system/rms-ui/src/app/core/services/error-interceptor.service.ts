@@ -53,32 +53,42 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   private notFoundMessage(): void {
     this._snackBar.open(
-      'Error 404: The requested URL/error was not found on this server!'
+      'The requested URL/error was not found on this server!',
+      'Close'
     );
   }
   private errormessage(): void {
-    this._snackBar.open('Error 406: Please enter Right data!');
+    this._snackBar.open('Error 406: Please enter Right data!', 'Close');
   }
   private unauthorized(): void {
     this._snackBar.open(
-      'Error 401: You do not have permission, please try again!'
+      'Error 401: You do not have permission, please try again!',
+      'Close'
     );
   }
   private Unprocessable(): void {
-    this._snackBar.open('Error 422: Cannot close before specified time!');
+    this._snackBar.open(
+      'Error 422: Cannot close before specified time!',
+      'Close'
+    );
   }
   private wrongDataMessage(): void {
-    this._snackBar.open('Error 424: Please make sure the data is correct!');
+    this._snackBar.open(
+      'Error 424: Please make sure the data is correct!',
+      'Close'
+    );
   }
 
   private hasDependentsMessage(): void {
     this._snackBar.open(
-      'Error 400: This is an input error, Please enter Right data!'
+      'Error 400: This is an input error, Please enter Right data!',
+      'Close'
     );
   }
   private serverErrorMessage(): void {
     this._snackBar.open(
-      'Error 500: An error occurred communicating with the server, please try again!'
+      'Error 500: An error occurred communicating with the server, please try again!',
+      'Close'
     );
   }
 }

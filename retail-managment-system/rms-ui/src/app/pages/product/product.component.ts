@@ -72,25 +72,35 @@ export class ProductComponent implements OnInit {
   updateProduct() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.productRepository.update(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-      this.submit = false;
-      this._snackBar.open('Product Updated Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.productRepository.update(this.productForm.value).subscribe(
+      () => {
+        this.getAllProducts();
+        this.submit = false;
+        this._snackBar.open('Product Updated Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   addProduct() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.productRepository.add(this.productForm.value).subscribe(() => {
-      this.getAllProducts();
-      this.submit = false;
-      this._snackBar.open('Product Added Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.productRepository.add(this.productForm.value).subscribe(
+      () => {
+        this.getAllProducts();
+        this.submit = false;
+        this._snackBar.open('Product Added Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   getAllTempCat(): void {

@@ -84,25 +84,35 @@ export class CustomersComponent implements OnInit {
   updateCustomer() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.customersRepository.update(this.customersForm.value).subscribe(() => {
-      this.getAllCustomers();
-      this.submit = false;
-      this._snackBar.open('Customer Updated Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.customersRepository.update(this.customersForm.value).subscribe(
+      () => {
+        this.getAllCustomers();
+        this.submit = false;
+        this._snackBar.open('Customer Updated Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   addCustomer() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.customersRepository.add(this.customersForm.value).subscribe(() => {
-      this.getAllCustomers();
-      this.submit = false;
-      this._snackBar.open('Customer Added Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.customersRepository.add(this.customersForm.value).subscribe(
+      () => {
+        this.getAllCustomers();
+        this.submit = false;
+        this._snackBar.open('Customer Added Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   onSubmit() {
