@@ -1,12 +1,8 @@
 <div class="mx-auto content-size text-center my-5">
   <h3 class="panel-title fw-bold text-center">Our Investors</h3>
   <div class="row shadow-lg">
-    <div class="col-8">
-      <table
-        class="w-100 overflow-scroll text-start"
-        mat-table
-        [dataSource]="allInvestors"
-      >
+    <div class="col-8 overflow-scroll">
+      <table class="w-100 text-start" mat-table [dataSource]="allInvestors">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
           <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
@@ -102,7 +98,7 @@
       </div>
       <div class="clearfix"></div>
       <form [formGroup]="investorForm">
-        <mat-form-field appearance="outline" class="test me-3">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label>Full Name</mat-label>
           <input
             formControlName="fullName"
@@ -124,7 +120,7 @@
             Investor FullName is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="test me-3 mb-2">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label>NickName</mat-label>
           <input
             formControlName="nickName"
@@ -147,7 +143,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="test me-3">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label> NationalId</mat-label>
           <input
             formControlName="nationalId"
@@ -157,78 +153,23 @@
             pattern="^[0-9]*$"
             maxlength="14"
             minlength="14"
+            required
           />
 
-          <mat-error
-            *ngIf="
-              investorForm.controls['nationalId'].hasError('version') &&
-              !investorForm.controls['nationalId'].hasError('required')
-            "
-          >
-            Please enter Investor NationalId 14 Number
-          </mat-error>
           <mat-error
             *ngIf="investorForm.controls['nationalId'].hasError('required')"
           >
-            Please enter Investor NationalId 14 Number <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="test me-3 mb-4">
-          <mat-label> Primary Phone Number</mat-label>
-          <input
-            formControlName="primaryPhoneNo"
-            matInput
-            pattern="^01[0-2,5]{1}[0-9]{8}$"
-            placeholder="Primary Phone Number"
-            maxlength="11"
-            minlength="11"
-          />
-          <mat-error
-            *ngIf="
-              investorForm.controls['primaryPhoneNo'].hasError(
-                'primaryPhoneNo'
-              ) && !investorForm.controls['primaryPhoneNo'].hasError('required')
-            "
-          >
-            Please enter Investor Primary Phone Number Start with 0 11 /12 /15
+            Please enter Investor NationalId contains 14 Number
           </mat-error>
           <mat-error
-            *ngIf="investorForm.controls['primaryPhoneNo'].hasError('required')"
+            *ngIf="investorForm.controls['nationalId'].hasError('minlength')"
           >
-            Please enter Investor Primary Phone Number Start with 0 11 /12 /15
-            <strong>required</strong>
+            NationalId must has
+            <strong>14 Numvers </strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="test me-3">
-          <mat-label> Secondary Phone Number</mat-label>
-          <input
-            formControlName="secondaryPhoneNo"
-            matInput
-            pattern="^01[0-2,5]{1}[0-9]{8}$"
-            placeholder="Enter Secondary Phone Number"
-            maxlength="11"
-            minlength="11"
-          />
-          <mat-error
-            *ngIf="
-              investorForm.controls['secondaryPhoneNo'].hasError(
-                'secondaryPhoneNo'
-              ) &&
-              !investorForm.controls['secondaryPhoneNo'].hasError('required')
-            "
-          >
-            Please enter Investor Secondary Phone Number Start with 0 11 /12 /15
-          </mat-error>
-          <mat-error
-            *ngIf="
-              investorForm.controls['secondaryPhoneNo'].hasError('required')
-            "
-          >
-            Investor Secondary Phone Number is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="test me-3 mb-4">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label> Address</mat-label>
           <input
             formControlName="address"
@@ -251,15 +192,17 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="test me-3">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label> Investor Type</mat-label>
 
           <mat-select
             placeholder="Investor Type"
             formControlName="investorType"
           >
-            <mat-option value="CONTRIBUTOR">CONTRIBUTOR</mat-option>
-            <mat-option value="MANAGER">MANAGER</mat-option>
+            <mat-option [value]="investorsTypes.CONTRIBUTOR"
+              >CONTRIBUTOR</mat-option
+            >
+            <mat-option [value]="investorsTypes.MANAGER">MANAGER</mat-option>
           </mat-select>
           <mat-error
             *ngIf="
@@ -275,7 +218,7 @@
             investorType is Enter Required<strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="test me-">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label> Balance</mat-label>
           <input
             formControlName="balance"
@@ -298,7 +241,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="test me-2">
+        <mat-form-field appearance="outline" class="Content-Size">
           <mat-label> StartDate</mat-label>
           <input
             formControlName="startDate"
@@ -318,6 +261,51 @@
             *ngIf="investorForm.controls['startDate'].hasError('required')"
           >
             Investor StartDate is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-49 mb-1 me-2">
+          <mat-label> Primary Phone Number</mat-label>
+          <input
+            formControlName="primaryPhoneNo"
+            matInput
+            pattern="^01[0-2,5]{1}[0-9]{8}$"
+            placeholder="Primary Phone Number"
+            maxlength="11"
+            minlength="11"
+            required
+          />
+          <mat-error
+            *ngIf="investorForm.controls['primaryPhoneNo'].hasError('required')"
+          >
+            Please enter Investor Primary Phone Number Start with 0 11 /12 /15
+          </mat-error>
+          <mat-error
+            *ngIf="investorForm.controls['primaryPhoneNo'].hasError('pattern')"
+          >
+            Phone Number must start with
+            <strong>010, 011, 012, 015 and Enter 14 Numbers</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-49 mb-1 me-2">
+          <mat-label> Secondary Phone Number</mat-label>
+          <input
+            formControlName="secondaryPhoneNo"
+            matInput
+            pattern="^01[0-2,5]{1}[0-9]{8}$"
+            placeholder="Enter Secondary Phone Number"
+            maxlength="11"
+            minlength="11"
+          />
+
+          <mat-error
+            *ngIf="
+              investorForm.controls['secondaryPhoneNo'].hasError('pattern')
+            "
+          >
+            Phone Number must start with
+            <strong>010, 011, 012, 015 and Enter 14 Numbers</strong>
           </mat-error>
         </mat-form-field>
       </form>
