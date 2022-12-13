@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-import { Investors } from './../../domain/investors/models/investor';
+import {
+  Investors,
+  investortypes,
+} from './../../domain/investors/models/investor';
 
 @Component({
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
   styles: [
-    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;} .test{ width: 46%}',
+    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;} .Content-Size{ width: 100%}',
   ],
 })
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
   allInvestors: Investors[] = [];
   click: boolean = false;
+  investorsTypes = investortypes;
   value: string | undefined;
   submit: boolean = false;
   data!: Investors;
@@ -70,6 +74,7 @@ export class InvestorPageComponent implements OnInit {
       this.investorForm.reset();
     }
   }
+
   addInvestors() {
     this.investorsRepository.add(this.investorForm.value).subscribe(() => {
       this.getAllInvestors();

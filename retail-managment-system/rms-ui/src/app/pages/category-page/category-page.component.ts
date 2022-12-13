@@ -6,11 +6,11 @@ import { Category } from 'src/app/domain/category/models/category';
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
   styles: [
-    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}.test{ width: 46%}',
+    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white}',
   ],
 })
 export class CategoryPageComponent implements OnInit {
-  categoryform!: FormGroup;
+  categoryForm!: FormGroup;
   allCategory: Category[] = [];
   displayedColumns: string[] = ['id', 'name', 'status', 'update', 'delete'];
   submit: boolean = false;
@@ -22,10 +22,10 @@ export class CategoryPageComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.getAllCategory();
-    this.categoriForm();
+    this.form();
   }
-  categoriForm() {
-    this.categoryform = this.formBuilder.group({
+  form() {
+    this.categoryForm = this.formBuilder.group({
       id: [''],
       name: ['', [Validators.required]],
       status: ['', [Validators.required]],
@@ -33,7 +33,9 @@ export class CategoryPageComponent implements OnInit {
   }
 
   fetchData(category: Category): void {
-    this.categoryform.patchValue(category);
+    this.categoryForm.get('id')!.setValue(category.id);
+    this.categoryForm.get('name')!.setValue(category.name);
+    this.categoryForm.get('status')!.setValue(category.status.toString());
     this.currentCategory = category;
   }
   getAllCategory(): void {
@@ -42,29 +44,29 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   onSubmit() {
-    if (this.categoryform.valid) {
-      this.categoryform.controls['id'].value
+    if (this.categoryForm.valid) {
+      this.categoryForm.controls['id'].value
         ? this.UpdateCategory()
         : this.addCategory();
-      this.categoryform.reset();
+      this.categoryForm.reset();
     }
   }
   addCategory() {
     this.submit = true;
-    this.categorRepository.add(this.categoryform.value).subscribe(() => {
+    this.categorRepository.add(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
       this.submit = false;
     });
   }
   UpdateCategory(): void {
     this.submit = true;
-    this.categorRepository.update(this.categoryform.value).subscribe(() => {
+    this.categorRepository.update(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
       this.submit = false;
     });
   }
   resetTheForm(): void {
-    this.categoryform.controls['id'].value
+    this.categoryForm.controls['id'].value
       ? this.fetchData(this.currentCategory)
       : this.clearTheForm();
   }
@@ -74,7 +76,7 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   clearTheForm(): void {
-    this.categoryform.reset();
+    this.categoryForm.reset();
   }
   restartForm(): void {
     this.clearTheForm();
