@@ -10,7 +10,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
   styles: [
-    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white}',
+    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white}.fix-table{height:600px}',
   ],
 })
 export class CategoryPageComponent implements OnInit {
@@ -60,23 +60,33 @@ export class CategoryPageComponent implements OnInit {
   }
   addCategory() {
     this.submit = true;
-    this.categorRepository.add(this.categoryForm.value).subscribe(() => {
-      this.getAllCategory();
-      this.submit = false;
-      this.SnackBar.open('Category Added Successfully', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.categorRepository.add(this.categoryForm.value).subscribe(
+      () => {
+        this.getAllCategory();
+        this.submit = false;
+        this.SnackBar.open('Category Added Successfully', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
   UpdateCategory(): void {
     this.submit = true;
-    this.categorRepository.update(this.categoryForm.value).subscribe(() => {
-      this.getAllCategory();
-      this.submit = false;
-      this.SnackBar.open('Category Updated Successfully', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.categorRepository.update(this.categoryForm.value).subscribe(
+      () => {
+        this.getAllCategory();
+        this.submit = false;
+        this.SnackBar.open('Category Updated Successfully', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
   resetTheForm(): void {
     this.categoryForm.controls['id'].value

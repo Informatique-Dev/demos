@@ -3,7 +3,7 @@
     <h3 class="panel-title fw-bold">Our Category</h3>
   </div>
   <div class="row shadow-lg">
-    <div class="col-8 overflow-scroll">
+    <div class="col-8 overflow-scroll fix-table">
       <table class="w-100 text-start" mat-table [dataSource]="allCategory">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
@@ -101,7 +101,7 @@
         </mat-form-field>
       </form>
       <mat-dialog-actions align="end">
-        <div class="mt-5 mb-4">
+        <div class="mt-5">
           <button
             class="w-44 btn me-1 mt-0"
             (click)="onSubmit()"
@@ -109,7 +109,11 @@
           >
             {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
           </button>
-          <button class="btn me-1 mt-3" mat-button (click)="resetTheForm()">
+          <button
+            class="w-44 btn me-1 mb-2 mt-5"
+            mat-button
+            (click)="resetTheForm()"
+          >
             {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
           </button>
         </div>

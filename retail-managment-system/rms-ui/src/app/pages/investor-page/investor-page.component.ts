@@ -14,7 +14,7 @@ import {
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
   styles: [
-    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
+    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}.fix-table{height:600px}',
   ],
 })
 export class InvestorPageComponent implements OnInit {
@@ -86,23 +86,35 @@ export class InvestorPageComponent implements OnInit {
   }
 
   addInvestors() {
-    this.investorsRepository.add(this.investorForm.value).subscribe(() => {
-      this.getAllInvestors();
-      this.submit = false;
-      this.SnackBar.open('Investor Added Successfully', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.submit = true;
+    this.investorsRepository.add(this.investorForm.value).subscribe(
+      () => {
+        this.getAllInvestors();
+        this.submit = false;
+        this.SnackBar.open('Investor Added Successfully', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   UpdateInvestors(): void {
-    this.investorsRepository.update(this.investorForm.value).subscribe(() => {
-      this.getAllInvestors();
-      this.submit = false;
-      this.SnackBar.open('Investor Updated Successfully', 'Close', {
-        duration: 2000,
-      });
-    });
+    this.submit = true;
+    this.investorsRepository.update(this.investorForm.value).subscribe(
+      () => {
+        this.getAllInvestors();
+        this.submit = false;
+        this.SnackBar.open('Investor Updated Successfully', 'Close', {
+          duration: 2000,
+        });
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
   resetForm(): void {
     this.investorForm.controls['id'].value
