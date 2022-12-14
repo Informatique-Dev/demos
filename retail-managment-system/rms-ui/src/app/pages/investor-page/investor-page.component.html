@@ -76,7 +76,9 @@
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell class="delete-icon" *matCellDef="let element">
-            <mat-icon (click)="DeleteInvestors(element)">delete</mat-icon>
+            <mat-icon (click)="openConfirmationDialog(element)"
+              >delete</mat-icon
+            >
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,6 +1,10 @@
+import { ConfirmDialogComponent } from './../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
+
 import {
   Investors,
   investortypes,
@@ -36,7 +40,9 @@ export class InvestorPageComponent implements OnInit {
   ];
   constructor(
     private investorsRepository: InvestorsRepository,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private SnackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -77,13 +83,15 @@ export class InvestorPageComponent implements OnInit {
     } else if (this.investorForm.invalid) {
       return;
     }
-    alert('Succesed :)');
   }
 
   addInvestors() {
     this.investorsRepository.add(this.investorForm.value).subscribe(() => {
       this.getAllInvestors();
       this.submit = false;
+      this.SnackBar.open('Investor Added Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
 
@@ -91,6 +99,9 @@ export class InvestorPageComponent implements OnInit {
     this.investorsRepository.update(this.investorForm.value).subscribe(() => {
       this.getAllInvestors();
       this.submit = false;
+      this.SnackBar.open('Investor Updated Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
   resetForm(): void {
@@ -98,11 +109,22 @@ export class InvestorPageComponent implements OnInit {
       ? this.fetchData(this.currentInvestor)
       : this.clearTheForm();
   }
+  openConfirmationDialog(investors: Investors) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.DeleteInvestors(investors);
+      }
+    });
+  }
 
   DeleteInvestors(investors: Investors): void {
     this.investorsRepository.delete(investors.id).subscribe(() => {
       this.getAllInvestors();
       this.submit = false;
+      this.SnackBar.open('Investor Deleted Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
   clearTheForm(): void {

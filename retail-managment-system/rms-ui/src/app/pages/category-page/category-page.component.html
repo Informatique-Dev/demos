@@ -29,7 +29,9 @@
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="DeleteCategory(element)">delete</mat-icon>
+            <mat-icon (click)="openConfirmationDialog(element)"
+              >delete</mat-icon
+            >
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -99,7 +101,7 @@
         </mat-form-field>
       </form>
       <mat-dialog-actions align="end">
-        <div class="mt-5">
+        <div class="mt-5 mb-4">
           <button
             class="w-44 btn me-1 mt-0"
             (click)="onSubmit()"
@@ -107,7 +109,7 @@
           >
             {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
           </button>
-          <button class="btn me-1 mt-5" mat-button (click)="resetTheForm()">
+          <button class="btn me-1 mt-3" mat-button (click)="resetTheForm()">
             {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
           </button>
         </div>

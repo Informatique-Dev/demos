@@ -1,7 +1,11 @@
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryRepository } from '../../domain/category/category.repository';
 import { Category } from 'src/app/domain/category/models/category';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
@@ -18,7 +22,9 @@ export class CategoryPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private categorRepository: CategoryRepository
+    private categorRepository: CategoryRepository,
+    private dialog: MatDialog,
+    private SnackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.getAllCategory();
@@ -57,6 +63,9 @@ export class CategoryPageComponent implements OnInit {
     this.categorRepository.add(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
       this.submit = false;
+      this.SnackBar.open('Category Added Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
   UpdateCategory(): void {
@@ -64,6 +73,9 @@ export class CategoryPageComponent implements OnInit {
     this.categorRepository.update(this.categoryForm.value).subscribe(() => {
       this.getAllCategory();
       this.submit = false;
+      this.SnackBar.open('Category Updated Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
   resetTheForm(): void {
@@ -71,9 +83,20 @@ export class CategoryPageComponent implements OnInit {
       ? this.fetchData(this.currentCategory)
       : this.clearTheForm();
   }
+  openConfirmationDialog(Categori: Category) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.DeleteCategory(Categori);
+      }
+    });
+  }
   DeleteCategory(Categori: Category): void {
     this.categorRepository.delete(Categori.id).subscribe(() => {
       this.getAllCategory();
+      this.SnackBar.open('Category Deleted Successfully', 'Close', {
+        duration: 2000,
+      });
     });
   }
   clearTheForm(): void {
