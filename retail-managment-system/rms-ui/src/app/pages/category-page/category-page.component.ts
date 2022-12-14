@@ -44,6 +44,7 @@ export class CategoryPageComponent implements OnInit {
     });
   }
   onSubmit() {
+    this.categoryForm.markAllAsTouched();
     if (this.categoryForm.valid) {
       this.categoryForm.controls['id'].value
         ? this.UpdateCategory()

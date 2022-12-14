@@ -10,7 +10,7 @@ import {
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
   styles: [
-    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;} .Content-Size{ width: 100%}',
+    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}',
   ],
 })
 export class InvestorPageComponent implements OnInit {
@@ -67,12 +67,17 @@ export class InvestorPageComponent implements OnInit {
     });
   }
   onSubmit() {
+    this.investorForm.markAllAsTouched();
+    this.submit = true;
     if (this.investorForm.valid) {
       this.investorForm.controls['id'].value
         ? this.UpdateInvestors()
         : this.addInvestors();
       this.investorForm.reset();
+    } else if (this.investorForm.invalid) {
+      return;
     }
+    alert('Succesed :)');
   }
 
   addInvestors() {

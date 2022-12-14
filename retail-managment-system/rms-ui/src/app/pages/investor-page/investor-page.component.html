@@ -98,9 +98,11 @@
       </div>
       <div class="clearfix"></div>
       <form [formGroup]="investorForm">
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Full Name</mat-label>
+
           <input
+            class="m-0 p-0"
             formControlName="fullName"
             type="text"
             matInput
@@ -120,10 +122,14 @@
             Investor FullName is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="Content-Size">
+
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>NickName</mat-label>
           <input
             formControlName="nickName"
+            [ngClass]="{
+              'is-invalid': submit && investorForm.controls['nickName'].errors
+            }"
             type="text"
             matInput
             placeholder="Enter your NickName"
@@ -143,10 +149,13 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> NationalId</mat-label>
           <input
             formControlName="nationalId"
+            [ngClass]="{
+              'is-invalid': submit && investorForm.controls['nationalId'].errors
+            }"
             matInput
             placeholder="Enter NationalId"
             title="Pls Enter Valid NationalId"
@@ -159,20 +168,22 @@
           <mat-error
             *ngIf="investorForm.controls['nationalId'].hasError('required')"
           >
-            Please enter Investor NationalId contains 14 Number
+            Please enter Investor NationalId contains <strong>14 Number</strong>
           </mat-error>
           <mat-error
             *ngIf="investorForm.controls['nationalId'].hasError('minlength')"
           >
             NationalId must has
-            <strong>14 Numvers </strong>
+            <strong>14 Number </strong>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> Address</mat-label>
           <input
             formControlName="address"
+            [ngClass]="{
+              'is-invalid': submit && investorForm.controls['address'].errors
+            }"
             type="text"
             matInput
             placeholder="Enter Address"
@@ -192,12 +203,16 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> Investor Type</mat-label>
 
           <mat-select
             placeholder="Investor Type"
             formControlName="investorType"
+            [ngClass]="{
+              'is-invalid':
+                submit && investorForm.controls['investorType'].errors
+            }"
           >
             <mat-option [value]="investorsTypes.CONTRIBUTOR"
               >CONTRIBUTOR</mat-option
@@ -218,10 +233,13 @@
             investorType is Enter Required<strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> Balance</mat-label>
           <input
             formControlName="balance"
+            [ngClass]="{
+              'is-invalid': submit && investorForm.controls['balance'].errors
+            }"
             type="number"
             matInput
             placeholder="Enter Balance"
@@ -241,10 +259,13 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="Content-Size">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> StartDate</mat-label>
           <input
             formControlName="startDate"
+            [ngClass]="{
+              'is-invalid': submit && investorForm.controls['startDate'].errors
+            }"
             type="date"
             matInput
             placeholder="Enter startDate"
@@ -268,6 +289,10 @@
           <mat-label> Primary Phone Number</mat-label>
           <input
             formControlName="primaryPhoneNo"
+            [ngClass]="{
+              'is-invalid':
+                submit && investorForm.controls['primaryPhoneNo'].errors
+            }"
             matInput
             pattern="^01[0-2,5]{1}[0-9]{8}$"
             placeholder="Primary Phone Number"
@@ -278,7 +303,8 @@
           <mat-error
             *ngIf="investorForm.controls['primaryPhoneNo'].hasError('required')"
           >
-            Please enter Investor Primary Phone Number Start with 0 11 /12 /15
+            Please enter Investor Primary Phone Number Start with
+            <strong>0 11 /12 /15</strong>
           </mat-error>
           <mat-error
             *ngIf="investorForm.controls['primaryPhoneNo'].hasError('pattern')"
@@ -292,6 +318,10 @@
           <mat-label> Secondary Phone Number</mat-label>
           <input
             formControlName="secondaryPhoneNo"
+            [ngClass]="{
+              'is-invalid':
+                submit && investorForm.controls['secondaryPhoneNo'].errors
+            }"
             matInput
             pattern="^01[0-2,5]{1}[0-9]{8}$"
             placeholder="Enter Secondary Phone Number"
