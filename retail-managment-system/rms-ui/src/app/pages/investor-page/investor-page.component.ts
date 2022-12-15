@@ -7,7 +7,7 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 
 import {
   Investors,
-  investortypes,
+  InvestorTypes,
 } from './../../domain/investors/models/investor';
 
 @Component({
@@ -19,7 +19,7 @@ export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
   allInvestors: Investors[] = [];
   click: boolean = false;
-  investorsTypes = investortypes;
+  investorsTypes = InvestorTypes;
   value: string | undefined;
   submit: boolean = false;
   data!: Investors;
@@ -75,7 +75,7 @@ export class InvestorPageComponent implements OnInit {
     this.submit = true;
     if (this.investorForm.valid) {
       this.investorForm.controls['id'].value
-        ? this.UpdateInvestors()
+        ? this.updateInvestors()
         : this.addInvestors();
       this.investorForm.reset();
     } else if (this.investorForm.invalid) {
@@ -99,7 +99,7 @@ export class InvestorPageComponent implements OnInit {
     );
   }
 
-  UpdateInvestors(): void {
+  updateInvestors(): void {
     this.submit = true;
     this.investorsRepository.update(this.investorForm.value).subscribe(
       () => {
@@ -123,15 +123,14 @@ export class InvestorPageComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
-        this.DeleteInvestors(investors);
+        this.deleteInvestors(investors);
       }
     });
   }
 
-  DeleteInvestors(investors: Investors): void {
+  deleteInvestors(investors: Investors): void {
     this.investorsRepository.delete(investors.id).subscribe(() => {
       this.getAllInvestors();
-      this.submit = false;
       this.SnackBar.open('Investor Deleted Successfully', 'Close', {
         duration: 2000,
       });

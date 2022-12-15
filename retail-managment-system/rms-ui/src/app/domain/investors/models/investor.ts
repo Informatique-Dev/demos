@@ -10,7 +10,7 @@ export interface Investors {
   startDate: Date;
   investorType: string;
 }
-export enum investortypes {
+export enum InvestorTypes {
   CONTRIBUTOR = 'CONTRIBUTOR',
   MANAGER = 'MANAGER',
 }

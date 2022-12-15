@@ -51,7 +51,7 @@ export class CategoryPageComponent implements OnInit {
     this.categoryForm.markAllAsTouched();
     if (this.categoryForm.valid) {
       this.categoryForm.controls['id'].value
-        ? this.UpdateCategory()
+        ? this.updateCategory()
         : this.addCategory();
       this.categoryForm.reset();
     }
@@ -71,7 +71,7 @@ export class CategoryPageComponent implements OnInit {
       }
     );
   }
-  UpdateCategory(): void {
+  updateCategory(): void {
     this.submit = true;
     this.categorRepository.update(this.categoryForm.value).subscribe(
       () => {
@@ -95,11 +95,11 @@ export class CategoryPageComponent implements OnInit {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
-        this.DeleteCategory(Categori);
+        this.deleteCategory(Categori);
       }
     });
   }
-  DeleteCategory(Categori: Category): void {
+  deleteCategory(Categori: Category): void {
     this.categorRepository.delete(Categori.id).subscribe(() => {
       this.getAllCategory();
       this.SnackBar.open('Category Deleted Successfully', 'Close', {

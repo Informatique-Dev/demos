@@ -99,7 +99,7 @@
         >
       </div>
       <div class="clearfix"></div>
-      <form [formGroup]="investorForm">
+      <form [formGroup]="investorForm" class="row justify-content-center">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Full Name</mat-label>
 
@@ -287,7 +287,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-49 mb-1 me-2">
+        <mat-form-field appearance="outline" class="mb-1 w-50">
           <mat-label> Primary Phone Number</mat-label>
           <input
             formControlName="primaryPhoneNo"
@@ -316,7 +316,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-49 mb-1 me-2">
+        <mat-form-field appearance="outline" class="mb-1 w-50">
           <mat-label> Secondary Phone Number</mat-label>
           <input
             formControlName="secondaryPhoneNo"
