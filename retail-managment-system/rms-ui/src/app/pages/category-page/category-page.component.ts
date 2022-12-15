@@ -9,9 +9,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
-  styles: [
-    ' .content-size{width:90%} mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white}.fix-table{height:600px}',
-  ],
+  styleUrls: ['./category-page.component.scss'],
 })
 export class CategoryPageComponent implements OnInit {
   categoryForm!: FormGroup;

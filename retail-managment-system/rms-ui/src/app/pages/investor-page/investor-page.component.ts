@@ -13,9 +13,7 @@ import {
 @Component({
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
-  styles: [
-    '.content-size{width:90%}   mat-icon{ font-size: 29px;} .btn {background-color: #002d40; color: white;}.fix-table{height:600px}',
-  ],
+  styleUrls: ['./investor-page.component.scss'],
 })
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
