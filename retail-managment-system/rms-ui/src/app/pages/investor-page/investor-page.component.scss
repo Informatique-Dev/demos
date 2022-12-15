@@ -8,3 +8,7 @@ mat-icon {
   background-color: #002d40;
   color: white;
 }
+.fix-table {
+  max-height: 115vh;
+  overflow: auto;
+}
