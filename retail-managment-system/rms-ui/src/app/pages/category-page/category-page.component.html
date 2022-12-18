@@ -1,119 +1,136 @@
-<div class="mx-auto content-size text-center my-5">
-  <div class="container text-center mt-5">
-    <h3 class="panel-title fw-bold">Our Category</h3>
-  </div>
-  <div class="row shadow-lg">
-    <div class="col-8 overflow-scroll fix-table data-table">
-      <table class="w-100 text-start" mat-table [dataSource]="allCategory">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
-          <td mat-cell *matCellDef="let category">{{ category.name }}</td>
-        </ng-container>
-        <ng-container matColumnDef="status" class="status">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">status</th>
-          <td mat-cell *matCellDef="let category">
-            {{ category.status }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon">
-            <mat-icon (click)="fetchData(element)">edit</mat-icon>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="openConfirmationDialog(element)"
-              >delete</mat-icon
-            >
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+<div class="main">
+  <div class="mx-auto content-size text-center">
+    <div class="container text-center mt-4">
+      <h3 class="panel-title fw-bold">Our Category</h3>
     </div>
-
-    <div class="col-4 bg-light">
-      <div class="panel-heading pt-3 ps-1 mb-5">
-        <h3 class="panel-title float-start">
-          {{ categoryForm.controls["id"].value ? "Update" : "Add" }} Category
-        </h3>
-
-        <mat-icon
-          class="add-icon me-4 pt-4 float-end"
-          (click)="restartForm()"
-          [hidden]="!categoryForm.controls['id'].value"
+    <div class="row shadow-lg mt-4">
+      <div
+        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table"
+      >
+        <table
+          class="w-100 text-start content"
+          mat-table
+          [dataSource]="allCategory"
         >
-          add
-        </mat-icon>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+            <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="status" class="status">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              status
+            </th>
+            <td mat-cell *matCellDef="let category">
+              {{ category.status }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon">
+              <mat-icon (click)="fetchData(element)" class="table-button"
+                >edit</mat-icon
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon
+                (click)="openConfirmationDialog(element)"
+                class="table-button"
+                >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
       </div>
 
-      <div class="clearfix"></div>
-      <form [formGroup]="categoryForm" class="min-height:auto">
-        <mat-form-field appearance="outline" class="w-100 ms-2 col-4">
-          <mat-label> Name</mat-label>
-          <input
-            formControlName="name"
-            type="text"
-            matInput
-            placeholder="Enter your Name"
-            fxFlex="40"
-          />
-          <mat-error
-            *ngIf="
-              categoryForm.controls['name'].hasError('name') &&
-              !categoryForm.controls['name'].hasError('required')
-            "
-          >
-            Please enter Category Name
-          </mat-error>
-          <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
-            Category name is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
+      <div class="col-4 bg-light content">
+        <div class="panel-heading pt-3 ps-1 mb-5">
+          <h3 class="panel-title float-start">
+            {{ categoryForm.controls["id"].value ? "Update" : "Add" }} Category
+          </h3>
 
-        <mat-form-field appearance="outline" class="w-100 ms-2 col-4">
-          <mat-label>Status</mat-label>
-
-          <mat-select placeholder="Status" formControlName="status">
-            <mat-option value="true">True</mat-option>
-            <mat-option value="false">False</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="
-              categoryForm.controls['status'].hasError('status') &&
-              !categoryForm.controls['status'].hasError('required')
-            "
+          <mat-icon
+            class="add-icon me-4 pt-2 float-end"
+            (click)="restartForm()"
+            [hidden]="!categoryForm.controls['id'].value"
           >
-            Please enter Category status
-          </mat-error>
-          <mat-error
-            *ngIf="categoryForm.controls['status'].hasError('required')"
-          >
-            Category status is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </form>
-      <mat-dialog-actions align="end">
-        <div class="mt-5">
-          <button
-            class="btn me-3 mt-0"
-            (click)="onSubmit()"
-            [disabled]="submit"
-          >
-            {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
-          </button>
-          <button class="btn mt-5" mat-button (click)="resetTheForm()">
-            {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
-          </button>
+            add
+          </mat-icon>
         </div>
-      </mat-dialog-actions>
+
+        <div class="clearfix"></div>
+
+        <form [formGroup]="categoryForm">
+          <mat-form-field appearance="outline" class="w-100 col-4">
+            <mat-label> Name</mat-label>
+            <input
+              formControlName="name"
+              type="text"
+              matInput
+              placeholder="Enter your Name"
+              fxFlex="40"
+            />
+            <mat-error
+              *ngIf="
+                categoryForm.controls['name'].hasError('name') &&
+                !categoryForm.controls['name'].hasError('required')
+              "
+            >
+              Please enter Category Name
+            </mat-error>
+            <mat-error
+              *ngIf="categoryForm.controls['name'].hasError('required')"
+            >
+              Category name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 col-4">
+            <mat-label>Status</mat-label>
+
+            <mat-select placeholder="Status" formControlName="status">
+              <mat-option value="true">True</mat-option>
+              <mat-option value="false">False</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                categoryForm.controls['status'].hasError('status') &&
+                !categoryForm.controls['status'].hasError('required')
+              "
+            >
+              Please enter Category status
+            </mat-error>
+            <mat-error
+              *ngIf="categoryForm.controls['status'].hasError('required')"
+            >
+              Category status is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+        <mat-dialog-actions align="end">
+          <div class="mt-5">
+            <button
+              class="btn me-3 mt-0"
+              (click)="onSubmit()"
+              [disabled]="submit"
+            >
+              {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
+            </button>
+            <button class="btn mt-5" mat-button (click)="resetTheForm()">
+              {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
+            </button>
+          </div>
+        </mat-dialog-actions>
+      </div>
     </div>
   </div>
 </div>
