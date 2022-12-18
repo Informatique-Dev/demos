@@ -4,6 +4,8 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 import { Category } from 'src/app/domain/category/models/category';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
+import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
+import { Investors } from 'src/app/domain/investors/models/investor';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 
@@ -16,16 +18,19 @@ export class HomePageComponent implements OnInit {
   allProducts: Product[] = [];
   allCustomers: Customers[] = [];
   allCategory: Category[] = [];
+  allInvestors: Investors[] = [];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
-    private customersRepository: CustomersRepository
+    private customersRepository: CustomersRepository,
+    private investorsRepository: InvestorsRepository
   ) {}
   ngOnInit() {
     this.getAllProducts();
     this.getAllCustomers();
     this.getAllCategory();
+    this.getAllInvestors();
   }
 
   openProducts() {
@@ -38,6 +43,10 @@ export class HomePageComponent implements OnInit {
 
   openCustomers() {
     this.router.navigate(['/customers']);
+  }
+
+  openInvestors() {
+    this.router.navigate(['/investor']);
   }
 
   getAllProducts(): void {
@@ -53,6 +62,11 @@ export class HomePageComponent implements OnInit {
   getAllCategory(): void {
     this.categoryRepository.getList().subscribe((result: any) => {
       this.allCategory = result;
+    });
+  }
+  getAllInvestors(): void {
+    this.investorsRepository.getList().subscribe((result: any) => {
+      this.allInvestors = result;
     });
   }
 }
