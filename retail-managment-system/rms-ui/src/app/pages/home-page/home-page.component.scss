@@ -5,12 +5,19 @@ $background-color: linear-gradient(
   rgba(0, 45, 64, 1) 29%,
   rgba(255, 255, 255, 1) 100%
 );
+$background-color: linear-gradient(
+  177deg,
+  rgba(0, 45, 64, 1) 29%,
+  rgba(255, 255, 255, 1) 100%
+);
 
 .main {
   background: $main-color;
   background: $background-color;
+.main {
+  background: $main-color;
+  background: $background-color;
 }
-
 .card {
   box-shadow: 2px 2px 5px #eee;
   border-radius: 30px;
@@ -33,6 +40,7 @@ $background-color: linear-gradient(
     width: 90%;
   }
 }
+
 
 .card:hover {
   top: -15px;
@@ -60,7 +68,34 @@ $background-color: linear-gradient(
   font-size: 70px;
   margin-top: 30px;
   margin-right: 50px;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
 }
+
+.card-body {
+  background: #eee;
+}
+
+.card-footer {
+  background: #eee;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.card-header {
+  border-radius: 30px !important;
+  border: 0px;
+  background: #eee;
+}
+
+.card-header mat-icon {
+  border-radius: 30px;
+  font-size: 70px;
+  margin-top: 30px;
+  margin-right: 50px;
+}
+
+h5 {
+  color: $main-color;
 
 h5 {
   color: $main-color;
