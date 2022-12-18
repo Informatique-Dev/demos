@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
+import { NumbersOnlyDirective } from '../shared/directives/numbers-only.directive';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -22,6 +23,7 @@ const routes: Routes = [
     CategoryPageComponent,
     CustomersComponent,
     InvestorPageComponent,
+    NumbersOnlyDirective,
   ],
 
   imports: [RouterModule.forChild(routes), SharedModule],
