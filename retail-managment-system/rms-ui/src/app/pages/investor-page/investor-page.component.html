@@ -99,7 +99,7 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>
-      <div class="col-4 bg-light content">
+      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <div>
           <h3 class="panel-title float-start mt-3 ms-1">
             {{ investorForm.controls["id"].value ? "Update" : "Add" }} Investor
@@ -113,6 +113,7 @@
           >
         </div>
         <div class="clearfix"></div>
+
         <form [formGroup]="investorForm" class="row justify-content-center">
           <mat-form-field appearance="outline" class="w-50">
             <mat-label>Full Name</mat-label>
@@ -196,32 +197,6 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-50">
-            <mat-label> Address</mat-label>
-            <input
-              formControlName="address"
-              [ngClass]="{
-                'is-invalid': submit && investorForm.controls['address'].errors
-              }"
-              type="text"
-              matInput
-              placeholder="Enter Address"
-            />
-            <mat-error
-              *ngIf="
-                investorForm.controls['address'].hasError('address') &&
-                !investorForm.controls['address'].hasError('required')
-              "
-            >
-              Please enter Investor Address
-            </mat-error>
-            <mat-error
-              *ngIf="investorForm.controls['address'].hasError('required')"
-            >
-              Investor Address is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="w-100" class="pt-2">
             <mat-label> Investor Type</mat-label>
 
             <mat-select
@@ -252,6 +227,32 @@
               investorType is Enter Required<strong>required</strong>
             </mat-error>
           </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100" class="pt-2">
+            <mat-label> Address</mat-label>
+            <input
+              formControlName="address"
+              [ngClass]="{
+                'is-invalid': submit && investorForm.controls['address'].errors
+              }"
+              type="text"
+              matInput
+              placeholder="Enter Address"
+            />
+            <mat-error
+              *ngIf="
+                investorForm.controls['address'].hasError('address') &&
+                !investorForm.controls['address'].hasError('required')
+              "
+            >
+              Please enter Investor Address
+            </mat-error>
+            <mat-error
+              *ngIf="investorForm.controls['address'].hasError('required')"
+            >
+              Investor Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
           <mat-form-field appearance="outline" class="w-50">
             <mat-label> Balance</mat-label>
             <input

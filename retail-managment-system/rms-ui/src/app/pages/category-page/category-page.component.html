@@ -3,6 +3,7 @@
     <div class="container text-center mt-4">
       <h3 class="panel-title fw-bold">Our Category</h3>
     </div>
+
     <div class="row shadow-lg mt-4">
       <div
         class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table"
@@ -52,7 +53,7 @@
         </table>
       </div>
 
-      <div class="col-4 bg-light content">
+      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <div class="panel-heading pt-3 ps-1 mb-5">
           <h3 class="panel-title float-start">
             {{ categoryForm.controls["id"].value ? "Update" : "Add" }} Category
@@ -66,11 +67,10 @@
             add
           </mat-icon>
         </div>
-
         <div class="clearfix"></div>
 
         <form [formGroup]="categoryForm">
-          <mat-form-field appearance="outline" class="w-100 col-4">
+          <mat-form-field appearance="outline" class="w-100">
             <mat-label> Name</mat-label>
             <input
               formControlName="name"
@@ -94,7 +94,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="w-100 col-4">
+          <mat-form-field appearance="outline" class="w-100">
             <mat-label>Status</mat-label>
 
             <mat-select placeholder="Status" formControlName="status">
@@ -116,20 +116,14 @@
             </mat-error>
           </mat-form-field>
         </form>
-        <mat-dialog-actions align="end">
-          <div class="mt-5">
-            <button
-              class="btn me-3 mt-0"
-              (click)="onSubmit()"
-              [disabled]="submit"
-            >
-              {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
-            </button>
-            <button class="btn mt-5" mat-button (click)="resetTheForm()">
-              {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
-            </button>
-          </div>
-        </mat-dialog-actions>
+        <div class="actions pb-3 float-end position-relative top-50">
+          <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+            {{ categoryForm.controls["id"].value ? "Update" : "Add" }}
+          </button>
+          <button class="btn" mat-button (click)="resetTheForm()">
+            {{ categoryForm.controls["id"].value ? "Reset" : "Clear" }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
