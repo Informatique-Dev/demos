@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
