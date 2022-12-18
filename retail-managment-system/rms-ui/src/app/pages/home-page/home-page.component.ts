@@ -1,13 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoryRepository } from 'src/app/domain/category/category.repository';
+import { Category } from 'src/app/domain/category/models/category';
+import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
+import { Customers } from 'src/app/domain/customers/models/customers';
+import { Product } from 'src/app/domain/product/models/product';
+import { ProductRepository } from 'src/app/domain/product/product.repository';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent {
-  constructor(private router: Router) {}
+export class HomePageComponent implements OnInit {
+  allProducts: Product[] = [];
+  allCustomers: Customers[] = [];
+  allCategory: Category[] = [];
+  constructor(
+    private router: Router,
+    private productRepository: ProductRepository,
+    private categoryRepository: CategoryRepository,
+    private customersRepository: CustomersRepository
+  ) {}
+  ngOnInit() {
+    this.getAllProducts();
+    this.getAllCustomers();
+    this.getAllCategory();
+  }
 
   openProducts() {
     this.router.navigate(['/product']);
@@ -19,5 +38,21 @@ export class HomePageComponent {
 
   openCustomers() {
     this.router.navigate(['/customers']);
+  }
+
+  getAllProducts(): void {
+    this.productRepository.getList().subscribe((result) => {
+      this.allProducts = result;
+    });
+  }
+  getAllCustomers(): void {
+    this.customersRepository.getList().subscribe((result) => {
+      this.allCustomers = result;
+    });
+  }
+  getAllCategory(): void {
+    this.categoryRepository.getList().subscribe((result: any) => {
+      this.allCategory = result;
+    });
   }
 }

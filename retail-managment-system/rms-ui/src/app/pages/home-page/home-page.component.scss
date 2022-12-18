@@ -1,57 +1,20 @@
 $main-color: #002d40;
 $secondary-color: #1aa6b7;
+$background-color: linear-gradient(
+  177deg,
+  rgba(0, 45, 64, 1) 29%,
+  rgba(255, 255, 255, 1) 100%
+);
 
-.about {
-  height: 94vh;
-  background: url(../../../assets/home-page.jpg) center/cover;
+.main {
+  background: $main-color;
+  background: $background-color;
 }
-.about p {
-  font-size: 120px;
-  color: $main-color;
-}
-@media (max-width: 991px) {
-  .about p {
-    font-size: 60px;
-  }
-}
-.about span,
-.main-section h4,
-h6 {
-  color: $secondary-color;
-}
-
-.main-section h3,
-h5,
-a,
-.cards h4 a {
-  color: $main-color;
-}
-
-.products {
-  min-height: 300px;
-}
-
-.category {
-  min-height: 500px;
-  background: linear-gradient(180deg, #eee 0%, rgba(255, 255, 255, 1) 100%);
-}
-.investor {
-  min-height: 800px;
-  background: linear-gradient(180deg, #eee 0%, rgba(255, 255, 255, 1) 100%);
-}
-.cards {
-  min-height: 700px;
-  background: linear-gradient(180deg, #eee 0%, rgba(255, 255, 255, 1) 100%);
-}
-.installment {
-  min-height: 300px;
-}
-.order {
-  min-height: 300px;
-  background: linear-gradient(180deg, #eee 0%, rgba(255, 255, 255, 1) 100%);
-}
-
 .card {
+  box-shadow: 2px 2px 5px #eee;
+  border-radius: 30px;
+  background: #eee;
+  width: 300px;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
@@ -59,15 +22,39 @@ a,
   -moz-transition: top ease 0.5s;
   -ms-transition: top ease 0.5s;
   -o-transition: top ease 0.5s;
+  cursor: pointer;
 }
+
 .card:hover {
   top: -15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
 }
-.card-img-top {
-  width: 100%;
-  height: 15vw;
-  object-fit: cover;
+
+.card-body {
+  background: #eee;
+}
+
+.card-footer {
+  background: #eee;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.card-header {
+  border-radius: 30px !important;
+  border: 0px;
+  background: #eee;
+}
+
+.card-header mat-icon {
+  border-radius: 30px;
+  font-size: 70px;
+  margin-top: 30px;
+  margin-right: 50px;
+}
+
+h5 {
+  color: $main-color;
 }
 
 footer {
