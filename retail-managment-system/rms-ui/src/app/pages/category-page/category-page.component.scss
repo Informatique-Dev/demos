@@ -1,13 +1,30 @@
+.main {
+  min-height: 820px;
+}
+.content {
+  height: 600px;
+}
 .content-size {
   width: 90%;
-}
-mat-icon {
-  font-size: 29px;
 }
 .btn {
   background-color: #002d40;
   color: white;
+  width: 80px;
+  height: 40px;
 }
-.fix-table {
-  height: 400px;
+.table-button {
+  background-color: transparent;
+  color: #002d40;
+  cursor: pointer;
+}
+.table-button:hover,
+.add-icon:hover {
+  color: red;
+}
+mat-icon {
+  font-size: 30px;
+}
+.add-icon {
+  cursor: pointer;
 }

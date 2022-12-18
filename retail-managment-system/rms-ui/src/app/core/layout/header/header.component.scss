@@ -3,10 +3,11 @@
   background-color: #002d40;
   z-index: 1;
 }
-li a {
-  color: white;
+
+.menu-icon {
+  font-size: 30px;
 }
-li a:hover {
+
+.navbar-brand {
   cursor: pointer;
-  color: #1aa6b7;
 }
