@@ -1,7 +1,7 @@
 <div class="container-fluid main">
   <section>
-    <div class="container main-cards pt-5">
-      <div class="row justify-content-around pt-5">
+    <div class="container main-cards pt-5 d-flex flex-wrap">
+      <div class="row justify-content-between pt-5">
         <div class="card text-center col-md-3 col-sm-10 mt-5">
           <div class="card-header">
             <mat-icon> attach_money</mat-icon>
@@ -54,10 +54,8 @@
           </div>
           <div class="card-footer text-danger">no of Investors :</div>
         </div>
-      </div>
-      <div class="row justify-content-center">
         <div
-          class="card text-center col-md-3 mt-5 me-4 col-sm-10"
+          class="card text-center col-md-3 mt-5 col-sm-10"
           (click)="openCustomers()"
         >
           <div class="card-header">
@@ -75,7 +73,7 @@
           </div>
         </div>
         <div
-          class="card text-center col-md-3 mt-5 me-4 col-sm-10"
+          class="card text-center col-md-3 mt-5 col-sm-10"
           (click)="openCategory()"
         >
           <div class="card-header">
@@ -93,7 +91,7 @@
           </div>
         </div>
         <div
-          class="card text-center col-md-3 mt-5 me-4 col-sm-10"
+          class="card text-center col-md-3 mt-5 col-sm-10"
           (click)="openProducts()"
         >
           <div class="card-header">
@@ -129,59 +127,42 @@
             success.
           </p>
         </div>
-        <div class="columns col-lg-2 col-md-6 col-sm-4 mt-sm-0 mt-5 text-w">
-          <h6 class="text-secondary fw-bold">Make Money with Us</h6>
+        <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
+          <h6 class="text-secondary fw-bold mt-3">Financial transactions</h6>
           <ul class="list-unstyled">
             <li class="pb-md-2">
-              <a class="text-decoration-none">Advertise Your Products</a>
+              <a class="text-decoration-none">Order</a>
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none">Sell on RMS</a>
+              <a class="text-decoration-none">Transactions</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none">Installment</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none">Investors</a>
             </li>
           </ul>
         </div>
         <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
-          <h6 class="text-secondary fw-bold">Get to Know Us</h6>
+          <h6 class="text-secondary fw-bold mt-3">Our transactions</h6>
           <ul class="list-unstyled">
             <li class="pb-md-2">
-              <a class="text-decoration-none">About Us</a>
+              <a class="text-decoration-none" (click)="openCustomers()"
+                >Customers</a
+              >
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none">Services</a>
+              <a class="text-decoration-none" (click)="openCategory()"
+                >Categories</a
+              >
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none">Contact Us</a>
+              <a class="text-decoration-none" (click)="openProducts()"
+                >Products</a
+              >
             </li>
           </ul>
-        </div>
-        <div class="columns col-lg-3 col-sm-6 mt-lg-0 mt-sm-5 mt-4">
-          <h6 class="text-secondary fw-bold">CONTACT</h6>
-          <div class="columns-5">
-            <div class="pb-md-2">
-              <a
-                class="text-decoration-none text-black"
-                href="mailto:info@example.com"
-                >rms@gmail.com</a
-              >
-            </div>
-            <div class="pb-md-2">
-              <a
-                class="text-decoration-none text-black"
-                href="tel:+44-000-888-999"
-                >Call Us +44-000-888-999</a
-              >
-            </div>
-            <div class="pb-md-2">
-              <p class="contact-para">
-                Cairo, Ismail AlQabany Street -3th Floor, Cairo, Egypt.
-              </p>
-            </div>
-            <div class="pb-md-2">
-              <p class="contact-para">
-                Sat To Thu 11 Am To 7 Pm Friday: Closed
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

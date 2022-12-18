@@ -10,11 +10,12 @@ $background-color: linear-gradient(
   background: $main-color;
   background: $background-color;
 }
+
 .card {
   box-shadow: 2px 2px 5px #eee;
   border-radius: 30px;
   background: #eee;
-  width: 300px;
+  width: 23%;
   position: relative;
   top: 0;
   transition: top ease 0.5s;
@@ -23,6 +24,14 @@ $background-color: linear-gradient(
   -ms-transition: top ease 0.5s;
   -o-transition: top ease 0.5s;
   cursor: pointer;
+}
+@media (max-width: 576px) {
+  .main-cards {
+    margin-left: 5%;
+  }
+  .card {
+    width: 90%;
+  }
 }
 
 .card:hover {
