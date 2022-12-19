@@ -8,6 +8,8 @@ import { ProductComponent } from './product/product.component';
 import { ManageProductComponent } from './product/manage-product/manage-product.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ManageCustomersComponent } from './customers/manage-customers/manage-customers.component';
+import { ProfitComponent } from './profits/profits/profit.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
+  { path: 'profits', component: ProfitComponent },
 ];
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ const routes: Routes = [
     PopUpComponent,
     CustomersComponent,
     ManageCustomersComponent,
+    ProfitComponent,
+
   ],
   imports: [RouterModule.forChild(routes), SharedModule],
 })
