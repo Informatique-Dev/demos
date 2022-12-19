@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
-  declarations: [ConfirmDialogComponent],
+  declarations: [ConfirmDialogComponent, NumbersOnlyDirective],
   imports: [
     MaterialModuleModule,
     CommonModule,
@@ -22,6 +23,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    NumbersOnlyDirective,
   ],
 })
 export class SharedModule {}
