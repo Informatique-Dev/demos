@@ -4,24 +4,13 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   selector: '[NumbersOnly]',
 })
 export class NumbersOnlyDirective {
-  private regex: RegExp = new RegExp('^[0-9]*$');
-  private specialKeys: Array<string> = ['Backspace', 'ArrowLeft', 'ArrowRight'];
   constructor(private elementRef: ElementRef) {}
 
-  /**
-   * @param event
-   */
-  @HostListener('keydown', ['$event']) onKeyDown(event: KeyboardEvent) {
-    if (this.specialKeys.indexOf(event.key) !== -1) {
-      return;
+  @HostListener('input', ['$event']) onInputChange(event: KeyboardEvent) {
+    const initalValue = this.elementRef.nativeElement.value;
+    this.elementRef.nativeElement.value = initalValue.replace(/[^0-9]*/g, '');
+    if (initalValue !== this.elementRef.nativeElement.value) {
+      event.stopPropagation();
     }
-    const inputValue: string = this.elementRef.nativeElement.value.concat(
-      event.key
-    );
-    if (inputValue && !String(inputValue).match(this.regex)) {
-      event.preventDefault();
-    }
-
-    return;
   }
 }
