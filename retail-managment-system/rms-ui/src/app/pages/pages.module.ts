@@ -1,14 +1,15 @@
+import { InvestorPageComponent } from './investor-page/investor-page.component';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
-import { PopUpComponent } from './category-page/pop-up/pop-up.component';
 import { ProductComponent } from './product/product.component';
-import { ManageProductComponent } from './product/manage-product/manage-product.component';
 import { CustomersComponent } from './customers/customers.component';
+
 import { ManageCustomersComponent } from './customers/manage-customers/manage-customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
+
 
 
 const routes: Routes = [
@@ -17,19 +18,26 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
+
   { path: 'profits', component: ProfitComponent },
+
+  { path: 'investor', component: InvestorPageComponent },
+
 ];
 @NgModule({
   declarations: [
+    HomePageComponent,
     ProductComponent,
-    ManageProductComponent,
     CategoryPageComponent,
-    PopUpComponent,
     CustomersComponent,
+
     ManageCustomersComponent,
     ProfitComponent,
 
+
+    InvestorPageComponent,
   ],
+
   imports: [RouterModule.forChild(routes), SharedModule],
 })
 export class PagesModule {}

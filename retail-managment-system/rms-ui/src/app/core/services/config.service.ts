@@ -44,7 +44,7 @@ export class ConfigService {
   }
 
   loadEnvironment(): Observable<Environment> {
-    if (environment.production) this.envUrl = 'env.prod';
+    if (environment.production) this.envUrl = 'env-prod';
     return this.loadFile<Environment>(this.envUrl, this.configUrl);
   }
 
