@@ -6,6 +6,7 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { PopUpComponent } from './category-page/pop-up/pop-up.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
+import { InstallmentComponent } from './installments/installment/installment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
+  { path: 'Installment' , component: InstallmentComponent},
 ];
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ const routes: Routes = [
     CategoryPageComponent,
     PopUpComponent,
     CustomersComponent,
+    InstallmentComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule],
 })
