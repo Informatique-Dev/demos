@@ -6,11 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
-
 import { ManageCustomersComponent } from './customers/manage-customers/manage-customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
-
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -18,9 +15,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent },
   { path: 'customers', component: CustomersComponent },
-
   { path: 'profits', component: ProfitComponent },
-
   { path: 'investor', component: InvestorPageComponent },
 
 ];
@@ -30,11 +25,8 @@ const routes: Routes = [
     ProductComponent,
     CategoryPageComponent,
     CustomersComponent,
-
     ManageCustomersComponent,
     ProfitComponent,
-
-
     InvestorPageComponent,
   ],
 

@@ -13,6 +13,7 @@ export class RepositoryService extends ResourceService<Profit> {
  }
 
  constructor(httpclient:HttpClient) {
+  
    super(httpclient);
 
   }

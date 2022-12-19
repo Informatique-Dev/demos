@@ -5,4 +5,5 @@ export interface Profit {
     profitAmount:number,
     date:string,
     calculated:boolean;
+    
 }

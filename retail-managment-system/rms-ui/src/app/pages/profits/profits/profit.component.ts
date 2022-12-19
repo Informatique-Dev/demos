@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Profit } from 'src/app/domain/profit/models/profit';
@@ -8,7 +8,7 @@ import { RepositoryService } from 'src/app/domain/profit/repository.repository';
   selector: 'app-profit',
   templateUrl: './profit.component.html',
   styleUrls: ['./profit.component.scss'],
- // providers: [DatePipe]
+
 })
 export class ProfitComponent implements OnInit {
 
@@ -16,8 +16,7 @@ export class ProfitComponent implements OnInit {
   addProfitsForm!:FormGroup;
   submit: boolean = false;
   currentData!:Profit;
-
-isButtonVisible: boolean = true;
+  isButtonVisible: boolean = true;
   displayedColumns: string[] = ['id', 'bookNo', 'profitAmount','date','calculated','actions'];
 
 constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder ) {
@@ -43,7 +42,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
 
     });
 
-    console.log(this.addProfitsForm.value,this.addProfitsForm.status)
+
   }
 
 // ===================Get All Profits=============
