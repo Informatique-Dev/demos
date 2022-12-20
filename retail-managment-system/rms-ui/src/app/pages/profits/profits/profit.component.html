@@ -5,7 +5,7 @@
   <div class="row mat-elevation-z8 w-auto mt-5 mb-5 ">
     <div class="content-table col-xl-8 col-lg-8 col-md-12 col-sm-12 p-0 overflow-scroll data-table">
 
-      <!-- =======================Table data=============================== -->
+
 
       <table mat-table [dataSource]="allProfits" class="w-100">
 
@@ -52,10 +52,9 @@
           {{ addProfitsForm.controls["id"].value ? "Update" : "Add" }}
           Profits
         </h3>
-        <mat-icon class="add-icon me-4 float-end" (click)="restartForm(); isButtonVisible = true"
-          [hidden]="isButtonVisible">add</mat-icon>
+        <mat-icon class="add-icon me-4 float-end" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible" > add</mat-icon>
       </div>
-      <!-- ========================================FORM ====================================== -->
+
       <div>
 
         <form [formGroup]="addProfitsForm" >
@@ -83,7 +82,7 @@
 
         </form>
 
-        <!-- ==============================action Form ==================== -->
+
 
         <mat-dialog-actions align="end">
           <div class="actions pb-3">

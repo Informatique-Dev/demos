@@ -13,9 +13,8 @@ export class RepositoryService extends ResourceService<Profit> {
  }
 
  constructor(httpclient:HttpClient) {
-  
-   super(httpclient);
 
+   super(httpclient);
   }
  toServerModel(entity: Profit):any {
      return {

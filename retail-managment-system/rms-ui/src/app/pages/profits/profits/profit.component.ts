@@ -26,12 +26,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
   ngOnInit(): void {
     this.getAllProfits();
     this.profitsForm();
-
-
   }
-
-// ===============profits Form
-
   profitsForm() {
     this.addProfitsForm = this.buildForm.group({
       id: [''],
@@ -39,30 +34,20 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       profitAmount: ['',],
       date: [''],
       calculated: ['', ],
-
     });
-
-
   }
-
-// ===================Get All Profits=============
-
   getAllProfits():void{
     this.profitsRepo.getList().subscribe((results)=>{
        this.allProfits=results;
     })
-
   }
-
-  // ------------- Edit Date
-
   editData(profit: Profit): void {
      this.isButtonVisible = false;
     this.addProfitsForm.patchValue(profit);
     this.currentData = profit;
   }
 
-  //==============Update Profits==========================
+
   updateProfit(){
    this.isButtonVisible=true;
     this.submit = true;
@@ -71,9 +56,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       this.submit = false;
     });
   }
-  // =============Add Profits=====================
-
-
   addProfit() {
    this.isButtonVisible = true;
     this.submit = true;
@@ -83,8 +65,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
     });
   }
 
-// ................................submit..................
-
   onSubmit() {
     if (this.addProfitsForm.valid) {
 
@@ -93,10 +73,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
         : this.addProfit();
      this.addProfitsForm.reset();
     }
-
   }
-
-  // .............rest Form.....................
 
   resetForm(): void {
     this.addProfitsForm.controls['id'].value
@@ -107,7 +84,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
     this.addProfitsForm.reset();
   }
 
-  // ============Delete-========================
   deleteProfit(profit: Profit) {
     this.profitsRepo.delete(profit.id).subscribe(() => {
       this.getAllProfits();
