@@ -54,12 +54,8 @@
         </h3>
         <mat-icon class="add-icon me-4 float-end" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible" > add</mat-icon>
       </div>
-
       <div>
-
         <form [formGroup]="addProfitsForm" >
-
-
           <fieldset>
             <mat-form-field appearance="outline" class="w-100">
               <mat-label>bookNo</mat-label>
@@ -81,11 +77,7 @@
           <mat-checkbox formControlName="calculated"> calculated </mat-checkbox>
 
         </form>
-
-
-
-        <mat-dialog-actions align="end">
-          <div class="actions pb-3">
+          <div class="actions pb-3 float-end">
             <button class="btn btn-success me-3" (click)="onSubmit()" [disabled]="submit">
               {{ addProfitsForm.controls["id"].value ? "Update" : "Add" }}
             </button>
@@ -93,7 +85,6 @@
               {{ addProfitsForm.controls["id"].value ? "Reset" : "Clear" }}
             </button>
           </div>
-        </mat-dialog-actions>
       </div>
     </div>
   </div>
