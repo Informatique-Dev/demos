@@ -7,11 +7,9 @@ import { Profit } from './models/profit';
   providedIn: 'root'
 })
 export class RepositoryService extends ResourceService<Profit> {
-
   getResourceUrl(): string {
     return 'profits'
  }
-
  constructor(httpclient:HttpClient) {
 
    super(httpclient);
@@ -22,8 +20,6 @@ export class RepositoryService extends ResourceService<Profit> {
        profitAmount:entity.profitAmount,
        date:entity.date,
        calculated:entity.calculated
-
      };
  }
-
 }

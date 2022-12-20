@@ -7,7 +7,6 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
-
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
@@ -16,7 +15,6 @@ const routes: Routes = [
   { path: 'customers', component: CustomersComponent },
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
-
 ];
 @NgModule({
   declarations: [

@@ -1,17 +1,13 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Profit } from 'src/app/domain/profit/models/profit';
 import { RepositoryService } from 'src/app/domain/profit/repository.repository';
-
 @Component({
   selector: 'app-profit',
   templateUrl: './profit.component.html',
   styleUrls: ['./profit.component.scss'],
-
 })
 export class ProfitComponent implements OnInit {
-
   allProfits:Profit[] = [];
   addProfitsForm!:FormGroup;
   submit: boolean = false;
@@ -19,10 +15,7 @@ export class ProfitComponent implements OnInit {
   isButtonVisible: boolean = true;
   displayedColumns: string[] = ['id', 'bookNo', 'profitAmount','date','calculated','actions'];
 
-constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder ) {
-
-   }
-
+constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder ) { }
   ngOnInit(): void {
     this.getAllProfits();
     this.profitsForm();
@@ -46,8 +39,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
     this.addProfitsForm.patchValue(profit);
     this.currentData = profit;
   }
-
-
   updateProfit(){
    this.isButtonVisible=true;
     this.submit = true;
@@ -64,7 +55,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
      this.submit = false;
     });
   }
-
   onSubmit() {
     if (this.addProfitsForm.valid) {
 
@@ -74,7 +64,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
      this.addProfitsForm.reset();
     }
   }
-
   resetForm(): void {
     this.addProfitsForm.controls['id'].value
       ? this.editData(this.currentData)
