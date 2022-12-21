@@ -16,6 +16,7 @@ export class RepositoryService extends ResourceService<Profit> {
   }
  toServerModel(entity: Profit):any {
      return {
+       id:entity.id,
        bookNo:entity.bookNo,
        profitAmount:entity.profitAmount,
        date:entity.date,

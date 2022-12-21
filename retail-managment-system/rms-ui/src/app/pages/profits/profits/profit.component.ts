@@ -14,7 +14,6 @@ export class ProfitComponent implements OnInit {
   currentData!:Profit;
   isButtonVisible: boolean = true;
   displayedColumns: string[] = ['id', 'bookNo', 'profitAmount','date','calculated','actions'];
-
 constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder ) { }
   ngOnInit(): void {
     this.getAllProfits();
@@ -23,10 +22,10 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
   profitsForm() {
     this.addProfitsForm = this.buildForm.group({
       id: [''],
-      bookNo: [''],
-      profitAmount: ['',],
-      date: [''],
-      calculated: ['', ],
+      bookNo: ['',[Validators.required]],
+      profitAmount: ['',[Validators.required]],
+      date: ['',[Validators.required]],
+      calculated: ['',[Validators.required] ],
     });
   }
   getAllProfits():void{
@@ -57,7 +56,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
   }
   onSubmit() {
     if (this.addProfitsForm.valid) {
-
       this.addProfitsForm.controls['id'].value
         ? this.updateProfit()
         : this.addProfit();
@@ -72,7 +70,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
   restartForm(): void {
     this.addProfitsForm.reset();
   }
-
   deleteProfit(profit: Profit) {
     this.profitsRepo.delete(profit.id).subscribe(() => {
       this.getAllProfits();
