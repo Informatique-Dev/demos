@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },

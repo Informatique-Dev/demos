@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './core/services/config.service';
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
 
 export function configServiceFactory(
   config: ConfigService
@@ -22,7 +21,6 @@ export function configServiceFactory(
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
-    AuthModule,
   ],
   providers: [
     ConfigService,
