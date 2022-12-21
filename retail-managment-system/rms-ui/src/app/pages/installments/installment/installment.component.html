@@ -13,7 +13,7 @@
     <table
       class="table table-responsive"
       mat-table
-      [dataSource]="InstallmentList"
+      [dataSource]="installmentList"
     >
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
@@ -70,9 +70,7 @@
     </table>
   </div>
   
-  
     <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
-      <section>
         <div class="panel-heading pt-3 ps-1 mb-5">
           <h3 class="panel-title float-start">
             {{ installForm.controls["id"].value ? "Update" : "Add" }} Installment
@@ -96,6 +94,11 @@
                   matInput
                   placeholder="Enter Installment Amount "
                 />
+                <mat-error
+                *ngIf="
+                  installForm.controls['installmentAmount'].hasError('required') ">
+                  InstallmentAmount is <strong>required</strong>
+              </mat-error>
               </mat-form-field>
   
               <mat-form-field appearance="outline" class="w-100">
@@ -106,6 +109,11 @@
                   matInput
                   placeholder="Enter paymentAmount Price"
                 />
+                <mat-error
+                *ngIf="
+                  installForm.controls['paymentAmount'].hasError('required') ">
+                  PaymentAmount is <strong>required</strong>
+              </mat-error>
               </mat-form-field>
   
               <mat-form-field appearance="outline" class="w-100">
@@ -151,7 +159,7 @@
             {{ installForm.controls["id"].value ? "Reset" : "Clear" }}
           </button>
         </div>
-      </section>
+      
     </div>
   </div>
       </div>
