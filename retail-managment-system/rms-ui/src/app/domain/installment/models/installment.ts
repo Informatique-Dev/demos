@@ -1,4 +1,5 @@
-import { Order } from "./order";
+import { Order } from "../../order/models/order";
+
 
 export interface Installment {
      id: number;

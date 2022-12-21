@@ -143,16 +143,14 @@
             </fieldset>
           </form>
         </div>
-        <mat-dialog-actions align="end" class="mt-5">
-          <div class="actions pb-5">
-            <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
-              {{ installForm.controls["id"].value ? "Update" : "Add" }}
-            </button>
-            <button class="btn " mat-button (click)="resetForm()">
-              {{ installForm.controls["id"].value ? "Reset" : "Clear" }}
-            </button>
-          </div>
-        </mat-dialog-actions>
+        <div class="actions pb-5 float-end">
+          <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+            {{installForm.controls["id"].value ? "Update" : "Add" }}
+          </button>
+          <button class="btn" mat-button (click)="resetForm()">
+            {{ installForm.controls["id"].value ? "Reset" : "Clear" }}
+          </button>
+        </div>
       </section>
     </div>
   </div>
