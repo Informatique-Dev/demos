@@ -9,7 +9,7 @@ import { Installment } from 'src/app/domain/installment/models/installment';
   styleUrls: ['./installment.component.scss']
 })
 export class InstallmentComponent implements OnInit {
-  InstallmentList : Installment[] =[];
+  installmentList : Installment[] =[];
   installForm!: FormGroup;
   submit: boolean = false;
   currentData!: Installment;
@@ -34,7 +34,7 @@ export class InstallmentComponent implements OnInit {
 
   getAllInstallments(): void {
     this.installmentrepositry.getList().subscribe((result) => {
-      this.InstallmentList = result;
+      this.installmentList = result;
     });
   }
 
@@ -47,8 +47,8 @@ export class InstallmentComponent implements OnInit {
   InstallForm() {
     this.installForm = this.formBuilder.group({
       id: [''],
-      installmentAmount: [''],
-      paymentAmount: [''],
+      installmentAmount: ['' , [Validators.required]],
+      paymentAmount: ['' , [Validators.required]],
       dueDate: ['', [Validators.required]],
       paymentDate: [''],
       status: [''],

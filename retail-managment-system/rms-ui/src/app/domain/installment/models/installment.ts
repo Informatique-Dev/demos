@@ -9,5 +9,5 @@ export interface Installment {
     dueDate : string;
     paymentDate : string;
     status : number ; 
-    orderDTO : Order   
+    order : Order   
 }
