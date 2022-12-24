@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModuleModule } from './material-module/material-module.module';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    TranslateModule,
   ],
   exports: [
     MaterialModuleModule,
@@ -23,6 +25,7 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    TranslateModule,
   ],
 })
 export class SharedModule {}

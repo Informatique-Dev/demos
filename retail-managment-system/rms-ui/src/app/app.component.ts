@@ -8,8 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   title = 'rms-ui';
-  public isMenuCollapsed = true;
-
   constructor(private translate: TranslateService) {}
   ngOnInit(): void {
     this.translate.addLangs(['en', 'ar']);
@@ -19,9 +17,6 @@ export class AppComponent implements OnInit {
     // @ts-ignore:
     this.translate.use(browserLang.match(/en||ar/) ? browserLang : 'en');
   }
-  // ngOnDestroy(): void {
-  //   this.directionSubscription.unsubscribe();
-  // }
   selectTranslate(event: any) {
     this.translate.use(event.target.value);
   }
