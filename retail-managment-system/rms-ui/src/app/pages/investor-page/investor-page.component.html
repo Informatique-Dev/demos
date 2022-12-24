@@ -288,8 +288,10 @@
               investorForm.controls['secondaryPhoneNo'].hasError('pattern')
             "
           >
-            Phone Number must start with
-            <strong>010, 011, 012, 015 and Enter 14 Numbers</strong>
+            {{ "customrs.secondary-phone" | translate }}
+            <strong>{{
+              "investors.investor-phone-validation" | translate
+            }}</strong>
           </mat-error>
         </mat-form-field>
       </form>

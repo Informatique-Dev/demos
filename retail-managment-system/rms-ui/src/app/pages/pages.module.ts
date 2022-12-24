@@ -1,4 +1,3 @@
-import { FooterComponent } from './../core/layout/footer/footer.component';
 import { InvestorPageComponent } from './investor-page/investor-page.component';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home-page/home-page.component';
