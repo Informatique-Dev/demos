@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
@@ -8,7 +9,6 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 import { Investors } from 'src/app/domain/investors/models/investor';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
-
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -24,7 +24,8 @@ export class HomePageComponent implements OnInit {
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
     private customersRepository: CustomersRepository,
-    private investorsRepository: InvestorsRepository
+    private investorsRepository: InvestorsRepository,
+    private translate: TranslateService
   ) {}
   ngOnInit() {
     this.getAllProducts();

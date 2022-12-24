@@ -1,7 +1,9 @@
 <div class="main">
   <div class="container text-center mt-4">
     <div>
-      <h3 class="panel-title fw-bold">Our Products</h3>
+      <h3 class="panel-title fw-bold">
+        {{ "product.our-products" | translate }}
+      </h3>
     </div>
   </div>
 
@@ -16,14 +18,18 @@
           [dataSource]="allProducts"
         >
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
             <td mat-cell *matCellDef="let i = index" class="pt-2">
               {{ i + 1 }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Name</th>
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "name" | translate }}
+            </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.name }}
             </td>
@@ -31,7 +37,7 @@
 
           <ng-container matColumnDef="category">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Category
+              {{ "product.category" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.productCategoryDto.name }}
@@ -40,7 +46,7 @@
 
           <ng-container matColumnDef="brand">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              brand
+              {{ "product.brand" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.brand }}
@@ -49,7 +55,7 @@
 
           <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Price
+              {{ "product.Price" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.cashPrice }}
@@ -58,7 +64,7 @@
 
           <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              quantity
+              {{ "product.quantity" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.quantity }}
@@ -87,9 +93,15 @@
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-1 mb-5">
-            <h3 class="panel-title float-start">
-              {{ productForm.controls["id"].value ? "Update" : "Add" }} Product
+          <div class="panel-heading pt-3 ps-2 mb-5">
+            <h3 class="panel-title float-start ms-2">
+              {{
+                productForm.controls["id"].value
+                  ? ("update" | translate)
+                  : ("add" | translate)
+              }}
+
+              {{ "product.product" | translate }}
             </h3>
 
             <mat-icon
@@ -103,64 +115,69 @@
             <form [formGroup]="productForm">
               <fieldset class="row justify-content-center">
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Product Name</mat-label>
+                  <mat-label>{{
+                    "product.product-name" | translate
+                  }}</mat-label>
                   <input
                     formControlName="name"
                     type="text"
                     matInput
-                    placeholder="Enter Product Name"
+                    placeholder="{{ 'enter-your-name' | translate }}"
                   />
                   <mat-error
                     *ngIf="productForm.controls['name'].hasError('required')"
                   >
-                    product name is <strong>required</strong>
+                    {{ "product.name-field" | translate }}
+
+                    <strong> {{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Brand</mat-label>
+                  <mat-label> {{ "product.brand" | translate }}</mat-label>
                   <input
                     formControlName="brand"
                     type="text"
                     matInput
-                    placeholder="Enter Brand Name"
+                    placeholder="{{ 'product.brand' | translate }}"
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Price</mat-label>
+                  <mat-label> {{ "product.Price" | translate }}</mat-label>
                   <input
                     formControlName="cashPrice"
                     type="number"
                     matInput
-                    placeholder="Enter Product Price"
+                    placeholder="{{ 'product.Price' | translate }}"
                   />
                   <mat-error
                     *ngIf="
                       productForm.controls['cashPrice'].hasError('required')
                     "
                   >
-                    product Price is <strong>required</strong>
+                    {{ "product.price-field" | translate }}
+                    <strong> {{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Quantity</mat-label>
+                  <mat-label>{{ "product.quantity" | translate }}</mat-label>
                   <input
                     formControlName="quantity"
                     type="number"
                     matInput
-                    placeholder="Enter Product Quantity"
+                    placeholder="{{ 'product.quantity' | translate }}"
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Category</mat-label>
+                  <mat-label>{{ "product.category" | translate }}</mat-label>
                   <mat-select
                     formControlName="productCategoryDto"
                     type="text"
                     matInput
-                    placeholder="Enter Product Category"
+                    placeholder="{{ 'product.category-field' | translate }}"
                     [compareWith]="compareFn"
                   >
                     <mat-option *ngFor="let cat of categories" [value]="cat">
@@ -174,17 +191,18 @@
                       )
                     "
                   >
-                    product Category is <strong>required</strong>
+                    {{ "product.category-field" | translate
+                    }}<strong> {{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100 mb-4">
-                  <mat-label>ModelNo</mat-label>
+                  <mat-label>{{ "product.model-no" | translate }}</mat-label>
                   <input
                     formControlName="modelNo"
                     type="text"
                     matInput
-                    placeholder="Enter Product ModelNo"
+                    placeholder="{{ 'product.model-no' | translate }}"
                   />
                 </mat-form-field>
               </fieldset>
@@ -193,10 +211,18 @@
 
           <div class="actions pb-5 float-end">
             <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
-              {{ productForm.controls["id"].value ? "Update" : "Add" }}
+              {{
+                productForm.controls["id"].value
+                  ? ("update" | translate)
+                  : ("add" | translate)
+              }}
             </button>
             <button class="btn" mat-button (click)="resetForm()">
-              {{ productForm.controls["id"].value ? "Reset" : "Clear" }}
+              {{
+                productForm.controls["id"].value
+                  ? ("reset" | translate)
+                  : ("clear" | translate)
+              }}
             </button>
           </div>
         </section>

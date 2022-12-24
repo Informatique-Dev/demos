@@ -3,11 +3,21 @@
     <button mat-icon-button (click)="clickMenu()" class="side-nav-button">
       <mat-icon class="menu-icon mat-icon text-white me-2">menu</mat-icon>
     </button>
-    <a class="navbar-brand text-white fs-3 fw-bold" (click)="openHome()">Rms</a>
+
+    <a class="navbar-brand text-white fs-3 fw-bold m-10" (click)="openHome()"
+      >Rms</a
+    >
+
     <div class="collapse navbar-collapse">
       <button class="btn btn-outline-light ms-auto" type="submit">
-        Log in
+        {{ "login" | translate }}
       </button>
     </div>
+  </div>
+  <div class="btn btn-outline-light">
+    <select (click)="selectTranslate($event)">
+      <option value="en">{{ "en-options" | translate }}</option>
+      <option value="ar">{{ "ar-options" | translate }}</option>
+    </select>
   </div>
 </nav>

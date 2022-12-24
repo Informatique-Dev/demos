@@ -8,6 +8,7 @@ import { RootComponent } from './layout/root/root.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { SideBarComponent } from './layout/side-bar/side-bar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SideBarComponent } from './layout/side-bar/side-bar.component';
     RootComponent,
     SideBarComponent,
   ],
-  imports: [RouterModule, SharedModule, CommonModule],
+  imports: [RouterModule, SharedModule, CommonModule, TranslateModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,7 +1,9 @@
 <div class="main">
   <div class="container text-center mt-4">
     <div>
-      <h3 class="panel-title fw-bold">Our Customers</h3>
+      <h3 class="panel-title fw-bold">
+        {{ "customrs.our-curtomrs" | translate }}
+      </h3>
     </div>
   </div>
 
@@ -16,7 +18,9 @@
           [dataSource]="allCustomers"
         >
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
             <td mat-cell *matCellDef="let i = index" class="pt-2">
               {{ i + 1 }}
             </td>
@@ -24,7 +28,7 @@
 
           <ng-container matColumnDef="fullName">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Fullname
+              {{ "customrs.full-name" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.fullName }}
@@ -33,7 +37,7 @@
 
           <ng-container matColumnDef="nickName">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Nickname
+              {{ "customrs.nick-name" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.nickName }}
@@ -41,7 +45,9 @@
           </ng-container>
 
           <ng-container matColumnDef="customerCode">
-            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">Code</th>
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.code" | translate }}
+            </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.customerCode }}
             </td>
@@ -49,7 +55,7 @@
 
           <ng-container matColumnDef="nationalId">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              National Id
+              {{ "customrs.national-id" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.nationalId }}
@@ -58,7 +64,7 @@
 
           <ng-container matColumnDef="primaryPhoneNo">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Primary Phone
+              {{ "customrs.primrary-phone" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.primaryPhoneNo }}
@@ -67,7 +73,7 @@
 
           <ng-container matColumnDef="secondaryPhoneNo">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Secondary Phone
+              {{ "customrs.secondary-phone" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.secondaryPhoneNo }}
@@ -76,7 +82,7 @@
 
           <ng-container matColumnDef="address">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Address
+              {{ "customrs.address" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.address }}
@@ -85,7 +91,7 @@
 
           <ng-container matColumnDef="trustReceiptNo">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-              Trust Receipt No
+              {{ "customrs.address" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="pt-2">
               {{ element.trustReceiptNo }}
@@ -114,9 +120,13 @@
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
           <div class="panel-heading pt-3 ps-1 mb-5">
-            <h3 class="panel-title float-start">
-              {{ customersForm.controls["id"].value ? "Update" : "Add" }}
-              Customers
+            <h3 class="panel-title float-start ms-1">
+              {{
+                customersForm.controls["id"].value
+                  ? ("update" | translate)
+                  : ("add" | translate)
+              }}
+              {{ "customrs.customer" | translate }}
             </h3>
             <mat-icon
               class="add-icon me-4 float-end"
@@ -129,48 +139,55 @@
             <form [formGroup]="customersForm">
               <fieldset class="row justify-content-center">
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Customer Name</mat-label>
+                  <mat-label> {{ "customrs.full-name" | translate }}</mat-label>
                   <input
                     formControlName="fullName"
                     type="text"
                     matInput
-                    placeholder="Enter Customer Name"
+                    placeholder="{{
+                      'customrs.enter-customer-fname' | translate
+                    }}"
                   />
                   <mat-error
                     *ngIf="
                       customersForm.controls['fullName'].hasError('required')
                     "
                   >
-                    Customer Name is <strong>required</strong>
+                    {{ "customrs.full-name" | translate }}
+                    <strong> {{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Nickname</mat-label>
+                  <mat-label> {{ "customrs.nick-name" | translate }}</mat-label>
                   <input
                     formControlName="nickName"
                     type="text"
                     matInput
-                    placeholder="Enter Customer Nickname"
+                    placeholder="{{
+                      'customrs.enter-customer-nname' | translate
+                    }}"
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Customer Code</mat-label>
+                  <mat-label>{{ "customrs.code" | translate }}</mat-label>
                   <input
                     formControlName="customerCode"
                     type="number"
                     matInput
-                    placeholder="Enter Customer Code"
+                    placeholder="{{ 'customrs.customer-code' | translate }}"
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100 pb-2">
-                  <mat-label>National Id</mat-label>
+                  <mat-label>{{
+                    "customrs.national-id" | translate
+                  }}</mat-label>
                   <input
                     formControlName="nationalId"
                     matInput
-                    placeholder="Enter Customer National Id"
+                    placeholder="{{ 'customrs.nationalId' | translate }}"
                     minlength="14"
                     maxlength="14"
                     NumbersOnly
@@ -180,59 +197,67 @@
                       customersForm.controls['nationalId'].hasError('required')
                     "
                   >
-                    Customer National Id is <strong>required</strong>
+                    {{ "customrs.national-id" | translate }}
+                    <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                   <mat-error
                     *ngIf="
                       customersForm.controls['nationalId'].hasError('minlength')
                     "
                   >
-                    National Id must be <strong>14 number</strong>
+                    {{ "customrs.id-validation" | translate }}
+                    <strong> {{ "customrs.id-number" | translate }}</strong>
                   </mat-error>
                   <mat-error
                     *ngIf="
                       customersForm.controls['nationalId'].hasError('pattern')
                     "
                   >
-                    National Id must be <strong>number only</strong>
+                    {{ "customrs.id-validation" | translate }}
+                    <strong>
+                      {{ "customrs.id-validation2" | translate }}</strong
+                    >
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Address</mat-label>
+                  <mat-label>{{ "customrs.address" | translate }}</mat-label>
                   <input
                     formControlName="address"
                     type="text"
                     matInput
-                    placeholder="Enter Customer Address"
+                    placeholder="{{ 'customrs.address' | translate }}"
                   />
                   <mat-error
                     *ngIf="
                       customersForm.controls['address'].hasError('required')
                     "
                   >
-                    Customer address is <strong>required</strong>
+                    {{ "customrs.address" | translate }}
+                    <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>Trust Receipt No</mat-label>
+                  <mat-label>{{ "customrs.receipt-no" | translate }}</mat-label>
                   <input
                     formControlName="trustReceiptNo"
                     type="text"
                     matInput
-                    placeholder="Enter Customer Trust Receipt No"
+                    placeholder="{{ 'customrs.receipt-no' | translate }}"
                     NumbersOnly
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50 mb-4">
-                  <mat-label>Primary Phone No</mat-label>
+                  <mat-label>{{
+                    "customrs.primrary-phone" | translate
+                  }}</mat-label>
                   <input
                     formControlName="primaryPhoneNo"
                     type="tel"
                     matInput
-                    placeholder="Enter Customer Primary Phone No"
+                    placeholder="{{ 'customrs.primrary-phone' | translate }}"
                     minlength="11"
                     maxlength="11"
                     NumbersOnly
@@ -244,7 +269,8 @@
                       )
                     "
                   >
-                    primary Phone Number is <strong>required</strong>
+                    {{ "customrs.primrary-phone" | translate }}
+                    <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                   <mat-error
                     *ngIf="
@@ -253,7 +279,10 @@
                       )
                     "
                   >
-                    Please phone Number must be <strong>11 number</strong>
+                    {{ "customrs.phone-validation" | translate
+                    }}<strong>
+                      {{ "customrs.phone-number" | translate }}</strong
+                    >
                   </mat-error>
                   <mat-error
                     class="mt-2"
@@ -263,18 +292,20 @@
                       )
                     "
                   >
-                    Phone Number must start with
-                    <strong>010, 011, 012, 015</strong>
+                    {{ "customrs.phone-validation" | translate }}
+                    <strong> {{ "customrs.phone-numbers" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50 mb-4">
-                  <mat-label>Secondary Phone No</mat-label>
+                  <mat-label>
+                    {{ "customrs.secondary-phone" | translate }}</mat-label
+                  >
                   <input
                     formControlName="secondaryPhoneNo"
                     type="tel"
                     matInput
-                    placeholder="Enter Customer Secondary Phone No"
+                    placeholder="{{ 'customrs.secondary-phone' | translate }}"
                     minlength="11"
                     maxlength="11"
                     NumbersOnly
@@ -306,10 +337,18 @@
 
           <div class="actions pb-3 float-end">
             <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
-              {{ customersForm.controls["id"].value ? "Update" : "Add" }}
+              {{
+                customersForm.controls["id"].value
+                  ? ("update" | translate)
+                  : ("add" | translate)
+              }}
             </button>
             <button class="btn" mat-button (click)="resetForm()">
-              {{ customersForm.controls["id"].value ? "Reset" : "Clear" }}
+              {{
+                customersForm.controls["id"].value
+                  ? ("reset" | translate)
+                  : ("clear" | translate)
+              }}
             </button>
           </div>
         </section>

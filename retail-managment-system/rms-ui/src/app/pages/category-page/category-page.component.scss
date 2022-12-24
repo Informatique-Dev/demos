@@ -1,3 +1,7 @@
+@if dir ==rtl {
+  float: end;
+}
+
 .main {
   min-height: 820px;
 }
@@ -27,4 +31,8 @@ mat-icon {
 }
 .add-icon {
   cursor: pointer;
+}
+th,
+td {
+  line-height: 2;
 }
