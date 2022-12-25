@@ -6,9 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
+<<<<<<< HEAD
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
 
+=======
+import { InstallmentComponent } from './installments/installment/installment.component';
+>>>>>>> 72c836371e9bafe4056dfcb7ec4d592e6f02f8b4
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
