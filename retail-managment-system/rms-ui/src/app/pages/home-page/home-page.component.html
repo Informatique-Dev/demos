@@ -28,7 +28,7 @@
           </div>
           <div class="card-footer text-danger">no of transactions :</div>
         </div>
-        <div class="card text-center col-md-3 col-sm-10 mt-5">
+        <div class="card text-center col-md-3 col-sm-10 mt-5"  (click)="openInstallment()">
           <div class="card-header">
             <mat-icon>payment</mat-icon>
           </div>
@@ -39,7 +39,7 @@
               content.
             </p>
           </div>
-          <div class="card-footer text-danger">no of Installments :</div>
+          <div class="card-footer text-danger">no of Installments : {{ allInvestors.length }}</div>
         </div>
         <div
           class="card text-center col-md-3 col-sm-10 mt-5"

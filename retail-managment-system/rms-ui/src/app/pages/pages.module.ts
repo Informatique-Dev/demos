@@ -7,6 +7,8 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { InstallmentComponent } from './installments/installment/installment.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -19,6 +21,7 @@ const routes: Routes = [
   },
   { path: 'customers', component: CustomersComponent },
   { path: 'investor', component: InvestorPageComponent },
+  { path: 'installment', component: InstallmentComponent },
 ];
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ const routes: Routes = [
     CategoryPageComponent,
     CustomersComponent,
     InvestorPageComponent,
+    InstallmentComponent,
+  
   ],
 
   imports: [RouterModule.forChild(routes), SharedModule],
