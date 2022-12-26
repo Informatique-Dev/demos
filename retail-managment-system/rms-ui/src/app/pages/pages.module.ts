@@ -7,11 +7,12 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
-  { path: 'category', component: CategoryPageComponent },
+  { path: 'category', component: CategoryPageComponent, canActivate: [AuthGuard]},
   { path: 'customers', component: CustomersComponent },
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
