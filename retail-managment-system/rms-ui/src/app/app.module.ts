@@ -11,7 +11,6 @@ export function configServiceFactory(
 ): () => Promise<boolean> {
   return (): Promise<boolean> => config.load();
 }
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

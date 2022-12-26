@@ -8,6 +8,8 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 import { Investors } from 'src/app/domain/investors/models/investor';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
+import { Profit } from 'src/app/domain/profit/models/profit';
+import { RepositoryService } from 'src/app/domain/profit/repository.repository';
 
 @Component({
   selector: 'app-home-page',
@@ -19,18 +21,22 @@ export class HomePageComponent implements OnInit {
   allCustomers: Customers[] = [];
   allCategory: Category[] = [];
   allInvestors: Investors[] = [];
+  allProfits:Profit[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
     private customersRepository: CustomersRepository,
-    private investorsRepository: InvestorsRepository
+    private investorsRepository: InvestorsRepository,
+    private RepositoryService:RepositoryService
+
   ) {}
   ngOnInit() {
     this.getAllProducts();
     this.getAllCustomers();
     this.getAllCategory();
     this.getAllInvestors();
+    this.getAllProfits();
   }
 
   openProducts() {
@@ -47,6 +53,9 @@ export class HomePageComponent implements OnInit {
 
   openInvestors() {
     this.router.navigate(['/investor']);
+  }
+  openProfits() {
+    this.router.navigate(['/profits']);
   }
 
   getAllProducts(): void {
@@ -67,6 +76,11 @@ export class HomePageComponent implements OnInit {
   getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
       this.allInvestors = result;
+    });
+  }
+  getAllProfits(): void {
+    this.RepositoryService.getList().subscribe((result: any) => {
+      this.allProfits = result;
     });
   }
 }
