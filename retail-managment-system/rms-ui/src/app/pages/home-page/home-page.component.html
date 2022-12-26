@@ -113,6 +113,23 @@
             no of products : {{ allProducts.length }}
           </div>
         </div>
+        <div
+        class="card text-center col-md-3 mt-5 col-sm-10"
+        (click)="openProfits()">
+        <div class="card-header">
+          <mat-icon>perm_identity</mat-icon>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Profits</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+        </div>
+        <div class="card-footer text-danger">
+          no of Profits : {{ allProfits.length }}
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -149,6 +166,11 @@
                 >Investors</a
               >
             </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openProfits()"
+                >Profits</a
+              >
+            </li>
           </ul>
         </div>
         <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
@@ -167,6 +189,11 @@
             <li class="pb-md-2">
               <a class="text-decoration-none" (click)="openProducts()"
                 >Products</a
+              >
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openProfits()"
+                >Profits</a
               >
             </li>
           </ul>
