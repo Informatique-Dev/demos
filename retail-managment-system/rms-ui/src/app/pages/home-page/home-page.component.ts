@@ -10,6 +10,8 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 import { Investors } from 'src/app/domain/investors/models/investor';
 import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
+import { Profit } from 'src/app/domain/profit/models/profit';
+import { RepositoryService } from 'src/app/domain/profit/repository.repository';
 
 @Component({
   selector: 'app-home-page',
@@ -22,13 +24,17 @@ export class HomePageComponent implements OnInit {
   allCategory: Category[] = [];
   allInvestors: Investors[] = [];
   allInstallments: Installment[] = [];
+
+  allProfits:Profit[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
     private categoryRepository: CategoryRepository,
     private customersRepository: CustomersRepository,
     private investorsRepository: InvestorsRepository,
-    private installmentsRepository : InstallmentRepositry
+    private installmentsRepository : InstallmentRepositry,
+    private RepositoryService:RepositoryService
+
 
   ) {}
   ngOnInit() {
@@ -37,6 +43,7 @@ export class HomePageComponent implements OnInit {
     this.getAllCategory();
     this.getAllInvestors();
     this.getAllInstallments();
+    this.getAllProfits();
   }
 
   openProducts() {
@@ -53,6 +60,9 @@ export class HomePageComponent implements OnInit {
 
   openInvestors() {
     this.router.navigate(['/investor']);
+  }
+  openProfits() {
+    this.router.navigate(['/profits']);
   }
 
   openInstallment() {
@@ -80,9 +90,18 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+
   getAllInstallments(): void {
     this.installmentsRepository.getList().subscribe((result: any) => {
       this.allInstallments = result;
+      
+    });
+  }
+
+  getAllProfits(): void {
+    this.RepositoryService.getList().subscribe((result: any) => {
+      this.allProfits = result;
+
     });
   }
 }
