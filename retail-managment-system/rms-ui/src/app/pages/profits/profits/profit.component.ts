@@ -69,12 +69,22 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       this.submit = false; }
    );}
   onSubmit() {
+    this.addProfitsForm.markAllAsTouched();
     if (this.addProfitsForm.valid ) {
       this.addProfitsForm.controls['id'].value
         ? this.updateProfit()
         : this.addProfit();
      this.addProfitsForm.reset();
     }
+  }
+
+  resetForm(): void {
+    this.addProfitsForm.controls['id'].value
+      ? this.editData(this.currentData)
+      : this.addProfitsForm.reset();
+  }
+  restartForm(): void {
+    this.addProfitsForm.reset();
   }
   openConfirmationDialog(Profits: Profit) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
@@ -84,14 +94,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       }
     });
   }
-  resetForm(): void {
-    this.addProfitsForm.controls['id'].value
-      ? this.editData(this.currentData)
-      : this.addProfitsForm.reset();
-  }
-  restartForm(): void {
-    this.addProfitsForm.reset();
-  }
+
   deleteProfit(profit: Profit) {
     this.profitsRepo.delete(profit.id).subscribe(() => {
       this.getAllProfits();
