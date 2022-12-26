@@ -6,13 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './core/services/config.service';
 import { CoreModule } from './core/core.module';
-
 export function configServiceFactory(
   config: ConfigService
 ): () => Promise<boolean> {
   return (): Promise<boolean> => config.load();
 }
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
