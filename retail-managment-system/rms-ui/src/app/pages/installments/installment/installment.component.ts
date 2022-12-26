@@ -11,6 +11,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
   templateUrl: './installment.component.html',
   styleUrls: ['./installment.component.scss']
 })
+
 export class InstallmentComponent implements OnInit {
   installmentList : Installment[] =[];
   installForm!: FormGroup;
@@ -36,7 +37,7 @@ export class InstallmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllInstallments();
-    this. InstallForm();
+    this.installmentForm();
   }
 
   getAllInstallments(): void {
@@ -46,7 +47,7 @@ export class InstallmentComponent implements OnInit {
   }
 
 
-  InstallForm() {
+  installmentForm() {
     this.installForm = this.formBuilder.group({
       id: [''],
       installmentAmount: ['' , [Validators.required]],
@@ -105,25 +106,6 @@ export class InstallmentComponent implements OnInit {
     }
   }
 
-  openConfirmationDialog(install : Installment) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'yes') {
-        this.DeleteInstallment(install);
-      }
-    });
-  }
-
-  DeleteInstallment(install :Installment) {
-    this.installmentrepositry.delete(install.id).subscribe(() => {
-      this.getAllInstallments();
-      this._snackBar.open('Installment Deleted Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    });
-  }
-
-
   resetForm() {
     this.installForm.controls['id'].value
       ? this.fetchData(this.currentData)
@@ -133,6 +115,24 @@ export class InstallmentComponent implements OnInit {
 
   restartForm(): void {
     this.installForm.reset();
+  }
+
+  openConfirmationDialog(install : Installment) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.deleteInstallment(install);
+      }
+    });
+  }
+
+  deleteInstallment(install :Installment) {
+    this.installmentrepositry.delete(install.id).subscribe(() => {
+      this.getAllInstallments();
+      this._snackBar.open('Installment Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
+    });
   }
 
 }
