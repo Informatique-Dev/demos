@@ -29,7 +29,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       bookNo: ['',[Validators.required]],
       profitAmount: ['',[Validators.required]],
       date: ['',[Validators.required]],
-      calculated: ['',[Validators.required] ],
+      calculated: ['']
     });
   }
   getAllProfits():void{
@@ -77,7 +77,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
      this.addProfitsForm.reset();
     }
   }
-
   resetForm(): void {
     this.addProfitsForm.controls['id'].value
       ? this.editData(this.currentData)
@@ -94,7 +93,6 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       }
     });
   }
-
   deleteProfit(profit: Profit) {
     this.profitsRepo.delete(profit.id).subscribe(() => {
       this.getAllProfits();

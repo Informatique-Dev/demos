@@ -75,12 +75,7 @@
               <mat-error *ngIf="addProfitsForm.controls['date'].hasError('required')">
                 date is <strong>required</strong></mat-error>
             </mat-form-field>
-
-
-              <mat-checkbox    formControlName="calculated" #tc required > calculated </mat-checkbox>
-              <mat-error  *ngIf="!tc.checked ?'':addProfitsForm.controls['calculated'].hasError('required')">
-                calculated is <strong >required</strong>
-              </mat-error>
+              <mat-checkbox formControlName="calculated" type="checkbox"  >calculated</mat-checkbox>
           </fieldset>
         </form>
           <div class="actions pb-3 float-end">
