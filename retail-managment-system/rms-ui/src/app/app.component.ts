@@ -6,18 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'rms-ui';
-  constructor(private translate: TranslateService) {}
-  ngOnInit(): void {
-    this.translate.addLangs(['en', 'ar']);
-    // this.translate.setDefaultLang('en');
-
-    const browserLang = this.translate.getBrowserLang();
-    // @ts-ignore:
-    this.translate.use(browserLang.match(/en||ar/) ? browserLang : 'en');
-  }
-  selectTranslate(event: any) {
-    this.translate.use(event.target.value);
+  lang: string;
+  constructor(private translate: TranslateService) {
+    this.lang = localStorage.getItem('lang') || 'en';
+    this.translate.use(this.lang);
   }
 }

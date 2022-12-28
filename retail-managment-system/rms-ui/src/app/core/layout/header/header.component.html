@@ -14,10 +14,7 @@
       </button>
     </div>
   </div>
-  <div class="btn btn-outline-light">
-    <select (click)="selectTranslate($event)">
-      <option value="en">{{ "en-options" | translate }}</option>
-      <option value="ar">{{ "ar-options" | translate }}</option>
-    </select>
-  </div>
+  <a mat-button (click)="selectTranslate()">
+    <img src="assets/translate.png" class="translate-logo" />
+  </a>
 </nav>
