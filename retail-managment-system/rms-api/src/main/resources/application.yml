@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /rms
+spring:
+  main:
+    banner-mode: 'off'
+  mvc:
+    servlet:
+      path: /api
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    #type: com.zaxxer.hikari.HikariDataSource
+    ## default connection pool
+    #hikari:
+    #  connectionTimeout: 20000
+    #  maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/motaheda-develop
+    username: rms-develop
+    password: rms-pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        default_schema: rms_core
+    show-sql: false

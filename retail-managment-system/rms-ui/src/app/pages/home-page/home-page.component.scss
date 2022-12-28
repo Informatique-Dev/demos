@@ -1,0 +1,84 @@
+$main-color: #002d40;
+$secondary-color: #1aa6b7;
+$background-color: linear-gradient(
+  177deg,
+  rgba(0, 45, 64, 1) 29%,
+  rgba(255, 255, 255, 1) 100%
+);
+
+.main {
+  background: $main-color;
+  background: $background-color;
+}
+
+.card {
+  box-shadow: 2px 2px 5px #eee;
+  border-radius: 30px;
+  background: #eee;
+  width: 23%;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+  -webkit-transition: top ease 0.5s;
+  -moz-transition: top ease 0.5s;
+  -ms-transition: top ease 0.5s;
+  -o-transition: top ease 0.5s;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .main-cards {
+    margin-left: 5%;
+  }
+  .card {
+    width: 90%;
+  }
+}
+
+.card:hover {
+  top: -15px;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+.card-body {
+  background: #eee;
+}
+
+.card-footer {
+  background: #eee;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+.card-header {
+  border-radius: 30px !important;
+  border: 0px;
+  background: #eee;
+}
+
+.card-header mat-icon {
+  border-radius: 30px;
+  font-size: 70px;
+  margin-top: 30px;
+  margin-right: 50px;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+}
+
+h5 {
+  color: $main-color;
+}
+
+footer {
+  min-height: 400px;
+}
+.columns ul li a {
+  color: $main-color;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  cursor: pointer;
+}
+.columns ul li a:hover {
+  color: $secondary-color;
+}

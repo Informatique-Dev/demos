@@ -1,0 +1,206 @@
+<div class="container-fluid main">
+  <section>
+    <div class="container main-cards pt-5 d-flex flex-wrap">
+      <div class="row justify-content-between pt-5">
+        <div class="card text-center col-md-3 col-sm-10 mt-5">
+          <div class="card-header">
+            <mat-icon> attach_money</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.order" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-orders" | translate }}:
+          </div>
+        </div>
+        <div class="card text-center col-md-3 col-sm-10 mt-5">
+          <div class="card-header">
+            <mat-icon>compare_arrows</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ "home-page.transactions" | translate }}
+            </h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-transactions" | translate }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 col-sm-10 mt-5"
+          (click)="openInstallment()"
+        >
+          <div class="card-header">
+            <mat-icon>payment</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ "home-page.installment" | translate }}
+            </h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-installment" | translate }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 col-sm-10 mt-5"
+          (click)="openInvestors()"
+        >
+          <div class="card-header">
+            <mat-icon>equalizer</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.investors" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-investors" | translate }} :
+            {{ allInvestors.length }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 mt-5 col-sm-10"
+          (click)="openCustomers()"
+        >
+          <div class="card-header">
+            <mat-icon>perm_identity</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.customers" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-customers" | translate }} :
+            {{ allCustomers.length }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 mt-5 col-sm-10"
+          (click)="openCategory()"
+        >
+          <div class="card-header">
+            <mat-icon>view_quilt</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.categories" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-categories" | translate }} :{{
+              allCategory.length
+            }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 mt-5 col-sm-10"
+          (click)="openProducts()"
+        >
+          <div class="card-header">
+            <mat-icon>store</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.products" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-products" | translate }}:
+            {{ allProducts.length }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer position-relative mt-5 pt-5 text-drark">
+    <div class="container footer-content">
+      <div class="footer-data row pt-5">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <h2 class="fw-bold text-uppercase">rms</h2>
+          <p>
+            {{ "home-footer.first-pargraph" | translate }}
+          </p>
+          <p>
+            {{ "home-footer.second-pargarph" | translate }}
+          </p>
+        </div>
+        <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
+          <h6 class="text-secondary fw-bold mt-3">
+            {{ "home-footer.financial-transactions" | translate }}
+          </h6>
+
+          <ul class="list-unstyled">
+            <li class="pb-md-2">
+              <a class="text-decoration-none">{{
+                "home-page.order" | translate
+              }}</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none">{{
+                "home-page.transactions" | translate
+              }}</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none">{{
+                "home-page.installment" | translate
+              }}</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openInvestors()">{{
+                "home-page.investors" | translate
+              }}</a>
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openProfits()"
+                >Profits</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
+          <h6 class="text-secondary fw-bold mt-3">
+            {{ "home-footer.our-transactions" | translate }}
+          </h6>
+          <ul class="list-unstyled">
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openCustomers()">
+                {{ "home-page.customers" | translate }}</a
+              >
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openCategory()">
+                {{ "home-page.categories" | translate }}</a
+              >
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openProducts()">
+                {{ "home-page.products" | translate }}</a
+              >
+            </li>
+            <li class="pb-md-2">
+              <a class="text-decoration-none" (click)="openProfits()"
+                >Profits</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

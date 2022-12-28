@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/court.css">
+</head>
+<body>
+<div class="background" data-ng-init="getGov()">
+    <div class="container" dir="rtl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <p>اضافه محكمه </p>
+                    </div>
+                    <div class="card-content mx-auto">
+                        <form novalidate class="m-5" name="courtForm">
+                            <div class="row mb-4">
+                                <label>المحافظه</label><br>
+                                <select class="form-select w-25" name="gov" ng-model="gov" ng-change="getCourt(gov)" ng-options="x.arabicName for x in govs" required>
+                                </select>
+                                <span ng-show="courtForm.$submitted || courtForm.gov.$dirty || courtForm.gov.$invalid && courtForm.gov.$touched">
+                                    <span class="text-danger" ng-show="courtForm.gov.$error.required"><i class="fa fa-exclamation-circle"></i> يرجى ادخال اسم المحكمه</span>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-3" hidden>
+                                    <input type="text" class="form-control" ng-model="court.id" value="court.id"/><br /><br />
+                                </div>
+                                <div class="col-3">
+                                    <label>الاسم بالعربى:</label><br>
+                                    <input type="text" name="arabicName" class="form-control" ng-model="court.arabicName" value="court.arabicName" required />
+                                    <span ng-show="courtForm.$submitted || courtForm.arabicName.$dirty || courtForm.arabicName.$invalid && courtForm.arabicName.$touched">
+                                        <span class="text-danger" ng-show="courtForm.arabicName.$error.required"><i class="fa fa-exclamation-circle"></i>  يرجى ادخال اسم المحكمه بالعربى</span>
+                                    </span>
+                                </div>
+                                <div class="col-3">
+                                    <label>الاسم بالانجليزى:</label><br>
+                                    <input type="text" name="englishName" class="form-control" ng-model="court.englishName" required />
+                                    <span ng-show="courtForm.$submitted || courtForm.englishName.$dirty || courtForm.englishName.$invalid && courtForm.englishName.$touched">
+                                        <span class="text-danger" ng-show="courtForm.englishName.$error.required"><i class="fa fa-exclamation-circle"></i> يرجى ادخال الكود بالانجليزى</span>
+                                    </span>
+                                </div>
+                                <div class="col-3">
+                                    <label>الكود:</label><br>
+                                    <input type="number" name="code" class="form-control " ng-model="court.code" required />
+                                    <span ng-show="courtForm.$submitted || courtForm.code.$dirty || courtForm.code.$invalid && courtForm.code.$touched">
+                                        <span class="text-danger" ng-show="courtForm.code.$error.required"><i class="fa fa-exclamation-circle"></i> يرجى ادخال الكود</span>
+                                    </span>
+                                </div>
+                                <div class="col-2 mt-4">
+                                    <input class="form-check-input" type="checkbox" ng-model="court.enabled">
+                                    <label>نشط</label><br><br>
+                                </div>
+                                <div class="text-center mt-5">
+                                    <button class="btn shadow w-25 mx-4" type="submit" ng-click="save(court, gov, courtForm.$invalid)">{{ court.id? 'تعديل' : 'اضافه' }}</button>
+                                    <button class="btn btn-danger shadow w-25" ng-click="reset()">مسح</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table mt-5">
+                            <thead>
+                            <tr style="background-color: rgb(180, 180, 180);">
+                                <th scope="col">#</th>
+                                <th scope="col">الاسم بالعربى</th>
+                                <th scope="col">الاسم بالانجليزى</th>
+                                <th scope="col">الكود</th>
+                                <th scope="col">تعديل/حذف</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr dir-paginate="(key, value) in courts | itemsPerPage: 5">
+                                <th scope="row">{{key + 1}}</th>
+                                <td>{{value.arabicName}}</td>
+                                <td>{{value.englishName}}</td>
+                                <td>{{value.code}}</td>
+                                <td>
+                                    <i class="fa fa-close mx-2" ng-click="deleteCourt(value.id, gov)"></i>
+                                    <i class="fa fa-edit" ng-click="fetch(value)"></i>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <dir-pagination-controls></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>
