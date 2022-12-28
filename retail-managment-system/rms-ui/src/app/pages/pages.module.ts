@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
+import { TransactionComponent } from './transaction/transaction.component';
 import { ProfitComponent } from './profits/profits/profit.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'category', component: CategoryPageComponent, canActivate: [AuthGuard]},
   { path: 'customers', component: CustomersComponent },
+  { path: 'transaction', component: TransactionComponent },
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent },
@@ -26,6 +28,7 @@ const routes: Routes = [
     ProductComponent,
     CategoryPageComponent,
     CustomersComponent,
+    TransactionComponent,
     ProfitComponent,
     InvestorPageComponent,
     InstallmentComponent,
