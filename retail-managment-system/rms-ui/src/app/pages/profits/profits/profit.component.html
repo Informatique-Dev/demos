@@ -37,7 +37,7 @@
           <td mat-cell *matCellDef="let element" class="update-icon">
             <button class="btn table-button " (click)="editData(element)"><mat-icon>edit</mat-icon></button>
 
-            <button class="btn table-button" (click)="deleteProfit(element)"><mat-icon>delete</mat-icon></button>
+            <button class="btn table-button" (click)="openConfirmationDialog(element)"><mat-icon>delete</mat-icon></button>
           </td>
         </ng-container>
 
@@ -75,10 +75,8 @@
               <mat-error *ngIf="addProfitsForm.controls['date'].hasError('required')">
                 date is <strong>required</strong></mat-error>
             </mat-form-field>
+              <mat-checkbox formControlName="calculated" type="checkbox"  >calculated</mat-checkbox>
           </fieldset>
-          <mat-checkbox formControlName="calculated" required> calculated </mat-checkbox>
-          <mat-error *ngIf="addProfitsForm.controls['calculated'].hasError('required')">
-            calculated is <strong>required</strong></mat-error>
         </form>
           <div class="actions pb-3 float-end">
             <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">

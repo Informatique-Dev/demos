@@ -29,7 +29,7 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       bookNo: ['',[Validators.required]],
       profitAmount: ['',[Validators.required]],
       date: ['',[Validators.required]],
-      calculated: ['',[Validators.required] ],
+      calculated: ['']
     });
   }
   getAllProfits():void{
@@ -69,20 +69,13 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
       this.submit = false; }
    );}
   onSubmit() {
+    this.addProfitsForm.markAllAsTouched();
     if (this.addProfitsForm.valid ) {
       this.addProfitsForm.controls['id'].value
         ? this.updateProfit()
         : this.addProfit();
      this.addProfitsForm.reset();
     }
-  }
-  openConfirmationDialog(Profits: Profit) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'yes') {
-        this.deleteProfit(Profits);
-      }
-    });
   }
   resetForm(): void {
     this.addProfitsForm.controls['id'].value
@@ -91,6 +84,14 @@ constructor( private profitsRepo:RepositoryService,private buildForm:FormBuilder
   }
   restartForm(): void {
     this.addProfitsForm.reset();
+  }
+  openConfirmationDialog(Profits: Profit) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.deleteProfit(Profits);
+      }
+    });
   }
   deleteProfit(profit: Profit) {
     this.profitsRepo.delete(profit.id).subscribe(() => {
