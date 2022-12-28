@@ -37,6 +37,5 @@ const routes: Routes = [
   ],
 
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
-  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
 })
 export class PagesModule {}
