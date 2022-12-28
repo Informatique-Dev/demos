@@ -1,3 +1,7 @@
+@if dir ==rtl {
+  float: end;
+}
+
 .main {
   min-height: 820px;
 }
