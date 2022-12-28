@@ -1,0 +1,41 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@font-face {
+  font-family: Roboto;
+  src: url(assets/fonts/Roboto-Regular.ttf);
+}
+
+html,
+body {
+  direction: ltr;
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+.data-table {
+  scrollbar-width: auto;
+  scrollbar-color: #002d40 #ffffff;
+}
+.data-table::-webkit-scrollbar {
+  width: 16px;
+}
+
+.data-table::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.data-table::-webkit-scrollbar-thumb {
+  background-color: #002d40;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+.mat-snack-bar-container {
+  background-color: #eee;
+  color: #4bb543;
+  margin-bottom: 100px !important;
+}
+.mat-snack-bar-container button {
+  color: #002d40;
+}

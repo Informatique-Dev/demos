@@ -6,6 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './core/services/config.service';
 import { CoreModule } from './core/core.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 export function configServiceFactory(
   config: ConfigService
 ): () => Promise<boolean> {
@@ -19,6 +25,15 @@ export function configServiceFactory(
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
+
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'ar',
+    }),
   ],
   providers: [
     ConfigService,

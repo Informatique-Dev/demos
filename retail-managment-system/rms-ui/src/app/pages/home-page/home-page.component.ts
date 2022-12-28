@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
@@ -94,7 +95,7 @@ export class HomePageComponent implements OnInit {
   getAllInstallments(): void {
     this.installmentsRepository.getList().subscribe((result: any) => {
       this.allInstallments = result;
-      
+
     });
   }
 

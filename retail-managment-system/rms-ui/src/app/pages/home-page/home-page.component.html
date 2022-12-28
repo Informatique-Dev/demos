@@ -7,39 +7,46 @@
             <mat-icon> attach_money</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Orders</h5>
+            <h5 class="card-title">{{ "home-page.order" | translate }}</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
-          <div class="card-footer text-danger">no of orders :</div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-orders" | translate }}:
+          </div>
         </div>
         <div class="card text-center col-md-3 col-sm-10 mt-5">
           <div class="card-header">
             <mat-icon>compare_arrows</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Transactions</h5>
+            <h5 class="card-title">
+              {{ "home-page.transactions" | translate }}
+            </h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
-          <div class="card-footer text-danger">no of transactions :</div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-transactions" | translate }}
+          </div>
         </div>
         <div class="card text-center col-md-3 col-sm-10 mt-5"  (click)="openInstallment()">
           <div class="card-header">
             <mat-icon>payment</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Installment</h5>
+            <h5 class="card-title">
+              {{ "home-page.installment" | translate }}
+            </h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
-          <div class="card-footer text-danger">no of Installments : {{ allInvestors.length }}</div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-installment" | translate }}
+          </div>
         </div>
         <div
           class="card text-center col-md-3 col-sm-10 mt-5"
@@ -49,14 +56,14 @@
             <mat-icon>equalizer</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Investors</h5>
+            <h5 class="card-title">{{ "home-page.investors" | translate }}</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
           <div class="card-footer text-danger">
-            no of Investors : {{ allInvestors.length }}
+            {{ "home-page.no-of-investors" | translate }} :
+            {{ allInvestors.length }}
           </div>
         </div>
         <div
@@ -67,14 +74,14 @@
             <mat-icon>perm_identity</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Customers</h5>
+            <h5 class="card-title">{{ "home-page.customers" | translate }}</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
           <div class="card-footer text-danger">
-            no of customers : {{ allCustomers.length }}
+            {{ "home-page.no-of-customers" | translate }} :
+            {{ allCustomers.length }}
           </div>
         </div>
         <div
@@ -85,14 +92,15 @@
             <mat-icon>view_quilt</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Categories</h5>
+            <h5 class="card-title">{{ "home-page.categories" | translate }}</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
           <div class="card-footer text-danger">
-            no of categories :{{ allCategory.length }}
+            {{ "home-page.no-of-categories" | translate }} :{{
+              allCategory.length
+            }}
           </div>
         </div>
         <div
@@ -103,33 +111,16 @@
             <mat-icon>store</mat-icon>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Products</h5>
+            <h5 class="card-title">{{ "home-page.products" | translate }}</h5>
             <p class="card-text">
-              With supporting text below as a natural lead-in to additional
-              content.
+              {{ "home-page.home-content" | translate }}
             </p>
           </div>
           <div class="card-footer text-danger">
-            no of products : {{ allProducts.length }}
+            {{ "home-page.no-of-products" | translate }}:
+            {{ allProducts.length }}
           </div>
         </div>
-        <div
-        class="card text-center col-md-3 mt-5 col-sm-10"
-        (click)="openProfits()">
-        <div class="card-header">
-          <mat-icon>perm_identity</mat-icon>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Profits</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-        </div>
-        <div class="card-footer text-danger">
-          no of Profits : {{ allProfits.length }}
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -140,31 +131,36 @@
         <div class="col-lg-4 col-md-6 col-sm-6">
           <h2 class="fw-bold text-uppercase">rms</h2>
           <p>
-            We will always remain the name that has the highest trust from
-            customers, and partners of success through our products and services
-            for a better society.
+            {{ "home-footer.first-pargraph" | translate }}
           </p>
           <p>
-            Out of our pursuit to maintain the trust of clients and partners of
-            success.
+            {{ "home-footer.second-pargarph" | translate }}
           </p>
         </div>
         <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
-          <h6 class="text-secondary fw-bold mt-3">Financial transactions</h6>
+          <h6 class="text-secondary fw-bold mt-3">
+            {{ "home-footer.financial-transactions" | translate }}
+          </h6>
           <ul class="list-unstyled">
             <li class="pb-md-2">
-              <a class="text-decoration-none">Order</a>
+              <a class="text-decoration-none">{{
+                "home-page.order" | translate
+              }}</a>
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none">Transactions</a>
+              <a class="text-decoration-none">{{
+                "home-page.transactions" | translate
+              }}</a>
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none">Installment</a>
+              <a class="text-decoration-none">{{
+                "home-page.installment" | translate
+              }}</a>
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none" (click)="openInvestors()"
-                >Investors</a
-              >
+              <a class="text-decoration-none" (click)="openInvestors()">{{
+                "home-page.investors" | translate
+              }}</a>
             </li>
             <li class="pb-md-2">
               <a class="text-decoration-none" (click)="openProfits()"
@@ -174,21 +170,23 @@
           </ul>
         </div>
         <div class="columns col-lg-3 col-sm-6 pl-lg-5 mt-lg-0 mt-sm-5 mt-4">
-          <h6 class="text-secondary fw-bold mt-3">Our transactions</h6>
+          <h6 class="text-secondary fw-bold mt-3">
+            {{ "home-footer.our-transactions" | translate }}
+          </h6>
           <ul class="list-unstyled">
             <li class="pb-md-2">
-              <a class="text-decoration-none" (click)="openCustomers()"
-                >Customers</a
+              <a class="text-decoration-none" (click)="openCustomers()">
+                {{ "home-page.customers" | translate }}</a
               >
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none" (click)="openCategory()"
-                >Categories</a
+              <a class="text-decoration-none" (click)="openCategory()">
+                {{ "home-page.categories" | translate }}</a
               >
             </li>
             <li class="pb-md-2">
-              <a class="text-decoration-none" (click)="openProducts()"
-                >Products</a
+              <a class="text-decoration-none" (click)="openProducts()">
+                {{ "home-page.products" | translate }}</a
               >
             </li>
             <li class="pb-md-2">

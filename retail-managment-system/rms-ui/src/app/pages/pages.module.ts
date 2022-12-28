@@ -1,3 +1,4 @@
+import { FooterComponent } from './../core/layout/footer/footer.component';
 import { InvestorPageComponent } from './investor-page/investor-page.component';
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -7,6 +8,7 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductComponent } from './product/product.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
 
@@ -14,7 +16,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
-  { path: 'category', component: CategoryPageComponent, canActivate: [AuthGuard]},
+  {
+    path: 'category',
+    component: CategoryPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'customers', component: CustomersComponent },
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
@@ -29,9 +35,8 @@ const routes: Routes = [
     ProfitComponent,
     InvestorPageComponent,
     InstallmentComponent,
-  
   ],
 
-  imports: [RouterModule.forChild(routes), SharedModule],
+  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
 })
 export class PagesModule {}

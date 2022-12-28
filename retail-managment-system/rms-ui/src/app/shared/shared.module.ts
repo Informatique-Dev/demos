@@ -23,7 +23,6 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
-    NumbersOnlyDirective,
   ],
 })
 export class SharedModule {}
