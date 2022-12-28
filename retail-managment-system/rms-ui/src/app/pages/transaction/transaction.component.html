@@ -5,35 +5,31 @@
       <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5">
         <table mat-table [dataSource]="dataSource" class="col">
       
-          <ng-container matColumnDef="position">
+          <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
       
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
           </ng-container>
       
-          <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef> Category </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
           </ng-container>
       
-          <ng-container matColumnDef="brand">
-            <th mat-header-cell *matHeaderCellDef> Brand </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-          </ng-container>
-      
-          <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-          </ng-container>
-      
-          <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Quantity </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-          </ng-container>
           <ng-container matColumnDef="edit-icon">
               <th mat-header-cell *matHeaderCellDef>  </th>
               <td mat-cell *matCellDef="let element">
@@ -50,40 +46,31 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <form class="col-lg-4 p-2">
+        <form class="col-lg-4 p-2" [formGroup]="transactionPostForm">
           <div class="mat-typography">
               <h2 class="mat-headline">Add Transaction</h2>
             </div>
           <mat-form-field class="d-flex justify-content-center align-items-center row" appearance="outline">
-            <mat-label>Transaction Name</mat-label>
-            <input matInput required>
+            <mat-label>Version</mat-label>
+            <input matInput required formControlName="transactionVersion">
           </mat-form-field>
-          <mat-form-field class="row" appearance="outline">
-              <mat-label>Brand</mat-label>
-              <input matInput>
+            <mat-form-field class="row" appearance="outline">
+              <mat-label>Amount</mat-label>
+              <input matInput required formControlName="transactionAmount">
             </mat-form-field>
             <mat-form-field class="row" appearance="outline">
-              <mat-label>Price</mat-label>
-              <input matInput required>
-            </mat-form-field>
-            <mat-form-field class="row" appearance="outline">
-              <mat-label>Quantity</mat-label>
-              <input matInput>
+              <mat-label>Date</mat-label>
+              <input matInput required formControlName="transactionDate">
             </mat-form-field>
           <mat-form-field class="row" appearance="outline">
-            <mat-label>Category</mat-label>
-            <mat-select required>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
+            <mat-label>Type</mat-label>
+            <mat-select required formControlName="transactionType">
+              <mat-option value="one" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="row" appearance="outline">
-              <mat-label>Model No</mat-label>
-              <input matInput>
-            </mat-form-field>
             <div class="px-3" align="right">
-              <button class="mx-1" mat-raised-button color="blue">Add</button>
-              <button class="mx-1" mat-raised-button color="blue">Clear</button>
+              <button class="mx-1" mat-raised-button color="blue" type="submit" [disabled]="transactionPostForm.invalid">Add</button>
+              <button class="mx-1" mat-raised-button color="blue" type="reset">Clear</button>
             </div>
         </form>
       </div>
