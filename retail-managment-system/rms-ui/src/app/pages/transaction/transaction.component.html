@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="mat-typography">
+        <h2 class="mat-headline" align="center">Our Transactions</h2>
+      </div>
+      <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5">
+        <table mat-table [dataSource]="dataSource" class="col">
+      
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="edit-icon">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let element">
+                   <mat-icon color="blueicon">edit</mat-icon>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="delete-icon">
+              <th mat-header-cell *matHeaderCellDef>  </th>
+              <td mat-cell *matCellDef="let element">
+                  <mat-icon color="blueicon">delete</mat-icon>
+              </td>
+            </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <form class="col-lg-4 p-2" [formGroup]="transactionPostForm">
+          <div class="mat-typography">
+              <h2 class="mat-headline">Add Transaction</h2>
+            </div>
+          <mat-form-field class="d-flex justify-content-center align-items-center row" appearance="outline">
+            <mat-label>Version</mat-label>
+            <input matInput required formControlName="transactionVersion">
+          </mat-form-field>
+            <mat-form-field class="row" appearance="outline">
+              <mat-label>Amount</mat-label>
+              <input matInput required formControlName="transactionAmount">
+            </mat-form-field>
+            <mat-form-field class="row" appearance="outline">
+              <mat-label>Date</mat-label>
+              <input matInput required formControlName="transactionDate">
+            </mat-form-field>
+          <mat-form-field class="row" appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select required formControlName="transactionType">
+              <mat-option value="one" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            <div class="px-3" align="right">
+              <button class="mx-1" mat-raised-button color="blue" type="submit" [disabled]="transactionPostForm.invalid">Add</button>
+              <button class="mx-1" mat-raised-button color="blue" type="reset">Clear</button>
+            </div>
+        </form>
+      </div>
+      
+</div>
