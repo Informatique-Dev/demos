@@ -1,7 +1,7 @@
 <div class="container-fluid main">
   <section>
     <div class="container main-cards pt-5 d-flex flex-wrap">
-      <div class="row justify-content-between pt-5">
+      <div class="row justify-content-between">
         <div class="card text-center col-md-3 col-sm-10 mt-5">
           <div class="card-header">
             <mat-icon> attach_money</mat-icon>
@@ -48,7 +48,8 @@
             </p>
           </div>
           <div class="card-footer text-danger">
-            {{ "home-page.no-of-installment" | translate }}
+            {{ "home-page.no-of-installment" | translate }}:
+            {{ allInstallments.length }}
           </div>
         </div>
         <div
@@ -122,6 +123,24 @@
           <div class="card-footer text-danger">
             {{ "home-page.no-of-products" | translate }}:
             {{ allProducts.length }}
+          </div>
+        </div>
+        <div
+          class="card text-center col-md-3 mt-5 col-sm-10"
+          (click)="openProfits()"
+        >
+          <div class="card-header">
+            <mat-icon>timeline</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.profits" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-profits" | translate }}:
+            {{ allProfits.length }}
           </div>
         </div>
       </div>

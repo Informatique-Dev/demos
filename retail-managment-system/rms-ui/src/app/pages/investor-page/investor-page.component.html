@@ -1,322 +1,385 @@
-<div class="mx-auto content-size text-center my-5">
-  <h3 class="panel-title fw-bold">
-    {{ "investors.our-investors" | translate }}
-  </h3>
-  <div class="row shadow-lg">
-    <div class="col-8 data-table fix-table">
-      <table class="w-100 text-start" mat-table [dataSource]="allInvestors">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "no" | translate }}.
-          </th>
-          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-        </ng-container>
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "name" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.fullName }}</td>
-        </ng-container>
-        <ng-container matColumnDef="nickName" class="nickName">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "customrs.nick-name" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.nickName }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="nationalId" class="nationalId">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "customrs.national-id" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.nationalId }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="primaryPhoneNo" class="primaryPhoneNo">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "customrs.primrary-phone" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">
-            {{ investor.primaryPhoneNo }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="secondaryPhoneNo" class="secondaryPhoneNo">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "customrs.secondary-phone" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">
-            {{ investor.secondaryPhoneNo }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="address" class="address">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "customrs.address" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.address }}</td>
-        </ng-container>
-        <ng-container matColumnDef="investorType" class="investorType">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "investors.investor-type" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">
-            {{ investor.investorType }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="balance" class="balance">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "investors.balance" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.balance }}</td>
-        </ng-container>
-        <ng-container matColumnDef="startDate" class="startDate">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "investors.start-date" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let investor">{{ investor.startDate }}</td>
-        </ng-container>
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon">
-            <mat-icon (click)="fetchData(element)">edit</mat-icon>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell class="delete-icon" *matCellDef="let element">
-            <mat-icon (click)="openConfirmationDialog(element)"
-              >delete</mat-icon
-            >
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+<div class="main">
+  <div class="container text-center mt-4">
+    <div>
+      <h3 class="panel-title fw-bold">
+        {{ "installments.our-installments" | translate }}
+      </h3>
     </div>
-    <div class="col-4 bg-light">
-      <div>
-        <h3 class="panel-title">
-          {{
-            investorForm.controls["id"].value
-              ? ("update" | translate)
-              : ("add" | translate)
-          }}
-          {{ "investors.investor" | translate }}
-        </h3>
-        <mat-icon
-          class="add-icon me-4 pt-4 float-end"
-          (click)="restartForm()"
-          [hidden]="!investorForm.controls['id'].value"
+  </div>
+
+  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
+    <div class="row justify-content-center">
+      <div
+        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+      >
+        <table
+          class="table table-responsive"
+          mat-table
+          [dataSource]="allInvestors"
         >
-          add</mat-icon
-        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+          <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">{{ investor.fullName }}</td>
+          </ng-container>
+          <ng-container matColumnDef="nickName" class="nickName">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.nick-name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">{{ investor.nickName }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nationalId" class="nationalId">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.national-id" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">
+              {{ investor.nationalId }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="primaryPhoneNo" class="primaryPhoneNo">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.primrary-phone" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">
+              {{ investor.primaryPhoneNo }}
+            </td>
+          </ng-container>
+          <ng-container
+            matColumnDef="secondaryPhoneNo"
+            class="secondaryPhoneNo"
+          >
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.secondary-phone" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">
+              {{ investor.secondaryPhoneNo }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="address" class="address">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "customrs.address" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">{{ investor.address }}</td>
+          </ng-container>
+          <ng-container matColumnDef="investorType" class="investorType">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "investors.investor-type" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">
+              {{ investor.investorType }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="balance" class="balance">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "investors.balance" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">{{ investor.balance }}</td>
+          </ng-container>
+          <ng-container matColumnDef="startDate" class="startDate">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "investors.start-date" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let investor">
+              {{ investor.startDate }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon">
+              <mat-icon (click)="fetchData(element)">edit</mat-icon>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell class="delete-icon" *matCellDef="let element">
+              <mat-icon (click)="openConfirmationDialog(element)"
+                >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
       </div>
-      <div class="clearfix"></div>
-      <form [formGroup]="investorForm" class="row justify-content-center">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>{{ "customrs.full-name" | translate }}</mat-label>
 
-          <input
-            class="m-0 p-0"
-            formControlName="fullName"
-            type="text"
-            matInput
-            placeholder="{{ 'enter-your-name' | translate }}"
-          />
-          <mat-error
-            *ngIf="
-              investorForm.controls['fullName'].hasError('fullName') &&
-              !investorForm.controls['fullName'].hasError('required')
-            "
-          >
-            {{ "investors.full-namevalidation" | translate }}
-          </mat-error>
-          <mat-error
-            *ngIf="investorForm.controls['fullName'].hasError('required')"
-          >
-            {{ "investors.full-namevalidation" | translate
-            }}<strong> {{ "product.required" | translate }}</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>{{ "customrs.nick-name" | translate }}</mat-label>
-          <input
-            formControlName="nickName"
-            [ngClass]="{
-              'is-invalid': submit && investorForm.controls['nickName'].errors
-            }"
-            type="text"
-            matInput
-            placeholder="{{ 'customrs.nick-name' | translate }}"
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label> {{ "customrs.national-id" | translate }}</mat-label>
-          <input
-            formControlName="nationalId"
-            [ngClass]="{
-              'is-invalid': submit && investorForm.controls['nationalId'].errors
-            }"
-            matInput
-            placeholder="{{ 'customrs.national-id' | translate }}"
-            title="Pls Enter Valid NationalId"
-            pattern="^[0-9]*$"
-            maxlength="14"
-            minlength="14"
-            required
-          />
-
-          <mat-error
-            *ngIf="investorForm.controls['nationalId'].hasError('required')"
-          >
-            {{ "customrs.id-validation" | translate }}
-            <strong> {{ "customrs.id-number" | translate }} </strong>
-          </mat-error>
-          <mat-error
-            *ngIf="investorForm.controls['nationalId'].hasError('minlength')"
-          >
-            {{ "customrs.id-validation" | translate }}
-            <strong>{{ "customrs.id-validation2" | translate }} </strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label> {{ "customrs.address" | translate }}</mat-label>
-          <input
-            formControlName="address"
-            [ngClass]="{
-              'is-invalid': submit && investorForm.controls['address'].errors
-            }"
-            type="text"
-            matInput
-            placeholder="{{ 'customrs.address' | translate }}"
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label> {{ "investors.investor-type" | translate }}</mat-label>
-
-          <mat-select
-            placeholder="{{ 'investors.investor-type' | translate }}"
-            formControlName="investorType"
-            [ngClass]="{
-              'is-invalid':
-                submit && investorForm.controls['investorType'].errors
-            }"
-          >
-            <mat-option [value]="investorsTypes.CONTRIBUTOR">{{
-              "investors.contributor" | translate
-            }}</mat-option>
-            <mat-option [value]="investorsTypes.MANAGER">{{
-              "investors.manager" | translate
-            }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label> {{ "investors.balance" | translate }}</mat-label>
-          <input
-            formControlName="balance"
-            [ngClass]="{
-              'is-invalid': submit && investorForm.controls['balance'].errors
-            }"
-            type="number"
-            matInput
-            placeholder="{{ 'investors.balance' | translate }}"
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label> {{ "investors.start-date" | translate }}</mat-label>
-          <input
-            formControlName="startDate"
-            [ngClass]="{
-              'is-invalid': submit && investorForm.controls['startDate'].errors
-            }"
-            type="date"
-            matInput
-            placeholder="{{ 'investors.start-date' | translate }}"
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="mb-1 w-50">
-          <mat-label>{{ "customrs.primrary-phone" | translate }}</mat-label>
-          <input
-            formControlName="primaryPhoneNo"
-            [ngClass]="{
-              'is-invalid':
-                submit && investorForm.controls['primaryPhoneNo'].errors
-            }"
-            matInput
-            pattern="^01[0-2,5]{1}[0-9]{8}$"
-            placeholder="{{ 'customrs.primrary-phone' | translate }}"
-            maxlength="11"
-            minlength="11"
-            required
-          />
-          <mat-error
-            *ngIf="investorForm.controls['primaryPhoneNo'].hasError('required')"
-          >
-            {{ "customrs.phone-validation" | translate }}
-            <strong>{{ "customrs.phone-numbers" | translate }}</strong>
-          </mat-error>
-          <mat-error
-            *ngIf="investorForm.controls['primaryPhoneNo'].hasError('pattern')"
-          >
-            {{ "customrs.phone-validation" | translate }}
-            <strong>{{
-              "investors.investor-phone-validation" | translate
-            }}</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="mb-1 w-50">
-          <mat-label> {{ "customrs.secondary-phone" | translate }}</mat-label>
-          <input
-            formControlName="secondaryPhoneNo"
-            [ngClass]="{
-              'is-invalid':
-                submit && investorForm.controls['secondaryPhoneNo'].errors
-            }"
-            matInput
-            pattern="^01[0-2,5]{1}[0-9]{8}$"
-            placeholder="{{ 'customrs.secondary-phone' | translate }}"
-            maxlength="11"
-            minlength="11"
-          />
-
-          <mat-error
-            *ngIf="
-              investorForm.controls['secondaryPhoneNo'].hasError('pattern')
-            "
-          >
-            {{ "customrs.secondary-phone" | translate }}
-            <strong>{{
-              "investors.investor-phone-validation" | translate
-            }}</strong>
-          </mat-error>
-        </mat-form-field>
-      </form>
-      <mat-dialog-actions align="end">
-        <div class="row">
-          <div class="col-12">
-            <div class="page-footer-box">
-              <button class="btn me-3" (click)="onSubmit()" [disabled]="click">
+      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+        <section>
+          <div>
+            <div class="panel-heading pt-3 ps-1">
+              <h3 class="panel-title">
                 {{
                   investorForm.controls["id"].value
                     ? ("update" | translate)
                     : ("add" | translate)
                 }}
-              </button>
-              <button class="btn me-3 mb-3" mat-button (click)="resetForm()">
-                {{
-                  investorForm.controls["id"].value
-                    ? ("reset" | translate)
-                    : ("clear" | translate)
-                }}
-              </button>
+                {{ "investors.investor" | translate }}
+              </h3>
+              <mat-icon
+                class="add-icon me-4 pt-4 float-end"
+                (click)="restartForm()"
+                [hidden]="!investorForm.controls['id'].value"
+              >
+                add</mat-icon
+              >
             </div>
           </div>
-        </div>
-      </mat-dialog-actions>
+
+          <div class="panel-body">
+            <form [formGroup]="investorForm">
+              <fieldset class="row justify-content-center">
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>{{ "customrs.full-name" | translate }}</mat-label>
+
+                  <input
+                    class="m-0 p-0"
+                    formControlName="fullName"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'enter-your-name' | translate }}"
+                  />
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['fullName'].hasError('fullName') &&
+                      !investorForm.controls['fullName'].hasError('required')
+                    "
+                  >
+                    {{ "investors.full-namevalidation" | translate }}
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['fullName'].hasError('required')
+                    "
+                  >
+                    {{ "investors.full-namevalidation" | translate
+                    }}<strong> {{ "product.required" | translate }}</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>{{ "customrs.nick-name" | translate }}</mat-label>
+                  <input
+                    formControlName="nickName"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['nickName'].errors
+                    }"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'customrs.nick-name' | translate }}"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label> {{ "customrs.address" | translate }}</mat-label>
+                  <input
+                    formControlName="address"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['address'].errors
+                    }"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'customrs.address' | translate }}"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>
+                    {{ "customrs.national-id" | translate }}</mat-label
+                  >
+                  <input
+                    formControlName="nationalId"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['nationalId'].errors
+                    }"
+                    matInput
+                    placeholder="{{ 'customrs.national-id' | translate }}"
+                    title="Pls Enter Valid NationalId"
+                    pattern="^[0-9]*$"
+                    maxlength="14"
+                    minlength="14"
+                    required
+                  />
+
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['nationalId'].hasError('required')
+                    "
+                  >
+                    {{ "customrs.id-validation" | translate }}
+                    <strong> {{ "customrs.id-number" | translate }} </strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['nationalId'].hasError('minlength')
+                    "
+                  >
+                    {{ "customrs.id-validation" | translate }}
+                    <strong
+                      >{{ "customrs.id-validation2" | translate }}
+                    </strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>
+                    {{ "investors.investor-type" | translate }}</mat-label
+                  >
+
+                  <mat-select
+                    placeholder="{{ 'investors.investor-type' | translate }}"
+                    formControlName="investorType"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['investorType'].errors
+                    }"
+                  >
+                    <mat-option [value]="investorsTypes.CONTRIBUTOR">{{
+                      "investors.contributor" | translate
+                    }}</mat-option>
+                    <mat-option [value]="investorsTypes.MANAGER">{{
+                      "investors.manager" | translate
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label> {{ "investors.balance" | translate }}</mat-label>
+                  <input
+                    formControlName="balance"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['balance'].errors
+                    }"
+                    type="number"
+                    matInput
+                    placeholder="{{ 'investors.balance' | translate }}"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>
+                    {{ "investors.start-date" | translate }}</mat-label
+                  >
+                  <input
+                    formControlName="startDate"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['startDate'].errors
+                    }"
+                    type="date"
+                    matInput
+                    placeholder="{{ 'investors.start-date' | translate }}"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>{{
+                    "customrs.primrary-phone" | translate
+                  }}</mat-label>
+                  <input
+                    formControlName="primaryPhoneNo"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit && investorForm.controls['primaryPhoneNo'].errors
+                    }"
+                    matInput
+                    pattern="^01[0-2,5]{1}[0-9]{8}$"
+                    placeholder="{{ 'customrs.primrary-phone' | translate }}"
+                    maxlength="11"
+                    minlength="11"
+                    required
+                  />
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['primaryPhoneNo'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    {{ "customrs.phone-validation" | translate }}
+                    <strong>{{ "customrs.phone-numbers" | translate }}</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['primaryPhoneNo'].hasError(
+                        'pattern'
+                      )
+                    "
+                  >
+                    {{ "customrs.phone-validation" | translate }}
+                    <strong>{{
+                      "investors.investor-phone-validation" | translate
+                    }}</strong>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>
+                    {{ "customrs.secondary-phone" | translate }}</mat-label
+                  >
+                  <input
+                    formControlName="secondaryPhoneNo"
+                    [ngClass]="{
+                      'is-invalid':
+                        submit &&
+                        investorForm.controls['secondaryPhoneNo'].errors
+                    }"
+                    matInput
+                    pattern="^01[0-2,5]{1}[0-9]{8}$"
+                    placeholder="{{ 'customrs.secondary-phone' | translate }}"
+                    maxlength="11"
+                    minlength="11"
+                  />
+
+                  <mat-error
+                    *ngIf="
+                      investorForm.controls['secondaryPhoneNo'].hasError(
+                        'pattern'
+                      )
+                    "
+                  >
+                    {{ "customrs.secondary-phone" | translate }}
+                    <strong>{{
+                      "investors.investor-phone-validation" | translate
+                    }}</strong>
+                  </mat-error>
+                </mat-form-field>
+              </fieldset>
+            </form>
+          </div>
+
+          <div class="actions pb-3 float-end">
+            <button
+              class="btn me-3 ms-3"
+              (click)="onSubmit()"
+              [disabled]="submit"
+            >
+              {{
+                investorForm.controls["id"].value
+                  ? ("update" | translate)
+                  : ("add" | translate)
+              }}
+            </button>
+            <button class="btn" mat-button (click)="resetForm()">
+              {{
+                investorForm.controls["id"].value
+                  ? ("reset" | translate)
+                  : ("clear" | translate)
+              }}
+            </button>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </div>

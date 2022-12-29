@@ -1,10 +1,17 @@
-.bg-gray
-{
-background-color: #f8f9fa;
+.main {
+  min-height: 820px;
 }
-.content-table {
-  height: 400px;
+.content {
+  height: 600px;
 }
+
+.table-button {
+  background-color: transparent;
+  color: #002d40;
+  width: 50px;
+  height: 40px;
+}
+
 .btn {
   background-color: #002d40;
   color: white;
