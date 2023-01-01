@@ -6,10 +6,14 @@
     <div class="collapse navbar-collapse">
     <a class="navbar-brand text-white fs-3 fw-bold" (click)="openHome()">Rms</a>
     <div class="collapse navbar-collapse">
-      <button class="btn btn-outline-light ms-auto" type="submit">
+      <button class="btn btn-outline-light ms-auto" type="submit" (click)="login()">
         Log in
       </button>
+      <button class="btn btn-outline-light ms-3" type="submit" (click)="logout()">
+        Log out
+      </button>
     </div>
+    
   </div>
   </div>
 </nav>
