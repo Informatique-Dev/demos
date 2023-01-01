@@ -16,4 +16,14 @@ export class HeaderComponent {
   openHome() {
     this.router.navigate(['/home']);
   }
+
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  logout()
+  {
+    localStorage.removeItem("isLogged")
+    this.router.navigateByUrl('/login')
+  }
 }
