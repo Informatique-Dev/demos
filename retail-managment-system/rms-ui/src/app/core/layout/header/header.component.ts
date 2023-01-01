@@ -28,4 +28,14 @@ export class HeaderComponent {
     }
     window.location.reload();
   }
+
+  login() {
+    this.router.navigateByUrl('/login')
+  }
+
+  logout()
+  {
+    localStorage.removeItem("isLogged")
+    this.router.navigateByUrl('/login')
+  }
 }
