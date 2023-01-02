@@ -1,29 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ResourceService } from 'src/app/core/services/resource.service';
 import {TransactionRepository} from 'src/app/domain/transaction/transaction.repository'
 import { Transaction, transactionType } from 'src/app/domain/transaction/models/transaction'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Investors } from '../../domain/investors/models/investor'
+import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+
+ 
 
 const ELEMENT_DATA : Transaction[] = []
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
-
 
 @Component({
   selector: 'app-transaction',
@@ -34,35 +21,125 @@ export class TransactionComponent implements OnInit {
 
   transactionPostForm : FormGroup
   allTransactions : Transaction[] = []
+  investorNames : Investors[]=[]
   transactionTypeEnum = Object.values(transactionType)
-  displayedColumns: string[] = ['id', 'version', 'type','amount','date','edit-icon' ,'delete-icon'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
+  dataSource = ELEMENT_DATA
+  currentData!: Transaction
+  isButtonVisible: boolean = true
+  submit: boolean = false;
+
 
   constructor(
+    private investorsRepository : InvestorsRepository,
     private transactionRepository : TransactionRepository,
-    private fb :FormBuilder
+    private fb :FormBuilder,
+    private SnackBar: MatSnackBar,
+    private dialog: MatDialog
     ) {
     this.transactionPostForm = this.fb.group({
-      transactionVersion: ['',Validators.required],
+      id:[''],
       transactionType: ['',Validators.required],
-      transactionAmount: ['',Validators.required],
-      transactionDate:['',Validators.required]
+      amount: ['',[Validators.required,Validators.min(1)]],
+      date:['',Validators.required],
+      investor:['',Validators.required]
     })
   }
 
   ngOnInit(): void {
     this.getAllTransactions()
+    this.getInvestorData()
+    console.log(this.allTransactions)
   }
   
   getAllTransactions(){
-    this.transactionRepository.getList().subscribe(data =>{
+    this.transactionRepository.getList().subscribe((data:any) =>{
       this.allTransactions = data
+      console.log(this.allTransactions)
     })
   }
   
-  deleteProduct(transaction: Transaction) {
+  getInvestorData(){
+    this.investorsRepository.getList().subscribe(data => {
+      this.investorNames = data      
+    });
+  }
+
+  addTransaction(){
+    this.isButtonVisible = true;
+    this.submit = true;
+    this.transactionRepository.add(this.transactionPostForm.value).subscribe(
+      () => {
+        this.getAllTransactions();
+        this.submit = false;
+        this.SnackBar.open('transaction Added Successfully', 'Close', {
+          duration: 2000,
+        })
+      },()=>{
+        this.submit = false;
+      }
+    )
+  }
+
+  fetchData(transaction: Transaction): void {
+    this.isButtonVisible = false
+    this.transactionPostForm.patchValue(transaction);
+    this.currentData = transaction;
+  }
+
+  openConfirmationDialog(transaction: Transaction) {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'yes') {
+        this.deleteTransaction(transaction);
+      }
+    });
+  }
+
+  deleteTransaction( transaction:Transaction):void{
     this.transactionRepository.delete(transaction.id).subscribe(() => {
       this.getAllTransactions();
+      this.SnackBar.open('Transaction Deleted Successfuly!', 'Close', {
+        duration: 2000,
+      });
     });
+  }
+
+  compareFn(a: Investors, b: Investors) {
+    if (!a || !b) return false;
+    return a.id === b.id;
+  }
+
+  updateTransaction() {
+    this.isButtonVisible = true;
+    this.submit = true;
+    this.transactionRepository.update(this.transactionPostForm.value).subscribe(
+      () => {
+        this.getAllTransactions();
+        this.submit = false;
+        this.SnackBar.open('Transaction Updated Successfuly!', 'Close', {
+          duration: 2000,
+        });
+      },
+      ()=>{
+        this.submit = false;
+      }
+    );
+  }
+
+  onSubmit() {
+    this.transactionPostForm.markAllAsTouched();
+    if (this.transactionPostForm.valid) {
+      this.transactionPostForm.controls['id'].value
+        ? this.updateTransaction()
+        : this.addTransaction();
+      this.transactionPostForm.reset();
+    }
+  }
+
+  resetForm() {
+    this.transactionPostForm.controls['id'].value
+      ? this.fetchData(this.currentData)
+      : this.transactionPostForm.reset();
   }
 }

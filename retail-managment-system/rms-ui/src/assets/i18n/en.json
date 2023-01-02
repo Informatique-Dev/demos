@@ -116,5 +116,20 @@
       "investor-phone-validation":"010, 011, 012, 015 and Enter 14 Numbers"
 
 
+    },
+    "transactions":{
+      "transaction":"Transaction",
+      "our-transactions":" Our Transactions",
+      "version":"Version",
+      "type":"Type",
+      "amount":"Amount",
+      "date":"Date",
+      "edit":"Edit",
+      "Delete":"Delete",
+      "add-transaction":"Add Transaction",
+      "investor":"Investor",
+      "amount-validation":"Amount must be at least '1'",
+      "required":"required",
+      "investor-name":"Investor Name"
     }
 }

@@ -10,19 +10,17 @@ export class TransactionRepository extends ResourceService<Transaction> {
     super(httpClient);
   }
   getResourceUrl(): string {
-    return 'transaction';
+    return 'transactions';
   }
 
   toServerModel(entity: Transaction): any {
     return {
-        id: entity.id,
-        version: entity.version,
         transactionType: entity.transactionType,
         amount: entity.amount,
         date: entity.date,
-        //investorDto:{
-            //id: entity.investorDto.id,
-        //}
+        investor:{
+          id: entity.investor.id
+       }
     };
   }
 }

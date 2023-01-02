@@ -25,6 +25,8 @@ const routes: Routes = [
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent },
+  { path: 'transaction', component: TransactionComponent },
+
 ];
 @NgModule({
   declarations: [
