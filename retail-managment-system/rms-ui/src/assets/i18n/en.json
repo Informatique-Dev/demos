@@ -178,5 +178,20 @@
       "password-error":"Password is Not correct!",
       "close":"Close"
       
+    },
+    "transactions":{
+      "transaction":"Transaction",
+      "our-transactions":" Our Transactions",
+      "version":"Version",
+      "type":"Type",
+      "amount":"Amount",
+      "date":"Date",
+      "edit":"Edit",
+      "Delete":"Delete",
+      "add-transaction":"Add Transaction",
+      "investor":"Investor",
+      "amount-validation":"Amount must be at least '1'",
+      "required":"required",
+      "investor-name":"Investor Name"
       }
 }

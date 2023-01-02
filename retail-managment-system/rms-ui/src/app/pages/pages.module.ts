@@ -23,6 +23,8 @@ const routes: Routes = [
   { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
+  { path: 'transaction', component: TransactionComponent },
+
 
 ];
 @NgModule({

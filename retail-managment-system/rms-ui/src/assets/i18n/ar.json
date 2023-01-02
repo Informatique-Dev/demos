@@ -178,5 +178,20 @@
         "email-error": "البريد الإلكتروني الذي أدخلته غير مرتبط بحساب",
         "password-error":"!كلمة المرور غير صحيحة",
         "close":"اغلاق"
+      },
+      "transactions":{
+        "transaction":"عملية التحويل",
+        "our-transactions":"التحويلات",
+        "version":"الإصدار",
+        "type":"النوع",
+        "amount":"العدد",
+        "date":"التاريخ",
+        "edit":"تعديل",
+        "Delete":"مسح",
+        "add-transaction":"اضافة عملية تحويل",
+        "investor":"المستثمر",
+        "amount-validation":"العدد يجب ان يكون على الأقل '1'",
+        "required":"اجباري",
+        "investor-name":"اسم المستثمر"
         }
 }
