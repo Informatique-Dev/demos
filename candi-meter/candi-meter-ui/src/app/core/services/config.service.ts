@@ -5,18 +5,19 @@ import { SettingsService } from './settings.service';
 import { mergeMap, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 @Injectable()
+
 export class ConfigService {
   private config!: Configuration;
   private env: Environment = { env: 'development' };
   configUrl = '/config';
   envUrl = 'env';
-  private httpClient:HttpClient;
-  constructor(private httpBackend: HttpBackend) {
-    this.httpClient = new HttpClient(this.httpBackend);
+ // private httpClient:HttpClient;
+  constructor( private httpClient:HttpClient) {
+ //   this.httpClient = new HttpClient(this.httpBackend);
   }
 
 
-  load(): Promise<boolean> {
+  load():Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.loadConfig().subscribe(
         (config) => {
@@ -31,7 +32,7 @@ export class ConfigService {
     });
   }
 
-  loadConfig(): Observable<Configuration> {
+  loadConfig():Observable<Configuration> {
     return this.loadEnvironment().pipe(
       mergeMap((currentEnv) => {
         this.env = currentEnv;

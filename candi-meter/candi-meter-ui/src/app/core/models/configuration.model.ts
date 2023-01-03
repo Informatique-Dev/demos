@@ -1,4 +1,4 @@
-interface Api {
+ interface Api {
   baseUrl: string;
 }
 
