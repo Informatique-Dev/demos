@@ -1,6 +1,6 @@
 <div class="container">
   <div class="mat-typography">
-    <h2 class="mat-headline" align="center">{{'transactions.our-transactions'|translate}}</h2>
+    <h2 class="mat-headline text-center">{{'transactions.our-transactions'|translate}}</h2>
   </div>
   <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5">
     <table mat-table [dataSource]="allTransactions" class="col">
@@ -33,7 +33,7 @@
       <ng-container matColumnDef="edit-icon">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn table-button" (click)="fetchData(element)">
+          <button class="btn" (click)="fetchData(element)">
             <mat-icon color="blueicon">edit</mat-icon>
           </button>
         </td>
@@ -41,7 +41,7 @@
       <ng-container matColumnDef="delete-icon">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn table-button" (click)="openConfirmationDialog(element)">
+          <button class="btn" (click)="openConfirmationDialog(element)">
             <mat-icon color="blueicon">delete</mat-icon>
           </button>
         </td>
@@ -96,7 +96,7 @@
           <strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
       </mat-form-field>
-      <div class="px-3" align="right">
+      <div class="px-3 d-flex justify-content-end">
         <button class="mx-1" mat-raised-button color="blue" type="submit" (click)="onSubmit()"
           [disabled]="transactionPostForm.invalid">{{transactionPostForm.controls["id"].value
                 ? ("update" | translate)

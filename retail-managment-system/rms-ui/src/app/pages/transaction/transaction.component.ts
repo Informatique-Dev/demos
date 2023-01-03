@@ -49,13 +49,11 @@ export class TransactionComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTransactions()
     this.getInvestorData()
-    console.log(this.allTransactions)
   }
   
   getAllTransactions(){
     this.transactionRepository.getList().subscribe((data:any) =>{
       this.allTransactions = data
-      console.log(this.allTransactions)
     })
   }
   
