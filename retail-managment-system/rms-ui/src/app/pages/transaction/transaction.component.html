@@ -7,7 +7,7 @@
 
       <ng-container matColumnDef="id">
         <th class="text-center" mat-header-cell *matHeaderCellDef> {{'no'|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
       </ng-container>
 
       <ng-container matColumnDef="investorName">
@@ -50,8 +50,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <form class="col-lg-4 p-2" [formGroup]="transactionPostForm">
-      <div class="mat-typography">
+    <form class="col-lg-4 p-3" [formGroup]="transactionPostForm">
+      <div class="mat-typography d-flex justify-content-between px-2">
         <h2 class="mat-headline">{{
                 transactionPostForm.controls["id"].value
                   ? ("update" | translate)
@@ -59,6 +59,7 @@
               }}
 
           {{ "transactions.transaction" | translate }}</h2>
+        <mat-icon class="icon-add" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible">add</mat-icon>
       </div>
       <mat-form-field class="row" appearance="outline">
         <mat-label>{{"transactions.amount"|translate}}</mat-label>

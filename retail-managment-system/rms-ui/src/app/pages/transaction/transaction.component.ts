@@ -28,6 +28,7 @@ export class TransactionComponent implements OnInit {
   currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
+  index =0
 
 
   constructor(
@@ -123,6 +124,7 @@ export class TransactionComponent implements OnInit {
         this.submit = false;
       }
     );
+    console.log(this.transactionPostForm.value)
   }
 
   onSubmit() {
@@ -139,5 +141,8 @@ export class TransactionComponent implements OnInit {
     this.transactionPostForm.controls['id'].value
       ? this.fetchData(this.currentData)
       : this.transactionPostForm.reset();
+  }
+  restartForm(){
+    this.transactionPostForm.reset();
   }
 }
