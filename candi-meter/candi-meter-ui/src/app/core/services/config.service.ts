@@ -11,9 +11,7 @@ export class ConfigService {
   private env: Environment = { env: 'development' };
   configUrl = '/config';
   envUrl = 'env';
- // private httpClient:HttpClient;
   constructor( private httpClient:HttpClient) {
- //   this.httpClient = new HttpClient(this.httpBackend);
   }
 
 
