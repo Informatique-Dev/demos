@@ -9,13 +9,14 @@
     >
 
     <div class="collapse navbar-collapse">
-      <button class="btn btn-outline-light ms-auto" type="submit" (click)="login()">
+      <button [hidden]="userLogged"  class="btn btn-outline-light ms-auto" type="submit" routerLink="login">
         {{ "login" | translate }}
       </button>
-      <button class="btn btn-outline-light ms-3" type="submit" (click)="logout()">
-        Log out
+      <button [hidden]="!userLogged" class="btn btn-outline-light ms-auto" type="submit" (click)="logout()">
+        Logout
       </button>
     </div>
+    
   </div>
   <a mat-button (click)="selectTranslate()">
     <img src="assets/translate.png" class="translate-logo" />

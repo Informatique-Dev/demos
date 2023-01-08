@@ -1,10 +1,11 @@
-<mat-card>
+
+ <mat-card>
   <mat-card-content>
     <div class="header">
-      <P>Sign Into Your Account </P>
+      <P class="sigin">Sign Into Your Account </P>
     </div>
-    <form (ngSubmit)="logForm()" name="loginForm" [formGroup]="loginForm">
-      <div class="emailInput">
+    <form  [formGroup]="loginForm">
+      <div class="email-input">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Email</mat-label>
           <input
@@ -24,7 +25,7 @@
         </span>
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Password</mat-label>
-          <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
           <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
           [attr.aria-pressed]="hide">
           <mat-icon>
@@ -36,7 +37,7 @@
         </mat-error>
       </mat-form-field>
       </div>
-      <button mat-flat-button color="primary" (click)="login(loginForm.value)">Login</button>
+      <button mat-flat-button color="primary"  type="button" (click)="login(loginForm.value)">Login</button>
     </form>
 
     <div class="button-row">

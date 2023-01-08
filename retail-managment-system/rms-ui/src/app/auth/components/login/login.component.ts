@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/login/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,13 @@ import { User } from 'src/app/domain/login/user';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  hide: boolean = false;
+  hide: boolean = true;
   users:User[]=[];
   loginUsers:User[]=[];
-
-  constructor(private formBuilder : FormBuilder,private router:Router) { 
+   
+   constructor(private formBuilder : FormBuilder,
+    private router:Router ,
+    private _snackBar: MatSnackBar,) { 
     this.users=[
       {email:"asmaa@gmail.com", password:"123"},
       {email:"dina@gmail.com", password:"555"},
@@ -24,11 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.logForm();
+    this.loginmentForm();
     this.setUsers();
+   
   }
 
-  logForm() {
+  loginmentForm() {
     this.loginForm = this.formBuilder.group({
       
       email: ['' , [Validators.required]],
@@ -52,17 +56,22 @@ export class LoginComponent implements OnInit {
            {
             localStorage.setItem("isLogged","Userlogged");
             this.router.navigateByUrl('/home');
+           
            }
            else
            {
-             alert("Password Is Incorrect")
+            this._snackBar.open('Password is Not correct!', 'Close', {
+              duration: 2000,
+            });
              return;
            }
          }
 
          else
          {
-           alert("Account Not Found")
+          this._snackBar.open('Email is Not Found!', 'Close', {
+            duration: 2000,
+          });
            return;
          }
     }

@@ -7,6 +7,8 @@ mat-card {
   
   .header{
     text-align: center;
+    font-weight: bold;
+    font-size: large;
   
   }
   .full-width {
@@ -26,16 +28,10 @@ mat-card {
     padding-left: 0px;
   }
   
-  .emailInput{
+  .email-input{
     padding-top: 10px;
   }
-  
-  .contentBody {
-    padding: 60px 1rem;
-    background :#1b6ca8;
-    display: block;
-  }
-  
+    
   .aLink{
     float: right;
     padding-right: 60px;
