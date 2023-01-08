@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() sideNavItem!: MatSidenav;
   lang: string = 'en';
 
@@ -16,9 +16,7 @@ export class HeaderComponent implements OnInit {
     this.lang = this.translate.currentLang;
    
   }
-  ngOnInit(): void {
-  
-  }
+ 
   clickMenu() {
     this.sideNavItem.toggle();
   }
