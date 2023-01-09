@@ -13,14 +13,14 @@ export class TransactionRepository extends ResourceService<Transaction> {
     return 'transactions';
   }
 
-  toServerModel(entity: Transaction): any {
-    return {
-        transactionType: entity.transactionType,
-        amount: entity.amount,
-        date: entity.date,
-        investor:{
-          id: entity.investor.id
-       }
-    };
-  }
+  // toServerModel(entity: Transaction): any {
+  //   return {
+  //       transactionType: entity.transactionType,
+  //       amount: entity.amount,
+  //       date: entity.date,
+  //       investor:{
+  //         id: entity.investor.id
+  //      }
+  //   };
+  // }
 }
