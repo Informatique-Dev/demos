@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {TransactionRepository} from 'src/app/domain/transaction/transaction.repository'
-import { Transaction, transactionType } from 'src/app/domain/transaction/models/transaction'
+import { Transaction, TransactionType } from 'src/app/domain/transaction/models/transaction'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Investors } from '../../domain/investors/models/investor'
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
-
- 
-
-const ELEMENT_DATA : Transaction[] = []
 
 @Component({
   selector: 'app-transaction',
@@ -19,12 +15,11 @@ const ELEMENT_DATA : Transaction[] = []
 })
 export class TransactionComponent implements OnInit {
 
-  transactionPostForm : FormGroup
+  transactionPostForm!: FormGroup
   allTransactions : Transaction[] = []
   investorNames : Investors[]=[]
-  transactionTypeEnum = Object.values(transactionType)
+  transactionTypeEnum = Object.values(TransactionType)
   displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
-  dataSource = ELEMENT_DATA
   currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
@@ -38,6 +33,16 @@ export class TransactionComponent implements OnInit {
     private SnackBar: MatSnackBar,
     private dialog: MatDialog
     ) {
+    
+  }
+
+  ngOnInit(): void {
+    this.getAllTransactions()
+    this.getInvestorData()
+    this.TransactionPostForm()
+  }
+  
+  TransactionPostForm(){
     this.transactionPostForm = this.fb.group({
       id:[''],
       transactionType: ['',Validators.required],
@@ -47,11 +52,6 @@ export class TransactionComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.getAllTransactions()
-    this.getInvestorData()
-  }
-  
   getAllTransactions(){
     this.transactionRepository.getList().subscribe((data:any) =>{
       this.allTransactions = data
@@ -124,7 +124,6 @@ export class TransactionComponent implements OnInit {
         this.submit = false;
       }
     );
-    console.log(this.transactionPostForm.value)
   }
 
   onSubmit() {

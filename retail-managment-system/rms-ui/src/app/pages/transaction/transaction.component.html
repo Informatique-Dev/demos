@@ -99,7 +99,7 @@
       </mat-form-field>
       <div class="px-3 d-flex justify-content-end">
         <button class="mx-1" mat-raised-button color="blue" type="submit" (click)="onSubmit()"
-          [disabled]="transactionPostForm.invalid">{{transactionPostForm.controls["id"].value
+          [disabled]="submit">{{transactionPostForm.controls["id"].value
                 ? ("update" | translate)
                 : ("add" | translate)}}</button>
         <button class="mx-1" mat-raised-button color="blue" (click)="resetForm()">{{transactionPostForm.controls["id"].value
