@@ -1,5 +1,5 @@
 import { Investors } from '../../investors/models/investor';
-export enum transactionType {
+export enum TransactionType {
     deposit="DEPOSIT",
     withdraw="WITHDRAW",
     profit='PROFIT'
@@ -8,7 +8,7 @@ export enum transactionType {
 export interface Transaction {
     id: number,
     version: number,
-    transactionType: transactionType,
+    TransactionType: TransactionType,
     amount: number,
     date: string,
     investor: Investors,
