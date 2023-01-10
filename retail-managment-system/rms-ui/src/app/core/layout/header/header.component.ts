@@ -12,7 +12,7 @@ export class HeaderComponent {
   @Input() sideNavItem!: MatSidenav;
   lang: string = 'en';
 
-  constructor(private router: Router, private translate: TranslateService ,) {
+  constructor(private router: Router, private translate: TranslateService ) {
     this.lang = this.translate.currentLang;
    
   }
