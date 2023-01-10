@@ -10,6 +10,7 @@ import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'profits', component: ProfitComponent },
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent },
+  { path: 'transaction', component: TransactionComponent },
+
 ];
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ const routes: Routes = [
     ProfitComponent,
     InvestorPageComponent,
     InstallmentComponent,
+    TransactionComponent,
   ],
 
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
