@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { CustomersRepository } from 'src/app/domain/customers/customers.repository';
 import { Customers } from 'src/app/domain/customers/models/customers';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
@@ -35,7 +36,8 @@ export class CustomersComponent implements OnInit {
     private customersRepository: CustomersRepository,
     private build: FormBuilder,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -88,9 +90,13 @@ export class CustomersComponent implements OnInit {
       () => {
         this.getAllCustomers();
         this.submit = false;
-        this._snackBar.open('Customer Updated Successfuly!', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('customrs.updated-successfuly'),
+          this.translate.instant('customrs.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -105,9 +111,13 @@ export class CustomersComponent implements OnInit {
       () => {
         this.getAllCustomers();
         this.submit = false;
-        this._snackBar.open('Customer Added Successfuly!', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('customrs.added-successfuly'),
+          this.translate.instant('customrs.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -146,9 +156,13 @@ export class CustomersComponent implements OnInit {
   deleteCustomer(customer: Customers) {
     this.customersRepository.delete(customer.id).subscribe(() => {
       this.getAllCustomers();
-      this._snackBar.open('Customer Deleted Successfuly!', 'Close', {
-        duration: 2000,
-      });
+      this._snackBar.open(
+        this.translate.instant('customrs.delete-successfuly'),
+        this.translate.instant('customrs.close'),
+        {
+          duration: 2000,
+        }
+      );
     });
   }
 }

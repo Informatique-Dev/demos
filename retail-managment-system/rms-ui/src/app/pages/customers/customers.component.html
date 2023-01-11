@@ -119,8 +119,8 @@
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-1 mb-5">
-            <h3 class="panel-title float-start ms-1">
+          <div class="panel-heading pt-3 ps-1">
+            <h3 class="panel-title ms-1">
               {{
                 customersForm.controls["id"].value
                   ? ("update" | translate)
@@ -336,7 +336,11 @@
           </div>
 
           <div class="actions pb-3 float-end">
-            <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+            <button
+              class="btn me-3 ms-3"
+              (click)="onSubmit()"
+              [disabled]="submit"
+            >
               {{
                 customersForm.controls["id"].value
                   ? ("update" | translate)

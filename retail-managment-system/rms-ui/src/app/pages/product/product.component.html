@@ -93,8 +93,8 @@
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-2 mb-5">
-            <h3 class="panel-title float-start ms-2">
+          <div class="panel-heading pt-3 ps-2">
+            <h3 class="panel-title ms-2">
               {{
                 productForm.controls["id"].value
                   ? ("update" | translate)
@@ -217,7 +217,7 @@
                   : ("add" | translate)
               }}
             </button>
-            <button class="btn" mat-button (click)="resetForm()">
+            <button class="btn me-3" mat-button (click)="resetForm()">
               {{
                 productForm.controls["id"].value
                   ? ("reset" | translate)
