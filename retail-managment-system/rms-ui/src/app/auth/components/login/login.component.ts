@@ -15,9 +15,6 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   users:User[]=[];
   loginUsers:User[]=[];
-  emailError : string ="";
-  passwordError : string ="";
-  close :string="";
    
    constructor(private formBuilder : FormBuilder,
     private router:Router ,
@@ -35,7 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginmentForm();
     this.setUsers();
-    this.translateError();
   }
 
   loginmentForm() {
@@ -66,7 +62,7 @@ export class LoginComponent implements OnInit {
            }
            else
            {
-            this._snackBar.open(this.passwordError, this.close, {
+            this._snackBar.open(this.translate.instant('logIn.password-error'), this.translate.instant('logIn.close'), {
               duration: 2000,
             });
              return;
@@ -75,19 +71,12 @@ export class LoginComponent implements OnInit {
 
          else
          {
-          this._snackBar.open(this.emailError, this.close, {
+          this._snackBar.open(this.translate.instant('logIn.email-error'), this.translate.instant('logIn.close'), {
             duration: 2000,
           });
            return;
          }
     }
-  }
-
-  translateError ()
-  {
-    this.emailError= this.translate.instant('logIn.email-error');
-    this.passwordError= this.translate.instant('logIn.password-error');
-    this.close= this.translate.instant('logIn.close');
   }
 
   }
