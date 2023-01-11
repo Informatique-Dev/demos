@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryRepository } from '../../domain/category/category.repository';
 import { Category } from 'src/app/domain/category/models/category';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-page',
@@ -22,7 +23,8 @@ export class CategoryPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private categorRepository: CategoryRepository,
     private dialog: MatDialog,
-    private SnackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {}
   ngOnInit(): void {
     this.getAllCategory();
@@ -62,9 +64,13 @@ export class CategoryPageComponent implements OnInit {
       () => {
         this.getAllCategory();
         this.submit = false;
-        this.SnackBar.open('Category Added Successfully', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('category.added-successfuly'),
+          this.translate.instant('category.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -77,9 +83,13 @@ export class CategoryPageComponent implements OnInit {
       () => {
         this.getAllCategory();
         this.submit = false;
-        this.SnackBar.open('Category Updated Successfully', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('category.updated-successfuly'),
+          this.translate.instant('category.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -102,9 +112,13 @@ export class CategoryPageComponent implements OnInit {
   deleteCategory(Categori: Category): void {
     this.categorRepository.delete(Categori.id).subscribe(() => {
       this.getAllCategory();
-      this.SnackBar.open('Category Deleted Successfully', 'Close', {
-        duration: 2000,
-      });
+      this._snackBar.open(
+        this.translate.instant('category.delete-successfuly'),
+        this.translate.instant('category.close'),
+        {
+          duration: 2000,
+        }
+      );
     });
   }
   clearTheForm(): void {

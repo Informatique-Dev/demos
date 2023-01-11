@@ -9,13 +9,7 @@
   "update": "Update",
   "reset": "Reset",
   "clear": "Clear",
-  "home": "Home",
-  "products": "Prodcut",
-  "categorys": "Category",
-  "customers": "Customer",
-  "investor": "Investor",
-  "istallment": "Istallment",
-  "order": "Order",
+
   "login": "LogIn",
   "enter-your-name": "Enter your Name",
   "status": "Status",
@@ -71,7 +65,11 @@
     "model-no": "ModelNo",
     "name-field": " product Name is",
     "price-field": "product Price is",
-    "category-field": "  product Category is "
+    "category-field": "  product Category is ",
+    "updated-successfuly": "Product Updated Successfuly!",
+    "added-successfuly": "Product Added Successfuly!",
+    "delete-successfuly": "Product Deleted Successfuly!",
+    "close": "close"
   },
   "category": {
     "category": "Category",
@@ -79,7 +77,11 @@
     "status": "Status",
     "category-name": " Category Name",
     "name-field": " Please enter Category Name",
-    "status-field": " Please enter Category status"
+    "status-field": " Please enter Category status",
+    "updated-successfuly": "Category Updated Successfuly!",
+    "added-successfuly": "Category Added Successfuly!",
+    "delete-successfuly": "Category Deleted Successfuly!",
+    "close": "close"
   },
   "customrs": {
     "customer": "Customer",
@@ -101,7 +103,11 @@
     "enter-customer-fname": "Enter customer Full-Name",
     "enter-customer-nname": "Enter customer Nick-Name",
     "customer-code": " Customer-Code",
-    "nationalId": "NationalId"
+    "nationalId": "NationalId",
+    "updated-successfuly": "Customer Updated Successfuly!",
+    "added-successfuly": "Customer Added Successfuly!",
+    "delete-successfuly": "Customer Deleted Successfuly!",
+    "close": "close"
   },
   "investors": {
     "investor": "Investor",
@@ -113,7 +119,11 @@
     " investor-type": " Investor Type",
     "contributor": "CONTRIBUTOR",
     "manager": "MANAGER",
-    "investor-phone-validation": "010, 011, 012, 015 and Enter 14 Numbers"
+    "investor-phone-validation": "010, 011, 012, 015 and Enter 14 Numbers",
+    "updated-successfuly": "Investor Updated Successfuly!",
+    "added-successfuly": "Investor Added Successfuly!",
+    "delete-successfuly": "Investor Deleted Successfuly!",
+    "close": "close"
   },
   "installments": {
     "installment": "Installment",
@@ -123,7 +133,11 @@
     "due-date": "DueDate",
     "payment-date": "PaymentDate",
     "status": "Status",
-    "required": "required"
+    "required": "required",
+    "updated-successfuly": "Installment Updated Successfuly!",
+    "added-successfuly": "Installment Added Successfuly!",
+    "delete-successfuly": "Installment Deleted Successfuly!",
+    "close": "close"
   },
   "profits": {
     "profits": "Profits",
@@ -132,6 +146,21 @@
     "date": "date",
     "calculated": "calculated",
     "actions": "Actions",
-    "required": "required"
+    "required": "required",
+    "updated-successfuly": "Profit Updated Successfuly!",
+    "added-successfuly": "Profit Added Successfuly!",
+    "delete-successfuly": "Profit Deleted Successfuly!",
+    "close": "close"
+  },
+  "interceptor": {
+    "conflictMessage": "Error 409: Please do not duplicate data!",
+    "notFoundMessage": "Error 404: The requested URL/error was not found on this server!",
+    "errormessage": "Error 406: Please enter Right data!",
+    "unauthorized": "Error 401: You do not have permission, please try again!",
+    "Unprocessable": "Error 422: Cannot close before specified time!",
+    "wrongDataMessage": "Error 424: Please make sure the data is correct!",
+    "hasDependentsMessage": "Error 400: This is an input error, Please enter Right data!",
+    "serverErrorMessage": "Error 500: An error occurred communicating with the server, please try again!",
+    "close": "Close"
   }
 }

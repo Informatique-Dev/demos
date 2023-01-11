@@ -9,13 +9,7 @@
   "update": "تعديل",
   "reset": "اعاده تعيين",
   "clear": "مسح",
-  "home": "الصفحه الرئيسيه",
-  "products": "المنتجات",
-  "categorys": "الفئات",
-  "customers": "العملاء",
-  "investor": "المستثمرين",
-  "istallment": "التقسيط",
-  "order": "الطلب",
+
   "login": "   الدخول",
   "enter-your-name": "الرجاء ادخال الاسم",
   "status": "الحاله",
@@ -71,7 +65,11 @@
     "required": "اجباري",
     "name-field": "حقل ادخال اسم المنتج ",
     "price-field": "حقل ادخال السعر ",
-    "category-field": "حقل ادخال الفئه "
+    "category-field": "حقل ادخال الفئه ",
+    "updated-successfuly": "تم تعديل المنتج بنجاح",
+    "added-successfuly": "تم اضافة المنتج بنجاح",
+    "delete-successfuly": "تم مسح المنتج بنجاح",
+    "close": "اغلاق"
   },
   "category": {
     "category": "الفئات",
@@ -79,7 +77,11 @@
     "category-name": "اسم الفئه",
     "status": "الحاله",
     "name-field": "حقل ادخال اسم الفئه ",
-    "status-field": "حقل ادخال حاله الفئه "
+    "status-field": "حقل ادخال حاله الفئه ",
+    "updated-successfuly": "تم تعديل الفئة بنجاح",
+    "added-successfuly": "تم اضافة الفئة بنجاح",
+    "delete-successfuly": "تم مسح الفئة بنجاح",
+    "close": "اغلاق"
   },
   "customrs": {
     "customer": "العملاء",
@@ -101,7 +103,11 @@
     "enter-customer-fname": "الرجاء ادخال اسم العميل بالكامل",
     "enter-customer-nname": "  الرجاء ادخال اسم شهره العميل",
     "customer-code": " كود العميل",
-    "nationalId": "بطاقه الرقم القومي "
+    "nationalId": "بطاقه الرقم القومي ",
+    "updated-successfuly": "تم تعديل العميل بنجاح",
+    "added-successfuly": "تم اضافة العميل بنجاح",
+    "delete-successfuly": "تم مسح العميل بنجاح",
+    "close": "اغلاق"
   },
   "investors": {
     "investor": "مستثمر",
@@ -114,7 +120,11 @@
     " investor-type": "نوع المستثمر",
     "contributor": "مساهم",
     "manager": "مدير",
-    "investor-phone-validation": "010, 011, 012, 015 وادخال 11 رقم فقط"
+    "investor-phone-validation": "010, 011, 012, 015 وادخال 11 رقم فقط",
+    "updated-successfuly": "تم تعديل المستثمر بنجاح",
+    "added-successfuly": "تم اضافة المستثمر بنجاح",
+    "delete-successfuly": "تم مسح المستثمر بنجاح",
+    "close": "اغلاق"
   },
 
   "installments": {
@@ -125,7 +135,11 @@
     "due-date": "تاريخ الاستحقاق",
     "payment-date": "تاريخ الدفع",
     "status": "الحاله",
-    "required": "مطلوبة"
+    "required": "مطلوبة",
+    "updated-successfuly": "تم تعديل القسط بنجاح",
+    "added-successfuly": "تم اضافة القسط بنجاح",
+    "delete-successfuly": "تم مسح القسط بنجاح",
+    "close": "اغلاق"
   },
   "profits": {
     "profits": "الارباح",
@@ -134,6 +148,21 @@
     "date": "التاريخ",
     "calculated": "تم دراستة",
     "actions": "الاجراءات",
-    "required": "مطلوب"
+    "required": "مطلوب",
+    "updated-successfuly": "تم تعديل الربح بنجاح",
+    "added-successfuly": "تم اضافة الربح بنجاح",
+    "delete-successfuly": "تم مسح الربح بنجاح",
+    "close": "اغلاق"
+  },
+  "interceptor": {
+    "conflictMessage": "خطأ 409: برجاء عدم تكرار البيانات",
+    "notFoundMessage": "خطأ 404: لم يتم العثور علي العنوان المطلوب علي هذا الخادم",
+    "errormessage": "خطأ 406: برجاء ادخال بيانات صحيحة",
+    "unauthorized": "خطأ 401: ليس لديك الصلاحية للدخول برجاء المحاولة مرة اخري",
+    "Unprocessable": "خطأ 422: لا يمكن الإغلاق قبل الوقت المحدد",
+    "wrongDataMessage": "خطأ 424: الرجاء التأكد من صحة البيانات",
+    "hasDependentsMessage": "خطأ 400: هذا خطأ إدخال الرجاء إدخال البيانات الصحيحة",
+    "serverErrorMessage": "خطأ 500: حدث خطأ أثناء الاتصال بالخادميرجى المحاولة مرة أخرى",
+    "close": "اغلاق"
   }
 }

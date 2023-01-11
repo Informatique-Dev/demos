@@ -9,6 +9,7 @@ import {
   Investors,
   InvestorTypes,
 } from './../../domain/investors/models/investor';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-investor-page',
@@ -39,8 +40,9 @@ export class InvestorPageComponent implements OnInit {
   constructor(
     private investorsRepository: InvestorsRepository,
     private formBuilder: FormBuilder,
-    private SnackBar: MatSnackBar,
-    private dialog: MatDialog
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -89,9 +91,13 @@ export class InvestorPageComponent implements OnInit {
       () => {
         this.getAllInvestors();
         this.submit = false;
-        this.SnackBar.open('Investor Added Successfully', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('investors.added-successfuly'),
+          this.translate.instant('investors.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -105,9 +111,13 @@ export class InvestorPageComponent implements OnInit {
       () => {
         this.getAllInvestors();
         this.submit = false;
-        this.SnackBar.open('Investor Updated Successfully', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('investors.updated-successfuly'),
+          this.translate.instant('investors.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -131,9 +141,13 @@ export class InvestorPageComponent implements OnInit {
   deleteInvestors(investors: Investors): void {
     this.investorsRepository.delete(investors.id).subscribe(() => {
       this.getAllInvestors();
-      this.SnackBar.open('Investor Deleted Successfully', 'Close', {
-        duration: 2000,
-      });
+      this._snackBar.open(
+        this.translate.instant('investors.delete-successfuly'),
+        this.translate.instant('investors.close'),
+        {
+          duration: 2000,
+        }
+      );
     });
   }
   clearTheForm(): void {

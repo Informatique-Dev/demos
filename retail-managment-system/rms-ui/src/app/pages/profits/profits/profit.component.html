@@ -53,12 +53,15 @@
               {{ "profits.actions" | translate }}
             </th>
             <td mat-cell *matCellDef="let element" class="update-icon">
-              <button class="btn table-button" (click)="editData(element)">
+              <button
+                class="btn table-button bg-transparent"
+                (click)="editData(element)"
+              >
                 <mat-icon>edit</mat-icon>
               </button>
 
               <button
-                class="btn table-button"
+                class="btn table-button bg-transparent"
                 (click)="openConfirmationDialog(element)"
               >
                 <mat-icon>delete</mat-icon>
