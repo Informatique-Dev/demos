@@ -230,6 +230,10 @@
       "Password":"Password",
       "password-field":" Password is",
       "new-account":"Create New Account",
-      "required" :"required"
+      "required" :"required",
+      "email-error":"Email is Not Found!",
+      "password-error":"Password is Not correct!",
+      "close":"Close"
+      
       }
 }

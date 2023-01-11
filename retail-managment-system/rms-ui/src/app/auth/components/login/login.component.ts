@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/login/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +15,27 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   users:User[]=[];
   loginUsers:User[]=[];
+  emailError : string ="";
+  passwordError : string ="";
+  close :string="";
    
    constructor(private formBuilder : FormBuilder,
     private router:Router ,
-    private _snackBar: MatSnackBar,) { 
+    private _snackBar: MatSnackBar,
+    private translate : TranslateService) { 
     this.users=[
       {email:"asmaa@gmail.com", password:"123"},
       {email:"dina@gmail.com", password:"555"},
       {email:"bosy@gmail.com", password:"444"},
       {email:"raghda@gmail.com", password:"666"}
     ]
+   
   }
 
   ngOnInit(): void {
     this.loginmentForm();
     this.setUsers();
-   
+    this.translateError();
   }
 
   loginmentForm() {
@@ -60,7 +66,7 @@ export class LoginComponent implements OnInit {
            }
            else
            {
-            this._snackBar.open('Password is Not correct!', 'Close', {
+            this._snackBar.open(this.passwordError, this.close, {
               duration: 2000,
             });
              return;
@@ -69,12 +75,19 @@ export class LoginComponent implements OnInit {
 
          else
          {
-          this._snackBar.open('Email is Not Found!', 'Close', {
+          this._snackBar.open(this.emailError, this.close, {
             duration: 2000,
           });
            return;
          }
     }
+  }
+
+  translateError ()
+  {
+    this.emailError= this.translate.instant('logIn.email-error');
+    this.passwordError= this.translate.instant('logIn.password-error');
+    this.close= this.translate.instant('logIn.close');
   }
 
   }

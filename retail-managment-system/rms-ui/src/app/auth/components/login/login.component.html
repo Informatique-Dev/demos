@@ -1,7 +1,7 @@
 <div class="main">
- <mat-card >
+ <mat-card class="text-center" >
   <mat-card-content>
-    <div class="header text-center my-5">
+    <div class="header text-center my-5 fw-bold fs-4">
       <P class="sigin"> {{ "logIn.Sign" | translate }}</P>
     </div>
     <form  [formGroup]="loginForm">
@@ -21,7 +21,7 @@
 
       <div>
         <span>
-          <a class="text-link" class="aLink" > {{ "logIn.Forgot-Password" | translate }}</a>
+          <a class="text-link" class="aLink text-decoration-none" > {{ "logIn.Forgot-Password" | translate }}</a>
         </span>
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>{{ "logIn.Password" | translate }}</mat-label>
@@ -41,7 +41,7 @@
     </form>
 
     <div class="button-row">
-      <a class="text-link"  ><p> {{ "logIn.new-account" | translate }}</p></a> 
+      <a class="text-link text-center"  ><p> {{ "logIn.new-account" | translate }}</p></a> 
     </div>
   </mat-card-content>
 </mat-card>

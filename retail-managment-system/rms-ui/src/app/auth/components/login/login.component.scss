@@ -1,18 +1,12 @@
 mat-card {
     max-width: 600px;
     margin: 5em auto;
-    text-align: center;
     max-height: 600px;
   }
   .main {
     height: 630px;
   }
   
-  .header{
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-  }
   
   .full-width {
     width: 80%;
@@ -24,7 +18,6 @@ mat-card {
   
   .button-row a {
     margin-right: 8px;
-    text-align: center;
   }
   
   .email-input{
@@ -34,6 +27,5 @@ mat-card {
   .aLink{
     float: right;
     padding-right: 60px;
-    text-decoration: none;
   }
   
