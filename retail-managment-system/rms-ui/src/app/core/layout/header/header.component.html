@@ -9,8 +9,11 @@
     >
 
     <div class="collapse navbar-collapse">
-      <button class="btn btn-outline-light ms-auto" type="submit">
+      <button class="btn btn-outline-light ms-auto" type="submit" (click)="login()">
         {{ "login" | translate }}
+      </button>
+      <button class="btn btn-outline-light ms-3" type="submit" (click)="logout()">
+        Log out
       </button>
     </div>
   </div>
