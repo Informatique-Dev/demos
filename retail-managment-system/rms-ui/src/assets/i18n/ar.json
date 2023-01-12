@@ -9,11 +9,11 @@
   "update": "تعديل",
   "reset": "اعاده تعيين",
   "clear": "مسح",
-
   "login": "   الدخول",
   "enter-your-name": "الرجاء ادخال الاسم",
   "status": "الحاله",
   "direction": "rtl",
+  "logout":"تسجيل الخروج",
 
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
@@ -164,24 +164,7 @@
     "hasDependentsMessage": "خطأ 400: هذا خطأ إدخال الرجاء إدخال البيانات الصحيحة",
     "serverErrorMessage": "خطأ 500: حدث خطأ أثناء الاتصال بالخادميرجى المحاولة مرة أخرى",
     "close": "اغلاق"
-  }
-
-      },
-      "investors":{
-        "investor":"مستثمر",
-        "our-investors":"المستثمرين",
-        "investor-type":"نوع المستثمر",
-        "balance":"الرصيد",
-        "start-date":"تاريخ البدء",
-        "full-namevalidation":"الرجاء ادخال اسم المستثمر بالكامل",
-        "address-validate":"الرجاء ادخل عنوان المستثمر",
-        " investor-type":"نوع المستثمر",
-        "contributor":"مساهم",
-        "manager":"مدير",
-        "investor-phone-validation":"010, 011, 012, 015 وادخال 11 رقم فقط"
-
-      },
-
+  },
       "logIn":{
         "Sign":"تسجيل الدخول",
         "Email":"البريد الالكتروني",
