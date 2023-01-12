@@ -1,0 +1,54 @@
+<div class="main d-flex justify-content-center align-content-center ">
+ <mat-card class="text-center" >
+  <mat-card-content>
+    <div class="header text-center my-5 fw-bold fs-4">
+      <img class="log" src="assets/images/login.jpg">
+      <P class="sigin"> {{ "logIn.Sign" | translate }}</P>
+    </div>
+    <form  [formGroup]="loginForm">
+      <div class="email-input">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ "logIn.Email" | translate }}</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            placeholder="{{'logIn.enter-email'|translate}}" required
+          />
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            {{'logIn.email-field'|translate}} <strong>{{'logIn.required'|translate}}</strong> 
+            </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <span>
+          <a  class="aLink text-decoration-none" > {{ "logIn.Forgot-Password" | translate }}</a>
+        </span>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ "logIn.Password" | translate }}</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
+          <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>
+              {{hide ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+        {{'logIn.password-field'|translate}} <strong>{{'logIn.required'|translate}}</strong> 
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <button class="log-btn w-50 fs-5 rounded" mat-flat-button color="primary"  type="button" (click)="login(loginForm.value)"> {{ "login" | translate }}</button>
+    </form>
+
+    <div class="button-row">
+      <a class="text-link text-center fw-bold"  ><p> {{ "logIn.new-account" | translate }}</p></a> 
+    </div>
+    <div class="w-100 d-flex justify-content-center ">
+    <a  href="https://www.linkedin.com"> <img class="social me-3" src="assets/images/face.png"></a>
+    <a href="https://www.facebook.com"> <img class="social me-3" src="assets/images/linked.png"></a>
+    <a href="https://mail.google.com" target="_blank"><img class="social me-3" src="assets/images/gmail.png"></a>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>

@@ -9,11 +9,11 @@
   "update": "Update",
   "reset": "Reset",
   "clear": "Clear",
-
   "login": "LogIn",
   "enter-your-name": "Enter your Name",
   "status": "Status",
   "direction": "ltr",
+  "logout":"Logout",
 
   "sidebar": {
     "home": "  Home ",
@@ -162,5 +162,21 @@
     "hasDependentsMessage": "Error 400: This is an input error, Please enter Right data!",
     "serverErrorMessage": "Error 500: An error occurred communicating with the server, please try again!",
     "close": "Close"
-  }
+  },
+    
+    "logIn":{
+      "Sign":"Sign Into Your Account",
+      "Email":"Email",
+      "enter-email":"Enter your Email",
+      "email-field":"Email is ",
+      "Forgot-Password":"Forgot Password ?",
+      "Password":"Password",
+      "password-field":" Password is",
+      "new-account":"Create New Account",
+      "required" :"required",
+      "email-error":"Email is Not Found!",
+      "password-error":"Password is Not correct!",
+      "close":"Close"
+      
+      }
 }

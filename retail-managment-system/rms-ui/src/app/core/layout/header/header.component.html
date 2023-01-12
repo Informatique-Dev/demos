@@ -9,10 +9,14 @@
     >
 
     <div class="collapse navbar-collapse">
-      <button class="btn btn-outline-light ms-auto" type="submit">
+      <button *ngIf="!userLogged()"  class="btn btn-outline-light ms-auto" type="submit" routerLink="login">
         {{ "login" | translate }}
       </button>
+      <button *ngIf="userLogged()" class="btn btn-outline-light ms-auto" type="submit" (click)="logout()">
+        {{ "logout" | translate }}
+      </button>
     </div>
+    
   </div>
   <a mat-button (click)="selectTranslate()">
     <img src="assets/translate.png" class="translate-logo" />
