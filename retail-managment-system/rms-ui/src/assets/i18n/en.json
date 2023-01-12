@@ -192,6 +192,10 @@
       "investor":"Investor",
       "amount-validation":"Amount must be at least '1'",
       "required":"required",
-      "investor-name":"Investor Name"
+      "investor-name":"Investor Name",
+      "add-message":"Transaction Added Successfully",
+      "update-message":"Transaction Updated Successfuly",
+      "delete-message":"Transaction Deleted Successfuly!",
+      "close":"Close"
       }
 }

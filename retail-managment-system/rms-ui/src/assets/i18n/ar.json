@@ -192,6 +192,10 @@
         "investor":"المستثمر",
         "amount-validation":"العدد يجب ان يكون على الأقل '1'",
         "required":"اجباري",
-        "investor-name":"اسم المستثمر"
+        "investor-name":"اسم المستثمر",
+        "add-message":"تمت اضافة العملية بنجاح",
+        "update-message":"تم تعديل العملية بنجاح",
+        "delete-message":"تم مسح العملية",
+        "close":"غلق"
         }
 }

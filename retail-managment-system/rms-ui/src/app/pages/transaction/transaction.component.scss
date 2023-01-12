@@ -1,14 +1,11 @@
-table {
-    width: 100%;
-  }
+.table-height{
+    height: 500px;
+}
 form{
     background-color: rgba(0,0,0,.04);
 }
 h2{
     padding-top: 20px;
-}
-mat-form-field{
-    width: 100%;
 }
 .mat-blue
 {
@@ -21,10 +18,6 @@ mat-form-field{
 .row-font{
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: rgba(0,0,0,0.54);
-}
-td,
-th.mat-header-cell{
-    text-align: center;
 }
 .icon-add{
     margin-bottom: 16px;

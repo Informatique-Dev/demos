@@ -7,6 +7,8 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-transaction',
@@ -15,7 +17,7 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
 })
 export class TransactionComponent implements OnInit {
 
-  transactionPostForm!: FormGroup
+  transactionForm!: FormGroup
   allTransactions : Transaction[] = []
   investorNames : Investors[]=[]
   transactionTypeEnum = Object.values(TransactionType)
@@ -23,15 +25,18 @@ export class TransactionComponent implements OnInit {
   currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
-  index =0
-
+  addMesaage!: string
+  updateMessage!:string
+  deleteMessage!:string
+  close!:string
 
   constructor(
     private investorsRepository : InvestorsRepository,
     private transactionRepository : TransactionRepository,
     private fb :FormBuilder,
     private SnackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate : TranslateService
     ) {
     
   }
@@ -39,11 +44,22 @@ export class TransactionComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTransactions()
     this.getInvestorData()
-    this.TransactionPostForm()
+    this.TransactionForm()
+    this.translate.get([
+      'transactions.add-message',
+      'transactions.update-message',
+      'transactions.delete-message',
+      'transactions.close'])
+      .subscribe(translations =>{
+        this.addMesaage = translations['transactions.add-message']
+        this.updateMessage = translations['transactions.update-message']
+        this.deleteMessage = translations['transactions.delete-message']
+        this.close = translations['transactions.close']
+      })
   }
   
-  TransactionPostForm(){
-    this.transactionPostForm = this.fb.group({
+  TransactionForm(){
+    this.transactionForm = this.fb.group({
       id:[''],
       transactionType: ['',Validators.required],
       amount: ['',[Validators.required,Validators.min(1)]],
@@ -67,11 +83,11 @@ export class TransactionComponent implements OnInit {
   addTransaction(){
     this.isButtonVisible = true;
     this.submit = true;
-    this.transactionRepository.add(this.transactionPostForm.value).subscribe(
+    this.transactionRepository.add(this.transactionForm.value).subscribe(
       () => {
         this.getAllTransactions();
         this.submit = false;
-        this.SnackBar.open('transaction Added Successfully', 'Close', {
+        this.SnackBar.open(this.addMesaage, this.close, {
           duration: 2000,
         })
       },()=>{
@@ -82,7 +98,7 @@ export class TransactionComponent implements OnInit {
 
   fetchData(transaction: Transaction): void {
     this.isButtonVisible = false
-    this.transactionPostForm.patchValue(transaction);
+    this.transactionForm.patchValue(transaction);
     this.currentData = transaction;
   }
 
@@ -98,7 +114,7 @@ export class TransactionComponent implements OnInit {
   deleteTransaction( transaction:Transaction):void{
     this.transactionRepository.delete(transaction.id).subscribe(() => {
       this.getAllTransactions();
-      this.SnackBar.open('Transaction Deleted Successfuly!', 'Close', {
+      this.SnackBar.open(this.deleteMessage, this.close, {
         duration: 2000,
       });
     });
@@ -112,11 +128,11 @@ export class TransactionComponent implements OnInit {
   updateTransaction() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.transactionRepository.update(this.transactionPostForm.value).subscribe(
+    this.transactionRepository.update(this.transactionForm.value).subscribe(
       () => {
         this.getAllTransactions();
         this.submit = false;
-        this.SnackBar.open('Transaction Updated Successfuly!', 'Close', {
+        this.SnackBar.open(this.updateMessage, this.close, {
           duration: 2000,
         });
       },
@@ -127,21 +143,21 @@ export class TransactionComponent implements OnInit {
   }
 
   onSubmit() {
-    this.transactionPostForm.markAllAsTouched();
-    if (this.transactionPostForm.valid) {
-      this.transactionPostForm.controls['id'].value
+    this.transactionForm.markAllAsTouched();
+    if (this.transactionForm.valid) {
+      this.transactionForm.controls['id'].value
         ? this.updateTransaction()
         : this.addTransaction();
-      this.transactionPostForm.reset();
+      this.transactionForm.reset();
     }
   }
 
   resetForm() {
-    this.transactionPostForm.controls['id'].value
+    this.transactionForm.controls['id'].value
       ? this.fetchData(this.currentData)
-      : this.transactionPostForm.reset();
+      : this.transactionForm.reset();
   }
   restartForm(){
-    this.transactionPostForm.reset();
+    this.transactionForm.reset();
   }
 }

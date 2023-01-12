@@ -2,107 +2,113 @@
   <div class="mat-typography">
     <h2 class="mat-headline text-center">{{'transactions.our-transactions'|translate}}</h2>
   </div>
-  <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5">
-    <table mat-table [dataSource]="allTransactions" class="col">
+  <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5 ">
+    <div class="w-100 table-height overflow-auto">
+      <table mat-table [dataSource]="allTransactions" class="col w-100">
 
-      <ng-container matColumnDef="id">
-        <th class="text-center" mat-header-cell *matHeaderCellDef> {{'no'|translate}} </th>
-        <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
-      </ng-container>
+        <ng-container matColumnDef="id">
+          <th class="text-center" mat-header-cell *matHeaderCellDef> {{'no'|translate}} </th>
+          <td class="text-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="investorName">
-        <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.investor-name"|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.investor.fullName}} </td>
-      </ng-container>
+        <ng-container matColumnDef="investorName">
+          <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.investor-name"|translate}} </th>
+          <td class="text-center" mat-cell *matCellDef="let element"> {{element.investor.fullName}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="type">
-        <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.type"|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.transactionType}} </td>
-      </ng-container>
+        <ng-container matColumnDef="type">
+          <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.type"|translate}} </th>
+          <td class="text-center" mat-cell *matCellDef="let element"> {{element.transactionType}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="amount">
-        <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.amount"|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
-      </ng-container>
+        <ng-container matColumnDef="amount">
+          <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.amount"|translate}} </th>
+          <td class="text-center" mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.date"|translate}}</th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-      </ng-container>
+        <ng-container matColumnDef="date">
+          <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.date"|translate}}</th>
+          <td class="text-center" mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="edit-icon">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-          <button class="btn" (click)="fetchData(element)">
-            <mat-icon color="blueicon">edit</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="delete-icon">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-          <button class="btn" (click)="openConfirmationDialog(element)">
-            <mat-icon color="blueicon">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="edit-icon">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td class="text-center" mat-cell *matCellDef="let element">
+            <button class="btn" (click)="fetchData(element)">
+              <mat-icon color="blueicon">edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete-icon">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td class="text-center" mat-cell *matCellDef="let element">
+            <button class="btn" (click)="openConfirmationDialog(element)">
+              <mat-icon color="blueicon">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <form class="col-lg-4 p-3" [formGroup]="transactionPostForm">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+        <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+      </table>
+    </div>
+
+    <form class="col-lg-4 p-3" [formGroup]="transactionForm">
       <div class="mat-typography d-flex justify-content-between px-2">
         <h2 class="mat-headline">{{
-                transactionPostForm.controls["id"].value
+                transactionForm.controls["id"].value
                   ? ("update" | translate)
                   : ("add" | translate)
               }}
 
           {{ "transactions.transaction" | translate }}</h2>
-        <mat-icon class="icon-add" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible">add</mat-icon>
+        <mat-icon class="icon-add" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible">add
+        </mat-icon>
       </div>
-      <mat-form-field class="row" appearance="outline">
+      <mat-form-field class="row w-100" appearance="outline">
         <mat-label>{{"transactions.amount"|translate}}</mat-label>
         <input type="number" matInput required formControlName="amount">
-        <mat-error *ngIf="transactionPostForm.controls['amount'].hasError('min')">
+        <mat-error *ngIf="transactionForm.controls['amount'].hasError('min')">
           {{ "transactions.amount-validation" | translate
             }}<strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
-        <mat-error *ngIf="transactionPostForm.controls['amount'].hasError('required')">
+        <mat-error *ngIf="transactionForm.controls['amount'].hasError('required')">
           <strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="row" appearance="outline">
+      <mat-form-field class="row w-100" appearance="outline">
         <mat-label>{{"transactions.date"|translate}}</mat-label>
         <input matInput required type="date" formControlName="date">
-        <mat-error *ngIf="transactionPostForm.controls['date'].hasError('required')">
+        <mat-error *ngIf="transactionForm.controls['date'].hasError('required')">
           <strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="row" appearance="outline">
+      <mat-form-field class="row w-100" appearance="outline">
         <mat-label>{{"transactions.type"|translate}}</mat-label>
         <mat-select required formControlName="transactionType">
           <mat-option [value]="type" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="transactionPostForm.controls['transactionType'].hasError('required')">
+        <mat-error *ngIf="transactionForm.controls['transactionType'].hasError('required')">
           <strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="row" appearance="outline">
+      <mat-form-field class="row w-100" appearance="outline">
         <mat-label>{{"transactions.investor"|translate}}</mat-label>
         <mat-select required formControlName="investor" [compareWith]="compareFn">
           <mat-option *ngFor="let type of investorNames" [value]="type">{{type.fullName}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="transactionPostForm.controls['investor'].hasError('required')">
+        <mat-error *ngIf="transactionForm.controls['investor'].hasError('required')">
           <strong> {{ "transactions.required" | translate }}</strong>
         </mat-error>
       </mat-form-field>
       <div class="px-3 d-flex justify-content-end">
-        <button class="mx-1" mat-raised-button color="blue" type="submit" (click)="onSubmit()"
-          [disabled]="submit">{{transactionPostForm.controls["id"].value
+        <button class="mx-1 bg-primary-subtle text-emphasis-primary" color="blue" mat-raised-button type="submit"
+          (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
                 ? ("update" | translate)
                 : ("add" | translate)}}</button>
-        <button class="mx-1" mat-raised-button color="blue" (click)="resetForm()">{{transactionPostForm.controls["id"].value
+        <button class="mx-1" mat-raised-button color="blue" (click)="resetForm()">{{transactionForm.controls["id"].value
                 ? ("reset" | translate)
                 : ("clear" | translate)}}</button>
       </div>
