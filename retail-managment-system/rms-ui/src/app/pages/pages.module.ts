@@ -10,20 +10,19 @@ import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
+import { AuthModule } from '../auth/auth.module';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
-  {
-    path: 'category',
-    component: CategoryPageComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: 'customers', component: CustomersComponent },
-  { path: 'profits', component: ProfitComponent },
+  {path: 'category',component: CategoryPageComponent},
+  { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard] },
+  { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
   { path: 'investor', component: InvestorPageComponent },
-  { path: 'installment', component: InstallmentComponent },
+  { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
+
 ];
 @NgModule({
   declarations: [
@@ -34,8 +33,9 @@ const routes: Routes = [
     ProfitComponent,
     InvestorPageComponent,
     InstallmentComponent,
+   
   ],
 
-  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
+  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule],
 })
 export class PagesModule {}
