@@ -2,6 +2,7 @@ import { Component, Input} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent {
   @Input() sideNavItem!: MatSidenav;
   lang: string = 'en';
 
-  constructor(private router: Router, private translate: TranslateService ) {
+  constructor(private router: Router, private translate: TranslateService , private authservice :AuthService ) {
     this.lang = this.translate.currentLang;
    
   }
@@ -34,13 +35,19 @@ export class HeaderComponent {
 
   logout()
   {
-    localStorage.removeItem("isLogged")
-    this.router.navigateByUrl('/login')
+   this.authservice.logOut()
   }
 
    userLogged ()
   {
-    return localStorage.getItem("isLogged") ? true : false
+    let isLogged = this.authservice.getToken()
+    if (isLogged)
+    {
+      return true;
+    }else
+    {
+      return false
+    }
   }
 
  

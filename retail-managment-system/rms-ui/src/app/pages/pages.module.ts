@@ -17,15 +17,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
-  {
-    path: 'category',
-    component: CategoryPageComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: 'customers', component: CustomersComponent },
-  { path: 'profits', component: ProfitComponent },
+  {path: 'category',component: CategoryPageComponent},
+  { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard] },
+  { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
   { path: 'investor', component: InvestorPageComponent },
-  { path: 'installment', component: InstallmentComponent },
+  { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
 
 ];
 @NgModule({

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/domain/login/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,19 +14,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hide: boolean = true;
-  users:User[]=[];
   loginUsers:User[]=[];
    
    constructor(private formBuilder : FormBuilder,
-    private router:Router ,
-    private _snackBar: MatSnackBar,
-    private translate : TranslateService) { 
-    this.users=[
-      {email:"asmaa@gmail.com", password:"123"},
-      {email:"dina@gmail.com", password:"555"},
-      {email:"bosy@gmail.com", password:"444"},
-      {email:"raghda@gmail.com", password:"666"}
-    ]
+    private authservice :AuthService,) { 
    
   }
 
@@ -36,49 +28,19 @@ export class LoginComponent implements OnInit {
 
   loginmentForm() {
     this.loginForm = this.formBuilder.group({
-      
       email: ['' , [Validators.required]],
       password: ['' , [Validators.required]],
     });
   }
 
   setUsers(){
-    localStorage.setItem('loginUsers', JSON.stringify(this.users));
+   this.authservice.storeUsers();
   }
 
-  login(user : User)
+  login(user: User)
   {
-   
-    if (localStorage.getItem('loginUsers')) {
-      this.loginUsers=JSON.parse(localStorage.getItem("loginUsers")!);
-
-      if(this.loginUsers.find(u=>u.email==user.email))
-         {
-           if(this.loginUsers.find(u=>u.password==user.password))
-           {
-            localStorage.setItem("isLogged","Userlogged");
-            this.router.navigateByUrl('/home');
-           
-           }
-           else
-           {
-            this._snackBar.open(this.translate.instant('logIn.password-error'), this.translate.instant('logIn.close'), {
-              duration: 2000,
-            });
-             return;
-           }
-         }
-
-         else
-         {
-          this._snackBar.open(this.translate.instant('logIn.email-error'), this.translate.instant('logIn.close'), {
-            duration: 2000,
-          });
-           return;
-         }
-    }
+   this.authservice.logIn(user)
   }
-
-  }
+}
 
 
