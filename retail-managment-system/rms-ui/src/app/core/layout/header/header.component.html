@@ -9,11 +9,11 @@
     >
 
     <div class="collapse navbar-collapse">
-      <button [hidden]="userLogged"  class="btn btn-outline-light ms-auto" type="submit" routerLink="login">
+      <button *ngIf="!userLogged()"  class="btn btn-outline-light ms-auto" type="submit" routerLink="login">
         {{ "login" | translate }}
       </button>
-      <button [hidden]="!userLogged" class="btn btn-outline-light ms-auto" type="submit" (click)="logout()">
-        Logout
+      <button *ngIf="userLogged()" class="btn btn-outline-light ms-auto" type="submit" (click)="logout()">
+        {{ "logout" | translate }}
       </button>
     </div>
     

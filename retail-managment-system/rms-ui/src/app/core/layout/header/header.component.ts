@@ -38,8 +38,10 @@ export class HeaderComponent {
     this.router.navigateByUrl('/login')
   }
 
-  get userLogged () :boolean
+   userLogged ()
   {
-    return (localStorage.getItem("isLogged")) ? true : false
+    return localStorage.getItem("isLogged") ? true : false
   }
+
+ 
 }

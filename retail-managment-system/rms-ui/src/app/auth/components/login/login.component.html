@@ -1,30 +1,30 @@
-
- <mat-card>
+<div class="main">
+ <mat-card >
   <mat-card-content>
-    <div class="header">
-      <P class="sigin">Sign Into Your Account </P>
+    <div class="header text-center my-5">
+      <P class="sigin"> {{ "logIn.Sign" | translate }}</P>
     </div>
     <form  [formGroup]="loginForm">
       <div class="email-input">
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Email</mat-label>
+          <mat-label>{{ "logIn.Email" | translate }}</mat-label>
           <input
             formControlName="email"
             matInput
-            placeholder="Enter email address" required
+            placeholder="{{'logIn.enter-email'|translate}}" required
           />
           <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
-              Email is <strong>required</strong> 
+            {{'logIn.email-field'|translate}} <strong>{{'logIn.required'|translate}}</strong> 
             </mat-error>
         </mat-form-field>
       </div>
 
       <div>
         <span>
-          <a class="text-link" class="aLink" >Forgot Password?</a>
+          <a class="text-link" class="aLink" > {{ "logIn.Forgot-Password" | translate }}</a>
         </span>
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>{{ "logIn.Password" | translate }}</mat-label>
           <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
           <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
           [attr.aria-pressed]="hide">
@@ -33,15 +33,16 @@
           </mat-icon>
       </button>
       <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-          Password is <strong>required</strong> 
+        {{'logIn.password-field'|translate}} <strong>{{'logIn.required'|translate}}</strong> 
         </mat-error>
       </mat-form-field>
       </div>
-      <button mat-flat-button color="primary"  type="button" (click)="login(loginForm.value)">Login</button>
+      <button mat-flat-button color="primary"  type="button" (click)="login(loginForm.value)"> {{ "login" | translate }}</button>
     </form>
 
     <div class="button-row">
-      <a class="text-link"  ><p>Create New Account</p></a> 
+      <a class="text-link"  ><p> {{ "logIn.new-account" | translate }}</p></a> 
     </div>
   </mat-card-content>
 </mat-card>
+</div>

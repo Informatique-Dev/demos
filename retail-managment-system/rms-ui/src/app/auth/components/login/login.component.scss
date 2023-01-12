@@ -1,16 +1,19 @@
 mat-card {
     max-width: 600px;
-    margin: 2em auto;
+    margin: 5em auto;
     text-align: center;
     max-height: 600px;
+  }
+  .main {
+    height: 630px;
   }
   
   .header{
     text-align: center;
     font-weight: bold;
     font-size: large;
-  
   }
+  
   .full-width {
     width: 80%;
   }
@@ -22,10 +25,6 @@ mat-card {
   .button-row a {
     margin-right: 8px;
     text-align: center;
-  }
-  
-  .forget-password{
-    padding-left: 0px;
   }
   
   .email-input{
