@@ -47,14 +47,10 @@
             </button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
       </table>
     </div>
-
     <form class="col-lg-4 p-3" [formGroup]="transactionForm">
       <div class="mat-typography d-flex justify-content-between px-2">
         <h2 class="mat-headline">{{
@@ -104,8 +100,7 @@
         </mat-error>
       </mat-form-field>
       <div class="px-3 d-flex justify-content-end">
-        <button class="mx-1 bg-primary-subtle text-emphasis-primary" color="blue" mat-raised-button type="submit"
-          (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
+        <button class="mx-1" color="blue" mat-raised-button type="submit" (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
                 ? ("update" | translate)
                 : ("add" | translate)}}</button>
         <button class="mx-1" mat-raised-button color="blue" (click)="resetForm()">{{transactionForm.controls["id"].value
