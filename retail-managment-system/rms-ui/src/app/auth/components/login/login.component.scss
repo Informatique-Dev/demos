@@ -1,13 +1,17 @@
 mat-card {
+    width: 600px;
     max-width: 600px;
-    margin: 5em auto;
-    max-height: 600px;
+    margin-top: 2em;
+    margin-bottom: 5em;
+    max-height: 700px;
   }
+  
   .main {
-    height: 630px;
+    height: 710px;
+    background-image:url("/assets/images/lll.png");
+     background-size: cover;
   }
-  
-  
+ 
   .full-width {
     width: 80%;
   }
@@ -20,12 +24,28 @@ mat-card {
     margin-right: 8px;
   }
   
-  .email-input{
-    padding-top: 10px;
-  }
-    
   .aLink{
     float: right;
     padding-right: 60px;
+     color: #0a4862;
   }
+ 
+  .log{
+    height: 100px;
+    width: 100px;
+  }
+
+  .log-btn{
+    background-color: #002d40;
+  }
+  .text-link{
+    color: #002d40;
+  }
+  .social{
+    height: 20px;
+    width: 30px;
+  }
+
+  
+
   
