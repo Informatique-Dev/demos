@@ -31,3 +31,22 @@ td {
 .add-icon {
   cursor: pointer;
 }
+.print-btn {
+  background-color: #002d40;
+  color: white;
+  width: 100px;
+  height: 50px;
+}
+
+@media print {
+.update-icon, .table-button ,.function-btn {
+     display: none;
+}
+
+ th,td {
+  line-height: 4;
+  min-width: 140px;
+  border-bottom: 1px solid black;
+}
+}
+

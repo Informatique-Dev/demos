@@ -10,6 +10,8 @@ import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
+import { NgxPrintModule } from 'ngx-print';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -36,6 +38,7 @@ const routes: Routes = [
     InstallmentComponent,
   ],
 
-  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule],
+  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,NgxPrintModule],
+ 
 })
 export class PagesModule {}
