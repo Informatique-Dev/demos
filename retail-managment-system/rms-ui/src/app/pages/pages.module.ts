@@ -12,6 +12,8 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
 import { AuthModule } from '../auth/auth.module';
 
+import { NgxPrintModule } from 'ngx-print';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
@@ -35,7 +37,7 @@ const routes: Routes = [
     InstallmentComponent,
    
   ],
-
-  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule],
+  imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
+ 
 })
 export class PagesModule {}
