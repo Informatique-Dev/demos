@@ -11,7 +11,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
 import { AuthModule } from '../auth/auth.module';
-
 import { NgxPrintModule } from 'ngx-print';
 
 
