@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InstallmentRepositry } from 'src/app/domain/installment/installment.repositry';
 import { Installment } from 'src/app/domain/installment/models/installment';
@@ -6,18 +6,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+
 
 @Component({
   selector: 'app-installment',
   templateUrl: './installment.component.html',
   styleUrls: ['./installment.component.scss'],
 })
-export class InstallmentComponent implements OnInit {
-  installmentList: Installment[] = [];
+export class InstallmentComponent implements OnInit  {
+  installmentList:Installment[]=[];
   installForm!: FormGroup;
   submit: boolean = false;
   currentData!: Installment;
   isButtonVisible: boolean = true;
+  @ViewChild(MatSort) sort!: MatSort 
+  dataSource!: MatTableDataSource<Installment>;
   displayedColumns: string[] = [
     'id',
     'installmentAmount',
@@ -35,7 +41,7 @@ export class InstallmentComponent implements OnInit {
     private dialog: MatDialog,
     private translate: TranslateService
   ) {}
-
+ 
   ngOnInit(): void {
     this.getAllInstallments();
     this.installmentForm();
@@ -44,6 +50,8 @@ export class InstallmentComponent implements OnInit {
   getAllInstallments(): void {
     this.installmentrepositry.getList().subscribe((result) => {
       this.installmentList = result;
+      this.dataSource = new MatTableDataSource (this.installmentList)
+      this.dataSource.sort = this.sort
     });
   }
 
