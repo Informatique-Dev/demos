@@ -52,7 +52,6 @@ export abstract class ResourceService<T> {
       })
     );
   }
-
   add(resource: T): Observable<any> {
     return this.httpClient
       .post(`${this.APIUrl}`, this.toServerModel(resource))
