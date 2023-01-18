@@ -44,7 +44,7 @@ export abstract class ResourceService<T> {
         })
       );
   }
-  et(id: string | number): Observable<T> {
+  get(id: string | number): Observable<T> {
     return this.httpClient.get<T>(`${this.APIUrl}/${id}`).pipe(
       map((json) => this.fromServerModel(json)),
       catchError((err) => {

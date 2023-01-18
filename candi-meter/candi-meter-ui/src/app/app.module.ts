@@ -28,6 +28,7 @@ export function configServiceFactory(
       deps: [ConfigService],
       multi: true,
     },
+    
   ],
   bootstrap: [AppComponent]
 })
