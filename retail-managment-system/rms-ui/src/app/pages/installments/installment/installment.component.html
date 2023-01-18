@@ -1,152 +1,186 @@
-
 <div class="main">
-    <div class="container text-center mt-4">
-      <div>
-        <h3 class="panel-title fw-bold">Our Installments</h3>
-      </div>
+  <div class="container text-center mt-4">
+    <div>
+      <h3 class="panel-title fw-bold">
+        {{ "installments.our-installments" | translate }}
+      </h3>
     </div>
-  
-    <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-      <div class="row justify-content-center">
-    
-    <div class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table">
-    <table
-      class="table table-responsive"
-      mat-table
-      [dataSource]="installmentList"
-    >
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">No.</th>
-      <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="installmentAmount">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">InsAmount</th>
-      <td mat-cell *matCellDef="let element">{{ element.installmentAmount }}</td>
-    </ng-container>
-  
-  
-    <ng-container matColumnDef="paymentAmount">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-        PayAmount
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.paymentAmount }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="dueDate">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-        DueDade
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.dueDate }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="paymentDate">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-        PaymentDate
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.paymentDate }}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-        Status
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.status}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element" class="update-icon">
-        <button class="btn table-button" (click)="fetchData(element)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button class="btn table-button" (click)=" openConfirmationDialog(element)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
   </div>
-  
-    <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
-  
-        <div class="panel-heading pt-3 ps-1 mb-5">
-          <h3 class="panel-title float-start">
-            {{ installForm.controls["id"].value ? "Update" : "Add" }} Installment
+
+  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
+    <div class="row justify-content-center">
+      <div
+        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+      >
+        <table
+          class="table table-responsive"
+          mat-table
+          [dataSource]="installmentList"
+        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="installmentAmount">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "installments.ins-amount" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.installmentAmount }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="paymentAmount">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "installments.pay-amount" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.paymentAmount }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dueDate">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "installments.due-date" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.dueDate }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="paymentDate">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "installments.payment-date" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.paymentDate }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "installments.status" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon">
+              <button class="btn table-button" (click)="fetchData(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                class="btn table-button"
+                (click)="openConfirmationDialog(element)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+        <div class="panel-heading pt-3 ps-1">
+          <h3 class="panel-title">
+            {{
+              installForm.controls["id"].value
+                ? ("update" | translate)
+                : ("add" | translate)
+            }}
+            {{ "installments.installment" | translate }}
           </h3>
           <mat-icon
-          class="add-icon me-4 float-end"
-          (click)="restartForm(); isButtonVisible = true"
-          [hidden]="isButtonVisible"
-          >add</mat-icon
-        >
+            class="add-icon me-4 float-end"
+            (click)="restartForm(); isButtonVisible = true"
+            [hidden]="isButtonVisible"
+            >add</mat-icon
+          >
         </div>
         <div class="panel-body ps-1">
           <form [formGroup]="installForm">
             <fieldset class="row justify-content-center">
-    
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>InstallmentAmount</mat-label>
+                <mat-label>{{
+                  "installments.ins-amount" | translate
+                }}</mat-label>
                 <input
                   formControlName="installmentAmount"
                   type="number"
                   matInput
-                  placeholder="Enter Installment Amount "
+                  placeholder="{{ 'installments.ins-amount' | translate }} "
                 />
                 <mat-error
-                *ngIf="
-                  installForm.controls['installmentAmount'].hasError('required') ">
-                  InstallmentAmount is <strong>required</strong>
-              </mat-error>
+                  *ngIf="
+                    installForm.controls['installmentAmount'].hasError(
+                      'required'
+                    )
+                  "
+                >
+                  {{ "installments.ins-amount" | translate }}
+                  <strong>{{ "installments.required" | translate }}</strong>
+                </mat-error>
               </mat-form-field>
-  
+
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>PaymentAmount</mat-label>
+                <mat-label>{{
+                  "installments.pay-amount" | translate
+                }}</mat-label>
                 <input
                   formControlName="paymentAmount"
                   type="number"
                   matInput
-                  placeholder="Enter paymentAmount Price"
+                  placeholder="{{ 'installments.pay-amount' | translate }}"
                 />
                 <mat-error
-                *ngIf="
-                  installForm.controls['paymentAmount'].hasError('required') ">
-                  PaymentAmount is <strong>required</strong>
-              </mat-error>
+                  *ngIf="
+                    installForm.controls['paymentAmount'].hasError('required')
+                  "
+                >
+                  {{ "installments.pay-amount" | translate }}
+                  <strong>{{ "installments.required" | translate }}</strong>
+                </mat-error>
               </mat-form-field>
-  
+
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>dueDate</mat-label>
+                <mat-label>{{ "installments.due-date" | translate }}</mat-label>
                 <input
                   formControlName="dueDate"
                   type="date"
                   matInput
-                  placeholder="Enter dueDate" />
-                    <mat-error
-                  *ngIf="
-                    installForm.controls['dueDate'].hasError('required') ">
-                    Due Date is <strong>required</strong>
+                  placeholder="{{ 'installments.due-date' | translate }}"
+                />
+                <mat-error
+                  *ngIf="installForm.controls['dueDate'].hasError('required')"
+                >
+                  {{ "installments.due-date" | translate
+                  }}<strong> {{ "installments.required" | translate }}</strong>
                 </mat-error>
               </mat-form-field>
-  
+
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>PaymentDate</mat-label>
+                <mat-label>{{
+                  "installments.payment-date" | translate
+                }}</mat-label>
                 <input
                   formControlName="paymentDate"
                   type="date"
                   matInput
-                  placeholder="Enter paymentDate" />
+                  placeholder="{{ 'installments.payment-date' | translate }}"
+                />
               </mat-form-field>
-  
+
               <mat-form-field appearance="outline" class="w-100 mb-4">
-                <mat-label>status</mat-label>
+                <mat-label>{{ "installments.status" | translate }}</mat-label>
                 <input
                   formControlName="status"
                   type="number"
                   matInput
-                  placeholder="Enter Product status"
+                  placeholder="{{ 'installments.status' | translate }}"
                 />
               </mat-form-field>
             </fieldset>
@@ -154,17 +188,21 @@
         </div>
         <div class="actions pb-5 float-end">
           <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
-            {{ installForm.controls["id"].value ? "Update" : "Add" }}
+            {{
+              installForm.controls["id"].value
+                ? ("update" | translate)
+                : ("add" | translate)
+            }}
           </button>
-          <button class="btn" mat-button (click)="resetForm()">
-            {{installForm.controls["id"].value ? "Reset" : "Clear" }}
+          <button class="btn me-3" mat-button (click)="resetForm()">
+            {{
+              installForm.controls["id"].value
+                ? ("reset" | translate)
+                : ("clear" | translate)
+            }}
           </button>
         </div>
-     
+      </div>
     </div>
   </div>
-      </div>
-  </div>
-  
-  
-  
+</div>

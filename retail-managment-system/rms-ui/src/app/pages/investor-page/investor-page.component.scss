@@ -5,29 +5,25 @@
   height: 600px;
 }
 
-.content-size {
-  width: 90%;
-}
-
 .btn {
   background-color: #002d40;
   color: white;
-  width: 60px;
-  height: 20px;
+  width: 80px;
+  height: 40px;
 }
 
 .table-button {
   background-color: transparent;
   color: #002d40;
+  width: 50px;
+  height: 40px;
   cursor: pointer;
 }
 .table-button:hover,
 .add-icon:hover {
   color: red;
 }
-mat-icon {
-  font-size: 30px;
-}
+
 .add-icon {
   cursor: pointer;
 }

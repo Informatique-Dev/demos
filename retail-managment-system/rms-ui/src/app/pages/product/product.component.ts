@@ -7,6 +7,7 @@ import { CategoryRepository } from 'src/app/domain/category/category.repository'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +37,8 @@ export class ProductComponent implements OnInit {
     private categoryRepository: CategoryRepository,
     private build: FormBuilder,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -76,9 +78,13 @@ export class ProductComponent implements OnInit {
       () => {
         this.getAllProducts();
         this.submit = false;
-        this._snackBar.open('Product Updated Successfuly!', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('product.updated-successfuly'),
+          this.translate.instant('product.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -93,9 +99,13 @@ export class ProductComponent implements OnInit {
       () => {
         this.getAllProducts();
         this.submit = false;
-        this._snackBar.open('Product Added Successfuly!', 'Close', {
-          duration: 2000,
-        });
+        this._snackBar.open(
+          this.translate.instant('product.added-successfuly'),
+          this.translate.instant('product.close'),
+          {
+            duration: 2000,
+          }
+        );
       },
       () => {
         this.submit = false;
@@ -145,9 +155,13 @@ export class ProductComponent implements OnInit {
   deleteProduct(product: Product) {
     this.productRepository.delete(product.id).subscribe(() => {
       this.getAllProducts();
-      this._snackBar.open('Product Deleted Successfuly!', 'Close', {
-        duration: 2000,
-      });
+      this._snackBar.open(
+        this.translate.instant('product.delete-successfuly'),
+        this.translate.instant('product.close'),
+        {
+          duration: 2000,
+        }
+      );
     });
   }
 }

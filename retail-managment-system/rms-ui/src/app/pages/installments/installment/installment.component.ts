@@ -5,21 +5,21 @@ import { Installment } from 'src/app/domain/installment/models/installment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-installment',
   templateUrl: './installment.component.html',
-  styleUrls: ['./installment.component.scss']
+  styleUrls: ['./installment.component.scss'],
 })
-
 export class InstallmentComponent implements OnInit {
-  installmentList : Installment[] =[];
+  installmentList: Installment[] = [];
   installForm!: FormGroup;
   submit: boolean = false;
   currentData!: Installment;
   isButtonVisible: boolean = true;
   displayedColumns: string[] = [
-    'id' ,
+    'id',
     'installmentAmount',
     'paymentAmount',
     'dueDate',
@@ -28,12 +28,13 @@ export class InstallmentComponent implements OnInit {
     'actions',
   ];
 
-
   constructor(
-    private installmentrepositry : InstallmentRepositry , 
-    private formBuilder : FormBuilder,
+    private installmentrepositry: InstallmentRepositry,
+    private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.getAllInstallments();
@@ -46,19 +47,18 @@ export class InstallmentComponent implements OnInit {
     });
   }
 
-
   installmentForm() {
     this.installForm = this.formBuilder.group({
       id: [''],
-      installmentAmount: ['' , [Validators.required]],
-      paymentAmount: ['' , [Validators.required]],
+      installmentAmount: ['', [Validators.required]],
+      paymentAmount: ['', [Validators.required]],
       dueDate: ['', [Validators.required]],
       paymentDate: [''],
       status: [''],
     });
   }
 
-  fetchData(install :Installment): void {
+  fetchData(install: Installment): void {
     this.isButtonVisible = false;
     this.installForm.patchValue(install);
     this.currentData = install;
@@ -67,33 +67,43 @@ export class InstallmentComponent implements OnInit {
   updateInstallment() {
     this.isButtonVisible = true;
     this.submit = true;
-    this.installmentrepositry.update(this.installForm.value).subscribe(() => {
-      this.getAllInstallments();
-      this.submit = false;
-      this._snackBar.open('Installment Updated Successfuly!', 'Close', {
-        duration: 2000,
-      });
-    },
-    () => {
-      this.submit = false;
-    });
+    this.installmentrepositry.update(this.installForm.value).subscribe(
+      () => {
+        this.getAllInstallments();
+        this.submit = false;
+        this._snackBar.open(
+          this.translate.instant('installments.updated-successfuly'),
+          this.translate.instant('installments.close'),
+          {
+            duration: 2000,
+          }
+        );
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
-
- 
 
   addInstallment() {
     this.isButtonVisible = true;
     this.submit = true;
-   this.installmentrepositry.add(this.installForm.value).subscribe(() => {
-     this.getAllInstallments();
-     this.submit = false;
-     this._snackBar.open('Installment Added Successfuly!', 'Close', {
-      duration: 2000,
-    });
-  },
-  () => {
-    this.submit = false;
-    });
+    this.installmentrepositry.add(this.installForm.value).subscribe(
+      () => {
+        this.getAllInstallments();
+        this.submit = false;
+        this._snackBar.open(
+          this.translate.instant('installments.added-successfuly'),
+          this.translate.instant('installments.close'),
+          {
+            duration: 2000,
+          }
+        );
+      },
+      () => {
+        this.submit = false;
+      }
+    );
   }
 
   onSubmit() {
@@ -102,7 +112,7 @@ export class InstallmentComponent implements OnInit {
       this.installForm.controls['id'].value
         ? this.updateInstallment()
         : this.addInstallment();
-         this.installForm.reset();
+      this.installForm.reset();
     }
   }
 
@@ -111,13 +121,12 @@ export class InstallmentComponent implements OnInit {
       ? this.fetchData(this.currentData)
       : this.installForm.reset();
   }
- 
 
   restartForm(): void {
     this.installForm.reset();
   }
 
-  openConfirmationDialog(install : Installment) {
+  openConfirmationDialog(install: Installment) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
@@ -126,13 +135,16 @@ export class InstallmentComponent implements OnInit {
     });
   }
 
-  deleteInstallment(install :Installment) {
+  deleteInstallment(install: Installment) {
     this.installmentrepositry.delete(install.id).subscribe(() => {
       this.getAllInstallments();
-      this._snackBar.open('Installment Deleted Successfuly!', 'Close', {
-        duration: 2000,
-      });
+      this._snackBar.open(
+        this.translate.instant('installments.delete-successfuly'),
+        this.translate.instant('installments.close'),
+        {
+          duration: 2000,
+        }
+      );
     });
   }
-
 }
