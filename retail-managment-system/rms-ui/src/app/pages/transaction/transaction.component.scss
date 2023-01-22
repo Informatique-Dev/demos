@@ -12,8 +12,17 @@ h2{
     background-color:#002d40;
     color: white;
 }
-.mat-blueicon{
+.mat-blue:hover{
+    background-color: transparent;
     color: #002d40;
+}
+.btn{
+    color: #002d40;
+    background-color: white;
+}
+.btn:hover,
+.icon-add:hover{
+    color: red;
 }
 .row-font{
     font-family: Roboto, "Helvetica Neue", sans-serif;

@@ -25,16 +25,12 @@ export class TransactionComponent implements OnInit {
   currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
-  addMesaage!: string
-  updateMessage!:string
-  deleteMessage!:string
-  close!:string
 
   constructor(
     private investorsRepository : InvestorsRepository,
     private transactionRepository : TransactionRepository,
     private fb :FormBuilder,
-    private SnackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private translate : TranslateService
     ) {
@@ -45,17 +41,6 @@ export class TransactionComponent implements OnInit {
     this.getAllTransactions()
     this.getInvestorData()
     this.TransactionForm()
-    this.translate.get([
-      'transactions.add-message',
-      'transactions.update-message',
-      'transactions.delete-message',
-      'transactions.close'])
-      .subscribe(translations =>{
-        this.addMesaage = translations['transactions.add-message']
-        this.updateMessage = translations['transactions.update-message']
-        this.deleteMessage = translations['transactions.delete-message']
-        this.close = translations['transactions.close']
-      })
   }
   
   TransactionForm(){
@@ -87,7 +72,7 @@ export class TransactionComponent implements OnInit {
       () => {
         this.getAllTransactions();
         this.submit = false;
-        this.SnackBar.open(this.addMesaage, this.close, {
+        this.snackBar.open(this.translate.instant('transactions.add-message'), this.translate.instant('transactions.close'), {
           duration: 2000,
         })
       },()=>{
@@ -114,7 +99,7 @@ export class TransactionComponent implements OnInit {
   deleteTransaction( transaction:Transaction):void{
     this.transactionRepository.delete(transaction.id).subscribe(() => {
       this.getAllTransactions();
-      this.SnackBar.open(this.deleteMessage, this.close, {
+      this.snackBar.open(this.translate.instant('transactions.delete-message'), this.translate.instant('transactions.close'), {
         duration: 2000,
       });
     });
@@ -132,7 +117,7 @@ export class TransactionComponent implements OnInit {
       () => {
         this.getAllTransactions();
         this.submit = false;
-        this.SnackBar.open(this.updateMessage, this.close, {
+        this.snackBar.open(this.translate.instant('transactions.update-message'), this.translate.instant('transactions.close'), {
           duration: 2000,
         });
       },
