@@ -10,6 +10,7 @@ import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { InstallmentComponent } from './installments/installment/installment.component';
+import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 
 
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
+  { path: 'transaction', component: TransactionComponent },
+
 
 ];
 @NgModule({
@@ -33,6 +36,7 @@ const routes: Routes = [
     ProfitComponent,
     InvestorPageComponent,
     InstallmentComponent,
+    TransactionComponent,
    
   ],
 

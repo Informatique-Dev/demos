@@ -178,5 +178,29 @@
       "password-error":"Password is Not correct!",
       "close":"Close"
       
+    },
+    "transactions":{
+      "transaction":"Transaction",
+      "our-transactions":" Our Transactions",
+      "version":"Version",
+      "type":"Type",
+      "amount":"Amount",
+      "date":"Date",
+      "edit":"Edit",
+      "Delete":"Delete",
+      "add-transaction":"Add Transaction",
+      "investor":"Investor",
+      "amount-validation":"Amount must be at least '1'",
+      "required":" * Required",
+      "amount-required-msg":"You must enter the Amount",
+      "date-required-msg":"You must choose Date",
+      "type-required-msg":"You must choose transaction type",
+      "investor-required-msg":"You must choose 'Investor's name'",
+      "amount-placeholder":"Enter Amount",
+      "investor-name":"Investor Name",
+      "add-message":"Transaction Added Successfully",
+      "update-message":"Transaction Updated Successfuly",
+      "delete-message":"Transaction Deleted Successfuly!",
+      "close":"Close"
       }
 }
