@@ -9,7 +9,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
   imports: [
     CommonModule,
     AngularMaterialModule,
- 
 ],
 exports: [
   CommonModule,

@@ -8,9 +8,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  providers:[]
+  providers:[],
 })
-export class CoreModule { 
+export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
