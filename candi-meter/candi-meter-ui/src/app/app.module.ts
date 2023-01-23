@@ -12,6 +12,12 @@ import { CoreModule } from './core/core.module';
 
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from './core/core.module';
+
+
+
+
 
 export function configServiceFactory(
   config:ConfigService
