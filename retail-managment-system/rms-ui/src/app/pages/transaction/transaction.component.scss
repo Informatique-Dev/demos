@@ -1,0 +1,37 @@
+.table-height{
+    height: 500px;
+}
+section{
+    background-color: rgba(0,0,0,.04);
+}
+h2{
+    padding-top: 20px;
+}
+.mat-blue
+{
+    background-color:#002d40;
+    color: white;
+}
+.mat-blue:hover{
+    background-color: transparent;
+    color: #002d40;
+}
+.btn{
+    color: #002d40;
+    background-color: white;
+}
+.btn:hover,
+.icon-add:hover{
+    color: red;
+}
+.row-font{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: rgba(0,0,0,0.54);
+}
+.icon-add{
+    margin-bottom: 16px;
+    padding-top: 20px;
+}
+.icon-add:hover{
+    cursor: pointer;
+}

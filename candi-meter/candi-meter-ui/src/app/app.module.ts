@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ConfigService } from './core/services/config.service';
+import { SharedModule } from './shared/shared.module';
+
 export function configServiceFactory(
   config:ConfigService
 ): () => Promise<boolean> {
@@ -28,6 +30,8 @@ export function configServiceFactory(
       deps: [ConfigService],
       multi: true,
     },
+    SharedModule,
+    CoreModule
   ],
   bootstrap: [AppComponent]
 })

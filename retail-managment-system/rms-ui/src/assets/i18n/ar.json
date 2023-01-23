@@ -178,5 +178,29 @@
         "email-error": "البريد الإلكتروني الذي أدخلته غير مرتبط بحساب",
         "password-error":"!كلمة المرور غير صحيحة",
         "close":"اغلاق"
+      },
+      "transactions":{
+        "transaction":"عملية التحويل",
+        "our-transactions":"التحويلات",
+        "version":"الإصدار",
+        "type":"النوع",
+        "amount":"العدد",
+        "date":"التاريخ",
+        "edit":"تعديل",
+        "Delete":"مسح",
+        "add-transaction":"اضافة عملية تحويل",
+        "investor":"المستثمر",
+        "amount-validation":"العدد يجب ان يكون على الأقل '1'",
+        "required":" * اجباري",
+        "amount-required-msg":"يجب ادخال العدد",
+        "date-required-msg":"يجب ان تختار التاريخ",
+        "type-required-msg":"يجب ان تختار نوع العملية",
+        "investor-required-msg":"يجب ان تختار اسم المستثمر'",
+        "amount-placeholder":"أدخل العدد",
+        "investor-name":"اسم المستثمر",
+        "add-message":"تمت اضافة العملية بنجاح",
+        "update-message":"تم تعديل العملية بنجاح",
+        "delete-message":"تم مسح العملية",
+        "close":"غلق"
         }
 }

@@ -70,6 +70,10 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/installment']);
   }
 
+  openTransaction() {
+    this.router.navigate(['/transaction']);
+  }
+
   getAllProducts(): void {
     this.productRepository.getList().subscribe((result) => {
       this.allProducts = result;
