@@ -1,0 +1,39 @@
+$main-color:red;
+$secondary-color: #b71a2a;
+$background-color: linear-gradient(
+  177deg,
+  rgb(247, 117, 137) 29%,
+  rgba(255, 255, 255, 1) 100%
+);
+
+.main {
+  background: $main-color;
+  background: $background-color;
+}
+.land-container
+{
+    background-image: url('/assets/images/land.jpg');
+    background-size:cover;
+    height: 700px;  
+}
+
+.pragraph {
+   margin-top: 50px;
+}
+
+.img-card{
+    height: 500px;
+}
+
+.programes-container{
+    height: 700px;
+}
+
+
+.more-btn{
+    left: 40%;
+}
+
+.card-img{
+    height: 50%;
+}
