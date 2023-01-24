@@ -1,10 +1,16 @@
 package com.rms.rest.handler;
 
 import com.rms.domain.investor.Investor;
+import com.rms.domain.investor.Transaction;
 import com.rms.rest.dto.InvestorDto;
+import com.rms.rest.exception.ErrorCodes;
+import com.rms.rest.exception.ResourceNotFoundException;
+import com.rms.rest.exception.ResourceRelatedException;
+import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.InvestorMapper;
 import com.rms.service.InvestorService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +30,8 @@ public class InvestorHandler {
     }
 
     public ResponseEntity<InvestorDto> getById(Integer id) {
-        Investor investor = investorService.getById(id);
+        Investor investor = investorService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(), id));
         InvestorDto dto = mapper.toInvestorDto(investor);
         return ResponseEntity.ok(dto);
     }
@@ -37,11 +44,24 @@ public class InvestorHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<InvestorDto> updateInvestor(InvestorDto investorDto) {
-        Investor investor = investorService.getById(investorDto.getId());
+    public ResponseEntity<InvestorDto> updateInvestor(InvestorDto investorDto, Integer id) {
+        Investor investor = investorService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(), id));
         mapper.updateInvestorFromDto(investorDto, investor);
         investorService.save(investor);
         InvestorDto dto = mapper.toInvestorDto(investor);
         return ResponseEntity.ok(dto);
     }
+
+    public ResponseEntity<?> deleteById(Integer id) {
+        investorService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(), id));
+        try {
+            investorService.deleteById(id);
+        } catch (Exception exception) {
+            throw new ResourceRelatedException(Investor.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
+    }
 }
+

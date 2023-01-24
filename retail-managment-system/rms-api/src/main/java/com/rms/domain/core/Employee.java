@@ -1,7 +1,9 @@
 package com.rms.domain.core;
 
-import com.rms.domain.common.JPAEntity;
+import com.rms.domain.common.Person;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Employees")
 @Data
-public class Employee extends JPAEntity {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Employee extends Person {
 
-    @Column(name = "full_name")
-    private String fullName;
     @Column(name = "job")
     private String job;
-    @Column(name = "national_id")
-    private String nationalId;
-    @Column(name = "primary_phone_no")
-    private String primaryPhoneNo;
-    @Column(name = "secondary_phone_no")
-    private String secondaryPhoneNo;
-    @Column(name = "address")
-    private String address;
 
 }

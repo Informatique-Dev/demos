@@ -2,10 +2,7 @@ package com.rms.rest.modelmapper;
 
 import com.rms.domain.investor.Investor;
 import com.rms.rest.dto.InvestorDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,5 +19,7 @@ public interface InvestorMapper {
 
     List<Investor> toInvestor(List<InvestorDto> investorDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateInvestorFromDto(InvestorDto investorDto, @MappingTarget Investor investor);
 }

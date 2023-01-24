@@ -1,10 +1,16 @@
 package com.rms.rest.handler;
 
+import com.rms.domain.investor.Transaction;
 import com.rms.domain.sales.Installment;
 import com.rms.rest.dto.InstallmentDto;
+import com.rms.rest.exception.ErrorCodes;
+import com.rms.rest.exception.ResourceNotFoundException;
+import com.rms.rest.exception.ResourceRelatedException;
+import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.InstallmentMapper;
 import com.rms.service.InstallmentService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +26,8 @@ public class InstallmentHandler {
     private InstallmentMapper mapper;
 
     public ResponseEntity<?> getById(Integer id) {
-        Installment installment = installmentService.getById(id);
+        Installment installment = installmentService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
         InstallmentDto dto = mapper.toInstallmentDto(installment);
         return ResponseEntity.ok(dto);
     }
@@ -41,11 +48,23 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> update(InstallmentDto installmentDto) {
-        Installment installment = installmentService.getById(installmentDto.getId());
+    public ResponseEntity<?> update(InstallmentDto installmentDto, Integer id) {
+        Installment installment = installmentService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
         mapper.updateInstallmentFromDto(installmentDto, installment);
         installmentService.save(installment);
         InstallmentDto dto = mapper.toInstallmentDto(installment);
         return ResponseEntity.ok(dto);
+    }
+
+    public ResponseEntity<?> deleteById(Integer id) {
+        installmentService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
+        try {
+            installmentService.deleteById(id);
+        } catch (Exception exception) {
+            throw new ResourceRelatedException(Installment.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
 }

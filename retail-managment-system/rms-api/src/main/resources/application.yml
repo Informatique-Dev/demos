@@ -1,13 +1,13 @@
 server:
-  port: 8080
-  servlet:
-    context-path: /rms
+  port: 8070
+#  servlet:
+#    context-path: /rms
 spring:
   main:
     banner-mode: 'off'
-  mvc:
-    servlet:
-      path: /api
+  #  mvc:
+  #    servlet:
+  #      path: /api
 
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -16,15 +16,20 @@ spring:
     #hikari:
     #  connectionTimeout: 20000
     #  maximumPoolSize: 5
-    url: jdbc:postgresql://localhost:5432/motaheda-develop
-    username: rms-develop
-    password: rms-pass
+    url: jdbc:postgresql://localhost:5432/motaheda
+    username: postgres
+    password: root
   jpa:
     hibernate:
       ddl-auto: update
 
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL10Dialect
-        default_schema: rms_core
-    show-sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    #        default_schema: rms_core
+    show-sql: true
+
+    mvc:
+    pathmatch:
+    matching-strategy:
+      ANT_PATH_MATCHER

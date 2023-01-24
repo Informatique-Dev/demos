@@ -2,13 +2,17 @@ package com.rms.domain.purchase;
 
 import com.rms.domain.common.JPAEntity;
 import com.rms.domain.core.Product;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Bill_Details")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BillDetails extends JPAEntity {
 
     @Column(name = "price")

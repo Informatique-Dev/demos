@@ -6,14 +6,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
 
-    public Product getById(Integer id) {
-        return productRepository.getOne(id);
+    public Optional<Product> getById(Integer id) {
+        return productRepository.findById(id);
     }
 
     public List<Product> getAll() {
@@ -26,6 +27,10 @@ public class ProductService {
 
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    public void deleteById(Integer id) {
+        productRepository.deleteById(id);
     }
 
 }

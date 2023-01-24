@@ -2,10 +2,7 @@ package com.rms.rest.modelmapper;
 
 import com.rms.domain.investor.Profit;
 import com.rms.rest.dto.ProfitDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,5 +19,7 @@ public interface ProfitMapper {
 
     List<Profit> toProfit(List<ProfitDto> profitDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateProfitFromDto(ProfitDto profitDto, @MappingTarget Profit profit);
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,12 +17,16 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer getById(Integer id) {
-        return customerRepository.getOne(id);
+    public Optional<Customer> getById(Integer id) {
+        return customerRepository.findById(id);
     }
 
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
+    }
+
+    public void deleteById(Integer id) {
+        customerRepository.deleteById(id);
     }
 
 }

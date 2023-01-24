@@ -9,8 +9,8 @@ import java.util.Date;
 @Data
 public class InstallmentDto extends GenericDto {
 
-    private String installmentAmount;
-    private String paymentAmount;
+    private Double installmentAmount;
+    private Double paymentAmount;
     private Date dueDate;
     private Date paymentDate;
     private Short status;

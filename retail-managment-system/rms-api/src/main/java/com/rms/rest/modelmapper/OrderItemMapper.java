@@ -20,5 +20,7 @@ public interface OrderItemMapper {
 
     List<OrderItem> toOrderItem(List<OrderItemDto> orderItemDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateOrderItemFromDto(OrderItemDto orderItemDto, @MappingTarget OrderItem orderItem);
 }

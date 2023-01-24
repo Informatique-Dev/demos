@@ -11,7 +11,8 @@ public class ProductCategoryDto extends GenericDto {
 
     @NotEmpty(message = "Name is mandatory!")
     private String name;
+
     @NotNull(message = "Status is mandatory!")
-    private Short status;
+    private Boolean status;
 
 }

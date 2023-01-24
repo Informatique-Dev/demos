@@ -2,11 +2,16 @@ package com.rms.rest.handler;
 
 import com.rms.domain.investor.*;
 import com.rms.rest.dto.ProfitDto;
+import com.rms.rest.exception.ErrorCodes;
+import com.rms.rest.exception.ResourceNotFoundException;
+import com.rms.rest.exception.ResourceRelatedException;
+import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.ProfitMapper;
 import com.rms.service.InvestorService;
 import com.rms.service.ProfitService;
 import com.rms.service.TransactionService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +28,14 @@ public class ProfitHandler {
 
 
     public ResponseEntity<List<ProfitDto>> getAll() {
-        List<Profit> profits = profitService.getAll(Boolean.FALSE);
+        List<Profit> profits = profitService.getAll();
         List<ProfitDto> dtos = mapper.toProfitDto(profits);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<ProfitDto> getById(Integer id) {
-        Profit profit = profitService.getById(id);
+        Profit profit = profitService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Profit.class.getSimpleName(), id));
         ProfitDto dto = mapper.toProfitDto(profit);
         return ResponseEntity.ok(dto);
     }
@@ -70,8 +76,9 @@ public class ProfitHandler {
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<ProfitDto> updateProfit(ProfitDto profitDto) {
-        Profit profit = profitService.getById(profitDto.getId());
+    public ResponseEntity<ProfitDto> updateProfit(ProfitDto profitDto, Integer id) {
+        Profit profit = profitService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Profit.class.getSimpleName(), id));
         mapper.updateProfitFromDto(profitDto, profit);
         profitService.save(profit);
         ProfitDto dto = mapper.toProfitDto(profit);
@@ -86,5 +93,16 @@ public class ProfitHandler {
         transaction.setDate(LocalDate.now());
         transactionService.save(transaction);
 
+    }
+
+    public ResponseEntity<?> deleteById(Integer id) {
+        profitService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Profit.class.getSimpleName(), id));
+        try {
+            profitService.deleteById(id);
+        } catch (Exception exception) {
+            throw new ResourceRelatedException(Profit.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
 }

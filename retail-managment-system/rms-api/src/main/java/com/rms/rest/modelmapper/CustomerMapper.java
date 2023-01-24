@@ -2,10 +2,7 @@ package com.rms.rest.modelmapper;
 
 import com.rms.domain.sales.Customer;
 import com.rms.rest.dto.CustomerDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,5 +19,7 @@ public interface CustomerMapper {
 
     List<Customer> toCustomer(List<CustomerDto> customerDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateCustomerFromDto(CustomerDto customerDto, @MappingTarget Customer customer);
 }

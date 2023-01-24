@@ -12,8 +12,7 @@ public class TransactionDto extends GenericDto {
     private TransactionType transactionType;
     private Double amount;
     private LocalDate date;
-
-    private InvestorDto investorDto;
+    private InvestorDto investor;
 
 
 }

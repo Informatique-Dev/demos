@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class InstallmentService {
     private InstallmentRepository installmentRepository;
 
-    public Installment getById(Integer id) {
-        return installmentRepository.getOne(id);
+    public Optional<Installment> getById(Integer id) {
+        return installmentRepository.findById(id);
     }
 
     public List<Installment> getAll() {
@@ -35,6 +36,10 @@ public class InstallmentService {
 
     public List<Installment> save(List<Installment> installments) {
         return installmentRepository.saveAll(installments);
+    }
+
+    public void deleteById(Integer id) {
+        installmentRepository.deleteById(id);
     }
 
 

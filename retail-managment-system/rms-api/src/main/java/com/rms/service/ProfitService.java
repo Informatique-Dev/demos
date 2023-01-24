@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -16,8 +17,8 @@ public class ProfitService {
         return profitRepository.findAll();
     }
 
-    public Profit getById(Integer id) {
-        return profitRepository.getOne(id);
+    public Optional<Profit> getById(Integer id) {
+        return profitRepository.findById(id);
     }
 
     public List<Profit> getAll(Boolean calculated) {
@@ -26,6 +27,10 @@ public class ProfitService {
 
     public Profit save(Profit profit) {
         return profitRepository.save(profit);
+    }
+
+    public void deleteById(Integer id) {
+        profitRepository.deleteById(id);
     }
 
 }

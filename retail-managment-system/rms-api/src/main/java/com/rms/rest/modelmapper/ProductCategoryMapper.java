@@ -2,10 +2,7 @@ package com.rms.rest.modelmapper;
 
 import com.rms.domain.core.ProductCategory;
 import com.rms.rest.dto.ProductCategoryDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,5 +19,7 @@ public interface ProductCategoryMapper {
 
     List<ProductCategory> toProductCategory(List<ProductCategoryDto> productCategoryDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateProductCategoryFromDto(ProductCategoryDto productCategoryDto, @MappingTarget ProductCategory productCategory);
 }

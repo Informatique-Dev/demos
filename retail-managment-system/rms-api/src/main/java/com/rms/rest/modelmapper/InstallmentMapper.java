@@ -20,5 +20,7 @@ public interface InstallmentMapper {
 
     List<Installment> toInstallment(List<InstallmentDto> installmentDtos);
 
+    @InheritInverseConfiguration
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateInstallmentFromDto(InstallmentDto installmentDto, @MappingTarget Installment installment);
 }
