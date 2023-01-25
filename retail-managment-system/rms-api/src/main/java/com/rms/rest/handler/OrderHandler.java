@@ -99,7 +99,6 @@ public class OrderHandler {
         return installments;
     }
 
-    // Test Jenkins
     public ResponseEntity<?> deleteById(Integer id) {
         orderService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),id));
