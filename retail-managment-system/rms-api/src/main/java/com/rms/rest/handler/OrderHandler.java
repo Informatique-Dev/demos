@@ -99,6 +99,7 @@ public class OrderHandler {
         return installments;
     }
 
+    // TEST GENHINS
     public ResponseEntity<?> deleteById(Integer id) {
         orderService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),id));
