@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-lg sticky-top shadow-lg bg-black">
   <div class="container-fluid me-3 ms-3 w-100 ">
    
-    <button mat-icon-button class="side-nav-button d-lg-none">
+    <button mat-icon-button class="side-nav-button d-lg-none" (click)="clickMenu()">
       <mat-icon class="menu-icon mat-icon text-white  me-2">menu</mat-icon>
     </button>
+
+    <a class="navbar-brand fs-3 fw-bold m-10" (click)="openHome()"
+      >CANDI METER</a
+    >
 
     <div class="collapse navbar-collapse" id="main">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
