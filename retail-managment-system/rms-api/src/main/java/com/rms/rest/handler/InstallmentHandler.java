@@ -2,6 +2,7 @@ package com.rms.rest.handler;
 
 import com.rms.domain.investor.Transaction;
 import com.rms.domain.sales.Installment;
+import com.rms.domain.sales.Order;
 import com.rms.rest.dto.InstallmentDto;
 import com.rms.rest.exception.ErrorCodes;
 import com.rms.rest.exception.ResourceNotFoundException;
@@ -9,6 +10,7 @@ import com.rms.rest.exception.ResourceRelatedException;
 import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.InstallmentMapper;
 import com.rms.service.InstallmentService;
+import com.rms.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ import java.util.List;
 public class InstallmentHandler {
     private InstallmentService installmentService;
     private InstallmentMapper mapper;
+    private OrderService orderService;
 
     public ResponseEntity<?> getById(Integer id) {
         Installment installment = installmentService.getById(id)
@@ -43,6 +46,9 @@ public class InstallmentHandler {
 
     public ResponseEntity<?> add(InstallmentDto installmentDto) {
         Installment installment = mapper.toInstallment(installmentDto);
+        Order order = orderService.getById(installment.getOrder().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),installment.getOrder().getId()));
+        installment.setOrder(order);
         installmentService.save(installment);
         InstallmentDto dto = mapper.toInstallmentDto(installment);
         return ResponseEntity.ok(dto);
