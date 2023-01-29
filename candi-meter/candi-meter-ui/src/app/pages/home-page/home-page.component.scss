@@ -2,7 +2,7 @@ $main-color:red;
 $secondary-color: #b71a2a;
 $background-color: linear-gradient(
   177deg,
-  rgb(247, 117, 137) 29%,
+  rgb(247, 119, 185) 29%,
   rgba(255, 255, 255, 1) 100%
 );
 
@@ -12,26 +12,28 @@ $background-color: linear-gradient(
 }
 .land-container
 {
-    background-image: url('/assets/images/land.jpg');
+    background-image: url('/assets/images/interview-landing.jpg');
     background-size:cover;
-    height: 700px;  
+    background-position: center;
+    height: 752px;  
 }
 
 .pragraph {
    margin-top: 50px;
+   color: rgb(225, 13, 179);
+}
+.pra{
+    color:  rgb(161, 75, 128);
 }
 
 .img-card{
-    height: 500px;
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
 }
-
-.programes-container{
-    height: 700px;
-}
-
 
 .more-btn{
-    left: 40%;
+    left: 35%;
 }
 
 .card-img{

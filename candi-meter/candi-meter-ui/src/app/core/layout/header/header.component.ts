@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { SideBarComponent } from '../side-bar/side-bar.component';
@@ -8,15 +8,12 @@ import { SideBarComponent } from '../side-bar/side-bar.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() sideNavItem!: MatSidenav;
   sidebar!: SideBarComponent;
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
-  clickMenu() {
+   openSidebar() {
     this.sideNavItem.toggle();
   }
 

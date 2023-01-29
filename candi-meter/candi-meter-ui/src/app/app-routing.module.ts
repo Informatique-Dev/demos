@@ -4,7 +4,7 @@ import { RootComponent } from './core/layout/root/root.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'root', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   {
     path: '',
