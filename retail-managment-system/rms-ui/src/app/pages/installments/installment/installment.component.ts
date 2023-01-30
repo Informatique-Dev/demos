@@ -54,9 +54,9 @@ export class InstallmentComponent implements OnInit  {
     
      else
     {
-     this.installmentList = this.installmentList.filter(res => {
+     this.installmentList = this.installmentList.filter(resualt => {
       this.dataSource = new MatTableDataSource (this.installmentList)
-      return res.order.customer.fullName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase())
+      return resualt.order.customer.fullName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase())
     });
     
     }
