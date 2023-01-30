@@ -135,11 +135,13 @@
     "due-date": "تاريخ الاستحقاق",
     "payment-date": "تاريخ الدفع",
     "status": "الحاله",
+    "customerName":" اسم العميل",
     "required": "مطلوبة",
     "updated-successfuly": "تم تعديل القسط بنجاح",
     "added-successfuly": "تم اضافة القسط بنجاح",
     "delete-successfuly": "تم مسح القسط بنجاح",
-    "close": "اغلاق"
+    "close": "اغلاق",
+    "search": "بحث باسم العميل"
   },
   "profits": {
     "profits": "الارباح",

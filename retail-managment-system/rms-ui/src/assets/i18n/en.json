@@ -133,11 +133,13 @@
     "due-date": "Due Date",
     "payment-date": "Payment Date",
     "status": "Status",
+    "customerName":"customer Name",
     "required": "required",
     "updated-successfuly": "Installment Updated Successfuly!",
     "added-successfuly": "Installment Added Successfuly!",
     "delete-successfuly": "Installment Deleted Successfuly!",
-    "close": "close"
+    "close": "close",
+    "search":"Search By Name"
   },
   "profits": {
     "profits": "Profits",
