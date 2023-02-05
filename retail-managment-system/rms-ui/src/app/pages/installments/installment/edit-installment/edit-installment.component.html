@@ -6,7 +6,7 @@
         {{"installments.pay-installment" | translate}}
       </h3>
     </div>
-    <button class="close" (click)="close()">
+    <button class="close border-0" (click)="close()">
       <mat-icon class="fw-bold">close</mat-icon>
     </button>
     </div>
@@ -27,10 +27,10 @@
       </form>
     </div>
     <div class="actions pb-3 ps-1 mt-3 " [dir]="'reverse-direction' | translate">
-      <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+      <button class="btn me-3 text-white" (click)="onSubmit()" [disabled]="submit">
         {{"update" | translate}}
       </button>
-      <button class="btn me-3 " mat-button >
+      <button class="btn me-3 text-white" mat-button >
         {{"reset" | translate}}
       </button>
 </div>
