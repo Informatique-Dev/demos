@@ -13,6 +13,7 @@
   "enter-your-name": "الرجاء ادخال الاسم",
   "status": "الحاله",
   "direction": "rtl",
+  "reverse-direction":"ltr",
   "logout":"تسجيل الخروج",
 
   "sidebar": {
@@ -141,7 +142,9 @@
     "added-successfuly": "تم اضافة القسط بنجاح",
     "delete-successfuly": "تم مسح القسط بنجاح",
     "close": "اغلاق",
-    "search": "بحث باسم العميل"
+    "search": "بحث باسم العميل",
+    "pay-installment":"دفع الاقساط",
+    "enter-PaymentAmount":"الرجاء ادخال قيمةالدفع"
   },
   "profits": {
     "profits": "الارباح",

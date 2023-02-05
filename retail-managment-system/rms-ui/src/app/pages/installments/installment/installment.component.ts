@@ -4,6 +4,8 @@ import { Installment } from 'src/app/domain/installment/models/installment';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { EditInstallmentComponent } from './edit-installment/edit-installment.component';
 
 
 
@@ -14,6 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class InstallmentComponent implements OnInit  {
   installmentList:Installment[]=[];
+  currentData!: Installment;
   @ViewChild(MatSort) sort!: MatSort 
   dataSource!: MatTableDataSource<Installment>;
   searchText:string='';
@@ -25,13 +28,16 @@ export class InstallmentComponent implements OnInit  {
     'dueDate',
     'paymentDate',
     'status',
+    'actions',
   ];
 
   constructor(
     private installmentrepositry: InstallmentRepositry,
-    private translate: TranslateService
+    private dialog: MatDialog,
   ) {}
  
+
+
   ngOnInit(): void {
     this.getAllInstallments();
   }
@@ -44,7 +50,7 @@ export class InstallmentComponent implements OnInit  {
     });
   }
 
-
+ 
   search()
   {
     if (!this.searchText)
@@ -62,4 +68,12 @@ export class InstallmentComponent implements OnInit  {
     }
    
   }
+
+  openEditDialog(install : Installment) {
+     this.dialog.open(EditInstallmentComponent , {
+      data:install
+     }).afterClosed().subscribe(value =>{
+        this.getAllInstallments();
+     })
+    }
 }
