@@ -2,7 +2,9 @@ package com.rms.domain.sales;
 
 import com.rms.domain.common.AuditingEntity;
 import com.rms.domain.core.Employee;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "Orders")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order extends AuditingEntity {
 
     @Temporal(TemporalType.DATE)
@@ -41,8 +45,9 @@ public class Order extends AuditingEntity {
     @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "installment_id")
-    private List<Installment> installments;
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "installment_id")
+//    private List<Installment> installments;
+
 
 }

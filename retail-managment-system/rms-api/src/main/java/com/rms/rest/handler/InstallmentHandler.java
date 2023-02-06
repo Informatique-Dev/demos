@@ -44,6 +44,13 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dtos);
     }
 
+    public ResponseEntity<?> getAll()
+    {
+        List<Installment> installments = installmentService.getAll();
+        return ResponseEntity.ok(mapper.toInstallmentDto(installments));
+
+    }
+
     public ResponseEntity<?> add(InstallmentDto installmentDto) {
         Installment installment = mapper.toInstallment(installmentDto);
         Order order = orderService.getById(installment.getOrder().getId())

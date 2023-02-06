@@ -15,11 +15,19 @@ import org.springframework.web.bind.annotation.*;
 public class InstallmentController {
     private InstallmentHandler installmentHandler;
 
+//    @GetMapping
+//    @Operation(summary = "Get All", description = "this api for get all installments")
+//    public ResponseEntity<?> getAll() {
+//        return installmentHandler.getDueInstallments();
+//    }
+
+
     @GetMapping
     @Operation(summary = "Get All", description = "this api for get all installments")
     public ResponseEntity<?> getAll() {
-        return installmentHandler.getDueInstallments();
+        return installmentHandler.getAll();
     }
+
 
     @GetMapping("/{id}")
     @Operation(summary = "Get By Id", description = "this api for get installment by id")

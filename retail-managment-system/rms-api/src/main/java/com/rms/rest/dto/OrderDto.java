@@ -18,6 +18,6 @@ public class OrderDto extends GenericDto {
     private EmployeeDto employee;
     private CustomerDto customer;
     private List<OrderItemDto> orderItems;
-    private List<InstallmentDto> installments;
+  //  private List<InstallmentDto> installments;
 
 }
