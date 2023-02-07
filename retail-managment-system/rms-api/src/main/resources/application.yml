@@ -27,6 +27,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     #        default_schema: rms_core
+    format_sql: true
     show-sql: true
 
     mvc:

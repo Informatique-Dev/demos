@@ -1,5 +1,6 @@
 package com.rms.rest.dto;
 
+import com.rms.domain.sales.Order;
 import com.rms.rest.dto.common.GenericDto;
 import lombok.Data;
 
@@ -11,5 +12,7 @@ public class OrderItemDto extends GenericDto {
     private Integer quantity;
     private Short paymentType;
     private ProductDto product;
+
+    private OrderDto order;
 
 }
