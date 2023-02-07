@@ -16,9 +16,9 @@ spring:
     #hikari:
     #  connectionTimeout: 20000
     #  maximumPoolSize: 5
-    url: jdbc:postgresql://localhost:5432/rms
+    url: jdbc:postgresql://localhost:5432/motaheda
     username: postgres
-    password: 123
+    password: root
   jpa:
     hibernate:
       ddl-auto: none
