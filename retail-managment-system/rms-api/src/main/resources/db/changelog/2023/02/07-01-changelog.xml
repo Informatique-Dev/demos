@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1675761969162-1" author="Kariman (generated)">
+        <createTable tableName="bill_details">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bill_details"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="price" type="DOUBLE"/>
+            <column name="quantity" type="INT"/>
+            <column name="bill_id" type="INT"/>
+            <column name="product_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-2" author="Kariman (generated)">
+        <createTable tableName="bills">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bills"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="bill_no" type="VARCHAR(255)"/>
+            <column name="date" type="DATE"/>
+            <column name="recipient" type="VARCHAR(255)"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="supplier_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-3" author="Kariman (generated)">
+        <createTable tableName="customers">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customers"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="nick_name" type="VARCHAR(255)"/>
+            <column name="national_id" type="VARCHAR(255)"/>
+            <column name="primary_phone_no" type="VARCHAR(255)"/>
+            <column name="secondary_phone_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="version" type="INT"/>
+            <column name="customer_code" type="VARCHAR(255)"/>
+            <column name="trust_receipt_no" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-4" author="Kariman (generated)">
+        <createTable tableName="employees">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_employees"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="nick_name" type="VARCHAR(255)"/>
+            <column name="national_id" type="VARCHAR(255)"/>
+            <column name="primary_phone_no" type="VARCHAR(255)"/>
+            <column name="secondary_phone_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="version" type="INT"/>
+            <column name="job" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-5" author="Kariman (generated)">
+        <createTable tableName="installments">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_installments"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="installment_amount" type="DOUBLE"/>
+            <column name="payment_amount" type="DOUBLE"/>
+            <column name="due_date" type="DATE"/>
+            <column name="payment_date" type="DATE"/>
+            <column name="status" type="SMALLINT"/>
+            <column name="order_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-6" author="Kariman (generated)">
+        <createTable tableName="investors">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_investors"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)"/>
+            <column name="nick_name" type="VARCHAR(255)"/>
+            <column name="national_id" type="VARCHAR(255)"/>
+            <column name="primary_phone_no" type="VARCHAR(255)"/>
+            <column name="secondary_phone_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="version" type="INT"/>
+            <column name="investor_type" type="VARCHAR(255)"/>
+            <column name="balance" type="DOUBLE"/>
+            <column name="start_date" type="DATE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-7" author="Kariman (generated)">
+        <createTable tableName="order_items">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order_items"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="unit_price" type="DOUBLE"/>
+            <column name="quantity" type="INT"/>
+            <column name="payment_type" type="SMALLINT"/>
+            <column name="product_id" type="INT"/>
+            <column name="order_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-8" author="Kariman (generated)">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_orders"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="version" type="INT"/>
+            <column name="order_date" type="DATE"/>
+            <column name="payment_type" type="SMALLINT"/>
+            <column name="paid_amount" type="DOUBLE"/>
+            <column name="remaining_amount" type="DOUBLE"/>
+            <column name="installment_amount" type="DOUBLE"/>
+            <column name="employee_id" type="INT"/>
+            <column name="customer_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-9" author="Kariman (generated)">
+        <createTable tableName="product_categories">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_productcategories"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="status" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-10" author="Kariman (generated)">
+        <createTable tableName="products">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_products"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="model_no" type="VARCHAR(255)"/>
+            <column name="brand" type="VARCHAR(255)"/>
+            <column name="cash_price" type="DOUBLE"/>
+            <column name="quantity" type="INT"/>
+            <column name="category_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-11" author="Kariman (generated)">
+        <createTable tableName="profits">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profits"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="book_no" type="VARCHAR(255)"/>
+            <column name="profit_amount" type="DOUBLE"/>
+            <column name="date" type="DATE"/>
+            <column name="is_calculated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-12" author="Kariman (generated)">
+        <createTable tableName="stores">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_stores"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="responsible_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-13" author="Kariman (generated)">
+        <createTable tableName="suppliers">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_suppliers"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="contact_name" type="VARCHAR(255)"/>
+            <column name="primary_phone_no" type="VARCHAR(255)"/>
+            <column name="secondary_phone_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-14" author="Kariman (generated)">
+        <createTable tableName="transactions">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_transactions"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="transaction_type" type="VARCHAR(255)"/>
+            <column name="amount" type="DOUBLE"/>
+            <column name="date" type="DATE"/>
+            <column name="investor_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1675761969162-15" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="bills"
+                                 constraintName="FK_BILLS_ON_SUPPLIER" referencedColumnNames="id"
+                                 referencedTableName="suppliers"/>
+    </changeSet>
+    <changeSet id="1675761969162-16" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="bill_id" baseTableName="bill_details"
+                                 constraintName="FK_BILL_DETAILS_ON_BILL" referencedColumnNames="id"
+                                 referencedTableName="bills"/>
+    </changeSet>
+    <changeSet id="1675761969162-17" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="bill_details"
+                                 constraintName="FK_BILL_DETAILS_ON_PRODUCT" referencedColumnNames="id"
+                                 referencedTableName="products"/>
+    </changeSet>
+    <changeSet id="1675761969162-18" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="installments"
+                                 constraintName="FK_INSTALLMENTS_ON_ORDER" referencedColumnNames="id"
+                                 referencedTableName="orders"/>
+    </changeSet>
+    <changeSet id="1675761969162-19" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="orders"
+                                 constraintName="FK_ORDERS_ON_CUSTOMER" referencedColumnNames="id"
+                                 referencedTableName="customers"/>
+    </changeSet>
+    <changeSet id="1675761969162-20" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="orders"
+                                 constraintName="FK_ORDERS_ON_EMPLOYEE" referencedColumnNames="id"
+                                 referencedTableName="employees"/>
+    </changeSet>
+    <changeSet id="1675761969162-21" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_items"
+                                 constraintName="FK_ORDER_ITEMS_ON_ORDER" referencedColumnNames="id"
+                                 referencedTableName="orders"/>
+    </changeSet>
+    <changeSet id="1675761969162-22" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_items"
+                                 constraintName="FK_ORDER_ITEMS_ON_PRODUCT" referencedColumnNames="id"
+                                 referencedTableName="products"/>
+    </changeSet>
+    <changeSet id="1675761969162-23" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="products"
+                                 constraintName="FK_PRODUCTS_ON_CATEGORY" referencedColumnNames="id"
+                                 referencedTableName="product_categories"/>
+    </changeSet>
+    <changeSet id="1675761969162-24" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="responsible_id" baseTableName="stores"
+                                 constraintName="FK_STORES_ON_RESPONSIBLE" referencedColumnNames="id"
+                                 referencedTableName="employees"/>
+    </changeSet>
+    <changeSet id="1675761969162-25" author="Kariman (generated)">
+        <addForeignKeyConstraint baseColumnNames="investor_id" baseTableName="transactions"
+                                 constraintName="FK_TRANSACTIONS_ON_INVESTOR" referencedColumnNames="id"
+                                 referencedTableName="investors"/>
+    </changeSet>
+
+</databaseChangeLog>
