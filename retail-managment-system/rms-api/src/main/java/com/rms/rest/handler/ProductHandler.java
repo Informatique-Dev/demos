@@ -29,29 +29,29 @@ public class ProductHandler {
     public ResponseEntity<ProductDto> getById(Integer id) {
         Product product = productService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), id));
-        ProductDto dto = mapper.toProductDto(product);
+        ProductDto dto = mapper.toDto(product);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<List<ProductDto>> getAll() {
         List<Product> products = productService.getAll();
-        List<ProductDto> dtos = mapper.toProductDto(products);
+        List<ProductDto> dtos = mapper.toDto(products);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<List<ProductDto>> getByProductCategory(Integer catId) {
         List<Product> products = productService.getByProductCategory(catId);
-        List<ProductDto> dtos = mapper.toProductDto(products);
+        List<ProductDto> dtos = mapper.toDto(products);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<ProductDto> add(ProductDto productDto) {
         ProductCategory productCategory = productCategoryService.getById(productDto.getProductCategoryDto().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
-        Product product = mapper.toProduct(productDto);
+        Product product = mapper.toEntity(productDto);
         product.setProductCategory(productCategory);
         productService.save(product);
-        ProductDto dto = mapper.toProductDto(product);
+        ProductDto dto = mapper.toDto(product);
         return ResponseEntity.ok(dto);
     }
 
@@ -63,9 +63,9 @@ public class ProductHandler {
                     .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
             product.setProductCategory(productCategory);
         }
-        mapper.updateProductFromDto(productDto, product);
+        mapper.updateEntityFromDto(productDto, product);
         productService.save(product);
-        ProductDto dto = mapper.toProductDto(product);
+        ProductDto dto = mapper.toDto(product);
         return ResponseEntity.ok(dto);
     }
 

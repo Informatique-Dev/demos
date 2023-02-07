@@ -7,12 +7,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 @AllArgsConstructor
-@Tag(name = "Employees", description = "Rest Api for Employees")
+@Tag(name = "Employee", description = "Rest Api for Employee")
 public class EmployeeController {
 
     private EmployeeHandler employeeHandler;
@@ -43,20 +46,20 @@ public class EmployeeController {
 
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new employee")
-    public ResponseEntity<?> addEmployee(@RequestBody EmployeeDto employeeDto) {
-        return employeeHandler.addEmployee(employeeDto);
+    public ResponseEntity<?> save(@Valid @RequestBody EmployeeDto employeeDto) {
+        return employeeHandler.save(employeeDto);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update employee")
-    public ResponseEntity<?> updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
-        return employeeHandler.updateEmployee(employeeDto, id);
+    public ResponseEntity<?> update(@RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
+        return employeeHandler.update(employeeDto, id);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "delete employee By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return employeeHandler.deleteById(id);
+        return employeeHandler.delete(id);
     }
 
 }

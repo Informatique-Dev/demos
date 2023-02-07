@@ -24,30 +24,30 @@ public class ProductCategoryHandler {
 
     public ResponseEntity<List<ProductCategoryDto>> getAll() {
         List<ProductCategory> productCategories = productCategoryService.getAll();
-        List<ProductCategoryDto> dtos = mapper.toProductCategoryDto(productCategories);
+        List<ProductCategoryDto> dtos = mapper.toDto(productCategories);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<ProductCategoryDto> getById(Integer id) {
         ProductCategory productCategory = productCategoryService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(),id));
-        ProductCategoryDto dto = mapper.toProductCategoryDto(productCategory);
+        ProductCategoryDto dto = mapper.toDto(productCategory);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<ProductCategoryDto> add(ProductCategoryDto productCategoryDto) {
-        ProductCategory productCategory = mapper.toProductCategory(productCategoryDto);
+        ProductCategory productCategory = mapper.toEntity(productCategoryDto);
         productCategoryService.save(productCategory);
-        ProductCategoryDto dto = mapper.toProductCategoryDto(productCategory);
+        ProductCategoryDto dto = mapper.toDto(productCategory);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<ProductCategoryDto> update(ProductCategoryDto productCategoryDto, Integer id) {
         ProductCategory productCategory = productCategoryService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(),id));
-        mapper.updateProductCategoryFromDto(productCategoryDto, productCategory);
+        mapper.updateEntityFromDto(productCategoryDto, productCategory);
         productCategoryService.save(productCategory);
-        ProductCategoryDto dto = mapper.toProductCategoryDto(productCategory);
+        ProductCategoryDto dto = mapper.toDto(productCategory);
         return ResponseEntity.ok(dto);
     }
 

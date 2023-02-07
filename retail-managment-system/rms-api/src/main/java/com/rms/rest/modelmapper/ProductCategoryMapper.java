@@ -2,24 +2,13 @@ package com.rms.rest.modelmapper;
 
 import com.rms.domain.core.ProductCategory;
 import com.rms.rest.dto.ProductCategoryDto;
+import com.rms.rest.modelmapper.common.JPAEntityMapper;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface ProductCategoryMapper {
-    ProductCategoryMapper INSTANCE = Mappers.getMapper(ProductCategoryMapper.class);
+public interface ProductCategoryMapper extends JPAEntityMapper<ProductCategory , ProductCategoryDto> {
 
-    ProductCategoryDto toProductCategoryDto(ProductCategory productCategory);
-
-    List<ProductCategoryDto> toProductCategoryDto(List<ProductCategory> productCategories);
-
-    ProductCategory toProductCategory(ProductCategoryDto productCategoryDto);
-
-    List<ProductCategory> toProductCategory(List<ProductCategoryDto> productCategoryDtos);
-
-    @InheritInverseConfiguration
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateProductCategoryFromDto(ProductCategoryDto productCategoryDto, @MappingTarget ProductCategory productCategory);
 }

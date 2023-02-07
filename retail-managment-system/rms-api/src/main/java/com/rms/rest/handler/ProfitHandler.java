@@ -29,22 +29,22 @@ public class ProfitHandler {
 
     public ResponseEntity<List<ProfitDto>> getAll() {
         List<Profit> profits = profitService.getAll();
-        List<ProfitDto> dtos = mapper.toProfitDto(profits);
+        List<ProfitDto> dtos = mapper.toDto(profits);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<ProfitDto> getById(Integer id) {
         Profit profit = profitService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Profit.class.getSimpleName(), id));
-        ProfitDto dto = mapper.toProfitDto(profit);
+        ProfitDto dto = mapper.toDto(profit);
         return ResponseEntity.ok(dto);
     }
 
 
     public ResponseEntity<ProfitDto> addProfit(ProfitDto profitDto) {
-        Profit profit = mapper.toProfit(profitDto);
+        Profit profit = mapper.toEntity(profitDto);
         profitService.save(profit);
-        ProfitDto dto = mapper.toProfitDto(profit);
+        ProfitDto dto = mapper.toDto(profit);
         return ResponseEntity.ok(dto);
     }
 
@@ -79,9 +79,9 @@ public class ProfitHandler {
     public ResponseEntity<ProfitDto> updateProfit(ProfitDto profitDto, Integer id) {
         Profit profit = profitService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Profit.class.getSimpleName(), id));
-        mapper.updateProfitFromDto(profitDto, profit);
+        mapper.updateEntityFromDto(profitDto, profit);
         profitService.save(profit);
-        ProfitDto dto = mapper.toProfitDto(profit);
+        ProfitDto dto = mapper.toDto(profit);
         return ResponseEntity.ok(dto);
     }
 

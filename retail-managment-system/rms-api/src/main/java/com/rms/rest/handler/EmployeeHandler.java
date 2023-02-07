@@ -5,19 +5,19 @@ import com.rms.domain.sales.Customer;
 import com.rms.rest.dto.EmployeeDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
+import com.rms.rest.exception.ResourceAlreadyExistsException;
 import com.rms.rest.exception.ResourceNotFoundException;
 import com.rms.rest.exception.ResourceRelatedException;
-import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.EmployeeMapper;
-import com.rms.rest.modelmapper.PaginationMapper;
+import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -38,7 +38,7 @@ public class EmployeeHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
-    public ResponseEntity<EmployeeDto> getById(int id)
+    public ResponseEntity<?> getById(int id)
     {
         Employee employee =employeeService.getById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Employee.class.getSimpleName(),id));
@@ -46,15 +46,20 @@ public class EmployeeHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<EmployeeDto> addEmployee (EmployeeDto employeeDto)
+    public ResponseEntity<?> save (EmployeeDto employeeDto)
     {
+        Optional<String> existedNationalId = employeeService.findNationalId(employeeDto.getNationalId());
+        if(existedNationalId.isPresent()){
+            throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
+                    "NationalId", employeeDto.getNationalId(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
         Employee employee = mapper.toEntity(employeeDto);
         employeeService.save(employee);
         EmployeeDto dto = mapper.toDto(employee);
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<EmployeeDto> updateEmployee(EmployeeDto employeeDto , int id)
+    public ResponseEntity<?> update(EmployeeDto employeeDto , int id)
     {
         Employee employee =employeeService.getById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Employee.class.getSimpleName(),id));
@@ -64,18 +69,18 @@ public class EmployeeHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> deleteById (Integer id)
+    public ResponseEntity<?> delete (Integer id)
     {
-        employeeService.getById(id).orElseThrow(
+        Employee employee = employeeService.getById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Employee.class.getSimpleName(),id));
         try {
-            employeeService.deleteById(id);
+            employeeService.delete(employee);
         }
         catch (Exception exception)
         {
             throw new ResourceRelatedException(Customer.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
+        return ResponseEntity.noContent().build();
     }
 
 }

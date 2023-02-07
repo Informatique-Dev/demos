@@ -1,4 +1,4 @@
-package com.rms.rest.modelmapper;
+package com.rms.rest.modelmapper.common;
 
 
 import com.rms.rest.dto.common.PaginationDto;

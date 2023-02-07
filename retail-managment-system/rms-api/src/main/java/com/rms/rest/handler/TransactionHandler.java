@@ -27,14 +27,14 @@ public class TransactionHandler {
 
     public ResponseEntity<List<TransactionDto>> getAll() {
         List<Transaction> transactions = transactionService.getAll();
-        List<TransactionDto> dtos = mapper.toTransactionDto(transactions);
+        List<TransactionDto> dtos = mapper.toDto(transactions);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<TransactionDto> getById(Integer id) {
         Transaction transaction = transactionService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Transaction.class.getSimpleName(),id));
-        TransactionDto dto = mapper.toTransactionDto(transaction);
+        TransactionDto dto = mapper.toDto(transaction);
         return ResponseEntity.ok(dto);
     }
 
@@ -42,10 +42,10 @@ public class TransactionHandler {
     public ResponseEntity<TransactionDto> addTransaction(TransactionDto transactionDto) {
         Investor investor = investorService.getById(transactionDto.getInvestor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(),transactionDto.getInvestor().getId()));
-        Transaction transaction = mapper.toTransaction(transactionDto);
+        Transaction transaction = mapper.toEntity(transactionDto);
         transaction.setInvestor(investor);
         transactionService.save(transaction);
-        TransactionDto dto = mapper.toTransactionDto(transaction);
+        TransactionDto dto = mapper.toDto(transaction);
         return ResponseEntity.ok(dto);
     }
 
@@ -55,9 +55,9 @@ public class TransactionHandler {
         Investor investor = investorService.getById(transactionDto.getInvestor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(),transactionDto.getInvestor().getId()));
         transaction.setInvestor(investor);
-        mapper.updateTransactionFromDto(transactionDto, transaction);
+        mapper.updateEntityFromDto(transactionDto, transaction);
         transactionService.save(transaction);
-        TransactionDto dto = mapper.toTransactionDto(transaction);
+        TransactionDto dto = mapper.toDto(transaction);
         return ResponseEntity.ok(dto);
     }
 

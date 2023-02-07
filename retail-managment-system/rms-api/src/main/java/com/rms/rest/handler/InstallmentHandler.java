@@ -31,7 +31,7 @@ public class InstallmentHandler {
     public ResponseEntity<?> getById(Integer id) {
         Installment installment = installmentService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
-        InstallmentDto dto = mapper.toInstallmentDto(installment);
+        InstallmentDto dto = mapper.toDto(installment);
         return ResponseEntity.ok(dto);
     }
 
@@ -40,26 +40,26 @@ public class InstallmentHandler {
         LocalDate endDate = LocalDate.now();
         endDate = endDate.plusMonths(1);
         List<Installment> installments = installmentService.getDueInstallments(new Date(), Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()));
-        List<InstallmentDto> dtos = mapper.toInstallmentDto(installments);
+        List<InstallmentDto> dtos = mapper.toDto(installments);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<?> add(InstallmentDto installmentDto) {
-        Installment installment = mapper.toInstallment(installmentDto);
+        Installment installment = mapper.toEntity(installmentDto);
         Order order = orderService.getById(installment.getOrder().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),installment.getOrder().getId()));
         installment.setOrder(order);
         installmentService.save(installment);
-        InstallmentDto dto = mapper.toInstallmentDto(installment);
+        InstallmentDto dto = mapper.toDto(installment);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<?> update(InstallmentDto installmentDto, Integer id) {
         Installment installment = installmentService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
-        mapper.updateInstallmentFromDto(installmentDto, installment);
+        mapper.updateEntityFromDto(installmentDto, installment);
         installmentService.save(installment);
-        InstallmentDto dto = mapper.toInstallmentDto(installment);
+        InstallmentDto dto = mapper.toDto(installment);
         return ResponseEntity.ok(dto);
     }
 
