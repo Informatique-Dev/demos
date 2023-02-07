@@ -38,7 +38,6 @@ spring:
 #  change-log: classpath:db/changelog/db.changelog-master.xml
 #
 
-
   liquibase:
     enabled: true
     drop-first: false
