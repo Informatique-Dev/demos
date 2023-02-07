@@ -100,6 +100,7 @@ export class InvestorPageComponent implements OnInit {
       () => {
         this.submit = false;
       }
+     
     );
   }
 
