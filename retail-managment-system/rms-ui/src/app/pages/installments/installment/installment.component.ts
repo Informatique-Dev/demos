@@ -40,6 +40,7 @@ export class InstallmentComponent implements OnInit  {
 
   ngOnInit(): void {
     this.getAllInstallments();
+   
   }
 
   getAllInstallments(): void {
@@ -47,27 +48,22 @@ export class InstallmentComponent implements OnInit  {
       this.installmentList = result;
       this.dataSource = new MatTableDataSource (this.installmentList)
       this.dataSource.sort = this.sort
+      this.dataSource.filterPredicate = 
+      (data: Installment, filtersJson: string) => {
+          const matchFilter:any[] = [];
+          const filters = JSON.parse(filtersJson);
+          filters.forEach(filter => {
+            data[filter.id] = data.order.customer.fullName;
+            const val = data[filter.id] === null ? '' : data[filter.id];
+            matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+          });
+            return matchFilter.every(Boolean);
+        };
     });
   }
 
+
  
-  search()
-  {
-    if (!this.searchText)
-    {
-       this.getAllInstallments()
-    } 
-    
-     else
-    {
-     this.installmentList = this.installmentList.filter(resualt => {
-      this.dataSource = new MatTableDataSource (this.installmentList)
-      return resualt.order.customer.fullName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase())
-    });
-    
-    }
-   
-  }
 
   openEditDialog(install : Installment) {
      this.dialog.open(EditInstallmentComponent , {
@@ -76,4 +72,14 @@ export class InstallmentComponent implements OnInit  {
         this.getAllInstallments();
      })
     }
+
+    applyFilter(filterValue: string) {
+      const tableFilters :any []= [];
+      tableFilters.push({
+        id:'',
+        value: filterValue
+      });
+      this.dataSource.filter = JSON.stringify(tableFilters);
+    }
+  
 }

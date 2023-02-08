@@ -13,7 +13,7 @@
   <mat-icon class="print-icon position-relative fs-2 shadow-lg">print</mat-icon></button>
   
   <div class="search d-flex justify-content-start bg-danger">
-  <input matInput class="search-input ps-3 pe-3 bg-white shadow-lg" placeholder='{{ "installments.search" | translate }}'  [(ngModel)]="searchText" (input)="search()" >
+  <input matInput class="search-input ps-3 pe-3 bg-white shadow-lg" placeholder='{{ "installments.search" | translate }}' (keyup)="applyFilter($event.target.value)" >
   <mat-icon class="search-icon fw-bold text-white shadow-lg">search</mat-icon>
 </div>
 </div>
