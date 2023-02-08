@@ -18,7 +18,7 @@ public class EmployeeDto extends GenericDto {
     @Size(max = 60, message = "Nick Name's max length allowed is 60 characters", groups = {InsertValidation.class, UpdateValidation.class})
     private String nickName;
 
-    @NotBlank(message = "National id is mandatory",groups = {InsertValidation.class})
+    @NotBlank(message = "National id is mandatory",groups = {InsertValidation.class , UpdateValidation.class})
     @Size(min=14, max = 14, message = "National Id length allowed is 14 characters", groups = {InsertValidation.class, UpdateValidation.class})
     private String nationalId;
 
