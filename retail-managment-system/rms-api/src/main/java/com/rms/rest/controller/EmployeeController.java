@@ -3,6 +3,8 @@ package com.rms.rest.controller;
 
 import com.rms.rest.dto.EmployeeDto;
 import com.rms.rest.handler.EmployeeHandler;
+import com.rms.rest.validation.InsertValidation;
+import com.rms.rest.validation.UpdateValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -46,13 +48,14 @@ public class EmployeeController {
 
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new employee")
-    public ResponseEntity<?> save(@Valid @RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<?> save(@Validated(InsertValidation.class) @RequestBody EmployeeDto employeeDto) {
         return employeeHandler.save(employeeDto);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update employee")
-    public ResponseEntity<?> update(@RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@Validated (UpdateValidation.class)
+            @RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
         return employeeHandler.update(employeeDto, id);
     }
 

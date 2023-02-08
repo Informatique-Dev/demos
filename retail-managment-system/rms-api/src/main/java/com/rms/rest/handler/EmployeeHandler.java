@@ -63,6 +63,12 @@ public class EmployeeHandler {
     {
         Employee employee =employeeService.getById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Employee.class.getSimpleName(),id));
+        Optional<String> existedNationalId= employeeService.findNationalId(employeeDto.getNationalId());
+
+        if(existedNationalId.isPresent() && !employee.getId().equals(id)){
+            throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
+                    "NationalId", employeeDto.getNationalId(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
         mapper.updateEntityFromDto(employeeDto,employee);
         employeeService.save(employee);
         EmployeeDto dto=mapper.toDto(employee);
