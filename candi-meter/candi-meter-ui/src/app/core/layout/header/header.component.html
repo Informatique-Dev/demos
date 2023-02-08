@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg sticky-top shadow-lg bg-black">
+  <div class="container-fluid me-3 ms-3 w-100 ">
+   
+    <button mat-icon-button class="side-nav-button d-lg-none" (click)="openSidebar()">
+      <mat-icon class="menu-icon mat-icon text-white  me-2">menu</mat-icon>
+    </button>
+
+    <a class="navbar-brand fs-3 fw-bold m-10" (click)="openHome()"
+      >CANDI METER</a
+    >
+
+    <div class="collapse navbar-collapse" id="main">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+        <li class="nav-item">
+          <a mat-button class="nav-link  p-3 p-lg-3 text-uppercase " aria-current="page" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button class="nav-link p-2 p-lg-3 text-uppercase" href="#">Interview</a>
+        </li>
+        <li class="nav-item">
+          <a mat-button class="nav-link p-2 p-lg-3  text-uppercase " href="#">Practice</a>
+        </li>
+        <li  class="nav-item">
+          <a mat-button class="nav-link p-2 p-lg-3  text-uppercase" href="#" > Careers</a>
+        </li>           
+      </ul>
+       <div class="search ps-3 pe-3  d-none d-lg-block text-white mb-2">
+        <mat-icon>search</mat-icon>
+       </div>
+       <a class="btn ms-3 mt-1 d-none d-lg-block text-uppercase text-white" mat-raised-button  color="accent">sign up</a>
+    </div>
+  </div>
+</nav>

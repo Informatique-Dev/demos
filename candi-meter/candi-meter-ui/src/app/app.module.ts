@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ConfigService } from './core/services/config.service';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
+
+
+
 
 export function configServiceFactory(
   config:ConfigService
@@ -14,24 +21,15 @@ export function configServiceFactory(
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    CoreModule
-  ],
-  providers: [
-    ConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: configServiceFactory,
-      deps: [ConfigService],
-      multi: true,
-    },
-    SharedModule,
-    CoreModule
+    SharedModule, 
+    BrowserAnimationsModule,
+     CoreModule,
+  
   ],
   bootstrap: [AppComponent]
 })

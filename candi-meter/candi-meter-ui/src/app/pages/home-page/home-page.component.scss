@@ -1,0 +1,36 @@
+$main-color:red;
+$secondary-color: #b71a2a;
+$background-color: linear-gradient(
+  177deg,
+  rgb(247, 119, 185) 29%,
+  rgba(255, 255, 255, 1) 100%
+);
+
+.main {
+  background: $main-color;
+  background: $background-color;
+}
+.land-container
+{
+    background-image: url('/assets/images/interview-landing.jpg');
+    background-size:cover;
+    background-position: center;
+    height: 752px;  
+}
+
+.pragraph {
+   margin-top: 50px;
+   color: rgb(225, 13, 179);
+}
+.pra{
+    color:  rgb(161, 75, 128);
+}
+
+.img-card{
+    height: 400px;
+    border-radius: 20px;
+}
+
+.more-btn{
+    left: 35%;
+}

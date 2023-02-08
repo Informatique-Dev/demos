@@ -1,0 +1,33 @@
+.logo{
+height: 50px;
+}
+.nav-link
+{
+  color: white;
+  border-left: 1px solid rgba(249, 245, 245, 0.5) ;
+  font-size: 15px;
+}
+.side-nav-button{
+  width: 50px;
+}
+.menu-icon{
+  font-size: 50px;
+  width: 40px;
+}
+.navbar-brand{
+  color:rgb(245, 42, 164);
+  cursor: pointer;
+}
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover{
+  color:rgb(248, 71, 177);
+}
+.navbar .search{
+  border-left: 1px solid rgba(255, 255,255,0.5) ;
+  font-size: 45px;
+}
+.navbar .search  mat-icon{
+  font-size: 30px;
+}
