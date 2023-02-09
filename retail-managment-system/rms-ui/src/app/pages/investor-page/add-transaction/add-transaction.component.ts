@@ -43,7 +43,7 @@ export class AddTransactionComponent implements OnInit {
       id:[''],
       transactionType: ['',Validators.required],
       amount: ['',[Validators.required,Validators.min(1)]],
-      date:['',Validators.required],
+      date:[''],
       investor:this.formBuilder.group({
         id :[this.editData.id]
       })
@@ -76,6 +76,7 @@ export class AddTransactionComponent implements OnInit {
     this.transactionForm.markAllAsTouched();
     if (this.transactionForm.valid)
      {
+      this.transactionForm.controls['date'].setValue((new Date()).toISOString().substring(0,10))
        this.addTransaction();
       this.transactionForm.reset();
       this.dialog.closeAll()   

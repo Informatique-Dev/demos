@@ -16,14 +16,6 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
-            <mat-label>{{"transactions.date"|translate}}</mat-label>
-            <input matInput required type="date" formControlName="date">
-            <mat-error *ngIf="transactionForm.controls['date'].hasError('required')">
-              {{"transactions.date-required-msg" | translate}}
-              <strong> {{ "transactions.required" | translate }}</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
             <mat-label>{{"transactions.type"|translate}}</mat-label>
             <mat-select required formControlName="transactionType">
               <mat-option [value]="type" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
@@ -38,7 +30,7 @@
           <button class=" btn mx-1" color="blue" mat-raised-button (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
                   ? ("update" | translate)
                   : ("add" | translate)}}</button>
-          <button class=" btn mx-1" mat-raised-button color="blue" >
+          <button class=" btn mx-1" mat-raised-button color="blue" (click)="resetForm()" >
                   {{"clear" | translate}}</button>
         </div>
     </div>

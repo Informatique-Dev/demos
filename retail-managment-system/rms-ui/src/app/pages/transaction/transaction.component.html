@@ -7,27 +7,27 @@
       <table mat-table [dataSource]="allTransactions" class="col w-100">
 
         <ng-container matColumnDef="id">
-          <th class="text-center" mat-header-cell *matHeaderCellDef> {{'no'|translate}} </th>
+          <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef> {{'no'|translate}} </th>
           <td class="text-center" mat-cell *matCellDef="let i=index"> {{i+1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="investorName">
-          <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.investor-name"|translate}} </th>
+          <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef> {{"transactions.investor-name"|translate}} </th>
           <td class="text-center" mat-cell *matCellDef="let element"> {{element.investor.fullName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="type">
-          <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.type"|translate}} </th>
+          <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>{{"transactions.type"|translate}} </th>
           <td class="text-center" mat-cell *matCellDef="let element"> {{element.transactionType}} </td>
         </ng-container>
 
         <ng-container matColumnDef="amount">
-          <th class="text-center" mat-header-cell *matHeaderCellDef> {{"transactions.amount"|translate}} </th>
+          <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef> {{"transactions.amount"|translate}} </th>
           <td class="text-center" mat-cell *matCellDef="let element"> {{element.amount}} </td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-          <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.date"|translate}}</th>
+          <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>{{"transactions.date"|translate}}</th>
           <td class="text-center" mat-cell *matCellDef="let element"> {{element.date}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
