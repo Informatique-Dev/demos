@@ -3,7 +3,7 @@
           <h2 class="mat-headline">{{ "transactions.add-transaction" | translate }}</h2>
           <mat-icon class="close-form fw-bold" (click)="closeDialog()">close</mat-icon>
         </div>
-        <form class="" [formGroup]="transactionForm">
+        <form  [formGroup]="transactionForm">
           <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
             <mat-label>{{"transactions.amount"|translate}}</mat-label>
             <input type="number" matInput required formControlName="amount" placeholder="{{'transactions.amount-placeholder' | translate}}">
@@ -20,13 +20,9 @@
             <mat-select [(ngModel)]="!editData? deposit : type" [disabled]="!editData" formControlName="transactionType" >
               <mat-option  [value]="type" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="transactionForm.controls['transactionType'].hasError('required')">
-              {{"transactions.type-required-msg" | translate}}
-              <strong> {{ "transactions.required" | translate }}</strong>
-            </mat-error>
           </mat-form-field>
-          
         </form>
+
         <div class="w-100 px-2 d-flex justify-content-end"  [dir]="'reverse-direction' | translate">
           <button class=" btn mx-1" color="blue" mat-raised-button (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
                   ? ("update" | translate)
