@@ -29,8 +29,8 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Optional<String> findNationalId(String nationalId) {
-        return employeeRepository.checkNationalId(nationalId);
+    public Optional<Employee> findNationalId(String nationalId) {
+        return employeeRepository.findByNationalId(nationalId);
     }
 
     public void delete(Employee employee)

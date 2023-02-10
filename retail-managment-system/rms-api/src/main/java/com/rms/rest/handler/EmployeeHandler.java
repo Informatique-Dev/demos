@@ -48,7 +48,7 @@ public class EmployeeHandler {
 
     public ResponseEntity<?> save (EmployeeDto employeeDto)
     {
-        Optional<String> existedNationalId = employeeService.findNationalId(employeeDto.getNationalId());
+        Optional<Employee> existedNationalId = employeeService.findNationalId(employeeDto.getNationalId());
         if(existedNationalId.isPresent()){
             throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
                     "NationalId", employeeDto.getNationalId(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
@@ -59,20 +59,36 @@ public class EmployeeHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> update(EmployeeDto employeeDto , int id)
+    /*
+      public ResponseEntity<?> update(Integer id, CandidateDto dto) {
+        Candidate candidate = candidateService.getById(id).
+                orElseThrow(() -> new ResourceNotFoundException(Candidate.class.getSimpleName(), id));
+
+        Optional<Candidate> existedByNationalId = candidateService.getByNationalId(id,dto.getNationalId());
+        if(existedByNationalId.isPresent() && !existedByNationalId.get().getId().equals(id)){
+            throw new ResourceAlreadyExistsException(Candidate.class.getSimpleName(),
+                    "NationalId", dto.getNationalId(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
+        candidateMapper.updateEntityFromDto(dto, candidate);
+        candidate.setId(id);
+        candidateService.update(candidate);
+        return ResponseEntity.ok().build();
+    }*/
+    public ResponseEntity<?> update(Integer id,EmployeeDto employeeDto )
     {
         Employee employee =employeeService.getById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(Employee.class.getSimpleName(),id));
 
-        Optional<String> existedNationalId= employeeService.findNationalId(employeeDto.getNationalId());
+        Optional<Employee> existedNationalId= employeeService.findNationalId(employeeDto.getNationalId());
 
-        if(existedNationalId.isPresent() && !employee.getId().equals(id)){
+        if(existedNationalId.isPresent() && !existedNationalId.get().getId().equals(id)){
             throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
                     "NationalId", employeeDto.getNationalId(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
         }
-        Employee entity =mapper.updateEntityFromDto(employeeDto,employee);
-        employeeService.save(entity);
-        EmployeeDto dto=mapper.toDto(employee);
+        mapper.updateEntityFromDto(employeeDto,employee);
+        employee.setId(id);
+        employeeService.save(employee);
+        EmployeeDto dto= mapper.toDto(employee);
         return ResponseEntity.ok(dto);
     }
 

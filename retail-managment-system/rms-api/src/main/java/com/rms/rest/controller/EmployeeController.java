@@ -54,9 +54,11 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update employee")
-    public ResponseEntity<?> update(@Validated (UpdateValidation.class)
-            @RequestBody EmployeeDto employeeDto, @PathVariable Integer id) {
-        return employeeHandler.update(employeeDto, id);
+    public ResponseEntity<?> update(
+            @Validated (UpdateValidation.class)
+            @RequestBody EmployeeDto employeeDto,
+            @PathVariable Integer id) {
+        return employeeHandler.update(id , employeeDto);
     }
 
     @DeleteMapping("/{id}")
