@@ -34,8 +34,10 @@ export class EditInstallmentComponent implements OnInit {
   installmentForm() {
     this.installForm = this.formBuilder.group({
       id: [''],
+      installmentAmount:[''],
       paymentAmount: ['' , [Validators.required]], 
       paymentDate: [''],
+      status:['']
     });
   }
 
@@ -44,6 +46,7 @@ export class EditInstallmentComponent implements OnInit {
    if (this.editData)
    {
     this.installForm.controls['paymentAmount'].setValue(this.editData.paymentAmount)
+    this.installForm.controls['installmentAmount'].setValue(this.editData.installmentAmount)
    }
   }
 
@@ -66,6 +69,7 @@ export class EditInstallmentComponent implements OnInit {
     if (this.installForm.valid) {
       this.installForm.controls['id'].setValue(this.editData.id) ;
       this.installForm.controls['paymentDate'].setValue((new Date()).toISOString().substring(0,10))
+      this.setStatus();
          this.updateInstallment();
          this.installForm.reset();
          this.dialog.closeAll()       
@@ -74,6 +78,17 @@ export class EditInstallmentComponent implements OnInit {
 
   close(){
     this.dialog.closeAll()
+  }
+
+  setStatus()
+  {
+    if (this.installForm.controls['installmentAmount'].value=== this.installForm.controls['paymentAmount'].value)
+    {
+     this.installForm.controls['status'].setValue(1) ;
+    }
+    else{
+      this.installForm.controls['status'].setValue(0) ;
+    }
   }
 
 }

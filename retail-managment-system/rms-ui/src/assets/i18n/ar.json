@@ -144,7 +144,8 @@
     "close": "اغلاق",
     "search": "بحث باسم العميل",
     "pay-installment":"دفع الاقساط",
-    "enter-PaymentAmount":"الرجاء ادخال قيمةالدفع"
+    "enter-PaymentAmount":"الرجاء ادخال قيمةالدفع",
+    "pay":"دفع القسط"
   },
   "profits": {
     "profits": "الارباح",

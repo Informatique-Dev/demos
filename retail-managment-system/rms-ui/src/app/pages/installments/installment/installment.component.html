@@ -13,7 +13,7 @@
   <mat-icon class="print-icon position-relative fs-2 shadow-lg">print</mat-icon></button>
   
   <div class="search d-flex justify-content-start bg-danger">
-  <input matInput class="search-input ps-3 pe-3 bg-white shadow-lg" placeholder='{{ "installments.search" | translate }}' (keyup)="applyFilter($event.target.value)" >
+  <input matInput class="search-input ps-3 pe-3 bg-white shadow-lg" [(ngModel)]="searchText" placeholder='{{ "installments.search" | translate }}' (keyup)="applyFilter($event.target.value)" >
   <mat-icon class="search-icon fw-bold text-white shadow-lg">search</mat-icon>
 </div>
 </div>
@@ -66,7 +66,7 @@
           </ng-container>
 
           <ng-container matColumnDef="dueDate">
-            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6" mat-sort-header="" >
               {{ "installments.due-date" | translate }}
             </th>
             <td mat-cell *matCellDef="let element">{{ element.dueDate }}</td>
@@ -86,13 +86,16 @@
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
               {{ "installments.status" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+            <td mat-cell *matCellDef="let element" [ngSwitch]="element.status">
+            <div *ngSwitchCase="1">Paid</div>
+            <div *ngSwitchCase="0">Not Paid</div>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" class="update-icon">
-              <button class="btn table-button" (click)=" openEditDialog(element)">
+              <button class="btn table-button  border-0" (click)=" openEditDialog(element)" [disabled]="element.installmentAmount==element.paymentAmount">
                 <mat-icon>payment</mat-icon>
               </button>
             </td>

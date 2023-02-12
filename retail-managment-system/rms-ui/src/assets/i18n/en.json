@@ -142,7 +142,8 @@
     "close": "Close",
     "search":"Search By Name",
     "pay-installment":"Pay Inatallment",
-    "enter-PaymentAmount":"Enter paymentAmount Price "
+    "enter-PaymentAmount":"Enter paymentAmount Price ",
+    "pay": "Pay"
   },
   "profits": {
     "profits": "Profits",

@@ -1,11 +1,11 @@
-import { Component, OnInit , ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit , ViewChild } from '@angular/core';
 import { InstallmentRepositry } from 'src/app/domain/installment/installment.repositry';
 import { Installment } from 'src/app/domain/installment/models/installment';
-import { TranslateService } from '@ngx-translate/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { EditInstallmentComponent } from './edit-installment/edit-installment.component';
+
 
 
 
@@ -19,7 +19,8 @@ export class InstallmentComponent implements OnInit  {
   currentData!: Installment;
   @ViewChild(MatSort) sort!: MatSort 
   dataSource!: MatTableDataSource<Installment>;
-  searchText:string='';
+  transactionButton:boolean=false;
+  searchText!: string;
   displayedColumns: string[] = [
     'id',
     'customerName',
@@ -34,14 +35,15 @@ export class InstallmentComponent implements OnInit  {
   constructor(
     private installmentrepositry: InstallmentRepositry,
     private dialog: MatDialog,
-  ) {}
+  ) {
+  }
  
 
 
   ngOnInit(): void {
     this.getAllInstallments();
-   
   }
+
 
   getAllInstallments(): void {
     this.installmentrepositry.getList().subscribe((result) => {
@@ -60,16 +62,16 @@ export class InstallmentComponent implements OnInit  {
             return matchFilter.every(Boolean);
         };
     });
+   
   }
-
-
- 
-
+  
   openEditDialog(install : Installment) {
+    this.searchText='';
+    this.getAllInstallments();
      this.dialog.open(EditInstallmentComponent , {
       data:install
      }).afterClosed().subscribe(value =>{
-        this.getAllInstallments();
+      this.getAllInstallments();
      })
     }
 
