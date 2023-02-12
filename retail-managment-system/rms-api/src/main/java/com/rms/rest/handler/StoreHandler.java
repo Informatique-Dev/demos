@@ -29,17 +29,10 @@ public class StoreHandler {
 
     private PaginationMapper paginationMapper ;
 
-    public ResponseEntity<?> getAll(Integer page , Integer size) {
-        Page<Store> stores = storeService.getAll(page, size);
-        List<StoreDto> dtos = mapper.toDto(stores.getContent());
-        PaginatedResultDto<StoreDto> paginatedResultDto = new PaginatedResultDto<>();
-        paginatedResultDto.setData(dtos);
-        paginatedResultDto.setPagination(paginationMapper.toDto(stores));
-        return ResponseEntity.ok(paginatedResultDto);
-    }
 
-    public ResponseEntity<?> getStoreByResponsibleName(Integer page , Integer size , String responsible) {
-        Page<Store> stores = storeService.getStoreByResponsibleName(page,size,responsible);
+
+    public ResponseEntity<?> getAll(Integer page , Integer size , String responsible) {
+        Page<Store> stores = storeService.getAllByEmployeeName(page,size,responsible);
         List<StoreDto> storeDtoList = mapper.toDto(stores.getContent());
         PaginatedResultDto<StoreDto> paginatedResultDto = new PaginatedResultDto<>();
         paginatedResultDto.setData(storeDtoList);

@@ -14,12 +14,12 @@ import java.util.Optional;
 public class StoreService {
     private StoreRepository storeRepository ;
 
-    public Page<Store> getAll(Integer page , Integer size) {
-        return storeRepository.findAll(PageRequest.of(page,size));
-    }
-    public Page<Store> getStoreByResponsibleName(Integer page , Integer size, String responsible )
+//    public Page<Store> getAll(Integer page , Integer size) {
+//        return storeRepository.findAll(PageRequest.of(page,size));
+//    }
+    public Page<Store> getAllByEmployeeName(Integer page , Integer size, String responsible )
     {
-        return  storeRepository.findStoreByResponsible(responsible , PageRequest.of(page,size));
+        return  storeRepository.findAll(responsible , PageRequest.of(page,size));
     }
 
 

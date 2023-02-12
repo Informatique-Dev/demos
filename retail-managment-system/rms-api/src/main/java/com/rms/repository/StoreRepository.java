@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store , Integer> {
+    @Query(value = "SELECT s FROM Store s inner JOIN FETCH s.responsible v WHERE v.fullName= :responsible OR :responsible IS NULL ",
+            countQuery = "SELECT COUNT(s) FROM Store s WHERE s.responsible.fullName= :responsible OR :responsible IS NULL")
 
-    @Query( value = "SELECT s FROM Store s INNER JOIN FETCH s.responsible v WHERE v.fullName = :responsible",
-            countQuery ="SELECT count(s) FROM Store s WHERE s.responsible.fullName = :responsible")
-    public Page<Store> findStoreByResponsible(@Param("responsible") String responsible , Pageable pageable);
+    public Page<Store> findAll(@Param("responsible") String responsible , Pageable pageable);
 }

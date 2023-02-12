@@ -17,21 +17,15 @@ public class StoreController {
     private StoreHandler storeHandler ;
 
 
-    @GetMapping
-    @Operation(summary = "Get All", description = "this api for get all store")
-    public ResponseEntity getAll(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
-                                 @RequestParam (value = "size" , defaultValue = "10") Integer size)
-    {
-        return storeHandler.getAll(page,size);
-    }
 
-    @GetMapping("/getStoresByResponsibleName")
+
+    @GetMapping
     @Operation(summary = "Get All Stores by Employee Name", description = "this api for get all stores by employee name")
-    public ResponseEntity getStoreByResponsibleName(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
+    public ResponseEntity getAll(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
                                                     @RequestParam (value = "size" , defaultValue = "10") Integer size ,
-                                                    @RequestParam(value ="responsible")   String responsible)
+                                                    @RequestParam(value ="responsible" , required = false)   String responsible)
     {
-        return storeHandler.getStoreByResponsibleName(page, size, responsible);
+        return storeHandler.getAll(page, size, responsible);
     }
 
 
