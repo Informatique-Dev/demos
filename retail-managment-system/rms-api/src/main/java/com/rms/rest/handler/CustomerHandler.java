@@ -30,37 +30,37 @@ public class CustomerHandler {
 
     public ResponseEntity<List<CustomerDto>> getAll() {
         List<Customer> customers = customerService.getAll();
-        List<CustomerDto> dtos = mapper.toCustomerDto(customers);
+        List<CustomerDto> dtos = mapper.toDto(customers);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<CustomerDto> getById(Integer id) {
         Customer customer = customerService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
-        CustomerDto dto = mapper.toCustomerDto(customer);
+        CustomerDto dto = mapper.toDto(customer);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<?> getCustomerInstallments(Integer id) {
         List<Installment> installments = installmentService.getCustomerInstallments(id);
-        List<InstallmentDto> installmentDtos = installmentMapper.toInstallmentDto(installments);
+        List<InstallmentDto> installmentDtos = installmentMapper.toDto(installments);
 
         return ResponseEntity.ok(installmentDtos);
     }
 
     public ResponseEntity<CustomerDto> addCustomer(CustomerDto customerDto) {
-        Customer customer = mapper.toCustomer(customerDto);
+        Customer customer = mapper.toEntity(customerDto);
         customerService.save(customer);
-        CustomerDto dto = mapper.toCustomerDto(customer);
+        CustomerDto dto = mapper.toDto(customer);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<CustomerDto> updateCustomer(CustomerDto customerDto,Integer id) {
         Customer customer = customerService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
-        mapper.updateCustomerFromDto(customerDto, customer);
+        mapper.updateEntityFromDto(customerDto, customer);
         customerService.save(customer);
-        CustomerDto dto = mapper.toCustomerDto(customer);
+        CustomerDto dto = mapper.toDto(customer);
         return ResponseEntity.ok(dto);
     }
 

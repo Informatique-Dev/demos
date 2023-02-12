@@ -40,11 +40,11 @@ public class OrderHandler {
 
     public ResponseEntity<?> getAll() {
         List<Order> orders = orderService.getAll();
-        return ResponseEntity.ok(mapper.toOrderDto(orders));
+        return ResponseEntity.ok(mapper.toDto(orders));
     }
 
     public ResponseEntity<?> add(OrderDto orderDto) {
-        Order order = mapper.toOrder(orderDto);
+        Order order = mapper.toEntity(orderDto);
         Customer customer = customerService.getById(orderDto.getCustomer().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),order.getCustomer().getId()));
         List<OrderItem> items = new ArrayList<>();
@@ -68,7 +68,7 @@ public class OrderHandler {
         System.out.println("after save");
         if (!installments.isEmpty())
             installmentService.save(installments);
-        OrderDto dto = mapper.toOrderDto(order);
+        OrderDto dto = mapper.toDto(order);
 //        dto.setInstallments(installmentMapper.toInstallmentDto(installments));
         return ResponseEntity.ok(dto);
     }

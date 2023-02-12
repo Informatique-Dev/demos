@@ -25,31 +25,31 @@ public class InvestorHandler {
 
     public ResponseEntity<List<InvestorDto>> getAll() {
         List<Investor> investors = investorService.getAll();
-        List<InvestorDto> dtos = mapper.toInvestorDto(investors);
+        List<InvestorDto> dtos = mapper.toDto(investors);
         return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<InvestorDto> getById(Integer id) {
         Investor investor = investorService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(), id));
-        InvestorDto dto = mapper.toInvestorDto(investor);
+        InvestorDto dto = mapper.toDto(investor);
         return ResponseEntity.ok(dto);
     }
 
 
     public ResponseEntity<InvestorDto> addInvestor(InvestorDto investorDto) {
-        Investor investor = mapper.toInvestor(investorDto);
+        Investor investor = mapper.toEntity(investorDto);
         investorService.save(investor);
-        InvestorDto dto = mapper.toInvestorDto(investor);
+        InvestorDto dto = mapper.toDto(investor);
         return ResponseEntity.ok(dto);
     }
 
     public ResponseEntity<InvestorDto> updateInvestor(InvestorDto investorDto, Integer id) {
         Investor investor = investorService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Investor.class.getSimpleName(), id));
-        mapper.updateInvestorFromDto(investorDto, investor);
+        mapper.updateEntityFromDto(investorDto, investor);
         investorService.save(investor);
-        InvestorDto dto = mapper.toInvestorDto(investor);
+        InvestorDto dto = mapper.toDto(investor);
         return ResponseEntity.ok(dto);
     }
 
