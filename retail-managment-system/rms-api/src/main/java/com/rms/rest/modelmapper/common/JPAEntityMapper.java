@@ -12,16 +12,16 @@ import java.util.List;
 
 public interface JPAEntityMapper <T extends JPAEntity , S extends GenericDto>
 {
-    T toEntity(S s);
+   T toEntity(S s);
 
-    S toDto(T t);
+     S toDto(T t);
 
-    List<T> toEntity(List<S> dtoList);
+     List<T> toEntity(List<S> dtoList);
 
-    List<S> toDto(List<T> dtoList);
+     List<S> toDto(List<T> dtoList);
 
     @InheritInverseConfiguration
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 
-    T updateEntityFromDto(S s, @MappingTarget T t);
+     T updateEntityFromDto(S s, @MappingTarget T t);
 }
