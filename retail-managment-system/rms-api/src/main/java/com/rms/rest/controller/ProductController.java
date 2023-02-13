@@ -9,16 +9,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/product")
 @AllArgsConstructor
 @Tag(name = "Product", description = "Rest Api For Product")
 public class ProductController {
     private ProductHandler productHandler;
 
+
+
     @GetMapping
-    @Operation(summary = "Get All", description = "this api for get all products")
-    public ResponseEntity<?> getAll() {
-        return productHandler.getAll();
+    @Operation(summary = "Get All", description = "this api for get all product")
+    public ResponseEntity<?> getAll(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                    @RequestParam (value = "size" , defaultValue = "10") Integer size) {
+        return productHandler.getAll(page,size);
     }
 
     @GetMapping("/{id}")
@@ -28,13 +31,13 @@ public class ProductController {
     }
 
     @PostMapping
-    @Operation(summary = "Add", description = "this api for add products")
-    public ResponseEntity<?> add(@RequestBody ProductDto product) {
-        return productHandler.add(product);
+    @Operation(summary = "Add", description = "this api for add product")
+    public ResponseEntity<?> save(@RequestBody ProductDto product) {
+        return productHandler.save(product);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update", description = "this api for update products")
+    @Operation(summary = "Update", description = "this api for update product")
     public ResponseEntity<?> update(@RequestBody ProductDto productDto, @PathVariable Integer id) {
         return productHandler.update(productDto, id);
     }
@@ -42,6 +45,6 @@ public class ProductController {
     @DeleteMapping("/{id}")
     @Operation(summary = "delete product By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return productHandler.deleteById(id);
+        return productHandler.delete(id);
     }
 }

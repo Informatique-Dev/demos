@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/category")
 @AllArgsConstructor
 @Tag(name = "Product Category", description = "Rest Api For Product Category")
 public class ProductCategoryController {
@@ -26,9 +26,10 @@ public class ProductCategoryController {
     }
 
     @GetMapping
-    @Operation(summary = "Get All", description = "this api for get all product categories")
-    public ResponseEntity<?> getAll() {
-        return productCategoryHandler.getAll();
+    @Operation(summary = "Get All", description = "this api for get all category")
+    public ResponseEntity<?> getAll(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                    @RequestParam (value = "size" , defaultValue = "10") Integer size) {
+        return productCategoryHandler.getAll(page , size);
     }
 
     @GetMapping("/{id}/products")
@@ -40,7 +41,7 @@ public class ProductCategoryController {
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new product category")
     public ResponseEntity<?> add(@Valid @RequestBody ProductCategoryDto productCategoryDto) {
-        return productCategoryHandler.add(productCategoryDto);
+        return productCategoryHandler.save(productCategoryDto);
     }
 
     @PutMapping("/{id}")
@@ -52,6 +53,6 @@ public class ProductCategoryController {
     @DeleteMapping("/{id}")
     @Operation(summary = "delete product category By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return productCategoryHandler.deleteById(id);
+        return productCategoryHandler.delete(id);
     }
 }
