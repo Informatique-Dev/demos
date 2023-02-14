@@ -15,8 +15,8 @@ import java.util.Optional;
 public class ProductCategoryService {
     private ProductCategoryRepository productCategoryRepository;
 
-    public Page<ProductCategory> getAll(Integer page , Integer sizeI) {
-        return productCategoryRepository.findAll(PageRequest.of(page , sizeI));
+    public Page<ProductCategory> getAll(Integer page , Integer size) {
+        return productCategoryRepository.findAll(PageRequest.of(page , size));
     }
 
     public Optional<ProductCategory> getById(Integer id) {
