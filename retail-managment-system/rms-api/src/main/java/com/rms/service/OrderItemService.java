@@ -5,6 +5,9 @@ import com.rms.repository.OrderItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class OrderItemService {
@@ -13,6 +16,20 @@ public class OrderItemService {
 
     public OrderItem save(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
+    }
+
+    public Optional<OrderItem> getById(Integer id) {
+        return orderItemRepository.findById(id);
+    }
+
+    public List<OrderItem> getAll() {
+        return orderItemRepository.findAll();
+    }
+
+
+
+    public void delete(OrderItem orderItem) {
+        orderItemRepository.delete(orderItem);
     }
 
 }
