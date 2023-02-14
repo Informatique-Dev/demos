@@ -11,8 +11,6 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee , Integer> {
 
-//    @Query(value = "Select u.nationalId FROM Employee u WHERE u.nationalId= :nationalId ")
-//    Optional<Employee> checkNationalId(@Param("nationalId") String nationalId);
 @Query(value = "SELECT e FROM Employee e WHERE e.nationalId= :nationalId ")
 Optional<Employee> findByNationalId( @Param("nationalId") String nationalId);
 }

@@ -11,8 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @EntityGraph("Product.categories")
-    List<Product> findAll();
+
 
     @Query("select p from Product p where p.productCategory.id=:catId")
     List<Product> getByProductCategory(@Param("catId") Integer catId);
