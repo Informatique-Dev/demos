@@ -24,7 +24,8 @@
     "customers": "Customers",
     "categories": "Categories",
     "products": "Products",
-    "profits": "Profits"
+    "profits": "Profits",
+    "employees": "Employees"
   },
   "home-page": {
     "order": "Order",
@@ -35,6 +36,7 @@
     "categories": "Categories",
     "products": "Products",
     "profits": "Profits",
+    "employee":"Employees",
     "home-content": " If you’re reading this, you’ve probably been tasked with creatingan Arabic website or landing page. ",
 
     "no-of-orders": " No of Orders ",
@@ -91,6 +93,8 @@
     "code": "Code",
     "national-id": "National-ID",
     "address": "Address",
+    "job": "Job",
+    "employee": "Employee",
     "receipt-no": "  Trust Receipt No ",
     "primrary-phone": "Primrary Number",
     "secondary-phone": "Secondry Number",
@@ -163,7 +167,7 @@
     "serverErrorMessage": "Error 500: An error occurred communicating with the server, please try again!",
     "close": "Close"
   },
-    
+
     "logIn":{
       "Sign":"Sign Into Your Account",
       "Email":"Email",
@@ -177,7 +181,7 @@
       "email-error":"Email is Not Found!",
       "password-error":"Password is Not correct!",
       "close":"Close"
-      
+
     },
     "transactions":{
       "transaction":"Transaction",

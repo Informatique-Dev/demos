@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map} from 'rxjs/operators';
 import { SettingsService } from './settings.service';
 
 @Injectable({
@@ -90,4 +90,18 @@ export abstract class ResourceService<T> {
         })
       );
   }
+
+  findAll(page:number,size:number): Observable<any>{
+ let params =new HttpParams()
+ params=params.append('page',String(page));
+ params=params.append('size',String(size));
+    return this.httpClient.get(`${this.APIUrl}/?${params.toString()}`)
+    .pipe(
+      map((json:any) => json),
+      catchError((err) => {
+        throw Error(err.message)
+      })
+    );
+      }
 }
+

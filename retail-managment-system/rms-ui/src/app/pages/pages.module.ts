@@ -13,6 +13,7 @@ import { InstallmentComponent } from './installments/installment/installment.com
 import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
+import { EmployeeComponent } from './employee/employee/employee.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
   { path: 'transaction', component: TransactionComponent },
+  { path: 'employee', component: EmployeeComponent },
 
 
 ];
@@ -38,9 +40,10 @@ const routes: Routes = [
     InvestorPageComponent,
     InstallmentComponent,
     TransactionComponent,
-   
+    EmployeeComponent,
+
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
- 
+
 })
 export class PagesModule {}
