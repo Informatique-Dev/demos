@@ -14,6 +14,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
 import { EditInstallmentComponent } from './installments/installment/edit-installment/edit-installment.component';
+import { ReceiptComponent } from './installments/installment/edit-installment/receipt/receipt.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,7 @@ const routes: Routes = [
     InstallmentComponent,
     TransactionComponent,
     EditInstallmentComponent,
-   
+    ReceiptComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
  

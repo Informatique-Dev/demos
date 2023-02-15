@@ -1,10 +1,12 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InstallmentRepositry } from 'src/app/domain/installment/installment.repositry';
 import { Installment } from 'src/app/domain/installment/models/installment';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+
+
 
 
 
@@ -17,7 +19,8 @@ export class EditInstallmentComponent implements OnInit {
   installForm!: FormGroup;
   isButtonVisible!: boolean;
   submit: boolean = false;
- 
+  paymentAmount!: number;
+  paymentDate!: Date;
  constructor(private installmentrepositry: InstallmentRepositry,
   private formBuilder : FormBuilder,
   private _snackBar: MatSnackBar,
@@ -47,6 +50,9 @@ export class EditInstallmentComponent implements OnInit {
    {
     this.installForm.controls['paymentAmount'].setValue(this.editData.paymentAmount)
     this.installForm.controls['installmentAmount'].setValue(this.editData.installmentAmount)
+    this.paymentAmount = this.installForm.controls['paymentAmount'].value
+    this.installForm.controls['paymentDate'].setValue(this.editData.paymentDate)
+    this.paymentDate=this.installForm.controls['paymentDate'].value
    }
   }
 
@@ -54,27 +60,31 @@ export class EditInstallmentComponent implements OnInit {
     this.isButtonVisible = true;
     this.submit = true;
     this.installmentrepositry.update(this.installForm.value).subscribe(() => {
+     this.clickButton();
+      this.dialog.closeAll();
     this.submit = false;
       this._snackBar.open(this.translate.instant('installments.updated-successfuly'),this.translate.instant('installments.close'), {
         duration: 2000,
-      });
+      })
     },
     () => {
-      this.submit = false;
-    });
+      this.submit=false
+    })
   }
 
-  onSubmit() {
+  onSubmit()  {
     this.installForm.markAllAsTouched();
     if (this.installForm.valid) {
       this.installForm.controls['id'].setValue(this.editData.id) ;
       this.installForm.controls['paymentDate'].setValue((new Date()).toISOString().substring(0,10))
+      this.paymentAmount = this.installForm.controls['paymentAmount'].value
+      this.paymentDate = this.installForm.controls['paymentDate'].value ;
       this.setStatus();
-         this.updateInstallment();
-         this.installForm.reset();
-         this.dialog.closeAll()       
-    }
+      this.updateInstallment()
+      this.installForm.reset(); 
+    } 
   }
+
 
   close(){
     this.dialog.closeAll()
@@ -89,6 +99,11 @@ export class EditInstallmentComponent implements OnInit {
     else{
       this.installForm.controls['status'].setValue(0) ;
     }
+    
   }
 
+ clickButton(){
+   const btn = document.getElementById('print')
+   btn?.click() 
+ } 
 }

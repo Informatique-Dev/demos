@@ -9,6 +9,7 @@ import { EditInstallmentComponent } from './edit-installment/edit-installment.co
 
 
 
+
 @Component({
   selector: 'app-installment',
   templateUrl: './installment.component.html',
@@ -21,6 +22,7 @@ export class InstallmentComponent implements OnInit  {
   dataSource!: MatTableDataSource<Installment>;
   transactionButton:boolean=false;
   searchText!: string;
+  print : boolean = false
   displayedColumns: string[] = [
     'id',
     'customerName',
@@ -66,12 +68,11 @@ export class InstallmentComponent implements OnInit  {
   }
   
   openEditDialog(install : Installment) {
-    this.searchText='';
-    this.getAllInstallments();
      this.dialog.open(EditInstallmentComponent , {
       data:install
-     }).afterClosed().subscribe(value =>{
-      this.getAllInstallments();
+     }).beforeClosed().subscribe(value =>{
+      this.searchText='';
+      this.getAllInstallments()
      })
     }
 
@@ -83,5 +84,22 @@ export class InstallmentComponent implements OnInit  {
       });
       this.dataSource.filter = JSON.stringify(tableFilters);
     }
-  
+
+  setDate(install : Installment)
+  {
+    var dueDate = new Date(install.dueDate)
+    var payDate =new Date(install.paymentDate)
+    var theSameDay = new Date()
+   if (((dueDate .getDate()-3)== theSameDay.getDate() ||
+   (dueDate .getDate()-2)== theSameDay.getDate() || 
+   (dueDate .getDate()-1)== theSameDay.getDate() ||
+   (dueDate .getDate())== theSameDay.getDate()||
+   dueDate.getDate() > payDate.getDate()) && install.installmentAmount!=install.paymentAmount)
+   {
+    return true
+   }
+   else {
+    return false
+   }
+  }
 }

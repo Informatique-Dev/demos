@@ -58,6 +58,10 @@ td {
   padding-left: 10px;
 }
 
+.warning{
+  color: red;
+}
+
 
 @media print {
 .update-icon, .table-button ,.function-btn {
@@ -70,4 +74,7 @@ td {
   border-bottom: 1px solid black;
 }
 }
+
+
+
 

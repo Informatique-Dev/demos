@@ -2,7 +2,7 @@
 <div class="content mb-1"  [dir]="'direction' | translate" >
   <div class=" d-flex justify-content-start justify-content-between">
     <div class="panel-heading  ps-1 mb-1">
-      <h3 class="panel-title w-100 text-center fw-bold">
+      <h3 class="panel-title w-100 text-center fw-bold fs-1">
         {{"installments.pay-installment" | translate}}
       </h3>
     </div>
@@ -27,10 +27,18 @@
       </form>
     </div>
     <div class="actions pb-3 ps-1 mt-3 " [dir]="'reverse-direction' | translate">
-      <button class="btn me-3 text-white" (click)="onSubmit()" [disabled]="submit">
+      <button  class="btn me-3 text-white" (click)="onSubmit()" [disabled]="submit" >
         {{"installments.pay" | translate}}
+      </button>
+                                                                                          
+      <button [useExistingCss]="true" id="print" class="btn me-3 text-white d-none"   printSectionId="print-receipt" ngxPrint >
+        <mat-icon>print</mat-icon>
       </button>
 </div>
 </div>
+ <div class="print" id="print-receipt">
+  <app-receipt [install]="editData" [payAmount]="paymentAmount" [payDate]="paymentDate"></app-receipt>
+</div>
+
 
 

@@ -35,7 +35,7 @@
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
               {{ "no" | translate }}.
             </th>
-            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }} </td>
           </ng-container>
 
           <ng-container matColumnDef="customerName">
@@ -89,15 +89,21 @@
             <td mat-cell *matCellDef="let element" [ngSwitch]="element.status">
             <div *ngSwitchCase="1">Paid</div>
             <div *ngSwitchCase="0">Not Paid</div>
+            <div *ngSwitchDefault>Not Paid</div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" class="update-icon">
-              <button class="btn table-button  border-0" (click)=" openEditDialog(element)" [disabled]="element.installmentAmount==element.paymentAmount">
+              <button class="btn table-button  border-0" (click)=" openEditDialog(element)" [disabled]="element.installmentAmount==element.paymentAmount" >
                 <mat-icon>payment</mat-icon>
               </button>
+              
+              <button class="btn table-button  border-0">
+                <mat-icon [hidden]="!setDate(element)" class="warning">warning</mat-icon>
+              </button>
+             
             </td>
           </ng-container>
   
@@ -110,5 +116,4 @@
   </div>
     </div>
   </div>
-
 
