@@ -11,7 +11,6 @@ export class LoaderService {
     this.isLoading = isLoading
   }
   getLoading():boolean{
-    console.log(this.isLoading)
     return this.isLoading
   }
 }
