@@ -24,13 +24,13 @@ public class OrderController {
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new order")
     public ResponseEntity<?> add(@RequestBody OrderDto order) {
-        return orderHandler.add(order);
+        return orderHandler.save(order);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "delete order By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return orderHandler.deleteById(id);
+        return orderHandler.delete(id);
     }
 
 }

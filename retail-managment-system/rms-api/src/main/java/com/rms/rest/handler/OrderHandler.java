@@ -1,5 +1,6 @@
 package com.rms.rest.handler;
 
+import com.rms.domain.core.Employee;
 import com.rms.domain.core.Product;
 import com.rms.domain.investor.Transaction;
 import com.rms.domain.sales.Customer;
@@ -7,6 +8,7 @@ import com.rms.domain.sales.Installment;
 import com.rms.domain.sales.Order;
 import com.rms.domain.sales.OrderItem;
 import com.rms.rest.dto.OrderDto;
+import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.dto.ProductDto;
 import com.rms.rest.exception.ErrorCodes;
 import com.rms.rest.exception.ResourceNotFoundException;
@@ -32,6 +34,7 @@ import java.util.List;
 public class OrderHandler {
     private OrderService orderService;
     private CustomerService customerService;
+    private  EmployeeService employeeService;
     private ProductService productService;
     private InstallmentService installmentService;
     private OrderMapper mapper;
@@ -43,31 +46,37 @@ public class OrderHandler {
         return ResponseEntity.ok(mapper.toDto(orders));
     }
 
-    public ResponseEntity<?> add(OrderDto orderDto) {
-        Order order = mapper.toEntity(orderDto);
+    public ResponseEntity<OrderDto> save(OrderDto orderDto) {
         Customer customer = customerService.getById(orderDto.getCustomer().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),order.getCustomer().getId()));
-        List<OrderItem> items = new ArrayList<>();
-        for (OrderItem item : order.getOrderItems()) {
-            Product product = productService.getById(item.getProduct().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),item.getProduct().getId()));
-            item.setProduct(product);
-            items.add(item);
-        }
-        System.out.println("items array = "+items);
-        order.setOrderItems(items);
+                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),orderDto.getCustomer().getId()));
+        Employee employee = employeeService.getById(orderDto.getEmployee().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(),orderDto.getEmployee().getId()));
+
+        Order order = mapper.toEntity(orderDto);
+
+        //  List<OrderItem> items = new ArrayList<>();
+//        for (OrderItem item : order.getOrderItems()) {
+//            Product product = productService.getById(item.getProduct().getId())
+//                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),item.getProduct().getId()));
+//            item.setProduct(product);
+//           // items.add(item);
+//        }
+////        System.out.println("items array = "+items);
+////        order.setOrderItems(items);
         order.setCustomer(customer);
+        order.setEmployee(employee);
+        //  order.setOrderItems(items);
         order.setOrderDate(new Date());
-        List<Installment> installments = new ArrayList<>();
-        System.out.println("installments");
-        if (order.getPaymentType().equals((short) 2)) {
-            installments = addInstallments(order);
-        }
+//        List<Installment> installments = new ArrayList<>();
+//        System.out.println("installments");
+//        if (order.getPaymentType().equals((short) 2)) {
+//            installments = addInstallments(order);
+//        }
         System.out.println("before save");
         orderService.save(order);
         System.out.println("after save");
-        if (!installments.isEmpty())
-            installmentService.save(installments);
+//        if (!installments.isEmpty())
+//            installmentService.save(installments);
         OrderDto dto = mapper.toDto(order);
 //        dto.setInstallments(installmentMapper.toInstallmentDto(installments));
         return ResponseEntity.ok(dto);
@@ -100,11 +109,11 @@ public class OrderHandler {
     }
 
     // TEST GENHINS
-    public ResponseEntity<?> deleteById(Integer id) {
-        orderService.getById(id)
+    public ResponseEntity<?> delete(Integer id) {
+       Order order= orderService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),id));
         try {
-            orderService.deleteById(id);
+            orderService.delete(order);
         } catch (Exception exception) {
             throw new ResourceRelatedException(Order.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }
