@@ -78,15 +78,15 @@ export class InvestorPageComponent implements OnInit {
   }
   onSubmit() {
     this.investorForm.markAllAsTouched();
-    this.submit = true;
     if (this.investorForm.valid) {
+      this.investorForm.controls['startDate'].setValue((new Date()).toISOString().substring(0,10))
       this.investorForm.controls['id'].value
         ? this.updateInvestors()
         : this.addInvestors();
-      this.investorForm.reset();
-    } else if (this.investorForm.invalid) {
-      return;
-    }
+       this.investorForm.reset();
+      
+    } 
+    
   }
 
   addInvestors() {
@@ -102,6 +102,7 @@ export class InvestorPageComponent implements OnInit {
             duration: 2000,
           }
         );
+        this.dialog.open(AddTransactionComponent)
       },
       () => {
         this.submit = false;
@@ -162,7 +163,7 @@ export class InvestorPageComponent implements OnInit {
     this.clearTheForm();
   }
 
-  openTransaction(investor : Investors){
+  openTransactionDialog(investor : Investors){
     this.dialog.open(AddTransactionComponent , {
       data:investor
      }).afterClosed().subscribe(value =>{
