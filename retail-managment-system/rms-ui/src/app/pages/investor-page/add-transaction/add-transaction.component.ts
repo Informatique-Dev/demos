@@ -19,9 +19,9 @@ import { InvestorsRepository } from 'src/app/domain/investors/investor.repositor
 export class AddTransactionComponent implements OnInit {
   transactionForm!: FormGroup
   allTransactions : Transaction[] = []
+  currentData!: Transaction
   transactionTypeEnum = Object.values(TransactionType)
   displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
-  currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
   allInvestors: Investors[] = [];
