@@ -8,6 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Investors } from 'src/app/domain/investors/models/investor';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
 
+
+
+
 @Component({
   selector: 'app-add-transaction',
   templateUrl: './add-transaction.component.html',
@@ -18,6 +21,7 @@ export class AddTransactionComponent implements OnInit {
   allTransactions : Transaction[] = []
   transactionTypeEnum = Object.values(TransactionType)
   displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
+  currentData!: Transaction
   isButtonVisible: boolean = true
   submit: boolean = false;
   allInvestors: Investors[] = [];
@@ -119,5 +123,7 @@ export class AddTransactionComponent implements OnInit {
   closeDialog(){
     this.dialog.closeAll();
   }
+
+ 
 
 }
