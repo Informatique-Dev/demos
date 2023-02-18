@@ -6,6 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Investors } from 'src/app/domain/investors/models/investor';
+import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
+
+
 
 
 @Component({
@@ -18,9 +21,13 @@ export class AddTransactionComponent implements OnInit {
   allTransactions : Transaction[] = []
   transactionTypeEnum = Object.values(TransactionType)
   displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
-  currentData!: Transaction
+  currentData!: Transaction; 
   isButtonVisible: boolean = true
   submit: boolean = false;
+  allInvestors: Investors[] = [];
+  lastId!: Number;
+  deposit!: any;
+  type : any;
   
   constructor(
     private transactionRepository : TransactionRepository,
@@ -28,24 +35,26 @@ export class AddTransactionComponent implements OnInit {
     private snackBar: MatSnackBar,
     private translate : TranslateService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA)
-  public editData: Investors,
-  ) {}
+    private investorsRepository: InvestorsRepository,
+    @Inject(MAT_DIALOG_DATA) public editData: Investors,
+  ) { this.deposit=TransactionType.deposit 
+        this.type= TransactionType}
+
 
   ngOnInit(): void {
     this.getAllTransactions()
     this.TransactionForm()
-   
+    this.getAllInvestors() 
   }
 
   TransactionForm(){
     this.transactionForm = this.formBuilder.group({
       id:[''],
-      transactionType: ['',Validators.required],
+      transactionType: [''],
       amount: ['',[Validators.required,Validators.min(1)]],
       date:[''],
       investor:this.formBuilder.group({
-        id :[this.editData.id]
+        id :['']
       })
     })
   } 
@@ -55,6 +64,18 @@ export class AddTransactionComponent implements OnInit {
       this.allTransactions = data
     })
   }
+
+  getAllInvestors(): void {
+    this.investorsRepository.getList().subscribe((result: any) => {
+      this.allInvestors = result;
+     
+      const investorsIds = this.allInvestors.map(ele =>{
+        return ele.id
+      })
+      this.lastId = Math.max(...investorsIds);   
+    });
+  }
+
   
   addTransaction(){
     this.isButtonVisible = true;
@@ -73,15 +94,23 @@ export class AddTransactionComponent implements OnInit {
   }
 
   onSubmit() {
-    this.transactionForm.markAllAsTouched();
     if (this.transactionForm.valid)
      {
       this.transactionForm.controls['date'].setValue((new Date()).toISOString().substring(0,10))
-       this.addTransaction();
-      this.transactionForm.reset();
-      this.dialog.closeAll()   
+      if (this.editData)
+      {
+        this.transactionForm.get('investor.id')?.setValue(this.editData.id)
+        this.addTransaction();
+        this.transactionForm.reset();
+        this.dialog.closeAll()
+      }else if (!this.editData) {
+        this.transactionForm.get('investor.id')?.setValue(this.lastId)
+        this.addTransaction();
+        this.transactionForm.reset();
+        this.dialog.closeAll()
+      }
+      } 
     }
-  }
 
   resetForm() {
     this.transactionForm.controls['id'].value
@@ -95,5 +124,7 @@ export class AddTransactionComponent implements OnInit {
   closeDialog(){
     this.dialog.closeAll();
   }
+
+ 
 
 }
