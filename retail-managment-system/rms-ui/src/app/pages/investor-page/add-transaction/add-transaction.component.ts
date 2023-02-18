@@ -21,7 +21,6 @@ export class AddTransactionComponent implements OnInit {
   allTransactions : Transaction[] = []
   transactionTypeEnum = Object.values(TransactionType)
   displayedColumns: string[] = ['id','investorName','type','amount','date','edit-icon' ,'delete-icon'];
-  currentData!: Transaction; 
   isButtonVisible: boolean = true
   submit: boolean = false;
   allInvestors: Investors[] = [];
