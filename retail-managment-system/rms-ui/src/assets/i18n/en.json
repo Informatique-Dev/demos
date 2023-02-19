@@ -134,7 +134,7 @@
     "due-date": "Due Date",
     "payment-date": "Payment Date",
     "status": "Status",
-    "customerName":"customer Name",
+    "customer-name":"customer Name",
     "required": "required",
     "updated-successfuly": "Installment Updated Successfuly!",
     "added-successfuly": "Installment Added Successfuly!",
