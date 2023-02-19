@@ -2,8 +2,8 @@
   min-height: 820px;
 }
 .content {
-position: relative;
- height: 650px;
+
+ height: 500px;
  }
 .btn {
   background-color: #002d40;
@@ -35,7 +35,9 @@ td {
 .mat-column-id {
   min-width: 60px;
 }
-
+.mat-column-fullName {
+  min-width: 90px;
+}
 .mat-column-nickName {
   min-width: 90px;
 }
@@ -47,22 +49,22 @@ td {
 }
 
 .mat-column-secondaryPhoneNo {
-  min-width: 145px;
+  min-width: 125px;
+}
+.mat-column-primaryPhoneNo {
+  min-width: 115px;
 }
 .mat-column-address {
-  min-width: 100px;
+  min-width: 90px;
 }
-.mat-column-trustReceiptNo {
-  min-width: 125px;
+.mat-column-job {
+  min-width: 50px;
 }
 .mat-column-actions {
   min-width: 125px;
 }
 
-.pagination
+.mat-paginator
 {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  color: #002d40 !important;
 }

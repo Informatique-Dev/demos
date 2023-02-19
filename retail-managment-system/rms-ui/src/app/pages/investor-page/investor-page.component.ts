@@ -69,7 +69,7 @@ export class InvestorPageComponent implements OnInit {
   }
   getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
-      this.allInvestors = result;
+      this.allInvestors = result.data;
     });
   }
   onSubmit() {

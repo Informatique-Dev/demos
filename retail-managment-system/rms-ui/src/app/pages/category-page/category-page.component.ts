@@ -46,7 +46,7 @@ export class CategoryPageComponent implements OnInit {
   }
   getAllCategory(): void {
     this.categorRepository.getList().subscribe((result: any) => {
-      this.allCategory = result;
+      this.allCategory = result.data;
     });
   }
   onSubmit() {

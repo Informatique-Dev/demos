@@ -1,9 +1,9 @@
+import { response } from './../models/response';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
 import { SettingsService } from './settings.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,9 +24,9 @@ export abstract class ResourceService<T> {
     return json;
   }
 
-  getList(p: {} = {}): Observable<T[]> {
+  getList(p: {} = {}): Observable<response<T>> {
     const params = new HttpParams({ fromObject: p });
-    return this.httpClient.get<T[]>(`${this.APIUrl}?${params.toString()}`).pipe(
+    return this.httpClient.get<response<T>>(`${this.APIUrl}?${params.toString()}`).pipe(
       map((list) => list),
       catchError((err) => {
         throw new Error(err.message);
@@ -34,10 +34,10 @@ export abstract class ResourceService<T> {
     );
   }
 
-  getListById(url: string, p: {} = {}): Observable<any> {
+  getListById(url: string, p: {} = {}): Observable<response<T>> {
     const params = new HttpParams({ fromObject: p });
     return this.httpClient
-      .get<T>(`${this.APIUrl}/${url}?${params.toString()}`)
+      .get<response<T>>(`${this.APIUrl}/${url}?${params.toString()}`)
       .pipe(
         map((list) => list),
         catchError((err) => {
@@ -91,7 +91,7 @@ export abstract class ResourceService<T> {
       );
   }
 
-  findAll(page:number,size:number): Observable<any>{
+  findAll(page:number,size:number): Observable<response<T>>{
  let params =new HttpParams()
  params=params.append('page',String(page));
  params=params.append('size',String(size));

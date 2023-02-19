@@ -49,7 +49,7 @@ export class ProductComponent implements OnInit {
 
   getAllProducts(): void {
     this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result;
+      this.allProducts = result.data;
     });
   }
 
@@ -115,7 +115,7 @@ export class ProductComponent implements OnInit {
 
   getAllTempCat(): void {
     this.categoryRepository.getList().subscribe((result) => {
-      this.categories = result;
+      this.categories = result.data;
     });
   }
 

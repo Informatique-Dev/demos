@@ -1,4 +1,3 @@
-import { DataEmployee } from './../../../domain/employee/models/employee';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
@@ -9,14 +8,16 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { Employee } from 'src/app/domain/employee/models/employee';
 import { map } from 'rxjs';
+import { Pagination } from 'src/app/core/models/pagination';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent implements OnInit  {
-  dataSource!:Employee ;
-   pageEvent!:PageEvent;
+export class EmployeeComponent implements OnInit {
+  dataSource: Employee[] = [];
+  paginationEmployee!: Pagination
+  pageEvent!: PageEvent;
   employeeForm!: FormGroup;
   submit: boolean = false;
   currentData!: Employee;
@@ -33,32 +34,37 @@ export class EmployeeComponent implements OnInit  {
     'actions',
   ];
   constructor(
-    private employeesRepository:EmployeeRepository,
+    private employeesRepository: EmployeeRepository,
     private build: FormBuilder,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog,
     private translate: TranslateService
-  ) {}
+  ) { }
 
- ngOnInit() {
-this.employeeDataForm();
-this.initDataSort()
+  ngOnInit() {
+    this.employeeDataForm();
+    this.getAllEmployee()
+    this.pagination()
   }
 
-  initDataSort(){
-    this.employeesRepository.findAll(0,10).pipe(
-   map((employeeData:Employee)=>this.dataSource=employeeData)).subscribe((result) => {
-    this.dataSource=result
+  getAllEmployee() {
+    this.employeesRepository.getList().subscribe((result) => {
+      this.dataSource = result.data;
+    });
+  }
+
+  pagination() {
+    this.employeesRepository.getList().subscribe((result) => {
+      this.paginationEmployee = result.pagination;
+    });
+  }
+  onPaginationChange(event: PageEvent) {
+    let page = event.pageIndex;
+    let size = event.pageSize;
+    this.employeesRepository.findAll(page, size).pipe(
+      map((employeeData) => employeeData)).subscribe((result) => {
+        this.dataSource = result.data
       })
-  }
-
-  onPaginationChange(event:PageEvent){
-   let page = event.pageIndex;
-   let size = event.pageSize;
-   this.employeesRepository.findAll(page,size).pipe(
-  map((employeeData:Employee)=>this.dataSource=employeeData)).subscribe((result) => {
-  this.dataSource=result
-    })
   }
   employeeDataForm() {
     this.employeeForm = this.build.group({
@@ -95,10 +101,10 @@ this.initDataSort()
     this.submit = true;
     this.employeesRepository.update(this.employeeForm.value).subscribe(
       () => {
-        this.initDataSort();
+        this.getAllEmployee();
         this.submit = false;
         this._snackBar.open(
-          this.translate.instant('employee.updated-successfuly'),
+          this.translate.instant('employee updated-successfuly'),
           this.translate.instant('close'),
           {
             duration: 2000,
@@ -116,10 +122,10 @@ this.initDataSort()
     this.submit = true;
     this.employeesRepository.add(this.employeeForm.value).subscribe(
       () => {
-        this.initDataSort();
+        this.getAllEmployee();
         this.submit = false;
         this._snackBar.open(
-          this.translate.instant('employee.added-successfuly'),
+          this.translate.instant('employee added-successfuly'),
           this.translate.instant('close'),
           {
             duration: 2000,
@@ -151,7 +157,7 @@ this.initDataSort()
     this.employeeForm.reset();
   }
 
-  openConfirmationDialog(employee: DataEmployee) {
+  openConfirmationDialog(employee: Employee) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 'yes') {
@@ -160,13 +166,13 @@ this.initDataSort()
     });
   }
 
-  deleteEmployee(employee:DataEmployee) {
+  deleteEmployee(employee: Employee) {
 
     this.employeesRepository.delete(employee.id).subscribe(() => {
-      this.initDataSort();
+      this.getAllEmployee();
       this._snackBar.open(
-        this.translate.instant('Employee.delete-successfuly'),
-        this.translate.instant('Employee.close'),
+        this.translate.instant('Employee delete-successfuly'),
+        this.translate.instant('Employee close'),
         {
           duration: 2000,
         }

@@ -22,7 +22,7 @@ export class InstallmentComponent implements OnInit  {
   submit: boolean = false;
   currentData!: Installment;
   isButtonVisible: boolean = true;
-  @ViewChild(MatSort) sort!: MatSort 
+  @ViewChild(MatSort) sort!: MatSort
   dataSource!: MatTableDataSource<Installment>;
   displayedColumns: string[] = [
     'id',
@@ -41,7 +41,7 @@ export class InstallmentComponent implements OnInit  {
     private dialog: MatDialog,
     private translate: TranslateService
   ) {}
- 
+
   ngOnInit(): void {
     this.getAllInstallments();
     this.installmentForm();
@@ -49,7 +49,7 @@ export class InstallmentComponent implements OnInit  {
 
   getAllInstallments(): void {
     this.installmentrepositry.getList().subscribe((result) => {
-      this.installmentList = result;
+      this.installmentList = result.data;
       this.dataSource = new MatTableDataSource (this.installmentList)
       this.dataSource.sort = this.sort
     });

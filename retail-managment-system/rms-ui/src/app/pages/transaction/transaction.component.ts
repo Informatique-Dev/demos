@@ -34,7 +34,6 @@ export class TransactionComponent implements OnInit {
     private dialog: MatDialog,
     private translate : TranslateService
     ) {
-    
   }
 
   ngOnInit(): void {
@@ -42,7 +41,7 @@ export class TransactionComponent implements OnInit {
     this.getInvestorData()
     this.TransactionForm()
   }
-  
+
   TransactionForm(){
     this.transactionForm = this.fb.group({
       id:[''],
@@ -58,10 +57,10 @@ export class TransactionComponent implements OnInit {
       this.allTransactions = data
     })
   }
-  
+
   getInvestorData(){
     this.investorsRepository.getList().subscribe(data => {
-      this.investorNames = data      
+      this.investorNames = data.data
     });
   }
 

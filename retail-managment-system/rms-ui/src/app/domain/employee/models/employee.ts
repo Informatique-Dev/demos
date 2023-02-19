@@ -1,16 +1,4 @@
 export interface Employee {
-  data:DataEmployee[]
-   pagination:{
-    currentPage:number;
-    itemCount:number;
-    size:number;
-    totalPages:number;
-
-   }
-
-}
-export interface DataEmployee {
-
   id: number;
   version: number;
   fullName: string;
@@ -20,4 +8,5 @@ export interface DataEmployee {
   secondaryPhoneNo: string;
   address: string;
   job: string;
+
 }
