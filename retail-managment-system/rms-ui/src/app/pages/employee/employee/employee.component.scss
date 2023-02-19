@@ -2,8 +2,9 @@
   min-height: 820px;
 }
 .content {
-  height: 600px;
-}
+position: relative;
+ height: 650px;
+ }
 .btn {
   background-color: #002d40;
   color: white;
@@ -56,4 +57,12 @@ td {
 }
 .mat-column-actions {
   min-width: 125px;
+}
+
+.pagination
+{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

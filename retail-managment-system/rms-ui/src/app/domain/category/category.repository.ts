@@ -7,6 +7,6 @@ import { Category } from './models/category';
 })
 export class CategoryRepository extends ResourceService<Category> {
   getResourceUrl(): string {
-    return 'categories';
+    return 'category';
   }
 }

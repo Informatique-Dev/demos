@@ -104,16 +104,17 @@
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
         </table>
-        <mat-paginator [length]="dataSource.pagination.itemCount"
-         [pageSize]="dataSource.pagination.size"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        (page)="pageEvent=$event;onPaginationChange($event)"
-        showFirstLastButtons
-        pageIndex=""
-        aria-label="Select page"
-        class="fw-bold fs-6">
-       </mat-paginator>
+        <mat-paginator [length]="dataSource?.pagination?.itemCount"
+          [pageSize]="dataSource.pagination.size"
+          [pageSizeOptions]="[5, 10]"
+          (page)="pageEvent=$event;onPaginationChange($event)"
+          showFirstLastButtons
+          pageIndex=""
+          aria-label="Select page"
+          class="fw-bold fs-6 pagination ">
+          </mat-paginator>
 
       </div>
 
@@ -135,7 +136,7 @@
           </h3>
 
         </div>
-        <section>
+        <div>
 
           <div class="panel-body">
             <form [formGroup]="employeeForm">
@@ -349,8 +350,15 @@
               }}
             </button>
           </div>
-        </section>
+        </div>
+      </div>
+      <div class="">
+
+
       </div>
     </div>
+
   </div>
+
 </div>
+

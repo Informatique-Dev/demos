@@ -10,7 +10,7 @@ export class ProductRepository extends ResourceService<Product> {
     super(httpClient);
   }
   getResourceUrl(): string {
-    return 'products';
+    return 'product';
   }
 
   toServerModel(entity: Product): any {

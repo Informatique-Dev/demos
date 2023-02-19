@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { Employee } from 'src/app/domain/employee/models/employee';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -56,7 +56,6 @@ this.initDataSort()
    let page = event.pageIndex;
    let size = event.pageSize;
    this.employeesRepository.findAll(page,size).pipe(
-   tap(data =>console.log(data)),
   map((employeeData:Employee)=>this.dataSource=employeeData)).subscribe((result) => {
   this.dataSource=result
     })
