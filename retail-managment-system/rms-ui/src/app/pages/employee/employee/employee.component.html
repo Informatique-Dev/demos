@@ -21,12 +21,12 @@
           <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "customrs.full-name" | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.fullName }} </mat-cell>
         </ng-container>
-    
+
         <ng-container matColumnDef="nickName">
           <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "customrs.nick-name" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">{{ element.nickName }} </mat-cell>
         </ng-container>
-      
+
         <ng-container matColumnDef="nationalId">
           <mat-header-cell *matHeaderCellDef   class="fw-bold fs-6">   {{ "customrs.national-id" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.nationalId }}</mat-cell>
@@ -50,11 +50,11 @@
           <mat-header-cell *matHeaderCellDef  class="fw-bold fs-6"> {{ 'customrs.job' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.job }}</mat-cell>
         </ng-container>
-        
+
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef> </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            
+
             <button class="btn table-button" (click)="fetchData(element)">
               <mat-icon>edit</mat-icon>
             </button>
@@ -69,10 +69,10 @@
         <mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
       </mat-table>
-    
+
         <mat-paginator [length]="paginationEmployee?.itemCount"
           [pageSize]="paginationEmployee?.size"
-          [pageSizeOptions]="[5, 10,20]"
+          [pageSizeOptions]="[5, 10,25,100]"
           (page)="pageEvent=$event;onPaginationChange($event)"
           showFirstLastButtons
           aria-label="Select page"
@@ -314,10 +314,6 @@
             </button>
           </div>
         </div>
-      </div>
-      <div class="">
-
-
       </div>
     </div>
 

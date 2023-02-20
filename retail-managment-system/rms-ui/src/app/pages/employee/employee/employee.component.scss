@@ -35,35 +35,23 @@ td {
 .mat-column-id {
   min-width: 60px;
 }
-.mat-column-fullName {
-  min-width: 90px;
+.mat-column-fullName,.mat-column-nickName {
+  min-width: 70px;
 }
-.mat-column-nickName {
-  min-width: 90px;
-}
-.mat-column-customerCode {
+
+.mat-column-job {
   min-width: 50px;
 }
-.mat-column-nationalId {
+.mat-column-nationalId,.mat-column-secondaryPhoneNo,.mat-column-actions {
   min-width: 125px;
 }
 
-.mat-column-secondaryPhoneNo {
-  min-width: 125px;
-}
 .mat-column-primaryPhoneNo {
   min-width: 115px;
 }
 .mat-column-address {
   min-width: 90px;
 }
-.mat-column-job {
-  min-width: 50px;
-}
-.mat-column-actions {
-  min-width: 125px;
-}
-
 .mat-paginator
 {
   color: #002d40 !important;
