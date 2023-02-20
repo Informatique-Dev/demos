@@ -4,12 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-
-
-import {
-  Investors,
-  InvestorTypes,
-} from './../../domain/investors/models/investor';
+import { Investors, InvestorTypes,} from './../../domain/investors/models/investor';
 import { TranslateService } from '@ngx-translate/core';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 
@@ -84,9 +79,7 @@ export class InvestorPageComponent implements OnInit {
         ? this.updateInvestors()
         : this.addInvestors();
        this.investorForm.reset();
-      
     } 
-    
   }
 
   addInvestors() {
@@ -107,7 +100,6 @@ export class InvestorPageComponent implements OnInit {
       () => {
         this.submit = false;
       }
-     
     );
   }
 
@@ -130,11 +122,13 @@ export class InvestorPageComponent implements OnInit {
       }
     );
   }
+
   resetForm(): void {
     this.investorForm.controls['id'].value
       ? this.fetchData(this.currentInvestor)
       : this.clearTheForm();
   }
+  
   openConfirmationDialog(investors: Investors) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
