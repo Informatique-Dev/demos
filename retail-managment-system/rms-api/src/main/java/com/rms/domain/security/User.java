@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends JPAEntity {
 
     @Column(name = "user_name")

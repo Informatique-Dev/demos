@@ -38,8 +38,8 @@ public class InstallmentService {
         return installmentRepository.saveAll(installments);
     }
 
-    public void deleteById(Integer id) {
-        installmentRepository.deleteById(id);
+    public void delete(Installment installment) {
+        installmentRepository.delete(installment);
     }
 
 

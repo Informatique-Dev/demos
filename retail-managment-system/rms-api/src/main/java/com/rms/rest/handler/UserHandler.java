@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,10 +58,9 @@ public class UserHandler {
                     dto.getUserName(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
         });
         User user =mapper.toEntity(dto);
-        user.setPassword(dto.getPassword());
         userService.save(user);
         UserDto userDto = mapper.toDto(user);
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.created(URI.create("/user/" + userDto.getId())).body(userDto);
     }
     public ResponseEntity<?> update (Integer id , UserDto userDto)
     {
@@ -75,7 +75,7 @@ public class UserHandler {
         {
             Employee employee = employeeService.getById(userDto.getEmployee().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), userDto.getEmployee().getId()));
-       existedUser.setEmployee(employee);
+        existedUser.setEmployee(employee);
         }
         mapper.updateEntityFromDto(userDto , existedUser);
         userService.save(existedUser);
