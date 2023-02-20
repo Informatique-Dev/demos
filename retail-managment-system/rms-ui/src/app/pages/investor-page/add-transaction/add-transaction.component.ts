@@ -8,9 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Investors } from 'src/app/domain/investors/models/investor';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
 
-
-
-
 @Component({
   selector: 'app-add-transaction',
   templateUrl: './add-transaction.component.html',
@@ -75,7 +72,6 @@ export class AddTransactionComponent implements OnInit {
     });
   }
 
-  
   addTransaction(){
     this.isButtonVisible = true;
     this.submit = true;
@@ -123,7 +119,5 @@ export class AddTransactionComponent implements OnInit {
   closeDialog(){
     this.dialog.closeAll();
   }
-
- 
 
 }
