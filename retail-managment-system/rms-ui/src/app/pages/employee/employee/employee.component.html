@@ -75,8 +75,9 @@
           [pageSizeOptions]="[5, 10,25,100]"
           (page)="pageEvent=$event;onPaginationChange($event)"
           showFirstLastButtons
+          [dir]="'direction-pagination'|translate"
           aria-label="Select page"
-          class="fw-bold fs-6 text-info pagination pe-4 me-2 py-3 ">
+          class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
           </mat-paginator>
 
       </div>

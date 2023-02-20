@@ -14,7 +14,7 @@
   "status": "الحاله",
   "direction": "rtl",
   "logout":"تسجيل الخروج",
-
+  "direction-pagination": "ltr",
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
     "order": "الطلب",
