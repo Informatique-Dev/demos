@@ -57,7 +57,6 @@ public class UserHandler {
                     dto.getUserName(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
         });
         User user =mapper.toEntity(dto);
-        user.setPassword(dto.getPassword());
         userService.save(user);
         UserDto userDto = mapper.toDto(user);
         return ResponseEntity.ok(userDto);
@@ -75,7 +74,7 @@ public class UserHandler {
         {
             Employee employee = employeeService.getById(userDto.getEmployee().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), userDto.getEmployee().getId()));
-       existedUser.setEmployee(employee);
+        existedUser.setEmployee(employee);
         }
         mapper.updateEntityFromDto(userDto , existedUser);
         userService.save(existedUser);
