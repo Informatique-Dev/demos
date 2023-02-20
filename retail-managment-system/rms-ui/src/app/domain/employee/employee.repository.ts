@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class EmployeeRepository extends ResourceService<Employee> {
+export class employeeRepository extends ResourceService<Employee> {
   constructor(httpClient: HttpClient) {
     super(httpClient);
   }

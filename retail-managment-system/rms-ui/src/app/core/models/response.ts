@@ -1,5 +1,5 @@
 import { Pagination } from "./pagination";
-export interface response<T>{
-  data: [T];
+export interface Response<T>{
+  data:T[];
   pagination: Pagination;
 }

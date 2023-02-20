@@ -14,7 +14,6 @@
   "status": "Status",
   "direction": "ltr",
   "logout":"Logout",
-  "direction-pagination": "ltr",
   "sidebar": {
     "home": "  Home ",
     "order": "Order",
@@ -111,6 +110,31 @@
     "updated-successfuly": "Customer Updated Successfuly!",
     "added-successfuly": "Customer Added Successfuly!",
     "delete-successfuly": "Customer Deleted Successfuly!",
+    "close": "close"
+  },
+
+  "Employee": {
+    "full-name": "Full Name ",
+    "nick-name": " Nick Name",
+    "national-id": "National-ID",
+    "address": "Address",
+    "job": "Job",
+    "employee": "Employee",
+    "receipt-no": "  Trust Receipt No ",
+    "primrary-phone": "Primrary Number",
+    "secondary-phone": "Secondry Number",
+    "id-validation": "National Id must be",
+    "id-number": "14 number",
+    "id-validation2": "number only ",
+    "phone-validation": "Phone Number Must Start With ",
+    "phone-number": " 11 Numbers only  ",
+    "phone-numbers": "(011,010,012,015)",
+    "enter-customer-fname": "Enter Employee Full-Name",
+    "enter-customer-nname": "Enter Employee Nick-Name",
+    "nationalId": "NationalId",
+    "updated-successfuly": "Employee Updated Successfuly!",
+    "added-successfuly": "Employee Added Successfuly!",
+    "delete-successfuly": "Employee Deleted Successfuly!",
     "close": "close"
   },
   "investors": {

@@ -75,37 +75,37 @@ export class HomePageComponent implements OnInit {
   }
 
   getAllProducts(): void {
-    this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result.data;
+    this.productRepository.getList().subscribe((result:any) => {
+      this.allProducts = result;
     });
   }
   getAllCustomers(): void {
-    this.customersRepository.getList().subscribe((result) => {
-      this.allCustomers = result.data;
+    this.customersRepository.getList().subscribe((result:any) => {
+      this.allCustomers = result;
     });
   }
   getAllCategory(): void {
     this.categoryRepository.getList().subscribe((result: any) => {
-      this.allCategory = result.data;
+      this.allCategory = result;
     });
   }
   getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
-      this.allInvestors = result.data;
+      this.allInvestors = result;
     });
   }
 
 
   getAllInstallments(): void {
     this.installmentsRepository.getList().subscribe((result: any) => {
-      this.allInstallments = result.data;
+      this.allInstallments = result;
 
     });
   }
 
   getAllProfits(): void {
     this.RepositoryService.getList().subscribe((result: any) => {
-      this.allProfits = result.data;
+      this.allProfits = result;
 
     });
   }

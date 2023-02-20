@@ -2,7 +2,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
+import { employeeRepository } from 'src/app/domain/employee/employee.repository';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
@@ -18,6 +18,9 @@ export class EmployeeComponent implements OnInit {
   dataSource: Employee[] = [];
   paginationEmployee!: Pagination
   pageEvent!: PageEvent;
+  size: number = 10;
+  page: number = 0;
+  totaItem: number = 0;
   employeeForm!: FormGroup;
   submit: boolean = false;
   currentData!: Employee;
@@ -34,7 +37,7 @@ export class EmployeeComponent implements OnInit {
     'actions',
   ];
   constructor(
-    private employeesRepository: EmployeeRepository,
+    private employeesRepository: employeeRepository,
     private build: FormBuilder,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog,
@@ -44,26 +47,20 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.employeeDataForm();
     this.getAllEmployee()
-    this.pagination()
+
   }
   getAllEmployee() {
-    this.employeesRepository.getList().subscribe((result) => {
-      this.dataSource = result.data;
-    });
-  }
 
-  pagination() {
-    this.employeesRepository.getList().subscribe((result) => {
-      this.paginationEmployee = result.pagination;
+    this.employeesRepository.getList({  page: this.page,size: this.size,}).subscribe((result) => {
+      this.dataSource = result.data;
+      this.totaItem = result.pagination.itemCount;
     });
   }
   onPaginationChange(event: PageEvent) {
-    let page = event.pageIndex;
-    let size = event.pageSize;
-    this.employeesRepository.findAll(page, size).pipe(
-      map((employeeData) => employeeData)).subscribe((result) => {
-        this.dataSource = result.data
-      })
+
+    this.page  = event.pageIndex;
+    this.size = event.pageSize;
+    this.getAllEmployee();
   }
   employeeDataForm() {
     this.employeeForm = this.build.group({
