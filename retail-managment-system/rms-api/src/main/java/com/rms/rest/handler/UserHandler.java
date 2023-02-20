@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +60,7 @@ public class UserHandler {
         User user =mapper.toEntity(dto);
         userService.save(user);
         UserDto userDto = mapper.toDto(user);
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.created(URI.create("/user/" + userDto.getId())).body(userDto);
     }
     public ResponseEntity<?> update (Integer id , UserDto userDto)
     {
