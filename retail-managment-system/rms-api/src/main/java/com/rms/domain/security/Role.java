@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role extends LookupEntity {
 
 }

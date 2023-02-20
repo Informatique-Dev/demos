@@ -5,10 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1676544355605-1" author="Kariman (generated)">
-        <createTable tableName="role">
+    <changeSet id="1676894054624-1" author="Kariman (generated)">
+        <createTable tableName="roles">
             <column autoIncrement="true" name="id" type="INT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
             </column>
             <column name="arabic_name" type="VARCHAR(255)"/>
             <column name="english_name" type="VARCHAR(255)"/>
