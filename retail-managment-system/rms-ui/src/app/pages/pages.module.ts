@@ -9,12 +9,12 @@ import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
-import { InstallmentComponent } from './installments/installment/installment.component';
+import { InstallmentComponent } from './installments/installment.component'; 
 import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
-import { EditInstallmentComponent } from './installments/installment/edit-installment/edit-installment.component';
-import { ReceiptComponent } from './installments/installment/edit-installment/receipt/receipt.component';
+import { EditInstallmentComponent } from './installments/edit-installment/edit-installment.component'; 
+import { ReceiptComponent } from './installments/edit-installment/receipt/receipt.component'; 
 
 
 const routes: Routes = [
