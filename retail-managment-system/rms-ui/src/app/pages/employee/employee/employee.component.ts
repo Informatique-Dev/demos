@@ -46,7 +46,6 @@ export class EmployeeComponent implements OnInit {
     this.getAllEmployee()
     this.pagination()
   }
-
   getAllEmployee() {
     this.employeesRepository.getList().subscribe((result) => {
       this.dataSource = result.data;
