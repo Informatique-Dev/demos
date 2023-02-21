@@ -9,10 +9,12 @@ import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
-import { InstallmentComponent } from './installments/installment/installment.component';
+import { InstallmentComponent } from './installments/installment.component'; 
 import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
+import { ReceiptComponent } from './installments/edit-installment/receipt/receipt.component'; 
+import { PayInstallmentComponent } from './installments/edit-installment/pay-installment.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,8 @@ const routes: Routes = [
     InvestorPageComponent,
     InstallmentComponent,
     TransactionComponent,
-   
+    PayInstallmentComponent,
+    ReceiptComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
  

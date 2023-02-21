@@ -6,8 +6,8 @@ export interface Installment {
     version: number;
     installmentAmount :number;
     paymentAmount : number;
-    dueDate : string;
-    paymentDate : string;
+    dueDate : Date;
+    paymentDate : Date;
     status : number ; 
     order : Order   
 }
