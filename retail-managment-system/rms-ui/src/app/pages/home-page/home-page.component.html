@@ -32,6 +32,23 @@
             {{ "home-page.no-of-transactions" | translate }}
           </div>
         </div>
+        <div class="card text-center col-md-3 col-sm-10 mt-5" (click)="openEmployee()">
+          <div class="card-header">
+            <mat-icon>account_box</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ "home-page.employee" | translate }}
+            </h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-employee" | translate }}
+            {{ allEmployee.length }}
+          </div>
+        </div>
         <div
           class="card text-center col-md-3 col-sm-10 mt-5"
           (click)="openInstallment()"
@@ -187,7 +204,9 @@
             </li>
             <li class="pb-md-2">
               <a class="text-decoration-none" (click)="openProfits()"
-                >Profits</a
+                >{{
+                  "home-page.profits" | translate
+                }}</a
               >
             </li>
           </ul>
@@ -214,7 +233,9 @@
             </li>
             <li class="pb-md-2">
               <a class="text-decoration-none" (click)="openProfits()"
-                >Profits</a
+                >{{
+                  "home-page.employee" | translate
+                }}</a
               >
             </li>
           </ul>

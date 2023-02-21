@@ -13,6 +13,8 @@ import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { Profit } from 'src/app/domain/profit/models/profit';
 import { RepositoryService } from 'src/app/domain/profit/repository.repository';
+import { employeeRepository } from 'src/app/domain/employee/employee.repository';
+import { Employee } from 'src/app/domain/employee/models/employee';
 
 @Component({
   selector: 'app-home-page',
@@ -25,8 +27,8 @@ export class HomePageComponent implements OnInit {
   allCategory: Category[] = [];
   allInvestors: Investors[] = [];
   allInstallments: Installment[] = [];
-
   allProfits:Profit[]=[];
+  allEmployee:Employee[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
@@ -34,7 +36,10 @@ export class HomePageComponent implements OnInit {
     private customersRepository: CustomersRepository,
     private investorsRepository: InvestorsRepository,
     private installmentsRepository : InstallmentRepositry,
-    private RepositoryService:RepositoryService
+    private RepositoryService:RepositoryService,
+    private employeeRepository:employeeRepository
+
+
 
 
   ) {}
@@ -45,6 +50,7 @@ export class HomePageComponent implements OnInit {
     this.getAllInvestors();
     this.getAllInstallments();
     this.getAllProfits();
+    this.  getAllEmployee()
   }
 
   openProducts() {
@@ -72,6 +78,9 @@ export class HomePageComponent implements OnInit {
 
   openTransaction() {
     this.router.navigate(['/transaction']);
+  }
+  openEmployee() {
+    this.router.navigate(['/employee']);
   }
 
   getAllProducts(): void {
@@ -106,6 +115,12 @@ export class HomePageComponent implements OnInit {
   getAllProfits(): void {
     this.RepositoryService.getList().subscribe((result: any) => {
       this.allProfits = result;
+
+    });
+  }
+  getAllEmployee(): void {
+    this.employeeRepository.getList().subscribe((result) => {
+      this.allEmployee = result.data;
 
     });
   }
