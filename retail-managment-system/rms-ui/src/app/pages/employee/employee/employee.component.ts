@@ -2,12 +2,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { employeeRepository } from 'src/app/domain/employee/employee.repository';
+import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { Employee } from 'src/app/domain/employee/models/employee';
-import { map } from 'rxjs';
 import { Pagination } from 'src/app/core/models/pagination';
 @Component({
   selector: 'app-employee',
@@ -37,9 +36,9 @@ export class EmployeeComponent implements OnInit {
     'actions',
   ];
   constructor(
-    private employeesRepository: employeeRepository,
+    private employeesRepository: EmployeeRepository,
     private build: FormBuilder,
-    private _snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private translate: TranslateService
   ) { }
@@ -99,7 +98,7 @@ export class EmployeeComponent implements OnInit {
       () => {
         this.getAllEmployee();
         this.submit = false;
-        this._snackBar.open(
+        this.snackBar.open(
           this.translate.instant('Employee.updated-successfuly'),
           this.translate.instant('Employee.close'),
           {
@@ -120,7 +119,7 @@ export class EmployeeComponent implements OnInit {
       () => {
         this.getAllEmployee();
         this.submit = false;
-        this._snackBar.open(
+        this.snackBar.open(
           this.translate.instant('Employee.added-successfuly'),
           this.translate.instant('Employee.close'),
           {
@@ -166,7 +165,7 @@ export class EmployeeComponent implements OnInit {
 
     this.employeesRepository.delete(employee.id).subscribe(() => {
       this.getAllEmployee();
-      this._snackBar.open(
+      this.snackBar.open(
         this.translate.instant('Employee.delete-successfuly'),
         this.translate.instant('Employee.close'),
         {

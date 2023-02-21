@@ -1,4 +1,3 @@
-import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
@@ -13,7 +12,7 @@ import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { Profit } from 'src/app/domain/profit/models/profit';
 import { RepositoryService } from 'src/app/domain/profit/repository.repository';
-import { employeeRepository } from 'src/app/domain/employee/employee.repository';
+import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
 import { Employee } from 'src/app/domain/employee/models/employee';
 
 @Component({
@@ -37,7 +36,7 @@ export class HomePageComponent implements OnInit {
     private investorsRepository: InvestorsRepository,
     private installmentsRepository : InstallmentRepositry,
     private RepositoryService:RepositoryService,
-    private employeeRepository:employeeRepository
+    private employeeRepository:EmployeeRepository
 
 
 
