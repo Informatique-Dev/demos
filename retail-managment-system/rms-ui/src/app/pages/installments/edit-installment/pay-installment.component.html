@@ -36,8 +36,8 @@
       </button>
 </div>
 </div>
- <div class="print" id="print-receipt">
-  <app-receipt [install]="editData" [payAmount]="paymentAmount" [payDate]="paymentDate"></app-receipt>
+ <div class="print d-none" id="print-receipt">
+  <app-receipt [dir]="'direction' | translate"  [install]="editData" [payAmount]="paymentAmount" [payDate]="paymentDate"></app-receipt>
 </div>
 
 

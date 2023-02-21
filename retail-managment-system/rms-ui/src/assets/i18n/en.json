@@ -143,7 +143,9 @@
     "search":"Search By Name",
     "pay-installment":"Pay Inatallment",
     "enter-PaymentAmount":"Enter paymentAmount Price ",
-    "pay": "Pay"
+    "pay": "Pay",
+    "receipt":"Installment receipt",
+    "thank":"Thank You" 
   },
   "profits": {
     "profits": "Profits",

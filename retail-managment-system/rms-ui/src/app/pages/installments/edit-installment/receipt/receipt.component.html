@@ -1,29 +1,29 @@
-<div class="panel-heading   mb-1 mt-5 mb-5 w-100 text-center" >
+<div class="panel-heading   mb-1 mt-5 mb-5 w-100 text-center">
   <h3 class="panel-title w-100 text-cprint-sectionenter fw-bold ">
-    Installment Receipt
+    {{"installments.receipt" | translate}}
   </h3>
 </div>
 <div class="main d-flex justify-content-center">
     <table class="table">
       <tbody>
         <tr>
-          <th scope="col">Name :</th>
+          <th scope="col"> {{ "installments.customer-name" | translate }} :</th>
           <td>{{install.order.customer.fullName}}</td>
         </tr>
         <tr>
-          <th scope="col">Inatallment Amount :</th>
+          <th scope="col">{{ "installments.ins-amount" | translate }} :</th>
           <td>{{install.installmentAmount}}</td>
         </tr>
         <tr>
-          <th scope="col">Payment Amount :</th>
+          <th scope="col">{{ "installments.pay-amount" | translate }} :</th>
           <td>{{payAmount}}</td>
         </tr>
         <tr>
-          <th scope="col">Due Date :</th>
+          <th scope="col"> {{ "installments.due-date" | translate }} :</th>
             <td>{{install.dueDate}}</td>
         </tr>
         <tr>
-          <th scope="col">Payment Date :</th>
+          <th scope="col">  {{ "installments.payment-date" | translate }} :</th>
             <td>{{payDate}}</td>
         </tr>
       </tbody>
@@ -35,7 +35,7 @@
 
     <div class="panel-footer  ps-1 mb-1 mt-5 ">
       <h3 class="panel-title w-100 text-center fw-bold fs-3 text-black-50">
-        Thank You
+        {{"installments.thank"| translate}}
       </h3>
   
  

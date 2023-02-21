@@ -3,19 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InstallmentRepositry } from 'src/app/domain/installment/installment.repositry';
 import { Installment } from 'src/app/domain/installment/models/installment';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
-
-
-
-
 @Component({
-  selector: 'app-edit-installment',
-  templateUrl: './edit-installment.component.html',
-  styleUrls: ['./edit-installment.component.scss']
+  selector: 'app-pay-installment',
+  templateUrl: './pay-installment.component.html',
+  styleUrls: ['./pay-installment.component.scss']
 })
-export class EditInstallmentComponent implements OnInit {
+export class PayInstallmentComponent implements OnInit {
   installForm!: FormGroup;
   isButtonVisible!: boolean;
   submit: boolean = false;
@@ -23,7 +19,7 @@ export class EditInstallmentComponent implements OnInit {
   paymentDate!: Date;
  constructor(private installmentrepositry: InstallmentRepositry,
   private formBuilder : FormBuilder,
-  private _snackBar: MatSnackBar,
+  private snackBar: MatSnackBar,
   private dialog: MatDialog,
   private translate: TranslateService,
   @Inject (MAT_DIALOG_DATA) public editData : Installment
@@ -48,11 +44,10 @@ export class EditInstallmentComponent implements OnInit {
   fetchData() {
    if (this.editData)
    {
+    this.installForm.controls['id'].setValue(this.editData.id)
     this.installForm.controls['paymentAmount'].setValue(this.editData.paymentAmount)
     this.installForm.controls['installmentAmount'].setValue(this.editData.installmentAmount)
-    this.paymentAmount = this.installForm.controls['paymentAmount'].value
     this.installForm.controls['paymentDate'].setValue(this.editData.paymentDate)
-    this.paymentDate=this.installForm.controls['paymentDate'].value
    }
   }
 
@@ -60,10 +55,10 @@ export class EditInstallmentComponent implements OnInit {
     this.isButtonVisible = true;
     this.submit = true;
     this.installmentrepositry.update(this.installForm.value).subscribe(() => {
-     this.clickButton();
-      this.dialog.closeAll();
+     this.clickPrintButton();
+      this.close();
     this.submit = false;
-      this._snackBar.open(this.translate.instant('installments.updated-successfuly'),this.translate.instant('installments.close'), {
+      this.snackBar.open(this.translate.instant('installments.updated-successfuly'),this.translate.instant('installments.close'), {
         duration: 2000,
       })
     },
@@ -74,8 +69,8 @@ export class EditInstallmentComponent implements OnInit {
 
   onSubmit()  {
     this.installForm.markAllAsTouched();
-    if (this.installForm.valid) {
-      this.installForm.controls['id'].setValue(this.editData.id) ;
+    if (this.installForm.valid) 
+    { 
       this.installForm.controls['paymentDate'].setValue((new Date()).toISOString().substring(0,10))
       this.paymentAmount = this.installForm.controls['paymentAmount'].value
       this.paymentDate = this.installForm.controls['paymentDate'].value ;
@@ -102,7 +97,7 @@ export class EditInstallmentComponent implements OnInit {
     
   }
 
- clickButton(){
+ clickPrintButton(){
    const btn = document.getElementById('print')
    btn?.click() 
  } 

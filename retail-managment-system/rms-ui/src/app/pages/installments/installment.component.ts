@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit , ViewChild } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
 import { InstallmentRepositry } from 'src/app/domain/installment/installment.repositry';
 import { Installment } from 'src/app/domain/installment/models/installment';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { EditInstallmentComponent } from './edit-installment/edit-installment.component';
+import { PayInstallmentComponent } from './edit-installment/pay-installment.component';
 
 
 
@@ -17,7 +17,6 @@ import { EditInstallmentComponent } from './edit-installment/edit-installment.co
 })
 export class InstallmentComponent implements OnInit  {
   installmentList:Installment[]=[];
-  currentData!: Installment;
   @ViewChild(MatSort) sort!: MatSort 
   dataSource!: MatTableDataSource<Installment>;
   transactionButton:boolean=false;
@@ -68,7 +67,7 @@ export class InstallmentComponent implements OnInit  {
   }
   
   openEditDialog(install : Installment) {
-     this.dialog.open(EditInstallmentComponent , {
+     this.dialog.open(PayInstallmentComponent , {
       data:install
      }).beforeClosed().subscribe(value =>{
       this.searchText='';
@@ -85,16 +84,14 @@ export class InstallmentComponent implements OnInit  {
       this.dataSource.filter = JSON.stringify(tableFilters);
     }
 
-  setDate(install : Installment)
+  appearWarningByDate(install : Installment)
   {
     var dueDate = new Date(install.dueDate)
-    var payDate =new Date(install.paymentDate)
     var theSameDay = new Date()
-   if (((dueDate .getDate()-3)== theSameDay.getDate() ||
-   (dueDate .getDate()-2)== theSameDay.getDate() || 
-   (dueDate .getDate()-1)== theSameDay.getDate() ||
-   (dueDate .getDate())== theSameDay.getDate()||
-   dueDate.getDate() > payDate.getDate()) && install.installmentAmount!=install.paymentAmount)
+   if (((dueDate.getDate()-3)== theSameDay.getDate() ||
+   (dueDate .getDate()-2)== (theSameDay.getDate()) || 
+   (dueDate .getDate()-1)== (theSameDay.getDate()) ||
+   dueDate.toLocaleDateString() == theSameDay.toLocaleDateString() || dueDate.toLocaleDateString() < theSameDay.toLocaleDateString()) && install.installmentAmount!=install.paymentAmount)
    {
     return true
    }

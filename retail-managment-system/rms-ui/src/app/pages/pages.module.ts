@@ -13,8 +13,8 @@ import { InstallmentComponent } from './installments/installment.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
-import { EditInstallmentComponent } from './installments/edit-installment/edit-installment.component'; 
 import { ReceiptComponent } from './installments/edit-installment/receipt/receipt.component'; 
+import { PayInstallmentComponent } from './installments/edit-installment/pay-installment.component';
 
 
 const routes: Routes = [
@@ -40,7 +40,7 @@ const routes: Routes = [
     InvestorPageComponent,
     InstallmentComponent,
     TransactionComponent,
-    EditInstallmentComponent,
+    PayInstallmentComponent,
     ReceiptComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
