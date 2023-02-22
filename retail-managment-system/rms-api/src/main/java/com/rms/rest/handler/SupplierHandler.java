@@ -55,8 +55,7 @@ public class SupplierHandler {
         Supplier supplier=supplierService.getById(id).orElseThrow(
                 ()->new ResourceNotFoundException(Supplier.class.getSimpleName(),id));
         supplierMapper.updateEntityFromDto(supplierDto,supplier);
-        supplier.setId(id);
-        supplierService.save(supplier);
+        supplierService.update(supplier);
         SupplierDto dto =supplierMapper.toDto(supplier);
         return ResponseEntity.ok(dto);
     }

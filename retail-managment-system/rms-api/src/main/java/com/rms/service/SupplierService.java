@@ -28,6 +28,10 @@ public class SupplierService {
     {
        return supplierRepository.save(supplier);
     }
+    public Supplier update(Supplier supplier)
+    {
+        return supplierRepository.save(supplier);
+    }
     public void delete(Supplier supplier)
     {
         supplierRepository.delete(supplier);
