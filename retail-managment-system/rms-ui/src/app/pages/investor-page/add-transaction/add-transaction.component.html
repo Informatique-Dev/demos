@@ -20,14 +20,13 @@
             <mat-select [(ngModel)]="!editData? deposit : type" [disabled]="!editData" formControlName="transactionType" >
               <mat-option  [value]="type" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
             </mat-select>
+
           </mat-form-field>
           
         </form>
 
         <div class="w-100 px-2 d-flex justify-content-end"  [dir]="'reverse-direction' | translate">
-          <button class=" btn mx-1" color="blue" mat-raised-button (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
-                  ? ("update" | translate)
-                  : ("add" | translate)}}</button>
+          <button class=" btn mx-1" color="blue" mat-raised-button (click)="onSubmit()" [disabled]="submit">{{"add" | translate}}</button>
           <button class=" btn mx-1" mat-raised-button color="blue" (click)="resetForm()" >
                   {{"clear" | translate}}</button>
         </div>
