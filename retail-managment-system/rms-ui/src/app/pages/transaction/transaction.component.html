@@ -30,91 +30,10 @@
           <th class="text-center" mat-header-cell *matHeaderCellDef>{{"transactions.date"|translate}}</th>
           <td class="text-center" mat-cell *matCellDef="let element"> {{element.date}} </td>
         </ng-container>
-
-        <ng-container matColumnDef="edit-icon">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td class="text-center" mat-cell *matCellDef="let element">
-            <button class="btn" (click)="fetchData(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="delete-icon">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td class="text-center" mat-cell *matCellDef="let element">
-            <button class="btn" (click)="openConfirmationDialog(element)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <app-loading-spinner></app-loading-spinner>
-    </div>
-    <section class="col-lg-4 p-3">
-      <div class="mat-typography d-flex justify-content-between">
-        <h2 class="mat-headline">{{
-                transactionForm.controls["id"].value
-                  ? ("update" | translate)
-                  : ("add" | translate)
-              }}
-
-          {{ "transactions.transaction" | translate }}</h2>
-        <mat-icon class="icon-add" (click)="restartForm(); isButtonVisible = true" [hidden]="isButtonVisible">add
-        </mat-icon>
-      </div>
-      <form class="" [formGroup]="transactionForm">
-        <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
-          <mat-label>{{"transactions.amount"|translate}}</mat-label>
-          <input type="number" matInput required formControlName="amount" placeholder="{{'transactions.amount-placeholder' | translate}}">
-          <mat-error *ngIf="transactionForm.controls['amount'].hasError('min')">
-              {{ "transactions.amount-validation" | translate}}
-          </mat-error>
-          <mat-error *ngIf="transactionForm.controls['amount'].hasError('required')">
-            {{"transactions.amount-required-msg" | translate}}
-            <strong> {{ "transactions.required" | translate }}</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
-          <mat-label>{{"transactions.date"|translate}}</mat-label>
-          <input matInput required type="date" formControlName="date">
-          <mat-error *ngIf="transactionForm.controls['date'].hasError('required')">
-            {{"transactions.date-required-msg" | translate}}
-            <strong> {{ "transactions.required" | translate }}</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
-          <mat-label>{{"transactions.type"|translate}}</mat-label>
-          <mat-select required formControlName="transactionType">
-            <mat-option [value]="type" *ngFor="let type of transactionTypeEnum">{{type}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="transactionForm.controls['transactionType'].hasError('required')">
-            {{"transactions.type-required-msg" | translate}}
-            <strong> {{ "transactions.required" | translate }}</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="my-0 mx-auto row w-100" appearance="outline">
-          <mat-label>{{"transactions.investor"|translate}}</mat-label>
-          <mat-select required formControlName="investor" [compareWith]="compareFn">
-            <mat-option *ngFor="let type of investorNames" [value]="type">{{type.fullName}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="transactionForm.controls['investor'].hasError('required')">
-            {{"transactions.investor-required-msg" | translate}}
-            <strong> {{ "transactions.required" | translate }}</strong>
-          </mat-error>
-        </mat-form-field>
-      </form>
-      <div class="w-100 px-2 d-flex justify-content-end">
-        <button class="mx-1" color="blue" mat-raised-button (click)="onSubmit()" [disabled]="submit">{{transactionForm.controls["id"].value
-                ? ("update" | translate)
-                : ("add" | translate)}}</button>
-        <button class="mx-1" mat-raised-button color="blue" (click)="resetForm()">{{transactionForm.controls["id"].value
-                ? ("reset" | translate)
-                : ("clear" | translate)}}</button>
-      </div>
-    </section>
-    
+    </div> 
   </div>
 
 </div>

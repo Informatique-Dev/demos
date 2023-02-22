@@ -5,11 +5,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
 
+
 import {
   Investors,
   InvestorTypes,
 } from './../../domain/investors/models/investor';
 import { TranslateService } from '@ngx-translate/core';
+import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 
 @Component({
   selector: 'app-investor-page',
@@ -36,6 +38,7 @@ export class InvestorPageComponent implements OnInit {
     'startDate',
     'update',
     'delete',
+    'transacion'
   ];
   constructor(
     private investorsRepository: InvestorsRepository,
@@ -71,6 +74,7 @@ export class InvestorPageComponent implements OnInit {
     this.investorsRepository.getList().subscribe((result: any) => {
       this.allInvestors = result;
     });
+    
   }
   onSubmit() {
     this.investorForm.markAllAsTouched();
@@ -102,6 +106,7 @@ export class InvestorPageComponent implements OnInit {
       () => {
         this.submit = false;
       }
+     
     );
   }
 
@@ -156,4 +161,13 @@ export class InvestorPageComponent implements OnInit {
   restartForm(): void {
     this.clearTheForm();
   }
+
+  openTransaction(investor : Investors){
+    this.dialog.open(AddTransactionComponent , {
+      data:investor
+     }).afterClosed().subscribe(value =>{
+        this.allInvestors;
+     })
+  }
+
 }
