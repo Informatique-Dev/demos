@@ -3,6 +3,8 @@ package com.rms.service;
 import com.rms.domain.investor.Transaction;
 import com.rms.repository.TransactionRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ import java.util.Optional;
 public class TransactionService {
     private TransactionRepository transactionRepository;
 
-    public List<Transaction> getAll() {
-        return transactionRepository.findAll();
+    public Page<Transaction> getAll(Integer page , Integer size , String investor) {
+        return transactionRepository.findAll(investor,PageRequest.of(page,size));
     }
 
     public Optional<Transaction> getById(Integer id) {
@@ -29,8 +31,8 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public void deleteById(Integer id) {
-        transactionRepository.deleteById(id);
+    public void delete(Transaction transaction) {
+        transactionRepository.delete(transaction);
     }
 
 }

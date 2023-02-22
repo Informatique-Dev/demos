@@ -1,0 +1,44 @@
+
+<div class="content mb-1"  [dir]="'direction' | translate" >
+  <div class=" d-flex justify-content-start justify-content-between">
+    <div class="panel-heading  ps-1 mb-1">
+      <h3 class="panel-title w-100 text-center fw-bold fs-1">
+        {{"installments.pay-installment" | translate}}
+      </h3>
+    </div>
+    <button class="close border-0" (click)="close()">
+      <mat-icon class="fw-bold">close</mat-icon>
+    </button>
+    </div>
+
+    <div class="panel-body ps-1">
+      <form [formGroup]="installForm">
+        <fieldset class="mt-3 mb-3 ">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "installments.pay-amount" | translate }}</mat-label>
+            <input
+              formControlName="paymentAmount"
+              type="number"
+              matInput
+              placeholder='{{"installments.enter-PaymentAmount" | translate}}'
+            />
+          </mat-form-field>        
+        </fieldset>
+      </form>
+    </div>
+    <div class="actions pb-3 ps-1 mt-3 " [dir]="'reverse-direction' | translate">
+      <button  class="btn me-3 text-white" (click)="onSubmit()" [disabled]="submit" >
+        {{"installments.pay" | translate}}
+      </button>
+                                                                                          
+      <button [useExistingCss]="true" id="print" class="btn me-3 text-white d-none"   printSectionId="print-receipt" ngxPrint >
+        <mat-icon>print</mat-icon>
+      </button>
+</div>
+</div>
+ <div class="print d-none" id="print-receipt">
+  <app-receipt [dir]="'direction' | translate"  [install]="editData" [payAmount]="paymentAmount" [payDate]="paymentDate"></app-receipt>
+</div>
+
+
+

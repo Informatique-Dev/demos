@@ -50,6 +50,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <app-loading-spinner></app-loading-spinner>
     </div>
     <section class="col-lg-4 p-3">
       <div class="mat-typography d-flex justify-content-between">

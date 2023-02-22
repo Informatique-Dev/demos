@@ -9,11 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Products")
-@NamedEntityGraphs({
-        @NamedEntityGraph(name = "Product.categories",
-                attributeNodes = @NamedAttributeNode("productCategory")
-        )
-})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

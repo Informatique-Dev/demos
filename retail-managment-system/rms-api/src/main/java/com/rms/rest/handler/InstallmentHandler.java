@@ -44,7 +44,14 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dtos);
     }
 
-    public ResponseEntity<?> add(InstallmentDto installmentDto) {
+    public ResponseEntity<?> getAll()
+    {
+        List<Installment> installments = installmentService.getAll();
+        return ResponseEntity.ok(mapper.toDto(installments));
+
+    }
+
+    public ResponseEntity<?> save(InstallmentDto installmentDto) {
         Installment installment = mapper.toEntity(installmentDto);
         Order order = orderService.getById(installment.getOrder().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),installment.getOrder().getId()));
@@ -63,11 +70,11 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> deleteById(Integer id) {
-        installmentService.getById(id)
+    public ResponseEntity<?> delete(Integer id) {
+       Installment installment =  installmentService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Installment.class.getSimpleName(),id));
         try {
-            installmentService.deleteById(id);
+            installmentService.delete(installment);
         } catch (Exception exception) {
             throw new ResourceRelatedException(Installment.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }

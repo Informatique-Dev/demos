@@ -3,6 +3,8 @@ package com.rms.service;
 import com.rms.domain.core.ProductCategory;
 import com.rms.repository.ProductCategoryRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ import java.util.Optional;
 public class ProductCategoryService {
     private ProductCategoryRepository productCategoryRepository;
 
-    public List<ProductCategory> getAll() {
-        return productCategoryRepository.findAll();
+    public Page<ProductCategory> getAll(Integer page , Integer size) {
+        return productCategoryRepository.findAll(PageRequest.of(page , size));
     }
 
     public Optional<ProductCategory> getById(Integer id) {
@@ -25,8 +27,8 @@ public class ProductCategoryService {
         return productCategoryRepository.save(category);
     }
 
-    public void deleteById(Integer id) {
-        productCategoryRepository.deleteById(id);
+    public void delete(ProductCategory category) {
+        productCategoryRepository.delete(category);
     }
 
 }

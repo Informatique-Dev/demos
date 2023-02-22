@@ -13,6 +13,7 @@
   "enter-your-name": "Enter your Name",
   "status": "Status",
   "direction": "ltr",
+  "reverse-direction":"rtl",
   "logout":"Logout",
   "sidebar": {
     "home": "  Home ",
@@ -162,11 +163,18 @@
     "due-date": "Due Date",
     "payment-date": "Payment Date",
     "status": "Status",
+    "customer-name":"customer Name",
     "required": "required",
     "updated-successfuly": "Installment Updated Successfuly!",
     "added-successfuly": "Installment Added Successfuly!",
     "delete-successfuly": "Installment Deleted Successfuly!",
-    "close": "close"
+    "close": "Close",
+    "search":"Search By Name",
+    "pay-installment":"Pay Inatallment",
+    "enter-PaymentAmount":"Enter paymentAmount Price ",
+    "pay": "Pay",
+    "receipt":"Installment receipt",
+    "thank":"Thank You" 
   },
   "profits": {
     "profits": "Profits",

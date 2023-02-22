@@ -13,6 +13,7 @@
   "enter-your-name": "الرجاء ادخال الاسم",
   "status": "الحاله",
   "direction": "rtl",
+  "reverse-direction":"ltr",
   "logout":"تسجيل الخروج",
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
@@ -162,11 +163,18 @@
     "due-date": "تاريخ الاستحقاق",
     "payment-date": "تاريخ الدفع",
     "status": "الحاله",
+    "customer-name":" اسم العميل",
     "required": "مطلوبة",
     "updated-successfuly": "تم تعديل القسط بنجاح",
     "added-successfuly": "تم اضافة القسط بنجاح",
     "delete-successfuly": "تم مسح القسط بنجاح",
-    "close": "اغلاق"
+    "close": "اغلاق",
+    "search": "بحث باسم العميل",
+    "pay-installment":"دفع الاقساط",
+    "enter-PaymentAmount":"الرجاء ادخال قيمةالدفع",
+    "pay":"دفع القسط",
+    "receipt": "ايصال القسط",
+    "thank":"شكرا"
   },
   "profits": {
     "profits": "الارباح",

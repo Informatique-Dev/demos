@@ -11,5 +11,6 @@ public class OrderItemDto extends GenericDto {
     private Integer quantity;
     private Short paymentType;
     private ProductDto product;
+    private  OrderDto order;
 
 }

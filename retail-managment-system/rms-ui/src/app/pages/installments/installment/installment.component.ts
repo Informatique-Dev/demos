@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-installment',
   templateUrl: './installment.component.html',
-  styleUrls: ['./installment.component.scss'],
+  styleUrls: []
 })
 export class InstallmentComponent implements OnInit  {
   installmentList:Installment[]=[];
