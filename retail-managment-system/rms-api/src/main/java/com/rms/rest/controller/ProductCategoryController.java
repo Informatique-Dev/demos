@@ -34,8 +34,10 @@ public class ProductCategoryController {
 
     @GetMapping("/{id}/products")
     @Operation(summary = "Get By Category Id", description = "this api for get product by category id")
-    public ResponseEntity<?> getProductsByCatId(@PathVariable("id") Integer id) {
-        return productHandler.getByProductCategory(id);
+    public ResponseEntity<?> getProductsByCatId(@PathVariable("id") Integer id,
+                                                @RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                                @RequestParam (value = "size" , defaultValue = "10") Integer size) {
+        return productHandler.getByProductCategory(id , page,size);
     }
 
     @PostMapping
