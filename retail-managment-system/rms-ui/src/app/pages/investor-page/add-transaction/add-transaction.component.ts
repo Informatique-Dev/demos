@@ -39,7 +39,6 @@ export class AddTransactionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllTransactions()
     this.TransactionForm()
     this.getAllInvestors() 
   }
@@ -56,11 +55,6 @@ export class AddTransactionComponent implements OnInit {
     })
   } 
 
-  getAllTransactions(){
-    this.transactionRepository.getList().subscribe((data:any) =>{
-      this.allTransactions = data
-    })
-  }
 
   getAllInvestors(): void {
     this.investorsRepository.getList().subscribe((result: any) => {
@@ -78,7 +72,6 @@ export class AddTransactionComponent implements OnInit {
     this.submit = true;
     this.transactionRepository.add(this.transactionForm.value).subscribe(
       () => {
-        this.getAllTransactions();
         this.submit = false;
         this.snackBar.open(this.translate.instant('transactions.add-message'), this.translate.instant('transactions.close'), {
           duration: 2000,
@@ -98,12 +91,12 @@ export class AddTransactionComponent implements OnInit {
         this.transactionForm.get('investor.id')?.setValue(this.editData.id)
         this.addTransaction();
         this.transactionForm.reset();
-        this.dialog.closeAll()
+        this.closeDialog()
       }else if (!this.editData) {
         this.transactionForm.get('investor.id')?.setValue(this.lastId)
         this.addTransaction();
         this.transactionForm.reset();
-        this.dialog.closeAll()
+        this.closeDialog()
       }
       } 
     }
