@@ -114,7 +114,7 @@
     "close": "close"
   },
 
-  "Employee": {
+  "employee": {
     "full-name": "Full Name ",
     "nick-name": " Nick Name",
     "national-id": "National-ID",

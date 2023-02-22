@@ -99,8 +99,8 @@ export class EmployeeComponent implements OnInit {
         this.getAllEmployee();
         this.submit = false;
         this.snackBar.open(
-          this.translate.instant('Employee.updated-successfuly'),
-          this.translate.instant('Employee.close'),
+          this.translate.instant('employee.updated-successfuly'),
+          this.translate.instant('employee.close'),
           {
             duration: 2000,
           }
@@ -120,8 +120,8 @@ export class EmployeeComponent implements OnInit {
         this.getAllEmployee();
         this.submit = false;
         this.snackBar.open(
-          this.translate.instant('Employee.added-successfuly'),
-          this.translate.instant('Employee.close'),
+          this.translate.instant('employee.added-successfuly'),
+          this.translate.instant('employee.close'),
           {
             duration: 2000,
           }
@@ -166,8 +166,8 @@ export class EmployeeComponent implements OnInit {
     this.employeesRepository.delete(employee.id).subscribe(() => {
       this.getAllEmployee();
       this.snackBar.open(
-        this.translate.instant('Employee.delete-successfuly'),
-        this.translate.instant('Employee.close'),
+        this.translate.instant('employee.delete-successfuly'),
+        this.translate.instant('employee.close'),
         {
           duration: 2000,
         }

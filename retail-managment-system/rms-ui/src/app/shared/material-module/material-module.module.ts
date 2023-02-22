@@ -41,7 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [],
@@ -82,7 +82,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    NgxPaginationModule,
+
   ],
   exports: [
     MatAutocompleteModule,
@@ -120,7 +120,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    NgxPaginationModule,
+
   ],
 })
 export class MaterialModuleModule {}

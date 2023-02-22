@@ -18,36 +18,36 @@
           <mat-cell *matCellDef="let i = index" > {{ i + 1 }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="fullName">
-          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "Employee.full-name" | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "employee.full-name" | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.fullName }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nickName">
-          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "Employee.nick-name" | translate }} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "employee.nick-name" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">{{ element.nickName }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nationalId">
-          <mat-header-cell *matHeaderCellDef   class="fw-bold fs-6">   {{ "Employee.national-id" | translate }} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef   class="fw-bold fs-6">   {{ "employee.national-id" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.nationalId }}</mat-cell>
         </ng-container>
 
         <ng-container  matColumnDef="primaryPhoneNo">
-          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "Employee.primrary-phone" | translate }} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.primrary-phone" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.primaryPhoneNo }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="secondaryPhoneNo">
-          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "Employee.secondary-phone" | translate }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.secondary-phone" | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.secondaryPhoneNo }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="address">
-          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "Employee.address" | translate }} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.address" | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.address }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="job">
-          <mat-header-cell *matHeaderCellDef  class="fw-bold fs-6"> {{ 'Employee.job' | translate }} </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef  class="fw-bold fs-6"> {{ 'employee.job' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let element">  {{ element.job }}</mat-cell>
         </ng-container>
 
@@ -72,7 +72,7 @@
 
         <mat-paginator [length]="totaItem"
           [pageSizeOptions]="[10,5,25,100]"
-          (page)="pageEvent=$event;onPaginationChange($event)"
+          (page)="$event;onPaginationChange($event)"
           showFirstLastButtons
           aria-label="Select page"
           class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
@@ -88,7 +88,7 @@
                 ? ("update" | translate)
                 : ("add" | translate)
             }}
-            {{ "Employee.employee" | translate }}
+            {{ "employee.employee" | translate }}
             <mat-icon
             class="add-icon me-4 float-end"
             (click)="restartForm(); isButtonVisible = true"
@@ -104,13 +104,13 @@
             <form [formGroup]="employeeForm">
               <fieldset class="row justify-content-center">
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label> {{ "Employee.full-name" | translate }}</mat-label>
+                  <mat-label> {{ "employee.full-name" | translate }}</mat-label>
                   <input
                     formControlName="fullName"
                     type="text"
                     matInput
                     placeholder="{{
-                      'Employee.enter-customer-fname' | translate
+                      'employee.enter-customer-fname' | translate
                     }}"
                   />
                   <mat-error
@@ -118,19 +118,19 @@
                       employeeForm.controls['fullName'].hasError('required')
                     "
                   >
-                    {{ "Employee.full-name" | translate }}
+                    {{ "employee.full-name" | translate }}
                     <strong> {{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label> {{ "Employee.nick-name" | translate }}</mat-label>
+                  <mat-label> {{ "employee.nick-name" | translate }}</mat-label>
                   <input
                     formControlName="nickName"
                     type="text"
                     matInput
                     placeholder="{{
-                      'Employee.enter-customer-name' | translate
+                      'employee.enter-customer-name' | translate
                     }}"
                   />
                 </mat-form-field>
@@ -139,12 +139,12 @@
 
                 <mat-form-field appearance="outline" class="w-100 pb-2">
                   <mat-label>{{
-                    "Employee.national-id" | translate
+                    "employee.national-id" | translate
                   }}</mat-label>
                   <input
                     formControlName="nationalId"
                     matInput
-                    placeholder="{{ 'Employee.nationalId' | translate }}"
+                    placeholder="{{ 'employee.nationalId' | translate }}"
                     minlength="14"
                     maxlength="14"
                     NumbersOnly
@@ -154,7 +154,7 @@
                       employeeForm.controls['nationalId'].hasError('required')
                     "
                   >
-                    {{ "Employee.national-id" | translate }}
+                    {{ "employee.national-id" | translate }}
                     <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                   <mat-error
@@ -162,59 +162,59 @@
                       employeeForm.controls['nationalId'].hasError('minlength')
                     "
                   >
-                    {{ "Employee.id-validation" | translate }}
-                    <strong> {{ "Employee.id-number" | translate }}</strong>
+                    {{ "employee.id-validation" | translate }}
+                    <strong> {{ "employee.id-number" | translate }}</strong>
                   </mat-error>
                   <mat-error
                     *ngIf="
                       employeeForm.controls['nationalId'].hasError('pattern')
                     "
                   >
-                    {{ "Employee.id-validation" | translate }}
+                    {{ "employee.id-validation" | translate }}
                     <strong>
-                      {{ "Employee.id-validation2" | translate }}</strong
+                      {{ "employee.id-validation2" | translate }}</strong
                     >
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>{{ "Employee.address" | translate }}</mat-label>
+                  <mat-label>{{ "employee.address" | translate }}</mat-label>
                   <input
                     formControlName="address"
                     type="text"
                     matInput
-                    placeholder="{{ 'Employee.address' | translate }}"
+                    placeholder="{{ 'employee.address' | translate }}"
                   />
                   <mat-error
                     *ngIf="
                       employeeForm.controls['address'].hasError('required')
                     "
                   >
-                    {{ "Employee.address" | translate }}
+                    {{ "employee.address" | translate }}
                     <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>{{ 'Employee.job' | translate }}</mat-label>
+                  <mat-label>{{ 'employee.job' | translate }}</mat-label>
                   <input
                     formControlName="job"
                     type="text"
                     matInput
-                    placeholder="{{ 'Employee.job' | translate }}"
+                    placeholder="{{ 'employee.job' | translate }}"
                     NumbersOnly
                   />
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50 mb-4">
                   <mat-label>{{
-                    "Employee.primrary-phone" | translate
+                    "employee.primrary-phone" | translate
                   }}</mat-label>
                   <input
                     formControlName="primaryPhoneNo"
                     type="tel"
                     matInput
-                    placeholder="{{ 'Employee.primrary-phone' | translate }}"
+                    placeholder="{{ 'employee.primrary-phone' | translate }}"
                     minlength="11"
                     maxlength="11"
                     NumbersOnly
@@ -226,7 +226,7 @@
                       )
                     "
                   >
-                    {{ "Employee.primrary-phone" | translate }}
+                    {{ "employee.primrary-phone" | translate }}
                     <strong>{{ "product.required" | translate }}</strong>
                   </mat-error>
                   <mat-error
@@ -236,9 +236,9 @@
                       )
                     "
                   >
-                    {{ "Employee.phone-validation" | translate
+                    {{ "employee.phone-validation" | translate
                     }}<strong>
-                      {{ "Employee.phone-number" | translate }}</strong
+                      {{ "employee.phone-number" | translate }}</strong
                     >
                   </mat-error>
                   <mat-error
@@ -249,20 +249,20 @@
                       )
                     "
                   >
-                    {{ "Employee.phone-validation" | translate }}
-                    <strong> {{ "Employee.phone-numbers" | translate }}</strong>
+                    {{ "employee.phone-validation" | translate }}
+                    <strong> {{ "employee.phone-numbers" | translate }}</strong>
                   </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-50 mb-4">
                   <mat-label>
-                    {{ "Employee.secondary-phone" | translate }}</mat-label
+                    {{ "employee.secondary-phone" | translate }}</mat-label
                   >
                   <input
                     formControlName="secondaryPhoneNo"
                     type="tel"
                     matInput
-                    placeholder="{{ 'Employee.secondary-phone' | translate }}"
+                    placeholder="{{ 'employee.secondary-phone' | translate }}"
                     minlength="11"
                     maxlength="11"
                     NumbersOnly

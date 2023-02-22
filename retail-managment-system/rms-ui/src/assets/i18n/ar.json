@@ -112,7 +112,7 @@
     "delete-successfuly": "تم مسح العميل بنجاح",
     "close": "اغلاق"
   },
-  "Employee": {
+  "employee": {
     "employee": "موظف",
     "full-name": "الاسم بالكامل",
     "nick-name": "اسم الشهره",
