@@ -8,11 +8,13 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { TranslateModule } from '@ngx-translate/core';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { LoadingInterceptor } from '../core/services/loading.interceptor';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, NumbersOnlyDirective],
+  declarations: [ConfirmDialogComponent, NumbersOnlyDirective, LoadingSpinnerComponent],
   imports: [
-    MaterialModuleModule,
+  MaterialModuleModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -33,6 +35,7 @@ import { LoadingInterceptor } from '../core/services/loading.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    LoadingSpinnerComponent
   ],
 })
 export class SharedModule {}
