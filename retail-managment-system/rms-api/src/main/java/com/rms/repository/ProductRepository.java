@@ -12,10 +12,10 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
-    @Query("select p from Product p where p.productCategory.id=:catId")
-    Page<Product> getByProductCategory(@Param("catId") Integer catId , Pageable pageable);
+    @Query("select p from Product p where p.productCategory.id=:categoryId")
+    Page<Product> getByProductCategory(@Param("categoryId") Integer categoryId , Pageable pageable);
 
-   @Query(value = "select p from Product p left join fetch ProductCategory  pc on p.productCategory.id =pc.id")
+   @Query(value = "select p from Product p left join fetch ProductCategory ")
     Page<Product> findAll(Pageable pageable);
 
 

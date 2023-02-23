@@ -32,7 +32,7 @@ public class ProductCategoryController {
         return productCategoryHandler.getAll(page , size);
     }
 
-    @GetMapping("/{id}/products")
+    @GetMapping("/{id}/product")
     @Operation(summary = "Get By Category Id", description = "this api for get product by category id")
     public ResponseEntity<?> getProductsByCatId(@PathVariable("id") Integer id,
                                                 @RequestParam(value = "page" , defaultValue = "0") Integer page ,
@@ -42,7 +42,7 @@ public class ProductCategoryController {
 
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new product category")
-    public ResponseEntity<?> add(@Valid @RequestBody ProductCategoryDto productCategoryDto) {
+    public ResponseEntity<?> save(@Valid @RequestBody ProductCategoryDto productCategoryDto) {
         return productCategoryHandler.save(productCategoryDto);
     }
 
