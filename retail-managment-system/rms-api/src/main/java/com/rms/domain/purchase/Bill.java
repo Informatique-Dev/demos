@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,9 +20,9 @@ public class Bill extends JPAEntity {
     @Column(name = "bill_no")
     private String billNo;
 
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "recipient")
     private String recipient;
