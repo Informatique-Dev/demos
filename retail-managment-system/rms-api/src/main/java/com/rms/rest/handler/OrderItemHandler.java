@@ -54,15 +54,15 @@ public class OrderItemHandler {
         OrderItem orderItem = orderItemService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
         mapper.updateEntityFromDto(orderItemDto, orderItem);
-        orderItemService.save(orderItem);
+        orderItemService.update(orderItem);
         OrderItemDto dto = mapper.toDto(orderItem);
         return ResponseEntity.ok(dto);
     }
-    public ResponseEntity<?> deleteById(Integer id) {
-        orderItemService.getById(id)
+    public ResponseEntity<?> delete(Integer id) {
+        OrderItem orderItem = orderItemService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
         try {
-            orderItemService.deleteById(id);
+            orderItemService.delete(orderItem);
         } catch (Exception exception) {
             throw new ResourceRelatedException(Customer.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }

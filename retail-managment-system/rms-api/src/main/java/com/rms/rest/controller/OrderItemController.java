@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/orderItem")
+@RequestMapping("/order-item")
 @AllArgsConstructor
 @Tag(name = "OrderItem", description = "Rest Api For OrderItem")
 public class OrderItemController {
@@ -50,6 +50,6 @@ public class OrderItemController {
     @DeleteMapping("/{id}")
     @Operation(summary = "delete OrderItem By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return OrderItemHandler.deleteById(id);
+        return OrderItemHandler.delete(id);
     }
 }

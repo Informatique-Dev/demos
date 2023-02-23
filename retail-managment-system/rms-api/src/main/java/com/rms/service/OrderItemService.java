@@ -20,6 +20,9 @@ public class OrderItemService {
     public  OrderItem save(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
     }
+    public  OrderItem update(OrderItem orderItem) {
+        return orderItemRepository.save(orderItem);
+    }
 
     public Optional<OrderItem> getById(Integer id) {
         return orderItemRepository.findById(id);
@@ -29,8 +32,9 @@ public class OrderItemService {
         return orderItemRepository.findAll(PageRequest.of(page,size));
     }
 
-    public void deleteById(Integer id) {
-        orderItemRepository.deleteById(id);
+
+    public void delete(OrderItem orderItem) {
+        orderItemRepository.delete(orderItem);
     }
 
 }
