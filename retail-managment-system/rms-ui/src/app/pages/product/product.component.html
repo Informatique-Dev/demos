@@ -7,8 +7,8 @@
     </div>
   </div>
   <div class="container-fluid col-sm-4 col-md-4 column d-flex w-30 mx-5">
-    <mat-form-field >
-        <mat-select placeholder="{{'product.choose-category' | translate}}">
+    <mat-form-field appearance="outline" color="primary">
+        <mat-select panelClass="mt-5" placeholder="{{'product.choose-category' | translate}}">
           <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
           <mat-option *ngFor="let type of categories" [value]="type" (click)="productFilter(type.id)">
             {{type.name}}
