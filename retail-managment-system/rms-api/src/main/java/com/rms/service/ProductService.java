@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,8 +21,8 @@ public class ProductService {
         return productRepository.findAll(PageRequest.of(page,size));
     }
 
-    public List<Product> getByProductCategory(Integer catId) {
-        return productRepository.getByProductCategory(catId);
+    public Page<Product> getByProductCategory(Integer catId ,Integer page , Integer size ) {
+        return productRepository.getByProductCategory(catId ,PageRequest.of(page,size));
     }
 
     public Product save(Product product) {
