@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
+ @Query("select C from Customer C where C.trustReceiptNo=:trustReceiptNo ")
+    Optional<Customer> findTrustReceiptNo(@Param("trustReceiptNo") Integer trustReceiptNo);
 
-
-}
+ }

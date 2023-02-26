@@ -1,5 +1,6 @@
 package com.rms.service;
 
+import com.rms.domain.core.Employee;
 import com.rms.domain.sales.Customer;
 import com.rms.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,9 @@ public class CustomerService {
 
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
+    }
+    public Optional<Customer> getTrustReceiptNo(Integer trustReceiptNo) {
+        return customerRepository.findTrustReceiptNo(trustReceiptNo);
     }
 
 
