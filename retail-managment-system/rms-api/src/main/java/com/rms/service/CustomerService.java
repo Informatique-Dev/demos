@@ -30,4 +30,7 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
+    public Optional<Customer> findNationalId(String nationalId) {
+        return customerRepository.findByNationalId(nationalId);
+    }
 }

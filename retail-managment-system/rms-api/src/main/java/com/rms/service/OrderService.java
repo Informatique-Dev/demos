@@ -3,6 +3,8 @@ package com.rms.service;
 import com.rms.domain.sales.Order;
 import com.rms.repository.OrderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,8 @@ public class OrderService {
         return orderRepository.findById(id);
     }
 
-    public List<Order> getAll() {
-        return orderRepository.findAll();
+    public Page<Order> getAll(Integer page , Integer size) {
+        return orderRepository.findAll(PageRequest.of(page,size));
     }
 
     public Order save(Order order) {

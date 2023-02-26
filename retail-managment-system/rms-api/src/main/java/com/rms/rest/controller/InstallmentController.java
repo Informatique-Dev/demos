@@ -24,8 +24,11 @@ public class InstallmentController {
 
     @GetMapping
     @Operation(summary = "Get All", description = "this api for get all installment")
-    public ResponseEntity<?> getAll() {
-        return installmentHandler.getAll();
+    public ResponseEntity<?> getAll( @RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                     @RequestParam (value = "size" , defaultValue = "10") Integer size
+
+    ) {
+        return installmentHandler.getAll(page,size);
     }
 
 
@@ -37,7 +40,7 @@ public class InstallmentController {
 
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new installment")
-    public ResponseEntity<?> add(@RequestBody InstallmentDto installment) {
+    public ResponseEntity<?> save(@RequestBody InstallmentDto installment) {
         return installmentHandler.save(installment);
     }
 
@@ -52,4 +55,14 @@ public class InstallmentController {
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         return installmentHandler.delete(id);
     }
+
+
+    @GetMapping("/customer/{nationalId}")
+    @Operation(summary = "Get Installment By Customer  National Id ", description = "this api for get installment by customer national id")
+    public ResponseEntity<?> getByCustomerNationalId(@PathVariable("nationalId") String  nationalId ,
+                                                     @RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                                     @RequestParam (value = "size" , defaultValue = "10") Integer size) {
+        return installmentHandler.getByCustomerNationalId(nationalId,page,size);
+    }
+
 }
