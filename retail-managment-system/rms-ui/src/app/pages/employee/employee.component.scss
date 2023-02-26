@@ -1,0 +1,54 @@
+.main {
+    min-height: 820px;
+  }
+  .content {
+  
+   height: 500px;
+   }
+  .btn {
+    background-color: #002d40;
+    color: white;
+    width: 80px;
+    height: 40px;
+  }
+  .table-button {
+    background-color: transparent;
+    color: #002d40;
+    width: 50px;
+    height: 40px;
+  }
+  .table-button:hover,
+  .add-icon:hover {
+    color: red;
+  }
+  mat-icon {
+    font-size: 30px;
+  }
+  .add-icon {
+    cursor: pointer;
+  }
+  th,
+  td {
+    line-height: 2;
+  }
+  
+  .mat-column-id {
+    min-width: 60px;
+  }
+  .mat-column-fullName,.mat-column-nickName {
+    min-width: 70px;
+  }
+  
+  .mat-column-job {
+    min-width: 50px;
+  }
+  .mat-column-nationalId,.mat-column-secondaryPhoneNo,.mat-column-actions {
+    min-width: 125px;
+  }
+  
+  .mat-column-primaryPhoneNo {
+    min-width: 115px;
+  }
+  .mat-column-address {
+    min-width: 90px;
+  }

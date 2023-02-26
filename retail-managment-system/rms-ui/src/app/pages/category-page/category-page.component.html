@@ -5,8 +5,8 @@
     </h3>
   </div>
   <div class="row shadow-lg">
-    <div class="col-8 overflow-scroll fix-table data-table">
-      <table class="w-100 text-start" mat-table [dataSource]="allCategory">
+    <div class="col-8 fix-table " *ngIf="allCategory">
+      <mat-table class="overflow-scroll content data-table w-100 text-start" mat-table [dataSource]="allCategory">
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
             {{ "no" | translate }}.
@@ -43,7 +43,14 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+      </mat-table>
+      <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+      </mat-paginator>
       <app-loading-spinner></app-loading-spinner>
     </div>
 

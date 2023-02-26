@@ -15,7 +15,6 @@
   "direction": "rtl",
   "reverse-direction":"ltr",
   "logout":"تسجيل الخروج",
-
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
     "order": "الطلب",
@@ -25,7 +24,8 @@
     "customers": "العملاء",
     "categories": "الفئات",
     "products": "المنتجات",
-    "profits": "الارباح"
+    "profits": "الارباح",
+    "employees":"الموظفين"
   },
   "home-page": {
     "order": "الطلبات",
@@ -36,6 +36,7 @@
     "categories": "الفئات",
     "products": "المنتجات",
     "profits": "الارباح",
+    "employee": "الموظفين",
     "home-content": " لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية،.",
 
     "no-of-orders": "عدد الطلبات",
@@ -86,6 +87,7 @@
   },
   "customrs": {
     "customer": "العملاء",
+    "employee": "موظف",
     "our-curtomrs": "العملاء",
     "full-name": "الاسم بالكامل",
     "nick-name": "اسم الشهره",
@@ -93,6 +95,7 @@
     "national-id": "بطاقه الرقم القومي",
     "address": "العنوان",
     "receipt-no": "رقم الايصال",
+    "job":"الوظيفه",
     "primrary-phone": "رقم الهاتف",
     "secondary-phone": "رقم الهاتف 2",
     "id-validation": "الرقم القومي يجب ان يكون ",
@@ -108,6 +111,30 @@
     "updated-successfuly": "تم تعديل العميل بنجاح",
     "added-successfuly": "تم اضافة العميل بنجاح",
     "delete-successfuly": "تم مسح العميل بنجاح",
+    "close": "اغلاق"
+  },
+  "employee": {
+    "employee": "موظف",
+    "full-name": "الاسم بالكامل",
+    "nick-name": "اسم الشهره",
+    "national-id": "بطاقه الرقم القومي",
+    "address": "العنوان",
+    "receipt-no": "رقم الايصال",
+    "job":"الوظيفه",
+    "primrary-phone": "رقم الهاتف",
+    "secondary-phone": "رقم الهاتف 2",
+    "id-validation": "الرقم القومي يجب ان يكون ",
+    "id-number": "اربعه عشر رقما",
+    "id-validation2": "ارقام فقط",
+    "phone-validation": "رقم الهاتف يجب ان يبدا ",
+    "phone-number": "احدي عشر رقم فقط",
+    "phone-numbers": "(011,010,012,015)",
+    "enter-customer-fname": "الرجاء ادخال اسم الموظف بالكامل",
+    "enter-customer-nname": "  الرجاء ادخال اسم شهره الموظف",
+    "nationalId": "بطاقه الرقم القومي ",
+    "updated-successfuly": "تم تعديل الموظف بنجاح",
+    "added-successfuly": "تم اضافة الموظف بنجاح",
+    "delete-successfuly": "تم مسح الموظف بنجاح",
     "close": "اغلاق"
   },
   "investors": {

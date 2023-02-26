@@ -9,11 +9,11 @@
 
   <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
     <div class="row justify-content-center">
-      <div
-        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+      <div *ngIf="allProducts"
+        class="col-lg-8 col-md-8 col-sm-8 bg-white"
       >
-        <table
-          class="table table-responsive"
+        <mat-table
+          class="table table-responsive overflow-scroll data-table content"
           mat-table
           [dataSource]="allProducts"
         >
@@ -88,7 +88,14 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+        </mat-table>
+        <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+            </mat-paginator>
         <app-loading-spinner></app-loading-spinner>
       </div>
 

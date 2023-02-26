@@ -47,7 +47,7 @@ export class InstallmentComponent implements OnInit  {
 
 
   getAllInstallments(): void {
-    this.installmentrepositry.getList().subscribe((result) => {
+    this.installmentrepositry.getList().subscribe((result:any) => {
       this.installmentList = result;
       this.dataSource = new MatTableDataSource (this.installmentList)
       this.dataSource.sort = this.sort

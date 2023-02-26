@@ -15,6 +15,8 @@ import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
 import { ReceiptComponent } from './installments/edit-installment/receipt/receipt.component'; 
 import { PayInstallmentComponent } from './installments/edit-installment/pay-installment.component';
+import { EmployeeComponent } from './employee/employee.component';
+
 
 
 const routes: Routes = [
@@ -24,9 +26,10 @@ const routes: Routes = [
   {path: 'category',component: CategoryPageComponent},
   { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard] },
   { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
-  { path: 'investor', component: InvestorPageComponent },
-  { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
-  { path: 'transaction', component: TransactionComponent },
+  { path: 'investors', component: InvestorPageComponent },
+  { path: 'installments', component: InstallmentComponent ,canActivate: [AuthGuard] },
+  { path: 'transactions', component: TransactionComponent },
+  { path: 'employee', component: EmployeeComponent },
 
 
 ];
@@ -40,6 +43,7 @@ const routes: Routes = [
     InvestorPageComponent,
     InstallmentComponent,
     TransactionComponent,
+    EmployeeComponent,
     PayInstallmentComponent,
     ReceiptComponent,
   ],

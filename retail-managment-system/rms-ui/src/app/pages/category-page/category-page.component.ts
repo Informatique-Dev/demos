@@ -6,6 +6,8 @@ import { CategoryRepository } from '../../domain/category/category.repository';
 import { Category } from 'src/app/domain/category/models/category';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Pagination } from 'src/app/core/models/pagination';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-category-page',
@@ -15,6 +17,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class CategoryPageComponent implements OnInit {
   categoryForm!: FormGroup;
   allCategory: Category[] = [];
+  paginationCategory!: Pagination
+  pageEvent!: PageEvent;
+  size: number = 10;
+  page: number = 0;
+  totaItem: number = 0;
   displayedColumns: string[] = ['id', 'name', 'status', 'update', 'delete'];
   submit: boolean = false;
   currentCategory!: Category;
@@ -45,9 +52,16 @@ export class CategoryPageComponent implements OnInit {
     this.currentCategory = category;
   }
   getAllCategory(): void {
-    this.categorRepository.getList().subscribe((result: any) => {
-      this.allCategory = result;
+    this.categorRepository.getList({page:this.page,size:this.size}).subscribe((result) => {
+      this.allCategory = result.data;
+      this.totaItem = result.pagination.itemCount
     });
+  }
+  onPaginationChange(event: PageEvent) {
+
+    this.page  = event.pageIndex;
+    this.size = event.pageSize;
+    this.getAllCategory();
   }
   onSubmit() {
     this.categoryForm.markAllAsTouched();

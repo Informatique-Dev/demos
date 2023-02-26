@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource.service';
 import { Installment } from './models/installment';
