@@ -2,11 +2,16 @@ package com.rms.rest.controller;
 
 import com.rms.rest.dto.CustomerDto;
 import com.rms.rest.handler.CustomerHandler;
+import com.rms.rest.validation.InsertValidation;
+import com.rms.rest.validation.UpdateValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/customers")
@@ -35,13 +40,13 @@ public class CustomerController {
 
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new customer")
-    public ResponseEntity<?> addCustomer(@RequestBody CustomerDto customer) {
+    public ResponseEntity<?> addCustomer(@Validated(InsertValidation.class) @RequestBody CustomerDto customer) {
         return customerHandler.addCustomer(customer);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update customer")
-    public ResponseEntity<?> updateCustomer(@RequestBody CustomerDto customer, @PathVariable Integer id) {
+    public ResponseEntity<?> updateCustomer(@Validated(UpdateValidation.class) @RequestBody CustomerDto customer, @PathVariable Integer id) {
         return customerHandler.updateCustomer(customer, id);
     }
 

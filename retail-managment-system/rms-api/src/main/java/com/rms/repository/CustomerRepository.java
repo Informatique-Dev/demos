@@ -12,5 +12,11 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 
+    @Query(value = "select c from Customer c where c.nationalId= :nationalId")
+    Optional<Customer> findByNationalId(String nationalId);
 
-}
+    @Query(value = "select c from Customer c where c.customerCode= :customerCode")
+    Optional<Customer> findByCustomerCode(String  customerCode);
+
+    }
+
