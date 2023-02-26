@@ -25,7 +25,7 @@ public class CustomerService {
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
     }
-    public Optional<Customer> findTrustReceiptNo(Integer trustReceiptNo) {
+    public Optional<Customer> getTrustReceiptNo(Integer trustReceiptNo) {
         return customerRepository.findTrustReceiptNo(trustReceiptNo);
     }
 

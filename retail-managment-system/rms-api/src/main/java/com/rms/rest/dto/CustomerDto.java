@@ -16,11 +16,9 @@ public class CustomerDto extends GenericDto {
     private String nationalId;
     @Pattern(regexp = "[0-9]{11}" , message = "Phone Number must be 11 number and must be numbers"  , groups = {InsertValidation.class, UpdateValidation.class})
     @NotBlank(message = "Phone number is mandatory",groups = {InsertValidation.class , UpdateValidation.class})
-
     private String primaryPhoneNo;
     @Pattern(regexp = "[0-9]{11}" , message = "Phone Number must be 11 number and must be numbers"  , groups = {InsertValidation.class, UpdateValidation.class})
     @NotBlank(message = "Phone number is mandatory",groups = {InsertValidation.class , UpdateValidation.class})
-
     private String secondaryPhoneNo;
     private String address;
     private String customerCode;

@@ -48,8 +48,8 @@ public class CustomerHandler {
     }
 
     public ResponseEntity<CustomerDto> addCustomer(CustomerDto customerDto) {
-        Optional<Customer> trustReceiptNo = customerService.findTrustReceiptNo(customerDto.getTrustReceiptNo());
-        if (trustReceiptNo.isPresent()) {throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
+        Optional<Customer> exsitedTrustReceiptNo = customerService.getTrustReceiptNo(customerDto.getTrustReceiptNo());
+        if (exsitedTrustReceiptNo.isPresent()) {throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
                 "trustReceiptNo", Integer.toString(customerDto.getTrustReceiptNo()), ErrorCodes.DUPLICATE_RESOURCE.getCode());
     }
             Customer customer = mapper.toEntity(customerDto);
@@ -63,8 +63,8 @@ public class CustomerHandler {
     public ResponseEntity<CustomerDto> updateCustomer(CustomerDto customerDto,Integer id) {
         Customer customer = customerService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
-        Optional<Customer> trustReceiptNo = customerService.findTrustReceiptNo(customerDto.getTrustReceiptNo());
-        if (trustReceiptNo.isPresent() &&  !trustReceiptNo.get().getId().equals(id)) {throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
+        Optional<Customer> exsitedTrustReceiptNo = customerService.getTrustReceiptNo (customerDto.getTrustReceiptNo());
+        if (exsitedTrustReceiptNo.isPresent() &&  !exsitedTrustReceiptNo.get().getId().equals(id)) {throw new ResourceAlreadyExistsException(Employee.class.getSimpleName(),
                 "trustReceiptNo", Integer.toString(customerDto.getTrustReceiptNo()), ErrorCodes.DUPLICATE_RESOURCE.getCode());
         }
         mapper.updateEntityFromDto(customerDto, customer);
