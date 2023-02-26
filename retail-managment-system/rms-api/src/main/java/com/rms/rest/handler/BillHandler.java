@@ -1,12 +1,7 @@
 package com.rms.rest.handler;
-
-
-import com.rms.domain.core.Product;
-import com.rms.domain.core.ProductCategory;
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.Supplier;
 import com.rms.rest.dto.BillDto;
-import com.rms.rest.dto.ProductDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.*;
 import com.rms.rest.modelmapper.BillMapper;
@@ -18,9 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -53,7 +48,7 @@ public class BillHandler {
         Bill bill = billMapper.toEntity(billDto);
         bill.setSupplier(supplier);
         bill.setDate(LocalDate.now());
-        if(billService.billNumberExist(bill.getBillNo()).isPresent())
+        if(billService.findBillNumber(bill.getBillNo()).isPresent())
         {
             throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(),"bill Number",bill.getBillNo(),ErrorCodes.RELATED_RESOURCE.getCode());
 
@@ -75,9 +70,10 @@ public class BillHandler {
                     .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), billDto.getSupplierDto().getId()));
             bill.setSupplier(supplier);
         }
-        if(billService.billNumberExist(bill.getBillNo()).isPresent())
+        Optional<Bill>billNumExist=billService.findBillNumber(billDto.getBillNo());
+        if(billNumExist.isPresent() && billNumExist.get().getId().equals(id))
         {
-            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(),"bill Number",bill.getBillNo(),ErrorCodes.RELATED_RESOURCE.getCode());
+            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(),"bill Number",bill.getBillNo(),ErrorCodes.DUPLICATE_RESOURCE.getCode());
 
         }
 

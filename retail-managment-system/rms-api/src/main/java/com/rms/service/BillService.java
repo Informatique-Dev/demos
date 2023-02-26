@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,9 +37,9 @@ public class BillService {
         billRepository.delete(bill);
     }
 
-    public Optional<Bill> billNumberExist(String billNo)
+    public Optional<Bill> findBillNumber(String billNo)
     {
-      return billRepository.billNumberExist(billNo);
+      return billRepository.findBillNumber(billNo);
     }
 
 }
