@@ -5,10 +5,8 @@ import com.rms.rest.validation.InsertValidation;
 import com.rms.rest.validation.UpdateValidation;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 
 @Data

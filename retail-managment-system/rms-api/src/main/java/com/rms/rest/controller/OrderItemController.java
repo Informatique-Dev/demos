@@ -21,7 +21,7 @@ public class OrderItemController {
     @GetMapping
     @Operation(summary = "Get All" , description = "this api for get all OrderItem")
     public ResponseEntity<?> getAll (@RequestParam(value = "page" , defaultValue = "0") Integer page ,
-                                     @RequestParam (value = "size" , defaultValue = "5") Integer size)
+                                     @RequestParam (value = "size" , defaultValue = "10") Integer size)
     {
         return OrderItemHandler.getAll(page,size);
     }

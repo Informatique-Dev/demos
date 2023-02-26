@@ -43,16 +43,16 @@ public class OrderItemHandler {
         OrderItemDto dto = mapper.toDto(orderItem);
         return ResponseEntity.ok(dto);
     }
-    public ResponseEntity<OrderItemDto> getById(Integer id) {
+    public ResponseEntity<?> getById(Integer id) {
         OrderItem orderItem= orderItemService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
+                .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
         OrderItemDto dto = mapper.toDto(orderItem);
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<OrderItemDto> update(OrderItemDto orderItemDto,Integer id) {
+    public ResponseEntity<?> update(OrderItemDto orderItemDto,Integer id) {
         OrderItem orderItem = orderItemService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
+                .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
         mapper.updateEntityFromDto(orderItemDto, orderItem);
         orderItemService.update(orderItem);
         OrderItemDto dto = mapper.toDto(orderItem);
@@ -60,11 +60,11 @@ public class OrderItemHandler {
     }
     public ResponseEntity<?> delete(Integer id) {
         OrderItem orderItem = orderItemService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),id));
+                .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
         try {
             orderItemService.delete(orderItem);
         } catch (Exception exception) {
-            throw new ResourceRelatedException(Customer.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+            throw new ResourceRelatedException(OrderItem.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
 
