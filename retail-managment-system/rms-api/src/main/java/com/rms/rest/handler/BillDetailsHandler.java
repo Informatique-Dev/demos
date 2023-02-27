@@ -1,9 +1,9 @@
 package com.rms.rest.handler;
 
+import com.rms.domain.core.Product;
+import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
-import com.rms.domain.sales.OrderItem;
 import com.rms.rest.dto.BillDetailsDto;
-import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
 import com.rms.rest.exception.ResourceNotFoundException;
@@ -12,6 +12,8 @@ import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.BillDetailsMapper;
 import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.BillDetailsService;
+import com.rms.service.BillService;
+import com.rms.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,8 @@ import java.util.List;
 @AllArgsConstructor
 public class BillDetailsHandler {
     private BillDetailsService billDetailsService;
+    private BillService billService;
+    private ProductService productService;
     private BillDetailsMapper billDetailsMapper;
     private PaginationMapper paginationMapper ;
     public ResponseEntity<?> getAll(Integer page , Integer size){
@@ -44,7 +48,8 @@ public class BillDetailsHandler {
     }
 
     public ResponseEntity<?> getById(Integer id){
-        BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
+        BillDetails billDetails= billDetailsService.getById(id)
+                .orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
 
         BillDetailsDto dto=billDetailsMapper.toDto(billDetails);
         return ResponseEntity.ok(dto);
@@ -52,7 +57,18 @@ public class BillDetailsHandler {
 
     public ResponseEntity<?> update(BillDetailsDto billDetailsDto,Integer id){
         BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
-billDetailsMapper.updateEntityFromDto(billDetailsDto,billDetails);
+        if(billDetailsDto.getBill()!=null) {
+            Bill bill = billService.getById(billDetailsDto.getBill().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), billDetailsDto.getBill().getId()));
+            billDetails.setBill(bill);
+        }
+        if(billDetailsDto.getPrice()!=null) {
+            Product product = productService.getById(billDetailsDto.getProduct().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), billDetailsDto.getProduct().getId()));
+            billDetails.setProduct(product);
+        }
+
+        billDetailsMapper.updateEntityFromDto(billDetailsDto,billDetails);
 billDetailsService.update(billDetails);
 BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
 return ResponseEntity.ok(dto);

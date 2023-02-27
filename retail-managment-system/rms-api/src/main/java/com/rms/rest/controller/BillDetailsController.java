@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/Bill-Details")
+@RequestMapping("/bill-details")
 @AllArgsConstructor
 @Tag(name = "BillDetails", description = "Rest Api For BillDetails")
 public class BillDetailsController {
