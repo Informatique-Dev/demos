@@ -30,8 +30,8 @@ public class CustomerService {
     }
 
 
-    public void deleteById(Integer id) {
-        customerRepository.deleteById(id);
+    public void delete(Customer customer) {
+        customerRepository.delete(customer);
     }
 
     public Optional<Customer>findNationalId(String nationalId)

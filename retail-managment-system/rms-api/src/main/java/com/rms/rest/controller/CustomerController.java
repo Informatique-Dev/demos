@@ -53,6 +53,6 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     @Operation(summary = "delete customer By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        return customerHandler.deleteById(id);
+        return customerHandler.delete(id);
     }
 }
