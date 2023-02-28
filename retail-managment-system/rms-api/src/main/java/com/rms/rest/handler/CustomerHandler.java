@@ -1,5 +1,6 @@
 package com.rms.rest.handler;
 
+import com.rms.domain.core.Employee;
 import com.rms.domain.investor.Transaction;
 import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.Installment;
@@ -46,6 +47,7 @@ public class CustomerHandler {
         return ResponseEntity.ok(installmentDtos);
     }
 
+
     public ResponseEntity<?> save(CustomerDto customerDto) {
 
         if(customerService.findNationalId(customerDto.getNationalId()).isPresent())
@@ -74,6 +76,10 @@ public class CustomerHandler {
        else if(customerCodeExist.isPresent() && !customerCodeExist.get().getId().equals(id))
         {
             throw new  ResourceAlreadyExistsException(Customer.class.getSimpleName(),"Customer Code",customerDto.getCustomerCode(),ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        Optional<Customer> exsitedTrustReceiptNo = customerService.getTrustReceiptNo (customerDto.getTrustReceiptNo());
+        if (exsitedTrustReceiptNo.isPresent() &&  !exsitedTrustReceiptNo.get().getId().equals(id)) {throw new ResourceAlreadyExistsException(Customer.class.getSimpleName(),
+                "trustReceiptNo", Integer.toString(customerDto.getTrustReceiptNo()), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+
         }
         mapper.updateEntityFromDto(customerDto, customer);
         customerService.save(customer);

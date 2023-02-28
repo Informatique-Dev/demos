@@ -1,17 +1,21 @@
 package com.rms.rest.handler;
 
-import com.rms.domain.investor.Transaction;
+import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.Installment;
 import com.rms.domain.sales.Order;
 import com.rms.rest.dto.InstallmentDto;
+import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
 import com.rms.rest.exception.ResourceNotFoundException;
 import com.rms.rest.exception.ResourceRelatedException;
 import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.InstallmentMapper;
+import com.rms.rest.modelmapper.common.PaginationMapper;
+import com.rms.service.CustomerService;
 import com.rms.service.InstallmentService;
 import com.rms.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -27,6 +31,9 @@ public class InstallmentHandler {
     private InstallmentService installmentService;
     private InstallmentMapper mapper;
     private OrderService orderService;
+    private CustomerService customerService ;
+
+    private PaginationMapper paginationMapper;
 
     public ResponseEntity<?> getById(Integer id) {
         Installment installment = installmentService.getById(id)
@@ -35,7 +42,7 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<List<?>> getDueInstallments() {
+    public ResponseEntity<?> getDueInstallments() {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate endDate = LocalDate.now();
         endDate = endDate.plusMonths(1);
@@ -44,10 +51,14 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dtos);
     }
 
-    public ResponseEntity<?> getAll()
+    public ResponseEntity<?> getAll(Integer page ,Integer size)
     {
-        List<Installment> installments = installmentService.getAll();
-        return ResponseEntity.ok(mapper.toDto(installments));
+        Page<Installment> installments = installmentService.getAll(page,size);
+        List<InstallmentDto> dtos = mapper.toDto(installments.getContent());
+        PaginatedResultDto<InstallmentDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(dtos);
+        paginatedResult.setPagination(paginationMapper.toDto(installments));
+        return ResponseEntity.ok(paginatedResult);
 
     }
 
@@ -80,4 +91,21 @@ public class InstallmentHandler {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
+
+    public ResponseEntity<?> getByCustomerNationalId(String nationalId , Integer page , Integer size)
+    {
+           Customer customer = customerService.findNationalId(nationalId)
+                   .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(),nationalId));
+        Page<Installment> installments = installmentService.getByCustomerNationalId(customer.getNationalId() , page, size);
+        List<InstallmentDto> dtos = mapper.toDto(installments.getContent());
+        PaginatedResultDto<InstallmentDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(dtos);
+        paginatedResult.setPagination(paginationMapper.toDto(installments));
+        return ResponseEntity.ok(paginatedResult);
+    }
+
+
+
+
+
 }

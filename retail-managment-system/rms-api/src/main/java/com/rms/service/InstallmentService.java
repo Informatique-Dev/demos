@@ -3,6 +3,8 @@ package com.rms.service;
 import com.rms.domain.sales.Installment;
 import com.rms.repository.InstallmentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,8 +20,8 @@ public class InstallmentService {
         return installmentRepository.findById(id);
     }
 
-    public List<Installment> getAll() {
-        return installmentRepository.findAll();
+    public Page<Installment> getAll(Integer page , Integer size ) {
+        return installmentRepository.findAll(PageRequest.of(page,size));
     }
 
     public List<Installment> getDueInstallments(Date startDate, Date endDate) {
@@ -28,6 +30,11 @@ public class InstallmentService {
 
     public List<Installment> getCustomerInstallments(Integer customerId) {
         return installmentRepository.getByCustomerId(customerId);
+    }
+
+    public Page<Installment> getByCustomerNationalId(String nationalId , Integer page , Integer size)
+    {
+        return installmentRepository.getByCustomerNationalId(nationalId, PageRequest.of(page,size));
     }
 
     public Installment save(Installment installment) {

@@ -7,18 +7,22 @@ import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.Installment;
 import com.rms.domain.sales.Order;
 import com.rms.domain.sales.OrderItem;
+import com.rms.rest.dto.EmployeeDto;
 import com.rms.rest.dto.OrderDto;
 import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.dto.ProductDto;
+import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
 import com.rms.rest.exception.ResourceNotFoundException;
 import com.rms.rest.exception.ResourceRelatedException;
 import com.rms.rest.exception.Response;
 import com.rms.rest.modelmapper.InstallmentMapper;
 import com.rms.rest.modelmapper.OrderMapper;
+import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.*;
 import lombok.AllArgsConstructor;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -40,10 +44,16 @@ public class OrderHandler {
     private OrderMapper mapper;
     private InstallmentMapper installmentMapper;
     private OrderItemService orderItemService;
+    private PaginationMapper paginationMapper ;
 
-    public ResponseEntity<?> getAll() {
-        List<Order> orders = orderService.getAll();
-        return ResponseEntity.ok(mapper.toDto(orders));
+
+    public ResponseEntity<?> getAll(Integer page , Integer size) {
+        Page<Order> orders = orderService.getAll(page, size);
+        List<OrderDto> dtos =mapper.toDto(orders.getContent());
+        PaginatedResultDto<OrderDto> paginatedResultDto = new PaginatedResultDto<>();
+        paginatedResultDto.setData(dtos);
+        paginatedResultDto.setPagination(paginationMapper.toDto(orders));
+        return ResponseEntity.ok(paginatedResultDto);
     }
 
     public ResponseEntity<OrderDto> save(OrderDto orderDto) {

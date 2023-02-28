@@ -6,6 +6,7 @@ import com.rms.rest.validation.UpdateValidation;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -35,5 +36,9 @@ public class EmployeeDto extends GenericDto {
 
     @Size(max = 60, message = "Job's max length allowed is 60 characters", groups = {InsertValidation.class, UpdateValidation.class})
     private String job;
+
+    @NotNull(message = "Enabled is mandatory", groups = {InsertValidation.class})
+    private Boolean enabled;
+
 
 }

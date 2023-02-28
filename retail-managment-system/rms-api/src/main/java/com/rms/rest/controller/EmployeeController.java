@@ -61,6 +61,15 @@ public class EmployeeController {
         return employeeHandler.update(id , employeeDto);
     }
 
+    @PatchMapping("/{id}")
+    @Operation(summary = "update status", description = "this api for update employee status")
+
+    public ResponseEntity<?> updateStatus(@PathVariable(value = "id") Integer id ,
+                                          @RequestParam(value = "status" , defaultValue = "true") Boolean status)
+    {
+        return employeeHandler.updateStatus(id , status);
+    }
+
     @DeleteMapping("/{id}")
     @Operation(summary = "delete employee By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
