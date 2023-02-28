@@ -8,6 +8,7 @@ import com.rms.rest.validation.UpdateValidation;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -25,7 +26,8 @@ public class UserDto extends GenericDto {
             message ="Password must contain only letters , numbers and  special characters" )
     private String password;
 
-
+    @NotNull(message = "enabled is mandatory", groups = {InsertValidation.class, UpdateValidation.class})
+    private Boolean enabled;
     private EmployeeDto employee ;
 
 

@@ -83,6 +83,15 @@ public class UserHandler {
         return ResponseEntity.ok(dto);
 
     }
+    public ResponseEntity<?>updateStatus(int userId, boolean status)
+    {
+      User user = userService.getById(userId)
+              .orElseThrow(()->new ResourceNotFoundException(User.class.getSimpleName(),userId));
+      user.setEnabled(status);
+      userService.save(user);
+      UserDto dto = mapper.toDto(user);
+      return ResponseEntity.ok(dto);
+    }
 
     public ResponseEntity<?> delete (Integer id)
     {

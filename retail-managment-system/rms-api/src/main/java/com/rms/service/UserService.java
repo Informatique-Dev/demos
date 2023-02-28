@@ -30,6 +30,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User update(User user)
+    {
+        return userRepository.save(user);
+    }
+
     public Optional<User> findUserName(String userName) {
         return userRepository.findByUserName(userName);
     }

@@ -17,6 +17,8 @@ public class User extends JPAEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "enabled")
+    private Boolean enabled;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee ;

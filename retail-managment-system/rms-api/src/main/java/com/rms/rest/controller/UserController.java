@@ -42,6 +42,13 @@ public class UserController {
     {
         return userHandler.update(id, dto);
     }
+    @PatchMapping("/{id}")
+    @Operation(summary = "update status withen true or false ")
+    public ResponseEntity<?> updateStatus(@PathVariable Integer id,
+                                          @RequestParam(value = "status",defaultValue = "true") Boolean status)
+    {
+        return userHandler.updateStatus(id,status);
+    }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "delete user By Id")
