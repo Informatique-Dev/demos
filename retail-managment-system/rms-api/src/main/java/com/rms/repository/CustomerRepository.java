@@ -16,5 +16,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
  @Query("select C from Customer C where C.trustReceiptNo=:trustReceiptNo ")
     Optional<Customer> findTrustReceiptNo(@Param("trustReceiptNo") Integer trustReceiptNo);
 
+    @Query(value = "select c from Customer c where c.customerCode= :customerCode")
+    Optional<Customer> findByCustomerCode(String  customerCode);
+
  }
+
 
