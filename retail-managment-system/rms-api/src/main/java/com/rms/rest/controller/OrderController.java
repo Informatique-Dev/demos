@@ -17,8 +17,9 @@ public class OrderController {
 
     @GetMapping
     @Operation(summary = "Get All", description = "this api for get all orders")
-    public ResponseEntity<?> getAll() {
-        return orderHandler.getAll();
+    public ResponseEntity<?> getAll(@RequestParam(value = "page" , defaultValue = "0") Integer page ,
+                                    @RequestParam (value = "size" , defaultValue = "10") Integer size) {
+        return orderHandler.getAll(page,size);
     }
 
     @PostMapping
