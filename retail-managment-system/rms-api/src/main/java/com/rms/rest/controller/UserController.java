@@ -53,18 +53,18 @@ public class UserController {
         return userHandler.delete(id);
     }
 
-    @PostMapping("/{userId}/role")
+    @PostMapping("/{id}/role")
     @Operation(summary = "Assign Roles to User ")
-    public ResponseEntity<?> addRole(@PathVariable Integer userId , @RequestBody RoleDto dto) {
-        return userRoleHandler.save(userId , dto);
+    public ResponseEntity<?> addRole(@PathVariable(value = "id") Integer id , @RequestBody RoleDto dto) {
+        return userRoleHandler.save(id , dto);
     }
 
 
-    @GetMapping("/{userId}/role")
+    @GetMapping("/{id}/role")
     @Operation(summary = "Get All Roles By User Id")
-    public ResponseEntity<?> getRolesByUserId(@PathVariable Integer userId ,
+    public ResponseEntity<?> getRolesByUserId(@PathVariable(value = "id") Integer id ,
                                               @RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
                                               @RequestParam(value = "size", defaultValue = "10", required = false) Integer size) {
-        return userRoleHandler.getUserRoles(userId , page ,size);
+        return userRoleHandler.getUserRoles(id , page ,size);
     }
 }

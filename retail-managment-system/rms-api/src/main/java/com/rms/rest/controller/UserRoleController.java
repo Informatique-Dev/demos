@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/userRoles")
+@RequestMapping("/user-role")
 @AllArgsConstructor
 @Tag(name = "User Role", description = "REST API for User Role ")
 public class UserRoleController {
