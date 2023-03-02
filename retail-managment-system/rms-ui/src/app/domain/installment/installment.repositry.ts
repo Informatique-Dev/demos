@@ -12,7 +12,7 @@ export class InstallmentRepositry extends ResourceService<Installment> {
     super(httpClient);       
   }
   getResourceUrl(): string {
-    return 'installments';
+    return 'installment';
   }
 
   toServerModel(entity: Installment): any {

@@ -68,18 +68,18 @@ export class HomePageComponent implements OnInit {
   }
 
   openInvestors() {
-    this.router.navigate(['/investors']);
+    this.router.navigate(['/investor']);
   }
   openProfits() {
     this.router.navigate(['/profits']);
   }
 
   openInstallment() {
-    this.router.navigate(['/installments']);
+    this.router.navigate(['/installment']);
   }
 
   openTransaction() {
-    this.router.navigate(['/transactions']);
+    this.router.navigate(['/transaction']);
   }
   
   openEmployee() {
@@ -109,8 +109,8 @@ export class HomePageComponent implements OnInit {
 
 
   getAllInstallments(): void {
-    this.installmentsRepository.getList().subscribe((result: any) => {
-      this.allInstallments = result;
+    this.installmentsRepository.getList().subscribe((result) => {
+      this.allInstallments = result.data;
 
     });
   }
@@ -129,8 +129,8 @@ export class HomePageComponent implements OnInit {
     });
   }
   getAllTransactions():void{
-    this.transactionRepository.getList().subscribe((result:any)=>{
-      this.allTransactions = result
+    this.transactionRepository.getList().subscribe((result)=>{
+      this.allTransactions = result.data
     })
   }
 }

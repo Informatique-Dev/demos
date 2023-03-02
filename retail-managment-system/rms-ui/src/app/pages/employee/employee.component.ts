@@ -15,8 +15,6 @@ import { Pagination } from 'src/app/core/models/pagination';
 })
 export class EmployeeComponent implements OnInit {
   dataSource: Employee[] = [];
-  paginationEmployee!: Pagination
-  pageEvent!: PageEvent;
   size: number = 10;
   page: number = 0;
   totaItem: number = 0;

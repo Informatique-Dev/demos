@@ -19,8 +19,6 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
-  paginationProduct!: Pagination
-  pageEvent!: PageEvent;
   size: number = 10;
   page: number = 0;
   totaItem: number = 0;

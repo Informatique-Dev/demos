@@ -26,9 +26,9 @@ const routes: Routes = [
   {path: 'category',component: CategoryPageComponent},
   { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard] },
   { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
-  { path: 'investors', component: InvestorPageComponent },
-  { path: 'installments', component: InstallmentComponent ,canActivate: [AuthGuard] },
-  { path: 'transactions', component: TransactionComponent },
+  { path: 'investor', component: InvestorPageComponent },
+  { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
+  { path: 'transaction', component: TransactionComponent },
   { path: 'employee', component: EmployeeComponent },
 
 

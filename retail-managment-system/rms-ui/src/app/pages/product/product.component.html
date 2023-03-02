@@ -89,6 +89,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </mat-table>
+        <app-loading-spinner></app-loading-spinner>
         <mat-paginator [length]="totaItem"
             [pageSizeOptions]="[10,5,25,100]"
             (page)="$event;onPaginationChange($event)"
@@ -96,7 +97,6 @@
             aria-label="Select page"
             class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
             </mat-paginator>
-        <app-loading-spinner></app-loading-spinner>
       </div>
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">

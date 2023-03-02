@@ -17,8 +17,6 @@ import { PageEvent } from '@angular/material/paginator';
 export class CategoryPageComponent implements OnInit {
   categoryForm!: FormGroup;
   allCategory: Category[] = [];
-  paginationCategory!: Pagination
-  pageEvent!: PageEvent;
   size: number = 10;
   page: number = 0;
   totaItem: number = 0;
@@ -52,7 +50,7 @@ export class CategoryPageComponent implements OnInit {
     this.currentCategory = category;
   }
   getAllCategory(): void {
-    this.categorRepository.getList({page:this.page,size:this.size}).subscribe((result) => {
+    this.categorRepository.getList({page:this.page,size: this.size}).subscribe((result) => {
       this.allCategory = result.data;
       this.totaItem = result.pagination.itemCount
     });
