@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Pagination } from 'src/app/core/models/pagination';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product',
@@ -17,6 +19,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProductComponent implements OnInit {
   allProducts: Product[] = [];
+  size: number = 10;
+  page: number = 0;
+  totaItem: number = 0;
   productForm!: FormGroup;
   categories: Category[] = [];
   submit: boolean = false;
@@ -48,11 +53,18 @@ export class ProductComponent implements OnInit {
   }
 
   getAllProducts(): void {
-    this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result;
+    this.productRepository.getList({  page: this.page,size: this.size,}).subscribe((result) => {
+      this.allProducts = result.data;
+      this.totaItem = result.pagination.itemCount;
     });
   }
 
+  onPaginationChange(event: PageEvent) {
+
+    this.page  = event.pageIndex;
+    this.size = event.pageSize;
+    this.getAllProducts();
+  }
   prodForm() {
     this.productForm = this.build.group({
       id: [''],
@@ -115,7 +127,7 @@ export class ProductComponent implements OnInit {
 
   getAllTempCat(): void {
     this.categoryRepository.getList().subscribe((result) => {
-      this.categories = result;
+      this.categories = result.data;
     });
   }
 

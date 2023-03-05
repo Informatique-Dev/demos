@@ -1,4 +1,3 @@
-import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
@@ -13,6 +12,10 @@ import { Product } from 'src/app/domain/product/models/product';
 import { ProductRepository } from 'src/app/domain/product/product.repository';
 import { Profit } from 'src/app/domain/profit/models/profit';
 import { RepositoryService } from 'src/app/domain/profit/repository.repository';
+import { EmployeeRepository } from 'src/app/domain/employee/employee.repository';
+import { Employee } from 'src/app/domain/employee/models/employee';
+import { Transaction } from 'src/app/domain/transaction/models/transaction';
+import { TransactionRepository } from 'src/app/domain/transaction/transaction.repository';
 
 @Component({
   selector: 'app-home-page',
@@ -25,8 +28,9 @@ export class HomePageComponent implements OnInit {
   allCategory: Category[] = [];
   allInvestors: Investors[] = [];
   allInstallments: Installment[] = [];
-
+  allTransactions: Transaction[] = []
   allProfits:Profit[]=[];
+  allEmployee:Employee[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
@@ -34,7 +38,9 @@ export class HomePageComponent implements OnInit {
     private customersRepository: CustomersRepository,
     private investorsRepository: InvestorsRepository,
     private installmentsRepository : InstallmentRepositry,
-    private RepositoryService:RepositoryService
+    private RepositoryService:RepositoryService,
+    private employeeRepository:EmployeeRepository,
+    private transactionRepository: TransactionRepository
 
 
   ) {}
@@ -45,6 +51,8 @@ export class HomePageComponent implements OnInit {
     this.getAllInvestors();
     this.getAllInstallments();
     this.getAllProfits();
+    this.getAllTransactions()
+    this.getAllEmployee()
   }
 
   openProducts() {
@@ -73,20 +81,24 @@ export class HomePageComponent implements OnInit {
   openTransaction() {
     this.router.navigate(['/transaction']);
   }
+  
+  openEmployee() {
+    this.router.navigate(['/employee']);
+  }
 
   getAllProducts(): void {
     this.productRepository.getList().subscribe((result) => {
-      this.allProducts = result;
+      this.allProducts = result.data;
     });
   }
   getAllCustomers(): void {
-    this.customersRepository.getList().subscribe((result) => {
+    this.customersRepository.getList().subscribe((result:any) => {
       this.allCustomers = result;
     });
   }
   getAllCategory(): void {
-    this.categoryRepository.getList().subscribe((result: any) => {
-      this.allCategory = result;
+    this.categoryRepository.getList().subscribe((result) => {
+      this.allCategory = result.data;
     });
   }
   getAllInvestors(): void {
@@ -97,8 +109,8 @@ export class HomePageComponent implements OnInit {
 
 
   getAllInstallments(): void {
-    this.installmentsRepository.getList().subscribe((result: any) => {
-      this.allInstallments = result;
+    this.installmentsRepository.getList().subscribe((result) => {
+      this.allInstallments = result.data;
 
     });
   }
@@ -108,5 +120,17 @@ export class HomePageComponent implements OnInit {
       this.allProfits = result;
 
     });
+  }
+
+  getAllEmployee(): void {
+    this.employeeRepository.getList().subscribe((result) => {
+      this.allEmployee = result.data;
+
+    });
+  }
+  getAllTransactions():void{
+    this.transactionRepository.getList().subscribe((result)=>{
+      this.allTransactions = result.data
+    })
   }
 }

@@ -53,15 +53,15 @@ export class TransactionComponent implements OnInit {
     })
   }
 
-  getAllTransactions(){
-    this.transactionRepository.getList().subscribe((data:any) =>{
-      this.allTransactions = data
+  getAllTransactions():void{
+    this.transactionRepository.getList().subscribe((result) =>{
+      this.allTransactions = result.data
     })
   }
   
   getInvestorData(){
-    this.investorsRepository.getList().subscribe(data => {
-      this.investorNames = data      
+    this.investorsRepository.getList().subscribe((result:any) => {
+      this.investorNames = result      
     });
   }
 

@@ -25,7 +25,8 @@
     "customers": "Customers",
     "categories": "Categories",
     "products": "Products",
-    "profits": "Profits"
+    "profits": "Profits",
+    "employees": "Employees"
   },
   "home-page": {
     "order": "Order",
@@ -36,6 +37,7 @@
     "categories": "Categories",
     "products": "Products",
     "profits": "Profits",
+    "employee":"Employees",
     "home-content": " If you’re reading this, you’ve probably been tasked with creatingan Arabic website or landing page. ",
 
     "no-of-orders": " No of Orders ",
@@ -43,6 +45,7 @@
     "no-of-installment": "No of Installment  ",
     "no-of-investors": " No of Investors ",
     "no-of-customers": " No of Customers ",
+    "no-of-employee": " No of Employee ",
     "no-of-categories": "No of Categories  ",
     "no-of-products": " No of Products ",
     "no-of-profits": "No of Profits"
@@ -92,6 +95,8 @@
     "code": "Code",
     "national-id": "National-ID",
     "address": "Address",
+    "job": "Job",
+    "employee": "Employee",
     "receipt-no": "  Trust Receipt No ",
     "primrary-phone": "Primrary Number",
     "secondary-phone": "Secondry Number",
@@ -108,6 +113,30 @@
     "updated-successfuly": "Customer Updated Successfuly!",
     "added-successfuly": "Customer Added Successfuly!",
     "delete-successfuly": "Customer Deleted Successfuly!",
+    "close": "close"
+  },
+  "employee": {
+    "full-name": "Full Name ",
+    "nick-name": " Nick Name",
+    "national-id": "National-ID",
+    "address": "Address",
+    "job": "Job",
+    "employee": "Employee",
+    "receipt-no": "  Trust Receipt No ",
+    "primrary-phone": "Primrary Number",
+    "secondary-phone": "Secondry Number",
+    "id-validation": "National Id must be",
+    "id-number": "14 number",
+    "id-validation2": "number only ",
+    "phone-validation": "Phone Number Must Start With ",
+    "phone-number": " 11 Numbers only  ",
+    "phone-numbers": "(011,010,012,015)",
+    "enter-customer-fname": "Enter Employee Full-Name",
+    "enter-customer-nname": "Enter Employee Nick-Name",
+    "nationalId": "NationalId",
+    "updated-successfuly": "Employee Updated Successfuly!",
+    "added-successfuly": "Employee Added Successfuly!",
+    "delete-successfuly": "Employee Deleted Successfuly!",
     "close": "close"
   },
   "investors": {

@@ -48,7 +48,7 @@ export class InstallmentComponent implements OnInit  {
 
   getAllInstallments(): void {
     this.installmentrepositry.getList().subscribe((result) => {
-      this.installmentList = result;
+      this.installmentList = result.data;
       this.dataSource = new MatTableDataSource (this.installmentList)
       this.dataSource.sort = this.sort
       this.dataSource.filterPredicate = 

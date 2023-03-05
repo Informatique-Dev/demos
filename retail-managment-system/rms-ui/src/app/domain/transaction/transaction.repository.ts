@@ -10,7 +10,7 @@ export class TransactionRepository extends ResourceService<Transaction> {
     super(httpClient);
   }
   getResourceUrl(): string {
-    return 'transactions';
+    return 'transaction';
   }
 
   toServerModel(entity: Transaction): any {

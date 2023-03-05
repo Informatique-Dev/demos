@@ -1,53 +1,66 @@
-<div class="mx-auto content-size text-center my-5">
-  <div class="container text-center mt-5">
+<div class="container mx-auto text-center my-5">
+  <div class="text-center mt-5">
     <h3 class="panel-title fw-bold">
       {{ "category.our-category" | translate }}
     </h3>
   </div>
   <div class="row shadow-lg">
-    <div class="col-8 overflow-scroll fix-table data-table">
-      <table class="w-100 text-start" mat-table [dataSource]="allCategory">
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "no" | translate }}.
-          </th>
-          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "name" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let category">{{ category.name }}</td>
-        </ng-container>
-        <ng-container matColumnDef="status" class="status">
-          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-            {{ "category.status" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let category">
-            {{ category.status }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="update">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element" class="update-icon">
-            <mat-icon (click)="fetchData(element)">edit</mat-icon>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="openConfirmationDialog(element)"
-              >delete</mat-icon
-            >
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <app-loading-spinner></app-loading-spinner>
-    </div>
+    <div class="col-8  fix-table ">
+      <div class="overflow-scroll data-table " *ngIf="allCategory">
+        <table class="w-100  text-start content" mat-table [dataSource]="allCategory">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
+            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="status" class="status">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "category.status" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let category">
+              {{ category.status }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon">
+              <mat-icon class="table-button"(click)="fetchData(element)">edit</mat-icon>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon class="table-button" (click)="openConfirmationDialog(element)"
+                >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
+        </table>
+        <mat-paginator [length]="totaItem"
+              [pageSizeOptions]="[10,5,25,100]"
+              (page)="$event;onPaginationChange($event)"
+              showFirstLastButtons
+              aria-label="Select page"
+              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+        </mat-paginator>
+      </div>
+      </div>  
 
-    <div class="col-4 bg-light">
+    <div class="content col-4 bg-light">
       <div class="panel-heading pt-3 ps-1 mb-5">
         <div class="">
           <h3 class="float-start">
