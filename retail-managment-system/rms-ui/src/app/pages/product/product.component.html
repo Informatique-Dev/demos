@@ -6,7 +6,16 @@
       </h3>
     </div>
   </div>
-
+  <div class="container-fluid col-sm-4 col-md-4 column d-flex w-30 mx-5">
+    <mat-form-field >
+        <mat-select placeholder="{{'product.choose-category' | translate}}">
+          <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
+          <mat-option *ngFor="let type of categories" [value]="type" (click)="productFilter(type.id)">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
   <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
     <div class="row justify-content-center">
       <div *ngIf="allProducts"
