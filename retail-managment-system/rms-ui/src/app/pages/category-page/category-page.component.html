@@ -1,13 +1,13 @@
-<div class="mx-auto text-center my-5">
-  <div class="container text-center mt-5">
+<div class="container mx-auto text-center my-5">
+  <div class="text-center mt-5">
     <h3 class="panel-title fw-bold">
       {{ "category.our-category" | translate }}
     </h3>
   </div>
   <div class="row shadow-lg">
     <div class="col-8  fix-table ">
-      <div class="overflow-scroll data-table content" *ngIf="allCategory">
-        <table class="w-100  text-start" mat-table [dataSource]="allCategory">
+      <div class="overflow-scroll data-table " *ngIf="allCategory">
+        <table class="w-100  text-start content" mat-table [dataSource]="allCategory">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
               {{ "no" | translate }}.
@@ -50,7 +50,6 @@
             </td>
           </tr>
         </table>
-      </div>
         <mat-paginator [length]="totaItem"
               [pageSizeOptions]="[10,5,25,100]"
               (page)="$event;onPaginationChange($event)"
@@ -58,6 +57,7 @@
               aria-label="Select page"
               class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
         </mat-paginator>
+      </div>
       </div>  
 
     <div class="content col-4 bg-light">
