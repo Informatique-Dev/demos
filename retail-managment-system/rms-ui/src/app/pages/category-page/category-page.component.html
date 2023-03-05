@@ -1,4 +1,4 @@
-<div class="mx-auto content-size text-center my-5">
+<div class="mx-auto text-center my-5">
   <div class="container text-center mt-5">
     <h3 class="panel-title fw-bold">
       {{ "category.our-category" | translate }}
@@ -44,9 +44,13 @@
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
         </table>
       </div>
-      <app-loading-spinner></app-loading-spinner>
         <mat-paginator [length]="totaItem"
               [pageSizeOptions]="[10,5,25,100]"
               (page)="$event;onPaginationChange($event)"

@@ -1,4 +1,4 @@
-<div class="main">
+<div>
     <div class="container text-center mt-4">
       <div>
         <h3 class="panel-title fw-bold">
@@ -68,6 +68,11 @@
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
         </mat-table>
   
           <mat-paginator [length]="totaItem"

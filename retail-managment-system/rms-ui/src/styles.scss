@@ -42,3 +42,12 @@ body {
   {
     color: #002d40 !important;
   }
+
+  .spinner-row{
+    width: 60%;
+    position: absolute;
+    margin: 70px auto;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+  }
