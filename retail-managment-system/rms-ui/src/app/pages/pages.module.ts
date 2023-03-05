@@ -17,6 +17,7 @@ import { ReceiptComponent } from './installments/edit-installment/receipt/receip
 import { PayInstallmentComponent } from './installments/edit-installment/pay-installment.component';
 import { EmployeeComponent } from './employee/employee.component';
 
+import { AddTransactionComponent } from './investor-page/add-transaction/add-transaction.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     EmployeeComponent,
     PayInstallmentComponent,
     ReceiptComponent,
+    AddTransactionComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
  

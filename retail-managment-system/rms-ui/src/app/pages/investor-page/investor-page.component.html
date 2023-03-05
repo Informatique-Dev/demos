@@ -95,14 +95,21 @@
           <ng-container matColumnDef="update">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element" class="update-icon">
-              <mat-icon (click)="fetchData(element)">edit</mat-icon>
+              <mat-icon class="me-1" (click)="fetchData(element)">edit</mat-icon>
             </td>
           </ng-container>
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell class="delete-icon" *matCellDef="let element">
-              <mat-icon (click)="openConfirmationDialog(element)"
+              <mat-icon class="me-1" (click)="openConfirmationDialog(element)"
                 >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="transacion">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell class="transacion-icon" *matCellDef="let element">
+              <mat-icon  matTooltip="add transacion" matTooltipClass="mat-tooltip" class="fw-bold fs-2 me-1" (click)="openTransactionDialog(element)" >compare_arrows</mat-icon
               >
             </td>
           </ng-container>
@@ -113,7 +120,6 @@
       </div>
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
-        <section>
           <div>
             <div class="panel-heading pt-3 ps-1">
               <h3 class="panel-title">
@@ -193,7 +199,7 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-50">
+                <mat-form-field appearance="outline" class="w-100">
                   <mat-label>
                     {{ "customrs.national-id" | translate }}</mat-label
                   >
@@ -264,22 +270,6 @@
                     type="number"
                     matInput
                     placeholder="{{ 'investors.balance' | translate }}"
-                  />
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" class="w-50">
-                  <mat-label>
-                    {{ "investors.start-date" | translate }}</mat-label
-                  >
-                  <input
-                    formControlName="startDate"
-                    [ngClass]="{
-                      'is-invalid':
-                        submit && investorForm.controls['startDate'].errors
-                    }"
-                    type="date"
-                    matInput
-                    placeholder="{{ 'investors.start-date' | translate }}"
                   />
                 </mat-form-field>
 
@@ -360,7 +350,7 @@
           </div>
 
           <div class="actions pb-3 float-end">
-            <button
+            <button 
               class="btn me-3 ms-3"
               (click)="onSubmit()"
               [disabled]="submit"
@@ -379,8 +369,8 @@
               }}
             </button>
           </div>
-        </section>
       </div>
+    
     </div>
   </div>
 </div>
