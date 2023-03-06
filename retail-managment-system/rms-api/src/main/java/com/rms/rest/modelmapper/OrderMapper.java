@@ -27,8 +27,10 @@ public abstract class OrderMapper  {
 
     @Mappings({
             @Mapping(source = "employee", target = "employee", ignore = true),
-            @Mapping(source = "customer", target = "customer", ignore = true),
-            @Mapping(source = "orderItems" , target = "orderItems", ignore = true)})
+            @Mapping(source = "customer", target = "customer", ignore = true)
+        //    @Mapping(source = "orderItems" , target = "orderItems" , ignore = true)
+      //  @Mapping(source = "installments" , target = "installments" )
+            })
     public abstract  OrderDto toDto(Order order);
 
     public abstract  List<OrderDto> toDto(List<Order> list);

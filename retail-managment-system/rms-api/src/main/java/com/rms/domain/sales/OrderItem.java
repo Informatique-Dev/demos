@@ -3,12 +3,16 @@ package com.rms.domain.sales;
 import com.rms.domain.common.JPAEntity;
 import com.rms.domain.core.Product;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Order_Items")
 @Data
+@Entity
+@EqualsAndHashCode(of = "id", callSuper = false)
+@ToString(of = "id", callSuper = false)
+@Table(name = "Order_Items")
 public class OrderItem extends JPAEntity {
 
     @Column(name = "unit_price")
@@ -16,9 +20,6 @@ public class OrderItem extends JPAEntity {
 
     @Column(name = "quantity")
     private Integer quantity;
-
-    @Column(name = "payment_type")
-    private Short paymentType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
