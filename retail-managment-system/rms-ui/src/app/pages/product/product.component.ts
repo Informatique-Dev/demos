@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit {
   }
 
   productFilter(id : number){
-     this.productRepository.getResourceUrlByI(id).subscribe((result:any)=>{
+     this.productRepository.filterProductsById(id).subscribe((result:any)=>{
       this.allProducts = result.data
     if(this.allProducts.length == 0){
           this._snackBar.open(

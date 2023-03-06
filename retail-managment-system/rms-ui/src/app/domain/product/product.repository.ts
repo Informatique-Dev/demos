@@ -18,7 +18,7 @@ export class ProductRepository extends ResourceService<Product> {
   getResourceUrl(): string {
     return 'product';
   }
-  getResourceUrlByI(id:number){
+  filterProductsById(id:number){
     return this.categoryRepository.getListById(`${id}/product`)
   }
 
