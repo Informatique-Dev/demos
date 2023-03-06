@@ -21,17 +21,19 @@ public class Order extends AuditingEntity {
     @Column(name = "order_date")
     private Date orderDate;
 
-    @Column(name = "payment_Type")
-    private Short paymentType;
-    
+    @Column(name = "payment_type")
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
+
     @Column(name = "paid_amount")
     private Double paidAmount;
+
+    @Column(name = "total_price")
+    private Double totalPrice;
 
     @Column(name = "remaining_amount")
     private Double remainingAmount;
 
-    @Column(name = "installment_amount")
-    private Double installmentAmount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
@@ -41,12 +43,12 @@ public class Order extends AuditingEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private List<OrderItem> orderItems;
-
 //    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "installment_id")
+//    @JoinColumn(name = "order_id")
+//    private List<OrderItem> orderItems;
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//   @JoinColumn(name = "order_id")
 //    private List<Installment> installments;
 
 }

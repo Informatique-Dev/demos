@@ -64,11 +64,7 @@ public class InstallmentHandler {
 
     public ResponseEntity<?> save(InstallmentDto installmentDto) {
         Installment installment = mapper.toEntity(installmentDto);
-        Order order = orderService.getById(installment.getOrder().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),installment.getOrder().getId()));
-        installment.setOrder(order);
-        installmentService.save(installment);
-        InstallmentDto dto = mapper.toDto(installment);
+        InstallmentDto dto = mapper.toDto(installmentService.save(installment));
         return ResponseEntity.ok(dto);
     }
 

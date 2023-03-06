@@ -38,11 +38,6 @@ public class InstallmentController {
         return installmentHandler.getById(id);
     }
 
-    @PostMapping
-    @Operation(summary = "Add", description = "this api for add new installment")
-    public ResponseEntity<?> save(@RequestBody InstallmentDto installment) {
-        return installmentHandler.save(installment);
-    }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update installment")
