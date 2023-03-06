@@ -3,7 +3,7 @@
     <h3 class="panel-title">{{ "suppliers.our-suppliers"|translate  }}</h3>
   </div>
 </div>
-<div class="container-fluid col-11 mt-4 shadow-lg">
+<div class="container-fluid col-11 mt-4 mb-4 shadow-lg">
   <div class="row">
     <div class="content col-md-8 col-sm-8 overflow-scroll bg-white">
 
@@ -140,7 +140,7 @@
                   type="text"
                   matInput
                   placeholder="{{
-                    'suppliers.enter-supplier-name' | translate
+                    'suppliers.contactName' | translate
                   }}"
                 />
                 <mat-error
@@ -152,20 +152,7 @@
                   <strong> {{ "product.required" | translate }}</strong>
                 </mat-error>
               </mat-form-field>
-
-
-
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>{{ "suppliers.version" | translate }}</mat-label>
-                <input
-                  formControlName="version"
-                  type="number"
-                  matInput
-                  placeholder="{{ 'suppliers.version' | translate }}"
-                />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="w-100 mb-4">
+              <mat-form-field appearance="outline" class="w-50 mb-4">
                 <mat-label>{{
                   "suppliers.primary-phone" | translate
                 }}</mat-label>
@@ -213,7 +200,7 @@
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="w-100 mb-4">
+              <mat-form-field appearance="outline" class="w-50 mb-4">
                 <mat-label>
                   {{ "suppliers.secondary-phone" | translate }}</mat-label
                 >
@@ -247,7 +234,16 @@
                   <strong>010, 011, 012, 015</strong>
                 </mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="w-100">
+              <mat-form-field appearance="outline" class="w-50">
+                <mat-label>{{ "suppliers.version" | translate }}</mat-label>
+                <input
+                  formControlName="version"
+                  type="number"
+                  matInput
+                  placeholder="{{ 'suppliers.version' | translate }}"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-50">
                 <mat-label>{{ "suppliers.address" | translate }}</mat-label>
                 <input
                   formControlName="address"

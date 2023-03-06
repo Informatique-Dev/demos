@@ -87,6 +87,7 @@ export class SupplierComponent implements OnInit {
   }
 
   addSupplier() {
+    console.log(this.supplierForm.value)
     this.isButtonVisible = true;
     this.submit = true;
     this.supplierRepository.add(this.supplierForm.value).subscribe(

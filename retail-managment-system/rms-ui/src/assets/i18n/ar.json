@@ -5,7 +5,7 @@
   "footer": "جميع حقوق النشر محفوظه@2022.",
   "no": "م",
   "name": "الاسم",
-  "add": "أضافه",
+  "add": "إضافه",
   "update": "تعديل",
   "reset": "اعاده تعيين",
   "clear": "مسح",
@@ -26,7 +26,7 @@
     "products": "المنتجات",
     "profits": "الارباح",
     "employees":"الموظفين",
-    "supplier":"الموردين"
+    "suppliers":"الموردين"
 
   },
   "home-page": {
@@ -247,7 +247,7 @@
           "our-suppliers": "الموردين",
           "name": "الأسم",
           "version":"الإصدار",
-          "contactName": "جهة الأتصال",
+          "contactName": "جهة الإتصال",
           "address": "العنوان",
           "primary-phone": "رقم الهاتف",
           "secondary-phone": "رقم الهاتف 2",

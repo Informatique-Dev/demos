@@ -18,7 +18,7 @@ export class SupplierRepository extends ResourceService<Supplier> {
       version: entity.version,
       name: entity.name,
       contactName: entity.contactName,
-      primarPhoneNo: entity.primarPhoneNo,
+      primaryPhoneNo: entity.primaryPhoneNo,
       secondaryPhoneNo: entity.secondaryPhoneNo,
       address: entity.address
     };

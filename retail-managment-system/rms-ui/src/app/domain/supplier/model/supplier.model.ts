@@ -3,7 +3,7 @@ export interface Supplier {
   version: number;
   name: string;
   contactName: string;
-  primarPhoneNo: string;
+  primaryPhoneNo: string;
   secondaryPhoneNo: string;
   address: string;
 }
