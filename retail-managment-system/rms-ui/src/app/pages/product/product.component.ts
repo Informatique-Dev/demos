@@ -53,17 +53,17 @@ export class ProductComponent implements OnInit {
   }
 
   productFilter(id : number){
-    this.categoryRepository.getListById(`${id}/products`).subscribe((result)=>{
-      this.allProducts = result
-      if(result.length == 0){
-        this._snackBar.open(
-          this.translate.instant('product.no-products'),
-          this.translate.instant('product.close'),
-          {
-            duration: 2000,
-          }
-        ); 
-      }
+     this.productRepository.getResourceUrlByI(id).subscribe((result:any)=>{
+      this.allProducts = result.data
+    if(this.allProducts.length == 0){
+          this._snackBar.open(
+            this.translate.instant('product.no-products'),
+            this.translate.instant('product.close'),
+            {
+              duration: 2000,
+            }
+          ); 
+        }
     })
   }
 

@@ -2,15 +2,24 @@ import { ResourceService } from 'src/app/core/services/resource.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from './models/product';
+import { CategoryRepository } from 'src/app/domain/category/category.repository';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ProductRepository extends ResourceService<Product> {
-  constructor(httpClient: HttpClient) {
+  data: Product[] = []
+  constructor(
+    httpClient: HttpClient,
+    public categoryRepository: CategoryRepository
+    ) {
     super(httpClient);
   }
   getResourceUrl(): string {
     return 'product';
+  }
+  getResourceUrlByI(id:number){
+    return this.categoryRepository.getListById(`${id}/product`)
   }
 
   toServerModel(entity: Product): any {
