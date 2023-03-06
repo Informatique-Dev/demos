@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from './models/product';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
+import { Category } from 'src/app/domain/category/models/category';
+import { Observable } from 'rxjs';
+import { Response } from '../../core/models/response';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductRepository extends ResourceService<Product> {
-  data: Product[] = []
   constructor(
     httpClient: HttpClient,
     public categoryRepository: CategoryRepository
@@ -18,7 +21,7 @@ export class ProductRepository extends ResourceService<Product> {
   getResourceUrl(): string {
     return 'product';
   }
-  filterProductsById(id:number){
+  filterProductsById(id:number):Observable<Response<Category>>{
     return this.categoryRepository.getListById(`${id}/product`)
   }
 
