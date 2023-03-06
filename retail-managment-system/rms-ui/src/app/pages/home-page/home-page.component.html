@@ -160,6 +160,24 @@
             {{ allProfits.length }}
           </div>
         </div>
+        <div
+          class="card text-center col-md-3 mt-5 col-sm-10"
+          (click)="openSupplier()"
+        >
+          <div class="card-header">
+            <mat-icon>timeline</mat-icon>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ "home-page.suppliers" | translate }}</h5>
+            <p class="card-text">
+              {{ "home-page.home-content" | translate }}
+            </p>
+          </div>
+          <div class="card-footer text-danger">
+            {{ "home-page.no-of-suppliers" | translate }}:
+            {{ allSuppliers.length }}
+          </div>
+        </div>
       </div>
     </div>
   </section>

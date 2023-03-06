@@ -1,0 +1,61 @@
+
+.content {
+  height: 600px;
+}
+.btn {
+  background-color: #002d40;
+  color: white;
+  width: 80px;
+  height: 40px;
+}
+.table-button {
+  background-color: transparent;
+  color: #002d40;
+  width: 50px;
+  height: 40px;
+}
+.table-button:hover,
+.add-icon:hover {
+  color: red;
+}
+mat-icon {
+  font-size: 30px;
+}
+.add-icon {
+  cursor: pointer;
+}
+th,
+td {
+  line-height: 2;
+}
+
+.mat-column-id {
+  min-width: 60px;
+}
+.mat-column-fullName {
+  min-width: 160px;
+}
+.mat-column-nickName {
+  min-width: 90px;
+}
+.mat-column-customerCode {
+  min-width: 50px;
+}
+.mat-column-nationalId {
+  min-width: 125px;
+}
+.mat-column-primaryPhoneNo {
+  min-width: 125px;
+}
+.mat-column-secondaryPhoneNo {
+  min-width: 145px;
+}
+.mat-column-address {
+  min-width: 100px;
+}
+.mat-column-trustReceiptNo {
+  min-width: 125px;
+}
+.mat-column-actions {
+  min-width: 125px;
+}

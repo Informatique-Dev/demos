@@ -25,7 +25,9 @@
     "categories": "الفئات",
     "products": "المنتجات",
     "profits": "الارباح",
-    "employees":"الموظفين"
+    "employees":"الموظفين",
+    "supplier":"الموردين"
+
   },
   "home-page": {
     "order": "الطلبات",
@@ -37,6 +39,7 @@
     "products": "المنتجات",
     "profits": "الارباح",
     "employee": "الموظفين",
+    "suppliers": "الموردين",
     "home-content": " لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية،.",
 
     "no-of-orders": "عدد الطلبات",
@@ -46,7 +49,8 @@
     "no-of-customers": "عدد العملاء",
     "no-of-categories": "عدد الفئات",
     "no-of-products": "عدد المنتجات",
-    "no-of-profits": "عدد الارباح"
+    "no-of-profits": "عدد الارباح",
+    "no-of-suppliers": "عدد الموردين"
   },
   "home-footer": {
     "first-pargraph": "سنظل دائمًا الاسم الذي يحظى بأعلى ثقة العملاء وشركاء النجاح من خلال منتجاتنا وخدماتنا من أجل مجتمع أفضل.",
@@ -237,5 +241,27 @@
         "update-message":"تم تعديل العملية بنجاح",
         "delete-message":"تم مسح العملية",
         "close":"غلق"
+        },
+        "suppliers": {
+          "supplier": "المورد",
+          "our-suppliers": "الموردين",
+          "name": "الأسم",
+          "version":"الإصدار",
+          "contactName": "جهة الأتصال",
+          "address": "العنوان",
+          "primary-phone": "رقم الهاتف",
+          "secondary-phone": "رقم الهاتف 2",
+          "id-validation": "الرقم القومي يجب ان يكون ",
+          "id-number": "اربعه عشر رقما",
+          "id-validation2": "ارقام فقط",
+          "phone-validation": "رقم الهاتف يجب ان يبدا ",
+          "phone-number": "احدي عشر رقم فقط",
+          "phone-numbers": "(011,010,012,015)",
+          "enter-supplier-name": "أدخل اسم المورد",
+          "supplier-code": "كود العميل",
+          "updated-successfuly": "تم تعديل المورد بنجاح",
+          "added-successfuly": "تم اضافة المورد بنجاح",
+          "delete-successfuly": "تم مسح المورد بنجاح",
+          "close": "اغلاق"
         }
 }
