@@ -92,8 +92,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         <app-loading-spinner></app-loading-spinner>
       </table>
-      <mat-paginator [length]="totaItem"
-      [pageSizeOptions]="[10,20,40,100]"
+      <mat-paginator [length]="pagination?.itemCount"
+      [pageSizeOptions]="[10,5,100]"
       (page)="$event;onPaginationChange($event)"
       showFirstLastButtons
       aria-label="Select page"

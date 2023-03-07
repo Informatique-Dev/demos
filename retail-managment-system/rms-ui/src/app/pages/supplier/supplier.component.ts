@@ -24,8 +24,7 @@ export class SupplierComponent implements OnInit {
   page: number = 0;
   totaItem: number = 0;
   size: number = 10;
-  dataSource = new MatTableDataSource<Supplier>(this.suppliersList);
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  pagination:any;
   displayedColumns: string[] = [
     'id',
     'version',
@@ -61,9 +60,10 @@ export class SupplierComponent implements OnInit {
     this.getSuppliers();
   }
   getSuppliers() {
-    this.supplierRepository.getList().subscribe((response) => {
+    this.supplierRepository.getList({ page: this.page,size: this.size}).subscribe((response) => {
       this.suppliersList = response.data;
-      console.log(response);
+      this.pagination=response.pagination;
+
     })
   }
   onPaginationChange(event: PageEvent) {
