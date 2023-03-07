@@ -52,6 +52,22 @@ export class ProductComponent implements OnInit {
     this.prodForm();
   }
 
+  productFilter(id : number){
+     this.productRepository.filterProductsById(id).subscribe((result:any)=>{
+      this.allProducts = result.data
+      this.totaItem = result.pagination.itemCount;
+    if(this.allProducts.length == 0){
+          this._snackBar.open(
+            this.translate.instant('product.no-products'),
+            this.translate.instant('product.close'),
+            {
+              duration: 2000,
+            }
+          ); 
+        }
+    })
+  }
+
   getAllProducts(): void {
     this.productRepository.getList({  page: this.page,size: this.size,}).subscribe((result) => {
       this.allProducts = result.data;

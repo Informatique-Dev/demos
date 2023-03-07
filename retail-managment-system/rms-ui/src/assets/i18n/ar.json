@@ -15,6 +15,7 @@
   "direction": "rtl",
   "reverse-direction":"ltr",
   "logout":"تسجيل الخروج",
+  "all":"الكل",
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
     "order": "الطلب",
@@ -71,7 +72,9 @@
     "updated-successfuly": "تم تعديل المنتج بنجاح",
     "added-successfuly": "تم اضافة المنتج بنجاح",
     "delete-successfuly": "تم مسح المنتج بنجاح",
-    "close": "اغلاق"
+    "no-products":" لا يوجد منتجات تحت هذه الفئة",
+    "close": "اغلاق",
+    "choose-category":"اختار الفئة"
   },
   "category": {
     "category": "الفئات",

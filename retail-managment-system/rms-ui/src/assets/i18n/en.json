@@ -15,6 +15,7 @@
   "direction": "ltr",
   "reverse-direction":"rtl",
   "logout":"Logout",
+  "all":"All",
 
   "sidebar": {
     "home": "  Home ",
@@ -73,7 +74,9 @@
     "updated-successfuly": "Product Updated Successfuly!",
     "added-successfuly": "Product Added Successfuly!",
     "delete-successfuly": "Product Deleted Successfuly!",
-    "close": "close"
+    "no-products":"No products found in this category!",
+    "close": "close",
+    "choose-category":"Choose Category"
   },
   "category": {
     "category": "Category",
