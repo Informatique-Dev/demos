@@ -43,7 +43,7 @@
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;sticky:true"></tr>
           <tr class="mat-row spinner-row" *matNoDataRow>
             <td>
               <app-loading-spinner></app-loading-spinner>
@@ -74,7 +74,7 @@
         </div>
 
         <mat-icon
-          class="add-icon me-4 pt-4 float-end"
+          class="add-icon me-4 float-end"
           (click)="restartForm()"
           [hidden]="!categoryForm.controls['id'].value"
         >
@@ -83,8 +83,8 @@
       </div>
 
       <div class="clearfix"></div>
-      <form [formGroup]="categoryForm" class="min-height:auto">
-        <mat-form-field appearance="outline" class="w-100 ms-2 col-4">
+      <form [formGroup]="categoryForm" class="min-height:auto w-100 row">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label> {{ "category.category-name" | translate }}</mat-label>
           <input
             formControlName="name"
@@ -107,7 +107,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100 ms-2 col-4">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ "category.status" | translate }}</mat-label>
 
           <mat-select
@@ -134,10 +134,9 @@
         </mat-form-field>
       </form>
 
-      <mat-dialog-actions align="end">
-        <div class="mt-5">
+        <div class="w-100 px-2 d-flex justify-content-end">
           <button
-            class="btn me-3 mt-0"
+            class="btn mx-1"
             (click)="onSubmit()"
             [disabled]="submit"
           >
@@ -147,7 +146,7 @@
                 : ("add" | translate)
             }}
           </button>
-          <button class="btn mt-5" mat-button (click)="resetTheForm()">
+          <button class="btn mx-1" mat-button (click)="resetTheForm()">
             {{
               categoryForm.controls["id"].value
                 ? ("reset" | translate)
@@ -155,7 +154,9 @@
             }}
           </button>
         </div>
-      </mat-dialog-actions>
     </div>
   </div>
 </div>
+
+
+
