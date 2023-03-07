@@ -55,6 +55,7 @@ export class ProductComponent implements OnInit {
   productFilter(id : number){
      this.productRepository.filterProductsById(id).subscribe((result:any)=>{
       this.allProducts = result.data
+      this.totaItem = result.pagination.itemCount;
     if(this.allProducts.length == 0){
           this._snackBar.open(
             this.translate.instant('product.no-products'),
