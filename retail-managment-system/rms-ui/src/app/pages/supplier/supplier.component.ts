@@ -95,8 +95,8 @@ export class SupplierComponent implements OnInit {
         this.getSuppliers();
         this.submit = false;
         this.snackBar.open(
-          this.translate.instant('supplier.added-successfuly'),
-          this.translate.instant('supplier.close'),
+          this.translate.instant('suppliers.added-successfuly'),
+          this.translate.instant('suppliers.close'),
           {
             duration: 2000,
           }
@@ -153,8 +153,8 @@ supplierDataForm(){
     this.supplierRepository.delete(supplier.id).subscribe(() => {
       this.getSuppliers();
       this.snackBar.open(
-        this.translate.instant('employee.delete-successfuly'),
-        this.translate.instant('employee.close'),
+        this.translate.instant('suppliers.delete-successfuly'),
+        this.translate.instant('suppliers.close'),
         {
           duration: 2000,
         }
