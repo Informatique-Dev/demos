@@ -44,14 +44,14 @@ export class SupplierComponent implements OnInit {
       // this.dataSource.paginator = this.paginator;
       this.supplierForm = this.fBuilder.group({
         id: [''],
-        version: ['', [Validators.required]],
+        version: [''],
         name: ['', [Validators.required]],
         contactName: ['', [Validators.required]],
         primaryPhoneNo: [
           '',
           [Validators.required, Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')],
         ],
-        secondaryPhoneNo: ['', [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
+        secondaryPhoneNo: [null, [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
         address: ['', [Validators.required]],
       });
     }
@@ -101,21 +101,9 @@ export class SupplierComponent implements OnInit {
   }
 
   addSupplier() {
-    console.log(this.supplierForm.value)
-    let supplier=
-      {
-        id: 3,
-        version: this.supplierForm.controls['version'].value,
-       name:this.supplierForm.controls['name'].value,
-        contactName: this.supplierForm.controls['contactName'].value,
-        primaryPhoneNo: this.supplierForm.controls['primaryPhoneNo'].value,
-        secondaryPhoneNo: this.supplierForm.controls['secondaryPhoneNo'].value,
-        address: this.supplierForm.controls['address'].value
-      }
-
     this.isButtonVisible = true;
     this.submit = true;
-    this.supplierRepository.add(supplier).subscribe(
+    this.supplierRepository.add(this.supplierForm.value).subscribe(
       () => {
         this.getSuppliers();
         this.submit = false;

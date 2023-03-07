@@ -159,7 +159,7 @@
                   <strong> {{ "product.required" | translate }}</strong>
                 </mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="w-50 mb-4">
+              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{
                   "suppliers.primary-phone" | translate
                 }}</mat-label>
@@ -207,7 +207,7 @@
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="w-50 mb-4">
+              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>
                   {{ "suppliers.secondary-phone" | translate }}</mat-label
                 >
@@ -241,16 +241,7 @@
                   <strong>010, 011, 012, 015</strong>
                 </mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="w-50">
-                <mat-label>{{ "suppliers.version" | translate }}</mat-label>
-                <input
-                  formControlName="version"
-                  type="number"
-                  matInput
-                  placeholder="{{ 'suppliers.version' | translate }}"
-                />
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="w-50">
+              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{ "suppliers.address" | translate }}</mat-label>
                 <input
                   formControlName="address"
