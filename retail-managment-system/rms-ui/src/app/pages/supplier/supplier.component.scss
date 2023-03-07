@@ -29,22 +29,17 @@ td {
   line-height: 2;
 }
 
-.mat-column-id {
+.mat-column-id,.mat-column-version {
   min-width: 60px;
 }
-.mat-column-fullName {
+.mat-column-contactName {
   min-width: 160px;
 }
-.mat-column-nickName {
+.mat-column-Name {
   min-width: 90px;
 }
-.mat-column-customerCode {
-  min-width: 50px;
-}
-.mat-column-nationalId {
-  min-width: 125px;
-}
-.mat-column-primaryPhoneNo {
+
+.mat-column-primaryPhoneNo,.mat-column-actions {
   min-width: 125px;
 }
 .mat-column-secondaryPhoneNo {
@@ -53,9 +48,4 @@ td {
 .mat-column-address {
   min-width: 100px;
 }
-.mat-column-trustReceiptNo {
-  min-width: 125px;
-}
-.mat-column-actions {
-  min-width: 125px;
-}
+

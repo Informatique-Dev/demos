@@ -27,6 +27,7 @@ export class SupplierComponent implements OnInit {
     'primaryPhoneNo',
     'secondaryPhoneNo',
     'address',
+    'actions'
   ];
 
   constructor(private supplierRepository: SupplierRepository,
@@ -88,9 +89,20 @@ export class SupplierComponent implements OnInit {
 
   addSupplier() {
     console.log(this.supplierForm.value)
+    let supplier=
+      {
+        id: 3,
+        version: this.supplierForm.controls['version'].value,
+       name:this.supplierForm.controls['name'].value,
+        contactName: this.supplierForm.controls['contactName'].value,
+        primaryPhoneNo: this.supplierForm.controls['primaryPhoneNo'].value,
+        secondaryPhoneNo: this.supplierForm.controls['secondaryPhoneNo'].value,
+        address: this.supplierForm.controls['address'].value
+      }
+
     this.isButtonVisible = true;
     this.submit = true;
-    this.supplierRepository.add(this.supplierForm.value).subscribe(
+    this.supplierRepository.add(supplier).subscribe(
       () => {
         this.getSuppliers();
         this.submit = false;
