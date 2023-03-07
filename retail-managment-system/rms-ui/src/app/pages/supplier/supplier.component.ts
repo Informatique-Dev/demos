@@ -1,12 +1,14 @@
 import { SupplierRepository } from './../../domain/supplier/supplier.repository';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Supplier } from '../../domain/supplier/model/supplier.model';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { log } from 'console';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-supplier',
@@ -19,11 +21,16 @@ export class SupplierComponent implements OnInit {
   isButtonVisible: boolean = true;
   submit: boolean = false;
   currentData!: Supplier;
+  page: number = 0;
+  totaItem: number = 0;
+  size: number = 10;
+  dataSource = new MatTableDataSource<Supplier>(this.suppliersList);
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = [
     'id',
     'version',
     'Name',
-    'ContactName',
+    'contactName',
     'primaryPhoneNo',
     'secondaryPhoneNo',
     'address',
@@ -35,6 +42,7 @@ export class SupplierComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private translate: TranslateService) {
+      // this.dataSource.paginator = this.paginator;
       this.supplierForm = this.fBuilder.group({
         id: [''],
         version: ['', [Validators.required]],
@@ -57,6 +65,11 @@ export class SupplierComponent implements OnInit {
       this.suppliersList = response.data;
       console.log(response);
     })
+  }
+  onPaginationChange(event: PageEvent) {
+    this.page  = event.pageIndex;
+    this.size = event.pageSize;
+    this.getSuppliers();
   }
   fetchData(supplier: Supplier): void {
     this.isButtonVisible = false;

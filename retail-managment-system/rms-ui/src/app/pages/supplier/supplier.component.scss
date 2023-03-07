@@ -1,4 +1,3 @@
-
 .content {
   height: 600px;
 }
@@ -29,13 +28,16 @@ td {
   line-height: 2;
 }
 
-.mat-column-id,.mat-column-version {
+.mat-column-id {
   min-width: 60px;
 }
+// .mat-column-version {
+//   min-width: 90px;
+// }
 .mat-column-contactName {
   min-width: 160px;
 }
-.mat-column-Name {
+.mat-column-Name,.mat-column-version {
   min-width: 90px;
 }
 

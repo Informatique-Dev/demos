@@ -1,14 +1,15 @@
-<div class="main">
+ <div class="main">
   <div class="container text-center mt-4">
     <h3 class="panel-title">{{ "suppliers.our-suppliers"|translate  }}</h3>
   </div>
 </div>
 <div class="container-fluid col-11 mt-4 mb-4 shadow-lg">
   <div class="row">
-    <div class="content col-md-8 col-sm-8 overflow-scroll bg-white">
+    <div class="content col-md-8 col-sm-8 table-responsive bg-white">
+
 
        <table
-        class="table table-responsive"
+        class="table  overflow-scroll"
         mat-table
         [dataSource]="suppliersList"
       >
@@ -37,7 +38,7 @@
             {{ element.name }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="ContactName">
+        <ng-container matColumnDef="contactName">
           <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
             {{ "suppliers.contactName" | translate }}
           </th>
@@ -91,8 +92,14 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         <app-loading-spinner></app-loading-spinner>
       </table>
-
-    </div>
+      <mat-paginator [length]="totaItem"
+      [pageSizeOptions]="[10,20,40,100]"
+      (page)="$event;onPaginationChange($event)"
+      showFirstLastButtons
+      aria-label="Select page"
+      class="fw-bold fs-6 d-flex justify-content-center  ">
+    </mat-paginator>
+      </div>
     <div class="content col-md-4 col-sm-6 bg-light">
       <section>
         <div class="panel-heading pt-3 ps-1">
@@ -289,3 +296,4 @@
     </div>
   </div>
 </div>
+
