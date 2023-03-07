@@ -16,7 +16,7 @@ import { EmployeeRepository } from 'src/app/domain/employee/employee.repository'
 import { Employee } from 'src/app/domain/employee/models/employee';
 import { Transaction } from 'src/app/domain/transaction/models/transaction';
 import { TransactionRepository } from 'src/app/domain/transaction/transaction.repository';
-import { Supplier } from 'src/app/domain/supplier/model/supplier.model';
+import { Supplier } from 'src/app/domain/supplier/models/supplier.model';
 import { SupplierRepository } from 'src/app/domain/supplier/supplier.repository';
 
 @Component({

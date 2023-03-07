@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource.service';
-import { Supplier } from './model/supplier.model';
+import { Supplier } from './models/supplier.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +11,5 @@ export class SupplierRepository extends ResourceService<Supplier> {
   }
   getResourceUrl(): string {
     return 'supplier';
-  }
-  toServerModel(entity: Supplier) {
-    return {
-      id: entity.id,
-      version: entity.version,
-      name: entity.name,
-      contactName: entity.contactName,
-      primaryPhoneNo: entity.primaryPhoneNo,
-      secondaryPhoneNo: entity.secondaryPhoneNo,
-      address: entity.address
-    };
   }
 }

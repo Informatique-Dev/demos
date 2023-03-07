@@ -94,7 +94,7 @@
       </table>
       <mat-paginator [length]="pagination?.itemCount"
       [pageSizeOptions]="[10,5,100]"
-      (page)="$event;onPaginationChange($event)"
+      (page)="onPaginationChange($event)"
       showFirstLastButtons
       aria-label="Select page"
       class="fw-bold fs-6 d-flex justify-content-center  ">

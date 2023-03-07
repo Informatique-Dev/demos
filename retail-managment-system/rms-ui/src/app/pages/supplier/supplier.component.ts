@@ -1,7 +1,7 @@
 import { SupplierRepository } from './../../domain/supplier/supplier.repository';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Supplier } from '../../domain/supplier/model/supplier.model';
+import { Supplier } from '../../domain/supplier/models/supplier.model';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -41,22 +41,11 @@ export class SupplierComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private translate: TranslateService) {
-      // this.dataSource.paginator = this.paginator;
-      this.supplierForm = this.fBuilder.group({
-        id: [''],
-        version: [''],
-        name: ['', [Validators.required]],
-        contactName: ['', [Validators.required]],
-        primaryPhoneNo: [
-          '',
-          [Validators.required, Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')],
-        ],
-        secondaryPhoneNo: [null, [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
-        address: ['', [Validators.required]],
-      });
+
     }
 
   ngOnInit(): void {
+    this.supplierDataForm();
     this.getSuppliers();
   }
   getSuppliers() {
@@ -83,8 +72,6 @@ export class SupplierComponent implements OnInit {
     this.supplierRepository.update(this.supplierForm.value).subscribe(
       () => {
         this.getSuppliers();
-        console.log("update");
-
         this.submit = false;
         this.snackBar.open(
           this.translate.instant('suppliers.updated-successfuly'),
@@ -135,7 +122,20 @@ export class SupplierComponent implements OnInit {
       ? this.fetchData(this.currentData)
       : this.supplierForm.reset();
   }
-
+supplierDataForm(){
+  this.supplierForm = this.fBuilder.group({
+    id: [''],
+    version: [''],
+    name: ['', [Validators.required]],
+    contactName: ['', [Validators.required]],
+    primaryPhoneNo: [
+      '',
+      [Validators.required, Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')],
+    ],
+    secondaryPhoneNo: [null, [Validators.pattern('^01[0-2,5]{1}[0-9]{8}$')]],
+    address: ['', [Validators.required]],
+  });
+}
   restartForm(): void {
     this.supplierForm.reset();
   }
@@ -150,7 +150,6 @@ export class SupplierComponent implements OnInit {
   }
 
   deleteSupplier(supplier: Supplier) {
-
     this.supplierRepository.delete(supplier.id).subscribe(() => {
       this.getSuppliers();
       this.snackBar.open(
