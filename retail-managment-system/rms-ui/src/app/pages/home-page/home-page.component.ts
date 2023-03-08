@@ -16,6 +16,8 @@ import { EmployeeRepository } from 'src/app/domain/employee/employee.repository'
 import { Employee } from 'src/app/domain/employee/models/employee';
 import { Transaction } from 'src/app/domain/transaction/models/transaction';
 import { TransactionRepository } from 'src/app/domain/transaction/transaction.repository';
+import { Supplier } from 'src/app/domain/supplier/models/supplier.model';
+import { SupplierRepository } from 'src/app/domain/supplier/supplier.repository';
 
 @Component({
   selector: 'app-home-page',
@@ -31,6 +33,7 @@ export class HomePageComponent implements OnInit {
   allTransactions: Transaction[] = []
   allProfits:Profit[]=[];
   allEmployee:Employee[]=[];
+  allSuppliers:Supplier[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
@@ -40,7 +43,8 @@ export class HomePageComponent implements OnInit {
     private installmentsRepository : InstallmentRepositry,
     private RepositoryService:RepositoryService,
     private employeeRepository:EmployeeRepository,
-    private transactionRepository: TransactionRepository
+    private transactionRepository: TransactionRepository,
+    private supplierRepository: SupplierRepository
 
 
   ) {}
@@ -51,8 +55,9 @@ export class HomePageComponent implements OnInit {
     this.getAllInvestors();
     this.getAllInstallments();
     this.getAllProfits();
-    this.getAllTransactions()
-    this.getAllEmployee()
+    this.getAllTransactions();
+    this.getAllEmployee();
+    this.getAllSupplier();
   }
 
   openProducts() {
@@ -81,9 +86,12 @@ export class HomePageComponent implements OnInit {
   openTransaction() {
     this.router.navigate(['/transaction']);
   }
-  
+
   openEmployee() {
     this.router.navigate(['/employee']);
+  }
+  openSupplier() {
+    this.router.navigate(['/supplier']);
   }
 
   getAllProducts(): void {
@@ -131,6 +139,11 @@ export class HomePageComponent implements OnInit {
   getAllTransactions():void{
     this.transactionRepository.getList().subscribe((result)=>{
       this.allTransactions = result.data
+    })
+  }
+  getAllSupplier():void{
+    this.supplierRepository.getList().subscribe((result)=>{
+      this.allSuppliers = result.data
     })
   }
 }

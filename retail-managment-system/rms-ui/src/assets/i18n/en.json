@@ -27,7 +27,8 @@
     "categories": "Categories",
     "products": "Products",
     "profits": "Profits",
-    "employees": "Employees"
+    "employees": "Employees",
+    "suppliers":"Suppliers"
   },
   "home-page": {
     "order": "Order",
@@ -39,6 +40,7 @@
     "products": "Products",
     "profits": "Profits",
     "employee":"Employees",
+    "suppliers":"Suppliers",
     "home-content": " If you’re reading this, you’ve probably been tasked with creatingan Arabic website or landing page. ",
 
     "no-of-orders": " No of Orders ",
@@ -49,7 +51,9 @@
     "no-of-employee": " No of Employee ",
     "no-of-categories": "No of Categories  ",
     "no-of-products": " No of Products ",
-    "no-of-profits": "No of Profits"
+    "no-of-profits": "No of Profits",
+    "no-of-suppleis": "No of Profits",
+    "no-of-suppliers":"No of Suppliers"
   },
   "home-footer": {
     "first-pargraph": "We will always remain the name that has the highest trust from customers, .",
@@ -177,7 +181,7 @@
     "enter-PaymentAmount":"Enter paymentAmount Price ",
     "pay": "Pay",
     "receipt":"Installment receipt",
-    "thank":"Thank You" 
+    "thank":"Thank You"
   },
   "profits": {
     "profits": "Profits",
@@ -203,7 +207,7 @@
     "serverErrorMessage": "Error 500: An error occurred communicating with the server, please try again!",
     "close": "Close"
   },
-    
+
     "logIn":{
       "Sign":"Sign Into Your Account",
       "Email":"Email",
@@ -217,7 +221,7 @@
       "email-error":"Email is Not Found!",
       "password-error":"Password is Not correct!",
       "close":"Close"
-      
+
     },
     "transactions":{
       "transaction":"Transaction",
@@ -242,5 +246,26 @@
       "update-message":"Transaction Updated Successfuly",
       "delete-message":"Transaction Deleted Successfuly!",
       "close":"Close"
+      },
+      "suppliers": {
+        "supplier":"Supplier",
+        "our-suppliers":"Suppliers",
+        "name": "Name",
+        "version": "Version",
+        "contactName": "Contact Name",
+        "address": "Address",
+        "primary-phone": "Primary Number",
+        "secondary-phone": "Secondry Number",
+        "id-number": "14 number",
+        "id-validation2": "number only ",
+        "phone-validation": "Phone Number Must Start With ",
+        "phone-number": " 11 Numbers only  ",
+        "phone-numbers": "(011,010,012,015)",
+        "enter-supplier-name": "Enter supplier Name",
+        "supplier-code": " Customer-Code",
+        "updated-successfuly": "Supplier Updated Successfuly!",
+        "added-successfuly": "Supplier Added Successfuly!",
+        "delete-successfuly": "Supplier Deleted Successfuly!",
+        "close": "close"
       }
 }
