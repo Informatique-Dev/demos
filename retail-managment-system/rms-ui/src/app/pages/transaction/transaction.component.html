@@ -32,6 +32,11 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row spinner-row" *matNoDataRow>
+          <td>
+            <app-loading-spinner></app-loading-spinner>
+          </td>
+        </tr>
       </table>
     </div> 
   </div>
