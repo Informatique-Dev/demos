@@ -6,7 +6,7 @@ import { Investors } from '../../domain/investors/models/investor'
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss']
+  styleUrls: ['./transaction.component.scss','../../shared/shared-styles.scss']
 })
 export class TransactionComponent implements OnInit {
 

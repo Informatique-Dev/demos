@@ -11,7 +11,7 @@ import { AddTransactionComponent } from './add-transaction/add-transaction.compo
 @Component({
   selector: 'app-investor-page',
   templateUrl: './investor-page.component.html',
-  styleUrls: ['./investor-page.component.scss'],
+  styleUrls: ['./investor-page.component.scss','../../shared/shared-styles.scss'],
 })
 export class InvestorPageComponent implements OnInit {
   investorForm!: FormGroup;
