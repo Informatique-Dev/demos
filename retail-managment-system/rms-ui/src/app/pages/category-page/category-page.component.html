@@ -1,8 +1,8 @@
-<div class="container mx-auto text-center my-5">
-  <div class="text-center mt-5">
-    <h3 class="panel-title fw-bold">
+<div class="container">
+  <div class="text-center mat-typography">
+    <h2 class="pt-3 mat-headline panel-title fw-bold">
       {{ "category.our-category" | translate }}
-    </h3>
+    </h2>
   </div>
   <div class="row shadow-lg">
     <div class="col-8  fix-table ">
@@ -62,7 +62,7 @@
 
     <div class="content col-4 bg-light">
       <div class="panel-heading pt-3 ps-1 mb-5">
-        <div class="">
+        <div>
           <h3 class="float-start">
             {{
               categoryForm.controls["id"].value
@@ -74,7 +74,7 @@
         </div>
 
         <mat-icon
-          class="add-icon me-4 float-end"
+          class="add-icon float-end"
           (click)="restartForm()"
           [hidden]="!categoryForm.controls['id'].value"
         >
