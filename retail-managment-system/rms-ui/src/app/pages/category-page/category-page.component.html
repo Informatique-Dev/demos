@@ -4,10 +4,9 @@
       {{ "category.our-category" | translate }}
     </h2>
   </div>
-  <div class="row shadow-lg">
-    <div class="col-8  fix-table ">
-      <div class="overflow-scroll data-table " *ngIf="allCategory">
-        <table class="w-100  text-start content" mat-table [dataSource]="allCategory">
+  <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
+      <div class="child-height overflow-scroll bg-white fix-table data-table w-100" *ngIf="allCategory">
+        <table class="w-100  text-start" mat-table [dataSource]="allCategory">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
               {{ "no" | translate }}.
@@ -58,7 +57,6 @@
               class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
         </mat-paginator>
       </div>
-      </div>  
 
     <div class="content col-4 bg-light">
       <div class="panel-heading pt-3 ps-1 mb-5">

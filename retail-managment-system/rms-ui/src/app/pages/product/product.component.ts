@@ -14,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+  styleUrls: ['./product.component.scss','../../shared/shared-styles.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductComponent implements OnInit {
