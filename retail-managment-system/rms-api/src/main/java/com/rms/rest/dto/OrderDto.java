@@ -14,7 +14,6 @@ public class OrderDto extends GenericDto {
     private Date orderDate;
     private Double paidAmount;
     private Double remainingAmount;
-    private Double installmentAmount;
     private Double totalPrice;
 
     private PaymentType paymentType;

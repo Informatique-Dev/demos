@@ -2,6 +2,8 @@ package com.rms.domain.sales;
 
 import com.rms.domain.common.JPAEntity;
 import lombok.Data;
+import com.rms.domain.sales.PaymentType;
+
 
 import javax.persistence.*;
 import java.util.Date;
