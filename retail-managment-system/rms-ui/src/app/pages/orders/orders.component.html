@@ -1,0 +1,534 @@
+<main>
+  <div class="container text-center mt-4">
+    <div>
+      <h3 class="panel-title fw-bold">
+        {{ "order.orders" | translate }}
+      </h3>
+    </div>
+  </div>
+  <div class="container-fluid col-11 mb-5 shadow-lg">
+    <div class="row justify-content-center">
+      <mat-tab-group
+        class="col-12"
+        mat-stretch-tabs="false"
+        mat-align-tabs="start"
+      >
+         <mat-tab >
+          <ng-template mat-tab-label>
+            {{ 'order.orders' | translate }}
+          </ng-template>
+          <div
+            class="content overflow-scroll data-table table-responsive bg-white mt-4"
+          >
+            <table [dataSource]="orderDataSource" mat-table class="justify-content-center">
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "no" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let i = index" class="pt-2">
+                  {{ i + 1 }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.date" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.orderDate }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="paymentType">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.payment-type" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.paymentType }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="paidAmount">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.paid-amount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.paidAmount }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="remainingAmount">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.remaining-amount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.remainingAmount }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="installmentAmount">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.installment-amount" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.installmentAmount }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="employee">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.employee" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.employee.fullName }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="customer">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "order.customer" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{ element.customer.fullName }}
+                </td>
+              </ng-container>
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns; sticky: true"
+              ></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+             <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+          </mat-paginator>
+          </div>
+        </mat-tab>
+        <mat-tab
+          label="{{ 'add' | translate }} {{ 'order.order' | translate }}"
+          class="fw-bold"
+        >
+          <div class="content overflow-scroll data-table bg-white">
+            <mat-card>
+              <mat-card-content>
+                <form [formGroup]="orderForm">
+                  <fieldset class="row justify-content-center">
+                    <mat-form-field appearance="outline" class="w-25">
+                      <mat-label>{{
+                        "order.select-employee" | translate
+                      }}</mat-label>
+
+                      <mat-select formControlName="employeeId">
+                        <mat-option
+                          *ngFor="let employee of allEmployee"
+                          [value]="employee.id"
+                          >{{ employee.fullName }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-25">
+                      <mat-label>
+                        {{ "order.paid-amount" | translate }}</mat-label
+                      >
+                      <input
+                        formControlName="paidAmount"
+                        type="number"
+                        matInput
+                        placeholder="{{ 'order-paid-amount' | translate }}"
+                      />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-25">
+                      <mat-label>{{
+                        "order.payment-type" | translate
+                      }}</mat-label>
+                      <mat-select formControlName="paymentType">
+                        <mat-option [value]="1">{{
+                          "order.cash" | translate
+                        }}</mat-option>
+                        <mat-option [value]="2">{{
+                          "order.installment" | translate
+                        }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <ng-template #installmentOption>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{
+                            "order.installment-amount" | translate
+                          }}</mat-label
+                        >
+                        <input
+                          formControlName="installmentAmount"
+                          type="number"
+                          matInput
+                          placeholder="{{
+                            'order-installment-amount' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                    </ng-template>
+                    <ng-container
+                      *ngIf="
+                        orderForm.controls['paymentType'].value === 2;
+                        then installmentOption
+                      "
+                    ></ng-container>
+
+                    <h5>{{ "order.customer-data" | translate }}:</h5>
+                    <ng-container formGroupName="customer">
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "employee.full-name" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="fullName"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'customrs.enter-customer-fname' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.nick-name" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="nickName"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'customrs.enter-customr-nname' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.primrary-phone" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="primaryPhoneNo"
+                          type="tel"
+                          matInput
+                          placeholder="{{
+                            'customrs.primrary-phone' | translate
+                          }}"
+                          minlength="11"
+                          maxlength="11"
+                          NumbersOnly
+                        />
+                        <!-- <mat-error
+                          *ngIf="
+                            orderForm.controls['primaryPhoneNo'].hasError(
+                              'minlength'
+                            )
+                          "
+                        >
+                          Please phone Number must be <strong>11 number</strong>
+                        </mat-error>
+                        <mat-error
+                          class="mt-2"
+                          *ngIf="
+                            orderForm.controls['primaryPhoneNo'].hasError(
+                              'pattern'
+                            )
+                          "
+                        >
+                          phone Number must start with
+                          <strong>010, 011, 012, 015</strong>
+                        </mat-error>
+                        <mat-error
+                          *ngIf="
+                            orderForm.controls['primaryPhoneNo'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          {{ "order.primary-phone" | translate }}
+                          <strong>{{ "product.required" | translate }}</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{
+                            "customrs.secondary-phone" | translate
+                          }}</mat-label
+                        >
+                        <input
+                          formControlName="secondaryPhoneNo"
+                          type="tel"
+                          matInput
+                          placeholder="{{
+                            'customrs.secondary-phone' | translate
+                          }}"
+                          minlength="11"
+                          maxlength="11"
+                          NumbersOnly
+                        />
+                        <!-- <mat-error
+                          *ngIf="
+                            orderForm.controls['secondaryPhoneNo'].hasError(
+                              'minlength'
+                            )
+                          "
+                        >
+                          Please phone Number must be <strong>11 number</strong>
+                        </mat-error> -->
+                        <!-- <mat-error
+                          class="mt-2"
+                          *ngIf="
+                            orderForm.controls['secondaryPhoneNo'].hasError(
+                              'pattern'
+                            )
+                          "
+                        >
+                          phone Number must start with
+                          <strong>010, 011, 012, 015</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.address" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="address"
+                          type="text"
+                          matInput
+                          placeholder="{{ 'customrs.address' | translate }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.national-id" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="nationalId"
+                          type="text"
+                          matInput
+                          placeholder="{{ 'customrs.national-id' | translate }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.code" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="customerCode"
+                          type="text"
+                          matInput
+                          placeholder="{{ 'customrs.code' | translate }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>
+                          {{ "customrs.receipt-no" | translate }}</mat-label
+                        >
+                        <input
+                          formControlName="trustReceiptNo"
+                          type="number"
+                          matInput
+                          placeholder="{{ 'customers.receipt-no' | translate }}"
+                        />
+                      </mat-form-field>
+                    </ng-container>
+                    <!--
+                    <mat-card-title class="justify-content-center">
+                      <p>{{'order.employee-data'|translate}}</p>
+                    </mat-card-title>
+                       <ng-container formGroupName="employee">
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.full-name" | translate }}</mat-label>
+                        <input
+                          formControlName="fullName"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.enter-employee-fname' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.nick-name" | translate }}</mat-label>
+                        <input
+                          formControlName="nickName"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.enter-customr-nname' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.primrary-phone" | translate }}</mat-label>
+                        <input
+                          formControlName="primaryPhoneNo"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.primrary-phone' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.secondary-phone" | translate }}</mat-label>
+                        <input
+                          formControlName="secondaryPhoneNo"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.secondary-phone' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.address" | translate }}</mat-label>
+                        <input
+                          formControlName="address"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.address' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.national-id" | translate }}</mat-label>
+                        <input
+                          formControlName="nationalId"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.national-id' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-25">
+                        <mat-label> {{ "employee.job" | translate }}</mat-label>
+                        <input
+                          formControlName="job"
+                          type="text"
+                          matInput
+                          placeholder="{{
+                            'employee.job' | translate
+                          }}"
+                        />
+                      </mat-form-field>
+                    </ng-container> -->
+                    <hr />
+                    <div class="d-flex align-items-center flex-row mt-4">
+                      <h5>{{ "order.product-data" | translate }}:</h5>
+                      <button
+                        class="btn add-item-btn me-3 ms-3"
+                        (click)="addNewOrderItem()"
+                      >
+                        {{ "order.add-new-order-item" | translate }}
+                      </button>
+                    </div>
+                    <ng-container formArrayName="orderItems" class="mt-4">
+                      <div
+                        *ngFor="
+                          let item of orderItemData().controls;
+                          let indx = index
+                        "
+                      >
+                        <div class="row" [formGroupName]="indx">
+                          <div class="col-6 col-md-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>{{
+                                "order.select-category" | translate
+                              }}</mat-label>
+
+                              <mat-select
+                                formControlName="category"
+                                (selectionChange)="getAllProducts($event)"
+                              >
+                                <mat-option
+                                  *ngFor="let category of allCategory"
+                                  [value]="category.id"
+                                  >{{ category.name }}</mat-option
+                                >
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6 col-md-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>{{
+                                "order.select-product" | translate
+                              }}</mat-label>
+                              <mat-select formControlName="product">
+                                <mat-option
+                                  *ngFor="let product of allProducts"
+                                  [value]="product.id"
+                                  >{{ product.name }}</mat-option
+                                >
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6 col-md-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>
+                                {{ "order.unit-price" | translate }}</mat-label
+                              >
+                              <input
+                                formControlName="unitPrice"
+                                type="number"
+                                matInput
+                                placeholder="{{
+                                  'order.unit-price' | translate
+                                }}"
+                              />
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6 col-md-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>
+                                {{ "order.quantity" | translate }}</mat-label
+                              >
+                              <input
+                                formControlName="quantity"
+                                type="number"
+                                matInput
+                                placeholder="{{ 'order.quantity' | translate }}"
+                              />
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6 col-md-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                              <mat-label>{{
+                                "order.payment-type" | translate
+                              }}</mat-label>
+                              <mat-select formControlName="paymentType">
+                                <mat-option value="1">{{
+                                  "order.cash" | translate
+                                }}</mat-option>
+                                <mat-option value="2">{{
+                                  "order.installment" | translate
+                                }}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-danger me-3 ms-3"
+                          (click)="(removeOrderItemData)"
+                        >
+                          {{ "order.remove-order-item" | translate }}
+                        </button>
+                      </div>
+                    </ng-container>
+                  </fieldset>
+                </form>
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="btn" mat-button (click)="onSubmit()">
+                  {{ "add" | translate }}
+                </button>
+                <button class="btn" mat-button (click)="resetForm()">
+                  {{ "reset" | translate }}
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</main>

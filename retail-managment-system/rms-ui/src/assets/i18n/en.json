@@ -58,6 +58,37 @@
     "our-transactions": " Our transactions"
   },
 
+  "order": {
+    "order": "Order",
+    "orders": "Orders",
+    "version":"Version",
+    "date": "Date",
+    "payment-type":"Payment Type",
+    "paid-amount": "Paid Amount",
+    "remaining-amount": "Remaining Amount",
+    "installment-amount": "Installment Amount",
+    "customer": "Customer",
+    "customer-data": "Customer Data",
+    "employee": "Employee",
+    "employee-data": "Employee Data",
+    "product":"Product",
+    "product-data":"Product Data",
+    "select-employee":"Select Employee",
+    "select-product":"Select Products",
+    "select-category":"Select Category",
+    "cash":"Cash",
+    "installment":"Installment",
+    "quantity":"Quantity",
+    "unit-price":"Unit Price",
+    "add-new-order-item":"Add New Order Item",
+    "remove-order-item":"Remove Order Item",
+    "updated-successfuly": "Order Updated Successfuly!",
+    "added-successfuly": "Order Added Successfuly!",
+    "delete-successfuly": "Order Deleted Successfuly!",
+    "no-orders":"No Orders found in this !",
+    "close": "close",
+    "choose-order":"Choose Order"
+  },
   "product": {
     "product": "Product",
     "our-products": "Our Products",
@@ -177,7 +208,7 @@
     "enter-PaymentAmount":"Enter paymentAmount Price ",
     "pay": "Pay",
     "receipt":"Installment receipt",
-    "thank":"Thank You" 
+    "thank":"Thank You"
   },
   "profits": {
     "profits": "Profits",
@@ -203,7 +234,7 @@
     "serverErrorMessage": "Error 500: An error occurred communicating with the server, please try again!",
     "close": "Close"
   },
-    
+
     "logIn":{
       "Sign":"Sign Into Your Account",
       "Email":"Email",
@@ -217,7 +248,7 @@
       "email-error":"Email is Not Found!",
       "password-error":"Password is Not correct!",
       "close":"Close"
-      
+
     },
     "transactions":{
       "transaction":"Transaction",

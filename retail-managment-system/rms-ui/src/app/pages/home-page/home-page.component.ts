@@ -1,3 +1,5 @@
+import { OrderRepository } from './../../domain/order/order.repository';
+import { Order } from './../../domain/order/models/order';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
@@ -31,6 +33,7 @@ export class HomePageComponent implements OnInit {
   allTransactions: Transaction[] = []
   allProfits:Profit[]=[];
   allEmployee:Employee[]=[];
+  allOrders:Order[]=[];
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
@@ -40,6 +43,7 @@ export class HomePageComponent implements OnInit {
     private installmentsRepository : InstallmentRepositry,
     private RepositoryService:RepositoryService,
     private employeeRepository:EmployeeRepository,
+    private orderRepository:OrderRepository,
     private transactionRepository: TransactionRepository
 
 
@@ -52,9 +56,12 @@ export class HomePageComponent implements OnInit {
     this.getAllInstallments();
     this.getAllProfits();
     this.getAllTransactions()
-    this.getAllEmployee()
+    this.getAllEmployee();
+    this.getAllOrders();
   }
-
+  openOrders(){
+    this.router.navigate(['/orders'])
+  }
   openProducts() {
     this.router.navigate(['/product']);
   }
@@ -81,11 +88,13 @@ export class HomePageComponent implements OnInit {
   openTransaction() {
     this.router.navigate(['/transaction']);
   }
-  
+
   openEmployee() {
     this.router.navigate(['/employee']);
   }
-
+getAllOrders():void{
+  this.orderRepository.getList().subscribe((result)=>this.allOrders=result.data)
+}
   getAllProducts(): void {
     this.productRepository.getList().subscribe((result) => {
       this.allProducts = result.data;

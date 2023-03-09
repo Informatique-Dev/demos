@@ -5,7 +5,7 @@
   "footer": "جميع حقوق النشر محفوظه@2022.",
   "no": "م",
   "name": "الاسم",
-  "add": "أضافه",
+  "add": "إضافه",
   "update": "تعديل",
   "reset": "اعاده تعيين",
   "clear": "مسح",
@@ -18,7 +18,7 @@
   "all":"الكل",
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
-    "order": "الطلب",
+    "order": "الطلبات",
     "installment": "التقسيط",
     "transactions": "التحويلات",
     "investors": "المستثمرين",
@@ -55,7 +55,28 @@
     "financial-transactions": "المعاملات المالية",
     "our-transactions": "عدد المعاملات"
   },
+  "order": {
+    "order": "الطلب",
+    "orders": "الطلبات",
+    "version":"الإصدار",
+    "date": "التاريخ",
+    "payment-type":"نوع الدفع",
+    "paid-amount": "السعر المدفوع",
+    "remaining-amount": "السعر المتبقي",
+    "installment-amount": "سعر التقسيط",
+    "customer": "العميل",
+    "employee": "الموظف",
+    "product":"المنتج",
+    "quantity":"الكميه",
+    "unit-price":"سعر القطعة",
 
+    "updated-successfuly": "تم تعديل الطلب بنجاح",
+    "added-successfuly": "تم إضافة الطلب بنجاح",
+    "delete-successfuly": "تم مسح الطلب بنجاح",
+    "no-orders":"هذا الطلب غير موجود",
+    "close": "إغلاق",
+    "choose-order":"اختار الطلب"
+  },
   "product": {
     "product": " المنتج",
     "our-products": "المنتجات",
