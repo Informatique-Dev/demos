@@ -6,7 +6,7 @@
   </div>
   <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
       <div class="child-height overflow-scroll bg-white data-table w-100" *ngIf="allCategory">
-        <table class="w-100" mat-table [dataSource]="allCategory">
+        <table class="w-100 h-75" mat-table [dataSource]="allCategory">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
               {{ "no" | translate }}.
