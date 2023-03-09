@@ -9,9 +9,9 @@
   
     <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
         <div  *ngIf="dataSource"
-          class="  child-height bg-white data-table w-100"
+          class="  child-height bg-white data-table w-100 overflow-scroll"
         >
-          <mat-table [dataSource]="dataSource" class=" data-table  overflow-scroll w-100 h-75">
+          <mat-table [dataSource]="dataSource" class=" data-table">
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef class="fw-bold fs-6"> {{ "no" | translate }}. </mat-header-cell>
             <mat-cell *matCellDef="let i = index" > {{ i + 1 }} </mat-cell>

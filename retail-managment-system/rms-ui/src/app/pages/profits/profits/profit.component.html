@@ -70,8 +70,12 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
         </table>
-        <app-loading-spinner></app-loading-spinner>
       </div>
       <div class="col-lg-4 p-3 bg-light">
         <div class="pt-3 ps-1">

@@ -56,10 +56,10 @@ body {
   }
 }
   .spinner-row{
-    width: 60%;
-    position: absolute;
+    position: sticky;
     margin: 70px auto;
     padding: 50px;
     display: flex;
     justify-content: center;
+    left: 30%;
   }
