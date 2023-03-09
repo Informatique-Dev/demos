@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class OrderItemDto extends GenericDto {
-//    @NotNull(message = "Price is mandatory", groups = {InsertValidation.class, UpdateValidation.class})
-//    @Range(min = 1, message = "Price's min allowed is 1 ", groups = {InsertValidation.class, UpdateValidation.class})
-
     private Double unitPrice;
 
    @Range(min = 1, message = "quantity's min allowed is 1 ", groups = {InsertValidation.class, UpdateValidation.class})

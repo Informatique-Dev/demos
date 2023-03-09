@@ -26,17 +26,6 @@ public class OrderItemController {
         return OrderItemHandler.getAll(page,size);
     }
 
-//    @GetMapping("/{id}")
-//    @Operation(summary = "Get By Id", description = "this api for get OrderItem by id")
-//    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
-//        return OrderItemHandler.getById(id);
-//    }
-
-//    @PostMapping
-//    @Operation(summary = "Add", description = "this api for add new OrderItem")
-//    public ResponseEntity<?> save(@Validated(InsertValidation.class) @RequestBody OrderItemDto orderItemDto) {
-//        return OrderItemHandler.save(orderItemDto);
-//    }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update OrderItem")

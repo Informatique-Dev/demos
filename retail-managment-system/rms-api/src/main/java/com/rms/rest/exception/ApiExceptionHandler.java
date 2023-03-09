@@ -131,20 +131,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
-//    @ExceptionHandler(ResourceNotFound.class)
-//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-//    public @ResponseBody ApiError handleResourceNotFound(final ResourceNotFound exception,
-//                                                         final HttpServletRequest request) {
-//
-//        ApiError error = new ApiError();
-//        error.setErrorMessage(exception.getMessage());
-//        error.setStatus(404);
-//        error.setPath(request.getRequestURI());
-//        error.setTimestamp(LocalDateTime.now());
-//
-//        return error;
-//    }
-
 
 
 }
