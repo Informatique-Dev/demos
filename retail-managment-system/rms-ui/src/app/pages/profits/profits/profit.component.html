@@ -1,16 +1,15 @@
-<div class="main">
-  <div class="container text-center mt-4">
+<div class="container">
+  <div class="text-center mt-4">
     <div>
       <h3 class="panel-title fw-bold">{{ "profits.profits" | translate }}</h3>
     </div>
   </div>
 
-  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-    <div class="row justify-content-center">
+  <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
       <div
-        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+        class="child-height overflow-scroll bg-white data-table w-100"
       >
-        <table mat-table [dataSource]="allProfits" class="w-100">
+        <table mat-table [dataSource]="allProfits" class="w-100 h-75">
           <ng-container matColumnDef="id">
             <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "no" | translate }}.
@@ -74,7 +73,7 @@
         </table>
         <app-loading-spinner></app-loading-spinner>
       </div>
-      <div class="bg-gray col-xl-4 col-lg-4 col-md-12 col-sm-12">
+      <div class="col-lg-4 p-3 bg-light">
         <div class="pt-3 ps-1">
           <h3 class="panel-title">
             {{
@@ -94,7 +93,7 @@
         </div>
         <div>
           <form [formGroup]="addProfitsForm">
-            <fieldset>
+            <fieldset class="row">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>{{ "profits.book-no" | translate }}</mat-label>
                 <input
@@ -171,6 +170,5 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>

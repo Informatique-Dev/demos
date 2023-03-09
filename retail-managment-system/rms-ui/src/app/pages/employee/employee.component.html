@@ -1,5 +1,5 @@
-<div>
-    <div class="container text-center mt-4">
+<div class="container">
+    <div class= "text-center mt-4">
       <div>
         <h3 class="panel-title fw-bold">
           {{ "home-page.employee" | translate }}
@@ -7,12 +7,11 @@
       </div>
     </div>
   
-    <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-      <div class="row justify-content-center">
+    <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
         <div  *ngIf="dataSource"
-          class="  col-lg-8 col-md-8 col-sm-8  bg-white"
+          class="  child-height bg-white data-table w-100"
         >
-          <mat-table [dataSource]="dataSource" class=" content data-table  overflow-scroll">
+          <mat-table [dataSource]="dataSource" class=" data-table  overflow-scroll w-100 h-75">
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef class="fw-bold fs-6"> {{ "no" | translate }}. </mat-header-cell>
             <mat-cell *matCellDef="let i = index" > {{ i + 1 }} </mat-cell>
@@ -84,7 +83,7 @@
           </mat-paginator>
   
         </div>
-        <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+        <div class="col-lg-4 p-3 bg-light">
             <div class="panel-heading py-4 pt-4 ps-1">
               <h3 class="panel-title ms-1">
                 {{
@@ -106,7 +105,7 @@
     
               <div class="panel-body">
                 <form [formGroup]="employeeForm">
-                  <fieldset class="row justify-content-center">
+                  <fieldset class="row justify-content-center ">
                     <mat-form-field appearance="outline" class="w-50">
                       <mat-label> {{ "employee.full-name" | translate }}</mat-label>
                       <input
@@ -318,7 +317,6 @@
               </div>
             </div>
           </div>
-        </div>
     
       </div>
     
