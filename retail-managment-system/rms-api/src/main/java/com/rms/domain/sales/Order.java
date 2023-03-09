@@ -43,12 +43,4 @@ public class Order extends AuditingEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "order_id")
-//    private List<OrderItem> orderItems;
-//
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//   @JoinColumn(name = "order_id")
-//    private List<Installment> installments;
-
 }

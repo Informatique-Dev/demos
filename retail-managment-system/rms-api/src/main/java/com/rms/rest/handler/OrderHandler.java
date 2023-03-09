@@ -126,33 +126,6 @@ public class OrderHandler {
         addInstallment(dto.getId() , orderDto);
         return ResponseEntity.ok(dto);
     }
-//    private List<Installment> addInstallments(Order order) {
-//        List<Installment> installments = new ArrayList<>();
-//        ZoneId defaultZoneId = ZoneId.systemDefault();
-//        LocalDate dueDate = LocalDate.now();
-//        double total = order.getOrderItems().stream().mapToDouble(d -> d.getUnitPrice() * d.getQuantity()).sum();
-//        total -= order.getPaidAmount();
-//        int noOfInstallments = (int) Math.ceil(total / order.getInstallmentAmount());
-//
-//        for (int i = 0; i < noOfInstallments; i++) {
-//            Installment installment = new Installment();
-//            dueDate = dueDate.plusMonths(1);
-//            double installmentAmount = total > order.getInstallmentAmount() ? order.getInstallmentAmount() : total;
-//            total -= order.getInstallmentAmount();
-//
-//            installment.setDueDate(Date.from(dueDate.atStartOfDay(defaultZoneId).toInstant()));
-//            installment.setInstallmentAmount(installmentAmount);
-//            installment.setStatus((short) 1);
-//
-//            installment.setOrder(order);
-//            installment.setPaymentDate(null);
-//            installment.setPaymentAmount(null);
-//            installments.add(installment);
-//        }
-//        return installments;
-//    }
-
-    // TEST GENHINS
     public ResponseEntity<?> delete(Integer id) {
         Order order = orderService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
