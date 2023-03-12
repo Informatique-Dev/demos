@@ -24,3 +24,12 @@ th,
 td {
   line-height: 2;
 }
+#custom-filter .mat-form-field-wrapper{
+  padding-bottom: 0;
+}
+#custom-filter .mat-form-field-appearance-outline .mat-form-field-wrapper{
+  margin: 0;
+}
+#custom-filter .mat-form-field-appearance-outline .mat-form-field-outline{
+  color:transparent;
+}

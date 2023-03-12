@@ -9,49 +9,49 @@
       <div
         class="child-height overflow-scroll bg-white data-table w-100"
       >
-        <table mat-table [dataSource]="allProfits" class="w-100 h-75">
+        <table mat-table [dataSource]="allProfits" class="w-100">
           <ng-container matColumnDef="id">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "no" | translate }}.
             </th>
-            <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+            <td mat-cell *matCellDef="let i = index" class="text-center pt-2">{{ i + 1 }}</td>
           </ng-container>
           <ng-container matColumnDef="bookNo">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "profits.book-no" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.bookNo }}</td>
+            <td mat-cell *matCellDef="let element" class="text-center pt-2">{{ element.bookNo }}</td>
           </ng-container>
 
           <ng-container matColumnDef="profitAmount">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "profits.profit-amount" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" class="text-center pt-2">
               {{ element.profitAmount }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="date">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "profits.date" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" class="text-center pt-2">
               {{ element.date | date : "yyyy-MM-dd" }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="calculated">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "profits.calculated" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.calculated }}</td>
+            <td mat-cell *matCellDef="let element" class="text-center pt-2">{{ element.calculated }}</td>
           </ng-container>
           <ng-container matColumnDef="actions">
-            <th class="fw-bold fs-6" mat-header-cell *matHeaderCellDef>
+            <th class="text-center fw-bold fs-6" mat-header-cell *matHeaderCellDef>
               {{ "profits.actions" | translate }}
             </th>
-            <td mat-cell *matCellDef="let element" class="update-icon">
+            <td mat-cell *matCellDef="let element" class="text-center update-icon p-2">
               <button
                 class="btn table-button bg-transparent"
                 (click)="editData(element)"

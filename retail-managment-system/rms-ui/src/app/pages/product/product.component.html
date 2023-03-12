@@ -6,9 +6,12 @@
       </h3>
     </div>
   </div>
-  <div class="col-sm-4 col-md-4 column d-flex w-30">
-    <mat-form-field appearance="outline" color="primary">
-        <mat-select panelClass="mt-5" placeholder="{{'product.choose-category' | translate}}">
+  <div id="custom-filter" class="col-sm-4 col-md-4 column d-flex w-30">
+    <mat-form-field appearance="outline" color="primary" class=" shadow bg-white rounded" >
+      <mat-label>
+        {{'product.choose-by-category' | translate}}
+      </mat-label>
+        <mat-select panelClass="mt-5 data-table">
           <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
           <mat-option *ngFor="let type of categories" [value]="type" (click)="productFilter(type.id)">
             {{type.name}}
@@ -16,8 +19,7 @@
         </mat-select>
       </mat-form-field>
   </div>
-
-  <div class="d-flex flex-lg-row flex-column mb-4  shadow-lg fixed-height">
+  <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
       <div
         class="child-height w-100 overflow-scroll data-table bg-white"
       >
