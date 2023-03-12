@@ -80,7 +80,7 @@
     "delete-successfuly": "Product Deleted Successfuly!",
     "no-products":"No products found in this category!",
     "close": "close",
-    "choose-category":"Choose Category"
+    "choose-by-category":"Category"
   },
   "category": {
     "category": "Category",
