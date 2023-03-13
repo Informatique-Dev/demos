@@ -7,6 +7,6 @@ import { Injectable } from '@angular/core';
 })
 export class InvestorsRepository extends ResourceService<Investors> {
   getResourceUrl(): string {
-    return 'investors';
+    return 'investor';
   }
 }

@@ -1,5 +1,6 @@
 package com.rms.service;
 
+import com.rms.domain.core.Employee;
 import com.rms.domain.sales.Customer;
 import com.rms.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -24,10 +25,22 @@ public class CustomerService {
     public Customer save(Customer customer) {
         return customerRepository.save(customer);
     }
+    public Optional<Customer> getTrustReceiptNo(Integer trustReceiptNo) {
+        return customerRepository.findTrustReceiptNo(trustReceiptNo);
+    }
 
 
-    public void deleteById(Integer id) {
-        customerRepository.deleteById(id);
+    public void delete(Customer customer) {
+        customerRepository.delete(customer);
+    }
+
+    public Optional<Customer>findNationalId(String nationalId)
+    {
+        return customerRepository.findByNationalId(nationalId);
+    }
+    public Optional<Customer>findCustomerCode(String customerCode)
+    {
+        return customerRepository.findByCustomerCode(customerCode);
     }
 
 }

@@ -10,6 +10,6 @@ export class CustomersRepository extends ResourceService<Customers> {
     super(httpClient);
   }
   getResourceUrl(): string {
-    return 'customers';
+    return 'customer';
   }
 }

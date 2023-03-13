@@ -1,3 +1,5 @@
+import { Customers } from "../../customers/models/customers";
+
 export interface Order {
     id: number;
     version: number
@@ -6,4 +8,5 @@ export interface Order {
     paidAmount: number;
     remainingAmount: number
     installmentAmount: number
+    customer : Customers
 }

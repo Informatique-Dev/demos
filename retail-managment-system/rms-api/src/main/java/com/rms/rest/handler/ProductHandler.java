@@ -1,10 +1,7 @@
 package com.rms.rest.handler;
 
-import com.rms.domain.core.Employee;
 import com.rms.domain.core.Product;
 import com.rms.domain.core.ProductCategory;
-import com.rms.domain.investor.Transaction;
-import com.rms.rest.dto.EmployeeDto;
 import com.rms.rest.dto.ProductDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -28,7 +25,7 @@ import java.util.List;
 public class ProductHandler {
     private ProductService productService;
     private ProductMapper mapper;
-    private PaginationMapper paginationMapper ;
+    private PaginationMapper paginationMapper;
 
     private ProductCategoryService productCategoryService;
 
@@ -39,36 +36,39 @@ public class ProductHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> getAll(Integer page , Integer size)
-    {
+    public ResponseEntity<?> getAll(Integer page, Integer size) {
         Page<Product> products = productService.getAll(page, size);
-        List<ProductDto> dtos =mapper.toDto(products.getContent());
+        List<ProductDto> dtos = mapper.toDto(products.getContent());
         PaginatedResultDto<ProductDto> paginatedResultDto = new PaginatedResultDto<>();
         paginatedResultDto.setData(dtos);
         paginatedResultDto.setPagination(paginationMapper.toDto(products));
         return ResponseEntity.ok(paginatedResultDto);
     }
 
-    public ResponseEntity<?> getByProductCategory(Integer catId) {
-        List<Product> products = productService.getByProductCategory(catId);
-        List<ProductDto> dtos = mapper.toDto(products);
-        return ResponseEntity.ok(dtos);
+    public ResponseEntity<?> getByProductCategory(Integer catId ,Integer page, Integer size) {
+        Page<Product> products = productService.getByProductCategory(catId,page , size);
+        List<ProductDto> dtos = mapper.toDto(products.getContent());
+        PaginatedResultDto<ProductDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(dtos);
+        paginatedResult.setPagination(paginationMapper.toDto(products));
+        return ResponseEntity.ok(paginatedResult);
     }
 
-    public ResponseEntity<ProductDto> save(ProductDto productDto) {
-        ProductCategory productCategory = productCategoryService.getById(productDto.getProductCategoryDto().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
+    public ResponseEntity<?> save(ProductDto productDto) {
+        if (productDto.getProductCategoryDto() != null) {
+            productCategoryService.getById(productDto.getProductCategoryDto().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
+        }
         Product product = mapper.toEntity(productDto);
-        product.setProductCategory(productCategory);
         productService.save(product);
         ProductDto dto = mapper.toDto(product);
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<ProductDto> update(ProductDto productDto, Integer id) {
+    public ResponseEntity<?> update(ProductDto productDto, Integer id) {
         Product product = productService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), id));
-        if(productDto.getProductCategoryDto()!=null) {
+        if (productDto.getProductCategoryDto() != null) {
             ProductCategory productCategory = productCategoryService.getById(productDto.getProductCategoryDto().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
             product.setProductCategory(productCategory);
@@ -80,8 +80,8 @@ public class ProductHandler {
     }
 
     public ResponseEntity<?> delete(Integer id) {
-      Product product=  productService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),id));
+        Product product = productService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), id));
         try {
             productService.delete(product);
         } catch (Exception exception) {

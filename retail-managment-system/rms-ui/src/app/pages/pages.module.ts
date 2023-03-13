@@ -9,10 +9,16 @@ import { CustomersComponent } from './customers/customers.component';
 import { ProfitComponent } from './profits/profits/profit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/guards/auth.guard';
-import { InstallmentComponent } from './installments/installment/installment.component';
+import { InstallmentComponent } from './installments/installment.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AuthModule } from '../auth/auth.module';
 import { NgxPrintModule } from 'ngx-print';
+import { ReceiptComponent } from './installments/edit-installment/receipt/receipt.component';
+import { PayInstallmentComponent } from './installments/edit-installment/pay-installment.component';
+import { EmployeeComponent } from './employee/employee.component';
+
+import { AddTransactionComponent } from './investor-page/add-transaction/add-transaction.component';
+import { SupplierComponent } from './supplier/supplier.component';
 
 
 const routes: Routes = [
@@ -25,6 +31,8 @@ const routes: Routes = [
   { path: 'investor', component: InvestorPageComponent },
   { path: 'installment', component: InstallmentComponent ,canActivate: [AuthGuard] },
   { path: 'transaction', component: TransactionComponent },
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'supplier', component: SupplierComponent },
 
 
 ];
@@ -38,9 +46,13 @@ const routes: Routes = [
     InvestorPageComponent,
     InstallmentComponent,
     TransactionComponent,
-   
+    EmployeeComponent,
+    PayInstallmentComponent,
+    ReceiptComponent,
+    AddTransactionComponent,
+    SupplierComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
- 
+
 })
 export class PagesModule {}

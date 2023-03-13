@@ -21,11 +21,4 @@
                                  constraintName="FK_USERS_ON_EMPLOYEE" referencedColumnNames="id"
                                  referencedTableName="employees"/>
     </changeSet>
-    <changeSet id="1676882024054-3" author="Kariman (generated)">
-        <dropForeignKeyConstraint baseTableName="user" constraintName="fk_user_on_employee"/>
-    </changeSet>
-    <changeSet id="1676882024054-4" author="Kariman (generated)">
-        <dropTable cascadeConstraints="true" tableName="user"/>
-    </changeSet>
-
 </databaseChangeLog>

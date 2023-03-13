@@ -1,3 +1,4 @@
+import { Response } from './../models/response';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,9 +25,9 @@ export abstract class ResourceService<T> {
     return json;
   }
 
-  getList(p: {} = {}): Observable<T[]> {
+  getList(p: {} = {}): Observable<Response<T>> {
     const params = new HttpParams({ fromObject: p });
-    return this.httpClient.get<T[]>(`${this.APIUrl}?${params.toString()}`).pipe(
+    return this.httpClient.get<Response<T>>(`${this.APIUrl}?${params.toString()}`).pipe(
       map((list) => list),
       catchError((err) => {
         throw new Error(err.message);
@@ -34,10 +35,10 @@ export abstract class ResourceService<T> {
     );
   }
 
-  getListById(url: string, p: {} = {}): Observable<any> {
+  getListById(url: string, p: {} = {}): Observable<Response<T>> {
     const params = new HttpParams({ fromObject: p });
     return this.httpClient
-      .get<T>(`${this.APIUrl}/${url}?${params.toString()}`)
+      .get<Response<T>>(`${this.APIUrl}/${url}?${params.toString()}`)
       .pipe(
         map((list) => list),
         catchError((err) => {

@@ -46,7 +46,7 @@ export class ProfitComponent implements OnInit {
     });
   }
   getAllProfits(): void {
-    this.profitsRepo.getList().subscribe((results) => {
+    this.profitsRepo.getList().subscribe((results:any) => {
       this.allProfits = results;
     });
   }

@@ -1,4 +1,4 @@
-<div class="main">
+<div>
   <div class="container text-center mt-4">
     <div>
       <h3 class="panel-title fw-bold">
@@ -6,13 +6,22 @@
       </h3>
     </div>
   </div>
-
+  <div class="container-fluid col-sm-4 col-md-4 column d-flex w-30 mx-5">
+    <mat-form-field appearance="outline" color="primary">
+        <mat-select panelClass="mt-5" placeholder="{{'product.choose-category' | translate}}">
+          <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
+          <mat-option *ngFor="let type of categories" [value]="type" (click)="productFilter(type.id)">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
   <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
     <div class="row justify-content-center">
-      <div
-        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+      <div *ngIf="allProducts"
+        class="col-lg-8 col-md-8 col-sm-8 bg-white overflow-scroll data-table content"
       >
-        <table
+          <table
           class="table table-responsive"
           mat-table
           [dataSource]="allProducts"
@@ -88,7 +97,19 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
+        </table>          
+          <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+          </mat-paginator>
       </div>
 
       <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">

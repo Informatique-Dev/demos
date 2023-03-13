@@ -5,7 +5,7 @@
   "footer": "جميع حقوق النشر محفوظه@2022.",
   "no": "م",
   "name": "الاسم",
-  "add": "أضافه",
+  "add": "إضافه",
   "update": "تعديل",
   "reset": "اعاده تعيين",
   "clear": "مسح",
@@ -13,8 +13,9 @@
   "enter-your-name": "الرجاء ادخال الاسم",
   "status": "الحاله",
   "direction": "rtl",
+  "reverse-direction":"ltr",
   "logout":"تسجيل الخروج",
-
+  "all":"الكل",
   "sidebar": {
     "home": " الصفحه الرئيسيه ",
     "order": "الطلب",
@@ -24,7 +25,10 @@
     "customers": "العملاء",
     "categories": "الفئات",
     "products": "المنتجات",
-    "profits": "الارباح"
+    "profits": "الارباح",
+    "employees":"الموظفين",
+    "suppliers":"الموردين"
+
   },
   "home-page": {
     "order": "الطلبات",
@@ -35,6 +39,8 @@
     "categories": "الفئات",
     "products": "المنتجات",
     "profits": "الارباح",
+    "employee": "الموظفين",
+    "suppliers": "الموردين",
     "home-content": " لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية،.",
 
     "no-of-orders": "عدد الطلبات",
@@ -44,7 +50,8 @@
     "no-of-customers": "عدد العملاء",
     "no-of-categories": "عدد الفئات",
     "no-of-products": "عدد المنتجات",
-    "no-of-profits": "عدد الارباح"
+    "no-of-profits": "عدد الارباح",
+    "no-of-suppliers": "عدد الموردين"
   },
   "home-footer": {
     "first-pargraph": "سنظل دائمًا الاسم الذي يحظى بأعلى ثقة العملاء وشركاء النجاح من خلال منتجاتنا وخدماتنا من أجل مجتمع أفضل.",
@@ -69,7 +76,9 @@
     "updated-successfuly": "تم تعديل المنتج بنجاح",
     "added-successfuly": "تم اضافة المنتج بنجاح",
     "delete-successfuly": "تم مسح المنتج بنجاح",
-    "close": "اغلاق"
+    "no-products":" لا يوجد منتجات تحت هذه الفئة",
+    "close": "اغلاق",
+    "choose-category":"اختار الفئة"
   },
   "category": {
     "category": "الفئات",
@@ -85,6 +94,7 @@
   },
   "customrs": {
     "customer": "العملاء",
+    "employee": "موظف",
     "our-curtomrs": "العملاء",
     "full-name": "الاسم بالكامل",
     "nick-name": "اسم الشهره",
@@ -92,6 +102,7 @@
     "national-id": "بطاقه الرقم القومي",
     "address": "العنوان",
     "receipt-no": "رقم الايصال",
+    "job":"الوظيفه",
     "primrary-phone": "رقم الهاتف",
     "secondary-phone": "رقم الهاتف 2",
     "id-validation": "الرقم القومي يجب ان يكون ",
@@ -107,6 +118,30 @@
     "updated-successfuly": "تم تعديل العميل بنجاح",
     "added-successfuly": "تم اضافة العميل بنجاح",
     "delete-successfuly": "تم مسح العميل بنجاح",
+    "close": "اغلاق"
+  },
+  "employee": {
+    "employee": "موظف",
+    "full-name": "الاسم بالكامل",
+    "nick-name": "اسم الشهره",
+    "national-id": "بطاقه الرقم القومي",
+    "address": "العنوان",
+    "receipt-no": "رقم الايصال",
+    "job":"الوظيفه",
+    "primrary-phone": "رقم الهاتف",
+    "secondary-phone": "رقم الهاتف 2",
+    "id-validation": "الرقم القومي يجب ان يكون ",
+    "id-number": "اربعه عشر رقما",
+    "id-validation2": "ارقام فقط",
+    "phone-validation": "رقم الهاتف يجب ان يبدا ",
+    "phone-number": "احدي عشر رقم فقط",
+    "phone-numbers": "(011,010,012,015)",
+    "enter-customer-fname": "الرجاء ادخال اسم الموظف بالكامل",
+    "enter-customer-nname": "  الرجاء ادخال اسم شهره الموظف",
+    "nationalId": "بطاقه الرقم القومي ",
+    "updated-successfuly": "تم تعديل الموظف بنجاح",
+    "added-successfuly": "تم اضافة الموظف بنجاح",
+    "delete-successfuly": "تم مسح الموظف بنجاح",
     "close": "اغلاق"
   },
   "investors": {
@@ -135,11 +170,18 @@
     "due-date": "تاريخ الاستحقاق",
     "payment-date": "تاريخ الدفع",
     "status": "الحاله",
+    "customer-name":" اسم العميل",
     "required": "مطلوبة",
     "updated-successfuly": "تم تعديل القسط بنجاح",
     "added-successfuly": "تم اضافة القسط بنجاح",
     "delete-successfuly": "تم مسح القسط بنجاح",
-    "close": "اغلاق"
+    "close": "اغلاق",
+    "search": "بحث باسم العميل",
+    "pay-installment":"دفع الاقساط",
+    "enter-PaymentAmount":"الرجاء ادخال قيمةالدفع",
+    "pay":"دفع القسط",
+    "receipt": "ايصال القسط",
+    "thank":"شكرا"
   },
   "profits": {
     "profits": "الارباح",
@@ -202,5 +244,27 @@
         "update-message":"تم تعديل العملية بنجاح",
         "delete-message":"تم مسح العملية",
         "close":"غلق"
+        },
+        "suppliers": {
+          "supplier": "المورد",
+          "our-suppliers": "الموردين",
+          "name": "الأسم",
+          "version":"الإصدار",
+          "contactName": "جهة الإتصال",
+          "address": "العنوان",
+          "primary-phone": "رقم الهاتف",
+          "secondary-phone": "رقم الهاتف 2",
+          "id-validation": "الرقم القومي يجب ان يكون ",
+          "id-number": "اربعه عشر رقما",
+          "id-validation2": "ارقام فقط",
+          "phone-validation": "رقم الهاتف يجب ان يبدا ",
+          "phone-number": "احدي عشر رقم فقط",
+          "phone-numbers": "(011,010,012,015)",
+          "enter-supplier-name": "أدخل اسم المورد",
+          "supplier-code": "كود العميل",
+          "updated-successfuly": "تم تعديل المورد بنجاح",
+          "added-successfuly": "تم اضافة المورد بنجاح",
+          "delete-successfuly": "تم مسح المورد بنجاح",
+          "close": "اغلاق"
         }
 }

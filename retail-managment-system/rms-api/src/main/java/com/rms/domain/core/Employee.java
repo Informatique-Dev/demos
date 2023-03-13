@@ -19,4 +19,7 @@ public class Employee extends Person {
     @Column(name = "job")
     private String job;
 
+    @Column(name = "enabled")
+    private Boolean enabled;
+
 }

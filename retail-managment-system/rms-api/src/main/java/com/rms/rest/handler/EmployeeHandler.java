@@ -13,6 +13,7 @@ import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -85,9 +86,21 @@ public class EmployeeHandler {
         }
         catch (Exception exception)
         {
-            throw new ResourceRelatedException(Customer.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+            throw new ResourceRelatedException(Employee.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }
         return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<?> updateStatus(Integer id , Boolean status)
+    {
+        Employee employee = employeeService.getById(id).orElseThrow(
+                ()-> new ResourceNotFoundException(Employee.class.getSimpleName() , id));
+        employee.setEnabled(status);
+        employeeService.save(employee);
+        EmployeeDto dto= mapper.toDto(employee);
+        return ResponseEntity.ok(dto);
+
+
     }
 
 }
