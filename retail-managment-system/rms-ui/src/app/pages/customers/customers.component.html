@@ -1,5 +1,5 @@
-<div class="main">
-  <div class="container text-center mt-4">
+<div class="container">
+  <div class="text-center mt-4">
     <div>
       <h3 class="panel-title fw-bold">
         {{ "customrs.our-curtomrs" | translate }}
@@ -7,13 +7,12 @@
     </div>
   </div>
 
-  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-    <div class="row justify-content-center">
+  <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
       <div
-        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+        class="child-height overflow-scroll bg-white data-table w-100"
       >
         <table
-          class="table table-responsive"
+          class="table table-responsive h-75"
           mat-table
           [dataSource]="allCustomers"
         >
@@ -114,11 +113,15 @@
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
         </table>
-        <app-loading-spinner></app-loading-spinner>
       </div>
 
-      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+      <div class="col-lg-4 p-3 bg-light">
         <section>
           <div class="panel-heading pt-3 ps-1">
             <h3 class="panel-title ms-1">
@@ -138,7 +141,7 @@
           </div>
           <div class="panel-body">
             <form [formGroup]="customersForm">
-              <fieldset class="row justify-content-center">
+              <fieldset class="row">
                 <mat-form-field appearance="outline" class="w-50">
                   <mat-label> {{ "customrs.full-name" | translate }}</mat-label>
                   <input
@@ -358,6 +361,5 @@
           </div>
         </section>
       </div>
-    </div>
   </div>
 </div>

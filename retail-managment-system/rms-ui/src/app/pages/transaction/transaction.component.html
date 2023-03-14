@@ -1,9 +1,9 @@
 <div class="container">
   <div class="mat-typography">
-    <h2 class="mat-headline text-center">{{'transactions.our-transactions'|translate}}</h2>
+    <h2 class="pt-3 mat-headline text-center fw-bold">{{'transactions.our-transactions'|translate}}</h2>
   </div>
-  <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-5 ">
-    <div class="w-100 table-height data-table bg-white overflow-scroll">
+  <div class="d-flex flex-lg-row flex-column mat-elevation-z8 my-4 fixed-height">
+    <div class="child-height w-100 data-table bg-white overflow-scroll">
       <table mat-table [dataSource]="allTransactions" class="col w-100">
 
         <ng-container matColumnDef="id">
@@ -32,6 +32,11 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row class="row-font fs-6" *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row spinner-row" *matNoDataRow>
+          <td>
+            <app-loading-spinner></app-loading-spinner>
+          </td>
+        </tr>
       </table>
     </div> 
   </div>

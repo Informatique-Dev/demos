@@ -42,12 +42,24 @@ body {
   {
     color: #002d40 !important;
   }
-
+@media (min-width: 992px) {
+  .fixed-height{
+      height: 650px;
+  }
+}
+@media (max-width: 991.98px) {
+  .fixed-height{
+      height:auto
+  }
+  .child-height{
+      height: 500px;
+  }
+}
   .spinner-row{
-    width: 60%;
-    position: absolute;
+    position: sticky;
     margin: 70px auto;
     padding: 50px;
     display: flex;
     justify-content: center;
+    left: 30%;
   }

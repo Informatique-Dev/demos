@@ -78,7 +78,7 @@
     "delete-successfuly": "تم مسح المنتج بنجاح",
     "no-products":" لا يوجد منتجات تحت هذه الفئة",
     "close": "اغلاق",
-    "choose-category":"اختار الفئة"
+    "choose-by-category":"الفئة"
   },
   "category": {
     "category": "الفئات",
