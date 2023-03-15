@@ -18,7 +18,7 @@ spring:
     #  maximumPoolSize: 5
     url: jdbc:postgresql://localhost:5432/motaheda
     username: postgres
-    password: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: none
