@@ -1,27 +1,29 @@
-<div>
-    <div class="container text-center mt-4">
+<div class="container">
+    <div class="mat-typography text-center mt-4">
       <div>
-        <h3 class="panel-title fw-bold">
+        <h3 class="pt-3 mat-headline panel-title fw-bold">
           {{ "store.our-stores" | translate }}
         </h3>
       </div>
     </div>
-    <div class="container-fluid col-sm-4 col-md-4 column d-flex mx-5">
-      <mat-form-field appearance="outline" color="primary">
-          <mat-select panelClass="mt-5" placeholder="{{'store.choose-employee' | translate}}">
+    <div class="custom-filter col-sm-4 col-md-4 column d-flex w-30">
+      <mat-form-field appearance="outline" color="primary" class="shadow bg-white rounded">
+        <mat-label>
+          {{'employee.employee' | translate}}
+        </mat-label>
+          <mat-select panelClass="mt-5 data-table">
             <mat-option *ngFor="let type of employees" [value]="type" (click)="getStores(type.fullName)">
               {{type.fullName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
     </div>
-    <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-      <div class="row justify-content-center">
+    <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
         <div *ngIf="isTableVisible"
-          class="col-lg-8 col-md-8 col-sm-8 bg-white overflow-scroll data-table content"
+          class="child-height w-100 overflow-scroll data-table bg-white"
         >
             <table
-            class="table table-responsive"
+            class="col w-100"
             mat-table
             [dataSource]="allStores"
           >
@@ -98,10 +100,10 @@
             </mat-paginator>
         </div>
   
-        <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+        <div class="col-lg-4 p-3 bg-light">
           <section>
-            <div class="panel-heading pt-3 ps-2">
-              <h3 class="panel-title ms-2">
+            <div class="panel-heading pt-3 ps-1 mb-5">
+              <h3 class="panel-title float-start">
                 {{
                   storeForm.controls["id"].value
                     ? ("update" | translate)
@@ -118,7 +120,7 @@
                 >add</mat-icon
               >
             </div>
-            <div class="panel-body ps-1">
+            <div class="panel-body">
               <form [formGroup]="storeForm">
                 <fieldset class="row justify-content-center">
                   <mat-form-field appearance="outline" class="w-100">
@@ -198,7 +200,6 @@
             </div>
           </section>
         </div>
-      </div>
     </div>
   </div>
   
