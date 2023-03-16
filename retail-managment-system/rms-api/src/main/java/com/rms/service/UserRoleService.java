@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,9 @@ public class UserRoleService {
 
     public Page<UserRole> getByUserId(Integer userId ,Integer page , Integer  size){
         return userRoleRepository.findUserRoleByUserId(userId , PageRequest.of(page,size));
+    }
+    public List<Role> getRoleByUsername(String username){
+        return userRoleRepository.findByUserName(username);
     }
 
 }
