@@ -3,6 +3,7 @@ package com.rms.rest.handler;
 import com.rms.domain.core.Product;
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
+import com.rms.domain.sales.Customer;
 import com.rms.rest.dto.BillDetailsDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -41,6 +42,10 @@ public class BillDetailsHandler {
 
     public ResponseEntity <?>save(BillDetailsDto billDetailsDto)
     {
+        Product product = productService.getById(billDetailsDto.getProduct().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
+
+       product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
         BillDetails billDetails=billDetailsMapper.toEntity(billDetailsDto);
         billDetailsService.save(billDetails);
         BillDetailsDto dto =billDetailsMapper.toDto(billDetails);
