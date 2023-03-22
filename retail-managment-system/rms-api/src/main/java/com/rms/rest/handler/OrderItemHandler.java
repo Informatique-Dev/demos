@@ -1,7 +1,6 @@
 package com.rms.rest.handler;
-import com.rms.domain.core.Product;
+import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.OrderItem;
-import com.rms.repository.OrderItemRepository;
 import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -37,24 +36,13 @@ public class OrderItemHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
-    public List<OrderItemDto> findOrderItemsByOrderId(Integer orderId)
-    {
-        List<OrderItem> OrderItems = orderItemService.getOrderItemsByOrderId(orderId);
-        List<OrderItemDto> dtos =mapper.toDto(OrderItems);
-        return dtos;
-    }
-
 
     public  ResponseEntity<?>  save(OrderItemDto orderItemDto) {
-        Product product =productService.getById(orderItemDto.getProduct().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), orderItemDto.getProduct().getId()));
        OrderItem orderItem =mapper.toEntity(orderItemDto);
-       orderItem.setUnitPrice(product.getCashPrice()*orderItem.getQuantity());
-        OrderItemDto dto = mapper.toDto(orderItemService.save(orderItem));
+        orderItemService.save(orderItem);
+        OrderItemDto dto = mapper.toDto(orderItem);
         return ResponseEntity.ok(dto);
     }
-
-
     public ResponseEntity<?> getById(Integer id) {
         OrderItem orderItem= orderItemService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
