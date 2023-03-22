@@ -1,4 +1,5 @@
 package com.rms.rest.handler;
+import com.rms.domain.core.Product;
 import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.OrderItem;
 import com.rms.rest.dto.OrderItemDto;
@@ -38,6 +39,12 @@ public class OrderItemHandler {
 
 
     public  ResponseEntity<?>  save(OrderItemDto orderItemDto) {
+        Product product = productService.getById(orderItemDto.getProduct().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),orderItemDto.getProduct().getId()));
+
+        product.setQuantity(product.getQuantity()-orderItemDto.getQuantity());
+
+
        OrderItem orderItem =mapper.toEntity(orderItemDto);
         orderItemService.save(orderItem);
         OrderItemDto dto = mapper.toDto(orderItem);
