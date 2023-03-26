@@ -1,19 +1,30 @@
-<div class="main">
-  <div class="container text-center mt-4">
+<div class="container">
+  <div class=" text-center mat-typography mt-4">
     <div>
-      <h3 class="panel-title fw-bold">
+      <h3 class="pt-3 mat-headline panel-title fw-bold">
         {{ "product.our-products" | translate }}
       </h3>
     </div>
   </div>
-
-  <div class="container-fluid col-11 mt-4 mb-5 shadow-lg">
-    <div class="row justify-content-center">
+  <div id="custom-filter" class="col-sm-4 col-md-4 column d-flex w-30">
+    <mat-form-field appearance="outline" color="primary" class=" shadow bg-white rounded" >
+      <mat-label>
+        {{'product.choose-by-category' | translate}}
+      </mat-label>
+        <mat-select panelClass="mt-5 data-table">
+          <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
+          <mat-option *ngFor="let type of categories" [value]="type" (click)="productFilter(type.id)">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
       <div
-        class="content col-lg-8 col-md-8 col-sm-8 overflow-scroll data-table bg-white"
+        class="child-height w-100 overflow-scroll data-table bg-white"
       >
-        <table
-          class="table table-responsive"
+          <table
+          class="col w-100"
           mat-table
           [dataSource]="allProducts"
         >
@@ -86,33 +97,46 @@
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-        <app-loading-spinner></app-loading-spinner>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
+        </table>          
+          <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+          </mat-paginator>
       </div>
 
-      <div class="content col-lg-4 col-md-4 col-sm-6 bg-light">
+      <div class="col-lg-4 p-3 bg-light">
         <section>
-          <div class="panel-heading pt-3 ps-2">
-            <h3 class="panel-title ms-2">
-              {{
-                productForm.controls["id"].value
-                  ? ("update" | translate)
-                  : ("add" | translate)
-              }}
-
-              {{ "product.product" | translate }}
-            </h3>
-
-            <mat-icon
-              class="add-icon me-4 float-end"
-              (click)="restartForm(); isButtonVisible = true"
-              [hidden]="isButtonVisible"
-              >add</mat-icon
-            >
+          <div>
+            <div class="panel-heading pt-3 ps-1 mb-5">
+              <h3 class="panel-title float-start">
+                {{
+                  productForm.controls["id"].value
+                    ? ("update" | translate)
+                    : ("add" | translate)
+                }}
+  
+                {{ "product.product" | translate }}
+              </h3>
+  
+              <mat-icon
+                class="add-icon me-4 float-end"
+                (click)="restartForm(); isButtonVisible = true"
+                [hidden]="isButtonVisible"
+                >add</mat-icon
+              >
+            </div>
           </div>
-          <div class="panel-body ps-1">
+          <div class="panel-body ">
             <form [formGroup]="productForm">
               <fieldset class="row justify-content-center">
                 <mat-form-field appearance="outline" class="w-100">
@@ -228,6 +252,5 @@
           </div>
         </section>
       </div>
-    </div>
   </div>
 </div>

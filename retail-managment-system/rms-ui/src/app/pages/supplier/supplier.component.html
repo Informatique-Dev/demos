@@ -1,0 +1,290 @@
+ <div class="main">
+  <div class="container text-center mt-4">
+    <h3 class="panel-title">{{ "suppliers.our-suppliers"|translate  }}</h3>
+  </div>
+</div>
+<div class="container-fluid col-11 mt-4 mb-4 shadow-lg">
+  <div class="row">
+    <div class="content overflow-scroll data-table col-md-8 col-sm-8 table-responsive bg-white">
+
+
+       <table
+        class="table"
+        mat-table
+        [dataSource]="suppliersList"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "no" | translate }}.
+          </th>
+          <td mat-cell *matCellDef="let i = index" class="pt-2">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="version">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.version" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.version }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="contactName">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.contactName" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.contactName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="primaryPhoneNo">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.primary-phone" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.primaryPhoneNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="secondaryPhoneNo">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.secondary-phone" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.secondaryPhoneNo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "suppliers.address" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.address }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon pt-2">
+              <button class="btn table-button" (click)="fetchData(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                class="btn table-button"
+                (click)="openConfirmationDialog(element)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <app-loading-spinner></app-loading-spinner>
+      </table>
+      <mat-paginator [length]="pagination?.itemCount"
+      [pageSizeOptions]="[10,5,100]"
+      (page)="onPaginationChange($event)"
+      showFirstLastButtons
+      aria-label="Select page"
+      class="fw-bold fs-6 d-flex justify-content-center  ">
+    </mat-paginator>
+      </div>
+    <div class="content col-md-4 col-sm-6 bg-light">
+      <section>
+        <div class="panel-heading pt-3 ps-1">
+          <h3 class="panel-title ms-1">
+            {{
+              supplierForm.controls["id"].value
+                ? ("update" | translate)
+                : ("add" | translate)
+            }}
+            {{ "suppliers.supplier" | translate }}
+          </h3>
+          <mat-icon
+            class="add-icon me-4 float-end"
+            (click)="restartForm(); isButtonVisible = true"
+            [hidden]="isButtonVisible"
+            >add</mat-icon
+          >
+        </div>
+        <div class="panel-body">
+          <form [formGroup]="supplierForm">
+            <fieldset class="row justify-content-center">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label> {{ "suppliers.name" | translate }}</mat-label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  matInput
+                  placeholder="{{
+                    'suppliers.enter-supplier-name' | translate
+                  }}"
+                />
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['name'].hasError('required')
+                  "
+                >
+                  {{ "suppliers.name" | translate }}
+                  <strong> {{ "product.required" | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label> {{ "suppliers.contactName" | translate }}</mat-label>
+                <input
+                  formControlName="contactName"
+                  type="text"
+                  matInput
+                  placeholder="{{
+                    'suppliers.contactName' | translate
+                  }}"
+                />
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['contactName'].hasError('required')
+                  "
+                >
+                  {{ "suppliers.contactName" | translate }}
+                  <strong> {{ "product.required" | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{
+                  "suppliers.primary-phone" | translate
+                }}</mat-label>
+                <input
+                  formControlName="primaryPhoneNo"
+                  type="tel"
+                  matInput
+                  placeholder="{{ 'suppliers.primary-phone' | translate }}"
+                  minlength="11"
+                  maxlength="11"
+                  NumbersOnly
+                />
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['primaryPhoneNo'].hasError(
+                      'required'
+                    )
+                  "
+                >
+                  {{ "suppliers.primary-phone" | translate }}
+                  <strong>{{ "product.required" | translate }}</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['primaryPhoneNo'].hasError(
+                      'minlength'
+                    )
+                  "
+                >
+                  {{ "suppliers.phone-validation" | translate
+                  }}<strong>
+                    {{ "suppliers.phone-number" | translate }}</strong
+                  >
+                </mat-error>
+                <mat-error
+                  class="mt-2"
+                  *ngIf="
+                    supplierForm.controls['primaryPhoneNo'].hasError(
+                      'pattern'
+                    )
+                  "
+                >
+                  {{ "suppliers.phone-validation" | translate }}
+                  <strong> {{ "suppliers.phone-numbers" | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>
+                  {{ "suppliers.secondary-phone" | translate }}</mat-label
+                >
+                <input
+                  formControlName="secondaryPhoneNo"
+                  type="tel"
+                  matInput
+                  placeholder="{{ 'suppliers.secondary-phone' | translate }}"
+                  minlength="11"
+                  maxlength="11"
+                  NumbersOnly
+                />
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['secondaryPhoneNo'].hasError(
+                      'minlength'
+                    )
+                  "
+                >
+                  Please phone Number must be <strong>11 number</strong>
+                </mat-error>
+                <mat-error
+                  class="mt-2"
+                  *ngIf="
+                    supplierForm.controls['secondaryPhoneNo'].hasError(
+                      'pattern'
+                    )
+                  "
+                >
+                  phone Number must start with
+                  <strong>010, 011, 012, 015</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ "suppliers.address" | translate }}</mat-label>
+                <input
+                  formControlName="address"
+                  type="text"
+                  matInput
+                  placeholder="{{ 'suppliers.address' | translate }}"
+                />
+                <mat-error
+                  *ngIf="
+                    supplierForm.controls['address'].hasError('required')
+                  "
+                >
+                  {{ "suppliers.address" | translate }}
+                  <strong>{{ "product.required" | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="actions pb-3 float-end">
+          <button
+            class="btn me-3 ms-3"
+            (click)="onSubmit()"
+            [disabled]="submit"
+          >
+            {{
+              supplierForm.controls["id"].value
+                ? ("update" | translate)
+                : ("add" | translate)
+            }}
+          </button>
+          <button class="btn" mat-button (click)="resetForm()">
+            {{
+              supplierForm.controls["id"].value
+                ? ("reset" | translate)
+                : ("clear" | translate)
+            }}
+          </button>
+
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+

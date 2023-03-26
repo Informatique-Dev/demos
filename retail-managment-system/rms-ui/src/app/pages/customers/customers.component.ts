@@ -72,7 +72,7 @@ export class CustomersComponent implements OnInit {
   }
 
   getAllCustomers(): void {
-    this.customersRepository.getList().subscribe((result) => {
+    this.customersRepository.getList().subscribe((result:any) => {
       this.allCustomers = result;
     });
   }

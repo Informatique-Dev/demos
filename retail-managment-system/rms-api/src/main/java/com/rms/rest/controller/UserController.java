@@ -1,7 +1,9 @@
 package com.rms.rest.controller;
 
+import com.rms.rest.dto.RoleDto;
 import com.rms.rest.dto.UserDto;
 import com.rms.rest.handler.UserHandler;
+import com.rms.rest.handler.UserRoleHandler;
 import com.rms.rest.validation.InsertValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class UserController {
     private UserHandler userHandler;
+
+    private UserRoleHandler userRoleHandler ;
 
     @GetMapping
     @Operation(summary = "Get All Users Paged")
@@ -49,6 +53,18 @@ public class UserController {
         return userHandler.delete(id);
     }
 
+    @PostMapping("/{id}/role")
+    @Operation(summary = "Assign Roles to User ")
+    public ResponseEntity<?> addRole(@PathVariable(value = "id") Integer id , @RequestBody RoleDto dto) {
+        return userRoleHandler.save(id , dto);
+    }
 
 
+    @GetMapping("/{id}/role")
+    @Operation(summary = "Get All Roles By User Id")
+    public ResponseEntity<?> getRolesByUserId(@PathVariable(value = "id") Integer id ,
+                                              @RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
+                                              @RequestParam(value = "size", defaultValue = "10", required = false) Integer size) {
+        return userRoleHandler.getUserRoles(id , page ,size);
+    }
 }

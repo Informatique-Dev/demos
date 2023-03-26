@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ResourceService } from 'src/app/core/services/resource.service';
 import { Installment } from './models/installment';
@@ -12,7 +12,7 @@ export class InstallmentRepositry extends ResourceService<Installment> {
     super(httpClient);       
   }
   getResourceUrl(): string {
-    return 'installments';
+    return 'installment';
   }
 
   toServerModel(entity: Installment): any {

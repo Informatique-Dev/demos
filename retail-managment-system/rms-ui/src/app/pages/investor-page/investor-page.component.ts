@@ -4,12 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InvestorsRepository } from 'src/app/domain/investors/investor.repository';
-
-import {
-  Investors,
-  InvestorTypes,
-} from './../../domain/investors/models/investor';
+import { Investors, InvestorTypes,} from './../../domain/investors/models/investor';
 import { TranslateService } from '@ngx-translate/core';
+import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 
 @Component({
   selector: 'app-investor-page',
@@ -36,6 +33,7 @@ export class InvestorPageComponent implements OnInit {
     'startDate',
     'update',
     'delete',
+    'transacion'
   ];
   constructor(
     private investorsRepository: InvestorsRepository,
@@ -71,18 +69,17 @@ export class InvestorPageComponent implements OnInit {
     this.investorsRepository.getList().subscribe((result: any) => {
       this.allInvestors = result;
     });
+    
   }
   onSubmit() {
     this.investorForm.markAllAsTouched();
-    this.submit = true;
     if (this.investorForm.valid) {
+      this.investorForm.controls['startDate'].setValue((new Date()).toISOString().substring(0,10))
       this.investorForm.controls['id'].value
         ? this.updateInvestors()
         : this.addInvestors();
-      this.investorForm.reset();
-    } else if (this.investorForm.invalid) {
-      return;
-    }
+       this.investorForm.reset();
+    } 
   }
 
   addInvestors() {
@@ -98,6 +95,7 @@ export class InvestorPageComponent implements OnInit {
             duration: 2000,
           }
         );
+        this.dialog.open(AddTransactionComponent)
       },
       () => {
         this.submit = false;
@@ -124,11 +122,13 @@ export class InvestorPageComponent implements OnInit {
       }
     );
   }
+
   resetForm(): void {
     this.investorForm.controls['id'].value
       ? this.fetchData(this.currentInvestor)
       : this.clearTheForm();
   }
+  
   openConfirmationDialog(investors: Investors) {
     let dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
@@ -156,4 +156,13 @@ export class InvestorPageComponent implements OnInit {
   restartForm(): void {
     this.clearTheForm();
   }
+
+  openTransactionDialog(investor : Investors){
+    this.dialog.open(AddTransactionComponent , {
+      data:investor
+     }).afterClosed().subscribe(value =>{
+        this.allInvestors;
+     })
+  }
+
 }

@@ -1,0 +1,323 @@
+<div class="container">
+    <div class= "text-center mt-4">
+      <div>
+        <h3 class="panel-title fw-bold">
+          {{ "home-page.employee" | translate }}
+        </h3>
+      </div>
+    </div>
+  
+    <div class="d-flex flex-lg-row flex-column shadow-lg my-4 fixed-height">
+        <div  *ngIf="dataSource"
+          class="  child-height bg-white data-table w-100 overflow-scroll"
+        >
+          <mat-table [dataSource]="dataSource" class=" data-table">
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6"> {{ "no" | translate }}. </mat-header-cell>
+            <mat-cell *matCellDef="let i = index" > {{ i + 1 }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fullName">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "employee.full-name" | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">  {{ element.fullName }} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="nickName">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" > {{ "employee.nick-name" | translate }} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.nickName }} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="nationalId">
+            <mat-header-cell *matHeaderCellDef   class="fw-bold fs-6">   {{ "employee.national-id" | translate }} </mat-header-cell>
+            <mat-cell *matCellDef="let element">  {{ element.nationalId }}</mat-cell>
+          </ng-container>
+  
+          <ng-container  matColumnDef="primaryPhoneNo">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.primrary-phone" | translate }} </mat-header-cell>
+            <mat-cell *matCellDef="let element">  {{ element.primaryPhoneNo }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="secondaryPhoneNo">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.secondary-phone" | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.secondaryPhoneNo }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef class="fw-bold fs-6" >   {{ "employee.address" | translate }} </mat-header-cell>
+            <mat-cell *matCellDef="let element">  {{ element.address }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="job">
+            <mat-header-cell *matHeaderCellDef  class="fw-bold fs-6"> {{ 'employee.job' | translate }} </mat-header-cell>
+            <mat-cell *matCellDef="let element">  {{ element.job }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+  
+              <button class="btn table-button" (click)="fetchData(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                class="btn table-button"
+                (click)="openConfirmationDialog(element)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
+        </mat-table>
+  
+          <mat-paginator [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            (page)="$event;onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+          </mat-paginator>
+  
+        </div>
+        <div class="col-lg-4 p-3 bg-light">
+            <div class="panel-heading py-4 pt-4 ps-1">
+              <h3 class="panel-title ms-1">
+                {{
+                  employeeForm.controls["id"].value
+                    ? ("update" | translate)
+                    : ("add" | translate)
+                }}
+                {{ "employee.employee" | translate }}
+                <mat-icon
+                class="add-icon me-4 float-end"
+                (click)="restartForm(); isButtonVisible = true"
+                [hidden]="isButtonVisible"
+                >add</mat-icon
+              >
+              </h3>
+    
+            </div>
+            <div>
+    
+              <div class="panel-body">
+                <form [formGroup]="employeeForm">
+                  <fieldset class="row justify-content-center ">
+                    <mat-form-field appearance="outline" class="w-50">
+                      <mat-label> {{ "employee.full-name" | translate }}</mat-label>
+                      <input
+                        formControlName="fullName"
+                        type="text"
+                        matInput
+                        placeholder="{{
+                          'employee.enter-customer-fname' | translate
+                        }}"
+                      />
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['fullName'].hasError('required')
+                        "
+                      >
+                        {{ "employee.full-name" | translate }}
+                        <strong> {{ "product.required" | translate }}</strong>
+                      </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" class="w-50">
+                      <mat-label> {{ "employee.nick-name" | translate }}</mat-label>
+                      <input
+                        formControlName="nickName"
+                        type="text"
+                        matInput
+                        placeholder="{{
+                          'employee.enter-customer-name' | translate
+                        }}"
+                      />
+                    </mat-form-field>
+    
+    
+    
+                    <mat-form-field appearance="outline" class="w-100 pb-2">
+                      <mat-label>{{
+                        "employee.national-id" | translate
+                      }}</mat-label>
+                      <input
+                        formControlName="nationalId"
+                        matInput
+                        placeholder="{{ 'employee.nationalId' | translate }}"
+                        minlength="14"
+                        maxlength="14"
+                        NumbersOnly
+                      />
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['nationalId'].hasError('required')
+                        "
+                      >
+                        {{ "employee.national-id" | translate }}
+                        <strong>{{ "product.required" | translate }}</strong>
+                      </mat-error>
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['nationalId'].hasError('minlength')
+                        "
+                      >
+                        {{ "employee.id-validation" | translate }}
+                        <strong> {{ "employee.id-number" | translate }}</strong>
+                      </mat-error>
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['nationalId'].hasError('pattern')
+                        "
+                      >
+                        {{ "employee.id-validation" | translate }}
+                        <strong>
+                          {{ "employee.id-validation2" | translate }}</strong
+                        >
+                      </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" class="w-50">
+                      <mat-label>{{ "employee.address" | translate }}</mat-label>
+                      <input
+                        formControlName="address"
+                        type="text"
+                        matInput
+                        placeholder="{{ 'employee.address' | translate }}"
+                      />
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['address'].hasError('required')
+                        "
+                      >
+                        {{ "employee.address" | translate }}
+                        <strong>{{ "product.required" | translate }}</strong>
+                      </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" class="w-50">
+                      <mat-label>{{ 'employee.job' | translate }}</mat-label>
+                      <input
+                        formControlName="job"
+                        type="text"
+                        matInput
+                        placeholder="{{ 'employee.job' | translate }}"
+                        NumbersOnly
+                      />
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" class="w-50 mb-4">
+                      <mat-label>{{
+                        "employee.primrary-phone" | translate
+                      }}</mat-label>
+                      <input
+                        formControlName="primaryPhoneNo"
+                        type="tel"
+                        matInput
+                        placeholder="{{ 'employee.primrary-phone' | translate }}"
+                        minlength="11"
+                        maxlength="11"
+                        NumbersOnly
+                      />
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['primaryPhoneNo'].hasError(
+                            'required'
+                          )
+                        "
+                      >
+                        {{ "employee.primrary-phone" | translate }}
+                        <strong>{{ "product.required" | translate }}</strong>
+                      </mat-error>
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['primaryPhoneNo'].hasError(
+                            'minlength'
+                          )
+                        "
+                      >
+                        {{ "employee.phone-validation" | translate
+                        }}<strong>
+                          {{ "employee.phone-number" | translate }}</strong
+                        >
+                      </mat-error>
+                      <mat-error
+                        class="mt-2"
+                        *ngIf="
+                          employeeForm.controls['primaryPhoneNo'].hasError(
+                            'pattern'
+                          )
+                        "
+                      >
+                        {{ "employee.phone-validation" | translate }}
+                        <strong> {{ "employee.phone-numbers" | translate }}</strong>
+                      </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline" class="w-50 mb-4">
+                      <mat-label>
+                        {{ "employee.secondary-phone" | translate }}</mat-label
+                      >
+                      <input
+                        formControlName="secondaryPhoneNo"
+                        type="tel"
+                        matInput
+                        placeholder="{{ 'employee.secondary-phone' | translate }}"
+                        minlength="11"
+                        maxlength="11"
+                        NumbersOnly
+                      />
+                      <mat-error
+                        *ngIf="
+                          employeeForm.controls['secondaryPhoneNo'].hasError(
+                            'minlength'
+                          )
+                        "
+                      >
+                        Please phone Number must be <strong>11 number</strong>
+                      </mat-error>
+                      <mat-error
+                        class="mt-2"
+                        *ngIf="
+                          employeeForm.controls['secondaryPhoneNo'].hasError(
+                            'pattern'
+                          )
+                        "
+                      >
+                        phone Number must start with
+                        <strong>010, 011, 012, 015</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </fieldset>
+                </form>
+              </div>
+    
+              <div class="actions pb-3 float-end">
+                <button
+                  class="btn me-3 ms-3"
+                  (click)="onSubmit()"
+                  [disabled]="submit"
+                >
+                  {{
+                    employeeForm.controls["id"].value
+                      ? ("update" | translate)
+                      : ("add" | translate)
+                  }}
+                </button>
+                <button class="btn" mat-button (click)="resetForm()">
+                  {{
+                    employeeForm.controls["id"].value
+                      ? ("reset" | translate)
+                      : ("clear" | translate)
+                  }}
+                </button>
+              </div>
+            </div>
+          </div>
+    
+      </div>
+    
+    </div>
