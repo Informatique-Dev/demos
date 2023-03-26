@@ -75,18 +75,13 @@ public class OrderHandler {
                 .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), orderDto.getEmployee().getId()));
         Order order = mapper.toEntity(orderDto);
         order.setOrderDate(new Date());
-        order.setCreatedBy(employee.getFullName());
-
         OrderDto dto = mapper.toDto(orderService.save(order));
-        System.out.println("ordeeeeer"+order);
-
-
         addOrderItem(order.getId(), orderDto);
         List<OrderItemDto> orderItemsByOrderId = orderItemHandler.findOrderItemsByOrderId(dto.getId());
         double total = orderItemsByOrderId.stream().mapToDouble(d -> d.getProduct().getCashPrice() * d.getQuantity()).sum();
-        dto.setTotalPrice(total);
-        dto.setRemainingAmount(Math.abs(total-dto.getPaidAmount()));
-        update(dto.getId(), dto);
+        order.setTotalPrice(total);
+        order.setRemainingAmount(Math.abs(total-dto.getPaidAmount()));
+        orderService.update(order);
         addInstallment(dto.getId() , orderDto);
         return ResponseEntity.ok(dto);
     }
@@ -102,11 +97,9 @@ public class OrderHandler {
             orderItemHandler.save(orderItemDto);
             orderItems.add(orderItemDto);
         }
-//        List<OrderItemDto> orderItemsByOrderId = orderItemHandler.findOrderItemsByOrderId(id);
-//        return orderItems;
     }
 
-    private List<InstallmentDto> addInstallment(Integer id, OrderDto orderDto) {
+    private void addInstallment(Integer id, OrderDto orderDto) {
 
         Order order = orderService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
@@ -129,7 +122,7 @@ public class OrderHandler {
             throw new PaymentTypeNotValidException(PaymentType.class.getSimpleName(), orderDto.getPaymentType().name()
                     , ErrorCodes.PAYMENT_TYPE_NOT_VALID.getCode());
         }
-        return installmentDtos;
+
     }
 
     public ResponseEntity<?> delete(Integer id) {
