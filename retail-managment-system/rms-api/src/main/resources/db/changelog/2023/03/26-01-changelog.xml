@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1679833782554-1" author="Hemmat">
+        <addColumn tableName="orders" schemaName="">
+            <column name="total_price" type="DOUBLE"/>
+        </addColumn>
+
+                <dropColumn tableName="orders" columnName="installment_amount"/>
+        <addColumn tableName="installments" schemaName="">
+            <column name="remaining_amount" type="DOUBLE"/>
+        </addColumn>
+        <addColumn tableName="orders">
+            <column name="installment_amount"/>
+        </addColumn>
+        <dropColumn tableName="orders" columnName="installment_amount"/>
+        <modifyDataType tableName="orders" columnName="payment_type" newDataType="VARCHAR(255)" schemaName=""/>
+
+   </changeSet>
+</databaseChangeLog>
