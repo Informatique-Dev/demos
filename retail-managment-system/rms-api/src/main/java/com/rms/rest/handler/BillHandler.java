@@ -25,6 +25,8 @@ public class BillHandler {
     private PaginationMapper paginationMapper;
     private SupplierService supplierService;
 
+    private BillDetailsHandler billDetailsHandler;
+
     public ResponseEntity<?>getById(Integer id)
     {
       Bill bill = billService.getById(id)
@@ -45,6 +47,10 @@ public class BillHandler {
     {
         Supplier supplier =supplierService.getById(billDto.getSupplierDto().getId())
             .orElseThrow(() -> new ResourceNotFoundException(Supplier.class.getSimpleName(),billDto.getId()));
+        if(billDto.getBillDetailsDtoList()==null || billDto.getBillDetailsDtoList().size()==0)
+        {
+            throw new BusinessValidationException(Bill.class.getName()," requested id",billDto.getId().toString(),ErrorCodes.RELATED_RESOURCE.getCode());
+        }
         Bill bill = billMapper.toEntity(billDto);
         bill.setSupplier(supplier);
         bill.setDate(LocalDate.now());
@@ -56,6 +62,10 @@ public class BillHandler {
 
             billService.save(bill);
             BillDto dto = billMapper.toDto(bill);
+            if(billDto.getBillDetailsDtoList()!=null)
+            {
+                billDetailsHandler.save(bill.getId(),billDto.getBillDetailsDtoList());
+            }
             return ResponseEntity.ok(dto);
 
     }

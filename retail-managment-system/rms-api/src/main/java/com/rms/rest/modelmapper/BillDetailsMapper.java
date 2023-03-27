@@ -58,7 +58,6 @@ private ProductService productService;
     }
 
     @InheritInverseConfiguration
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     public abstract BillDetails updateEntityFromDto (BillDetailsDto billDetailsDto, @MappingTarget BillDetails billDetails);
 
 
