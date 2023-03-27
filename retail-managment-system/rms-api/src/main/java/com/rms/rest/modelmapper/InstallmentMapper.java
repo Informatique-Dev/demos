@@ -44,7 +44,6 @@ public abstract class InstallmentMapper {
     }
 
     @InheritInverseConfiguration
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     public abstract Installment updateEntityFromDto(InstallmentDto installmentDto, @MappingTarget Installment installment);
 
 }

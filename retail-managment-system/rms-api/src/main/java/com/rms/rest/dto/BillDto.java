@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class BillDto extends GenericDto {
@@ -24,4 +25,6 @@ public class BillDto extends GenericDto {
     private String recipient;
     private String notes;
     private SupplierDto supplierDto;
+
+    private List<BillDetailsDto>billDetailsDtoList;
 }

@@ -39,12 +39,14 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
-    public ResponseEntity <?>save(BillDetailsDto billDetailsDto)
+    public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
     {
-        BillDetails billDetails=billDetailsMapper.toEntity(billDetailsDto);
-        billDetailsService.save(billDetails);
-        BillDetailsDto dto =billDetailsMapper.toDto(billDetails);
-        return ResponseEntity.ok(dto);
+        Bill bill = billService.getById(billId)
+                .orElseThrow(()->new ResourceNotFoundException(Bill.class.getSimpleName(),billId));
+        List<BillDetails> billDetails=billDetailsMapper.toEntity(billDetailsDtoList);
+        billDetailsService.save(bill,billDetails);
+       List<BillDetailsDto>  dtos =billDetailsMapper.toDto(billDetails);
+        return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<?> getById(Integer id){
