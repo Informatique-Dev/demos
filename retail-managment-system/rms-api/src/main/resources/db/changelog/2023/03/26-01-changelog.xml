@@ -9,13 +9,6 @@
         <addColumn tableName="orders" schemaName="">
             <column name="total_price" type="DOUBLE"/>
         </addColumn>
-
-
-        <addColumn tableName="installments" schemaName="">
-            <column name="remaining_amount" type="DOUBLE"/>
-        </addColumn>
-
-        <dropColumn tableName="orders" columnName="installment_amount"/>
         <modifyDataType tableName="orders" columnName="payment_type" newDataType="VARCHAR(255)" schemaName=""/>
 
    </changeSet>
