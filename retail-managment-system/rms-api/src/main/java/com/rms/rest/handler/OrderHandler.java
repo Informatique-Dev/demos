@@ -29,7 +29,6 @@ public class OrderHandler {
     private OrderItemHandler orderItemHandler;
 
 
-
     public ResponseEntity<?> getById(Integer id) {
         Order order = orderService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
@@ -54,17 +53,32 @@ public class OrderHandler {
     public ResponseEntity<?> update(Integer id, OrderDto dto) {
         Order order = orderService.getById(id).
                 orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
-        Employee employee = employeeService.getById(order.getEmployee().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), order.getEmployee().getId()));
-        Customer customer = customerService.getById(order.getEmployee().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(), order.getCustomer().getId()));
+        Employee employee = employeeService.getById(dto.getEmployee().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName(), dto.getEmployee().getId()));
+        Customer customer = customerService.getById(dto.getCustomer().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(), dto.getCustomer().getId()));
         order.setEmployee(employee);
         order.setCustomer(customer);
-        mapper.updateEntityFromDto(dto, order);
-        orderService.update(order);
+        if (dto.getPaymentType().equals(PaymentType.INSTALLMENT) && dto.getInstallments() != null) {
+            for (InstallmentDto installmentDto : dto.getInstallments()) {
+                installmentDto.setOrder(dto);
+                installmentDto.setInstallmentAmount(dto.getRemainingAmount());
+                installmentDto.setRemainingAmount(installmentDto.getInstallmentAmount() - installmentDto.getPaymentAmount());
+                if (installmentDto.getPaymentAmount() > dto.getRemainingAmount()) {
+                    installmentDto.setRemainingAmount(0.0);
+                }
+                mapper.updateEntityFromDto(dto, order);
+                orderService.update(order);
+            }
+        } else if (dto.getPaymentType().equals(PaymentType.CASH) && dto.getInstallments() != null ||
+                dto.getPaymentType().equals(PaymentType.INSTALLMENT) && dto.getInstallments() == null) {
+            throw new PaymentTypeNotValidException(PaymentType.class.getSimpleName(), dto.getPaymentType().name()
+                    , ErrorCodes.PAYMENT_TYPE_NOT_VALID.getCode());
+        }
         OrderDto orderDto = mapper.toDto(order);
         return ResponseEntity.ok(orderDto);
     }
+
 
 
 
