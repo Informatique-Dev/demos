@@ -3,7 +3,9 @@ package com.rms.rest.exception;
 public enum ErrorCodes {
     DUPLICATE_RESOURCE("100", "Resource already exists"),
     RELATED_RESOURCE("200", "Resource has a relations"),
-    UPDATE_BLOCKED("300", "Update Blocked");
+    UPDATE_BLOCKED("300", "Update Blocked"),
+
+    PAYMENT_TYPE_NOT_VALID("301", "not valid");
     private String code;
     private String desc;
 

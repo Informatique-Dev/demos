@@ -119,20 +119,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
+    @ExceptionHandler(PaymentTypeNotValidException.class)
+    protected ResponseEntity<Object> handlePaymentTypeNotValidException(
+            PaymentTypeNotValidException ex) {
 
-//    @ExceptionHandler(ResourceNotFound.class)
-//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-//    public @ResponseBody ApiError handleResourceNotFound(final ResourceNotFound exception,
-//                                                         final HttpServletRequest request) {
-//
-//        ApiError error = new ApiError();
-//        error.setErrorMessage(exception.getMessage());
-//        error.setStatus(404);
-//        error.setPath(request.getRequestURI());
-//        error.setTimestamp(LocalDateTime.now());
-//
-//        return error;
-//    }
+        List<String> details = new ArrayList<String>();
+        details.add(ex.getMessage());
+
+        ApiError apiError = new ApiError(HttpStatus.CONFLICT, ex.getCode(), LocalDateTime.now(), "Payment Type not Valid", details);
+
+        return new ResponseEntity<>(apiError, apiError.getStatus());
+    }
 
 
 

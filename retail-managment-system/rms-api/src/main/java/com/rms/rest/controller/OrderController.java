@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/order")
 @AllArgsConstructor
 @Tag(name = "Order", description = "Rest Api For Order")
 public class OrderController {
@@ -22,10 +22,23 @@ public class OrderController {
         return orderHandler.getAll(page,size);
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Get By Id", description = "this api for get order by id")
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
+        return orderHandler.getById(id);
+    }
+
+
     @PostMapping
     @Operation(summary = "Add", description = "this api for add new order")
     public ResponseEntity<?> add(@RequestBody OrderDto order) {
         return orderHandler.save(order);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update", description = "this api for update order")
+    public ResponseEntity<?> update( @PathVariable("id") Integer id,@RequestBody OrderDto orderDto) {
+        return orderHandler.update(id, orderDto);
     }
 
     @DeleteMapping("/{id}")

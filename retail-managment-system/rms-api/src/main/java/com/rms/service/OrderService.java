@@ -27,6 +27,10 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
+    public Order update (Order order) {
+        return orderRepository.save(order);
+    }
+
     public void delete(Order order) {
         orderRepository.delete(order);
     }

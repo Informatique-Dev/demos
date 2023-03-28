@@ -1,6 +1,5 @@
 package com.rms.service;
 
-import com.rms.domain.core.Employee;
 import com.rms.domain.sales.OrderItem;
 import com.rms.repository.OrderItemRepository;
 import lombok.AllArgsConstructor;
@@ -20,6 +19,7 @@ public class OrderItemService {
     public  OrderItem save(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
     }
+
     public  OrderItem update(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
     }
@@ -31,7 +31,9 @@ public class OrderItemService {
     public Page<OrderItem>  getAll(Integer page , Integer size){
         return orderItemRepository.findAll(PageRequest.of(page,size));
     }
-
+    public List<OrderItem>  getOrderItemsByOrderId(Integer orderId){
+        return orderItemRepository.findOrderItemsByOrderId(orderId);
+    }
 
     public void delete(OrderItem orderItem) {
         orderItemRepository.delete(orderItem);

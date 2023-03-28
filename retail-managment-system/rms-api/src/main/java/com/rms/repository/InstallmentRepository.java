@@ -23,10 +23,7 @@ public interface InstallmentRepository extends JpaRepository<Installment, Intege
     List<Installment> getByCustomerId(@Param("customerId") Integer customerId);
 
 
-  @Query(value = "select i from Installment i join i.order o join o.customer c where c.nationalId = :nationalId")
-  Page<Installment> getByCustomerNationalId(@Param("nationalId") String nationalId , Pageable  pageable);
+    @Query(value = "select i from Installment i join i.order o join o.customer c where c.nationalId = :nationalId")
+    Page<Installment> getByCustomerNationalId(@Param("nationalId") String nationalId, Pageable pageable);
 
-  @Query(value = "select i from Installment i join fetch i.order o join fetch o.customer join fetch o.employee join fetch o.orderItems" ,
-  countQuery = "select count (i) FROM Installment  i")
-  Page<Installment> findAll(Pageable pageable);
 }

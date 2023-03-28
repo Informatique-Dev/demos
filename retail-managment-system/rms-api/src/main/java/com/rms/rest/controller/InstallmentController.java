@@ -14,20 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Installment", description = "Rest Api For Installment")
 public class InstallmentController {
     private InstallmentHandler installmentHandler;
-
-//    @GetMapping
-//    @Operation(summary = "Get All", description = "this api for get all installments")
-//    public ResponseEntity<?> getAll() {
-//        return installmentHandler.getDueInstallments();
-//    }
-
-
     @GetMapping
     @Operation(summary = "Get All", description = "this api for get all installment")
     public ResponseEntity<?> getAll( @RequestParam(value = "page" , defaultValue = "0") Integer page ,
-                                     @RequestParam (value = "size" , defaultValue = "10") Integer size
-
-    ) {
+                                     @RequestParam (value = "size" , defaultValue = "10") Integer size) {
         return installmentHandler.getAll(page,size);
     }
 
@@ -38,11 +28,6 @@ public class InstallmentController {
         return installmentHandler.getById(id);
     }
 
-    @PostMapping
-    @Operation(summary = "Add", description = "this api for add new installment")
-    public ResponseEntity<?> save(@RequestBody InstallmentDto installment) {
-        return installmentHandler.save(installment);
-    }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update installment")

@@ -11,6 +11,8 @@ public class InstallmentDto extends GenericDto {
 
     private Double installmentAmount;
     private Double paymentAmount;
+    private Double remainingAmount;
+
     private Date dueDate;
     private Date paymentDate;
     private Short status;

@@ -25,7 +25,7 @@ public abstract class OrderItemMapper  {
     private OrderMapper orderMapper ;
 
     @Mappings({
-            @Mapping(source = "product" , target = "product" , ignore = true) ,
+            @Mapping(source = "product" , target = "product" , ignore = true),
             @Mapping(source = "order" , target = "order" , ignore = true)
     })
     public abstract OrderItemDto toDto(OrderItem orderItem);

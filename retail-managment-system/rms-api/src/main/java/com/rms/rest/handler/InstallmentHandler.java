@@ -2,7 +2,7 @@ package com.rms.rest.handler;
 
 import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.Installment;
-import com.rms.domain.sales.Order;
+import com.rms.domain.sales.PaymentType;
 import com.rms.rest.dto.InstallmentDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -61,14 +61,9 @@ public class InstallmentHandler {
         return ResponseEntity.ok(paginatedResult);
 
     }
-
     public ResponseEntity<?> save(InstallmentDto installmentDto) {
         Installment installment = mapper.toEntity(installmentDto);
-        Order order = orderService.getById(installment.getOrder().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(),installment.getOrder().getId()));
-        installment.setOrder(order);
-        installmentService.save(installment);
-        InstallmentDto dto = mapper.toDto(installment);
+        InstallmentDto dto = mapper.toDto(installmentService.save(installment));
         return ResponseEntity.ok(dto);
     }
 
@@ -103,9 +98,4 @@ public class InstallmentHandler {
         paginatedResult.setPagination(paginationMapper.toDto(installments));
         return ResponseEntity.ok(paginatedResult);
     }
-
-
-
-
-
 }
