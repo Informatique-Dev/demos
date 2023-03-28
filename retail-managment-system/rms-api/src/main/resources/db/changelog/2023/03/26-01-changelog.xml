@@ -10,6 +10,9 @@
             <column name="total_price" type="DOUBLE"/>
         </addColumn>
         <modifyDataType tableName="orders" columnName="payment_type" newDataType="VARCHAR(255)" schemaName=""/>
+        <addColumn tableName="installments" schemaName="">
+            <column name="remaining_amount" type="DOUBLE"/>
+        </addColumn>
 
-   </changeSet>
+    </changeSet>
 </databaseChangeLog>
