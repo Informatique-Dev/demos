@@ -13,10 +13,13 @@ import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.OrderItemService;
 import com.rms.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import java.security.InvalidAlgorithmParameterException;
 import java.util.List;
 
 @Component
@@ -37,17 +40,22 @@ public class OrderItemHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
+    public List<OrderItemDto> findOrderItemsByOrderId(Integer orderId)
+    {
+        List<OrderItem> OrderItems = orderItemService.getOrderItemsByOrderId(orderId);
+        List<OrderItemDto> dtos =mapper.toDto(OrderItems);
+        return dtos;
+    }
 
-    public  ResponseEntity<?>  save(OrderItemDto orderItemDto) {
+
+    public  ResponseEntity<?>  save(OrderItemDto orderItemDto)  {
         Product product = productService.getById(orderItemDto.getProduct().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),orderItemDto.getProduct().getId()));
+           product.setQuantity(product.getQuantity()-orderItemDto.getQuantity());
 
-        product.setQuantity(product.getQuantity()-orderItemDto.getQuantity());
-
-
-       OrderItem orderItem =mapper.toEntity(orderItemDto);
-        orderItemService.save(orderItem);
-        OrderItemDto dto = mapper.toDto(orderItem);
+        OrderItem orderItem =mapper.toEntity(orderItemDto);
+        orderItem.setUnitPrice(product.getCashPrice()*orderItem.getQuantity());
+        OrderItemDto dto = mapper.toDto(orderItemService.save(orderItem));
         return ResponseEntity.ok(dto);
     }
     public ResponseEntity<?> getById(Integer id) {
