@@ -26,4 +26,8 @@ public interface InstallmentRepository extends JpaRepository<Installment, Intege
     @Query(value = "select i from Installment i join i.order o join o.customer c where c.nationalId = :nationalId")
     Page<Installment> getByCustomerNationalId(@Param("nationalId") String nationalId, Pageable pageable);
 
+    @Query("select i from Installment i where i.order.id = :orderId")
+    List<Installment> findInstallmentsByOrderId(@Param("orderId") Integer orderId );
+
+
 }

@@ -1,6 +1,7 @@
 package com.rms.service;
 
 import com.rms.domain.sales.Installment;
+import com.rms.domain.sales.OrderItem;
 import com.rms.repository.InstallmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,14 @@ public class InstallmentService {
 
     public void delete(Installment installment) {
         installmentRepository.delete(installment);
+    }
+    public void deleteALL(List<Installment> installments) {
+        installmentRepository.deleteAll(installments);
+    }
+
+
+    public List<Installment> getInstallmentsByOrderId(Integer orderId){
+        return installmentRepository.findInstallmentsByOrderId(orderId);
     }
 
 

@@ -1,8 +1,6 @@
 package com.rms.rest.handler;
-
 import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.Installment;
-import com.rms.domain.sales.PaymentType;
 import com.rms.rest.dto.InstallmentDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -19,7 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -30,7 +27,7 @@ import java.util.List;
 public class InstallmentHandler {
     private InstallmentService installmentService;
     private InstallmentMapper mapper;
-    private OrderService orderService;
+
     private CustomerService customerService ;
 
     private PaginationMapper paginationMapper;
@@ -49,6 +46,13 @@ public class InstallmentHandler {
         List<Installment> installments = installmentService.getDueInstallments(new Date(), Date.from(endDate.atStartOfDay(defaultZoneId).toInstant()));
         List<InstallmentDto> dtos = mapper.toDto(installments);
         return ResponseEntity.ok(dtos);
+    }
+
+    public List<InstallmentDto> findInstallmentsByOrderId(Integer orderId)
+    {
+        List<Installment> installments = installmentService.getInstallmentsByOrderId(orderId);
+        List<InstallmentDto> dtos =mapper.toDto(installments);
+        return dtos;
     }
 
     public ResponseEntity<?> getAll(Integer page ,Integer size)
@@ -86,6 +90,16 @@ public class InstallmentHandler {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
+    public ResponseEntity<?> deleteAll(Integer id) {
+       List<Installment> installments =  installmentService.getInstallmentsByOrderId(id);
+        try {
+            installmentService.deleteALL(installments);
+        } catch (Exception exception) {
+            throw new ResourceRelatedException(Installment.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
+    }
+
 
     public ResponseEntity<?> getByCustomerNationalId(String nationalId , Integer page , Integer size)
     {
