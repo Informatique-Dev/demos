@@ -59,9 +59,12 @@ public class OrderHandler {
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(), dto.getCustomer().getId()));
         order.setEmployee(employee);
         order.setCustomer(customer);
-
-
         updateOrderItem(order.getId(), dto);
+
+        List<OrderItemDto> orderItemsByOrderId = orderItemHandler.findOrderItemsByOrderId(order.getId());
+        double total = orderItemsByOrderId.stream().mapToDouble(d -> d.getProduct().getCashPrice() * d.getQuantity()).sum();
+        dto.setTotalPrice(total);
+        dto.setRemainingAmount(Math.abs(total-dto.getPaidAmount()));
 
         if (dto.getPaymentType().equals(PaymentType.CASH) && dto.getInstallments() == null ){
                 installmentHandler.deleteAll(id);
