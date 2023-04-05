@@ -31,6 +31,10 @@ public class BillDetailsService {
         return BillDetailsRepository.findAll(PageRequest.of(page,size));
     }
 
+    public List<BillDetails>getBillDetailsByBillId(Integer billId){
+        return BillDetailsRepository.getBillDetailsByBillID(billId);
+    }
+
 
 
     public void delete(BillDetails BillDetails) {

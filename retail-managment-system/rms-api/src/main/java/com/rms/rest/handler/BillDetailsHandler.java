@@ -71,11 +71,12 @@ public class BillDetailsHandler {
         }
 
         billDetailsMapper.updateEntityFromDto(billDetailsDto,billDetails);
-billDetailsService.update(billDetails);
-BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
-return ResponseEntity.ok(dto);
+        billDetailsService.update(billDetails);
+        BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
+        return ResponseEntity.ok(dto);
 
     }
+
 
     public ResponseEntity<?> delete(Integer id){
         BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
