@@ -47,14 +47,6 @@ public class InstallmentHandler {
         List<InstallmentDto> dtos = mapper.toDto(installments);
         return ResponseEntity.ok(dtos);
     }
-
-    public List<InstallmentDto> findInstallmentsByOrderId(Integer orderId)
-    {
-        List<Installment> installments = installmentService.getInstallmentsByOrderId(orderId);
-        List<InstallmentDto> dtos =mapper.toDto(installments);
-        return dtos;
-    }
-
     public ResponseEntity<?> getAll(Integer page ,Integer size)
     {
         Page<Installment> installments = installmentService.getAll(page,size);
