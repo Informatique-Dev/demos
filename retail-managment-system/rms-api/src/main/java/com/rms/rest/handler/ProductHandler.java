@@ -4,10 +4,7 @@ import com.rms.domain.core.Product;
 import com.rms.domain.core.ProductCategory;
 import com.rms.rest.dto.ProductDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
-import com.rms.rest.exception.ErrorCodes;
-import com.rms.rest.exception.ResourceNotFoundException;
-import com.rms.rest.exception.ResourceRelatedException;
-import com.rms.rest.exception.Response;
+import com.rms.rest.exception.*;
 import com.rms.rest.modelmapper.ProductMapper;
 import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.ProductCategoryService;
@@ -19,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -55,9 +53,13 @@ public class ProductHandler {
     }
 
     public ResponseEntity<?> save(ProductDto productDto) {
+        Optional<Product> existProductName = productService.getByProductName(productDto.getName());
+        if (existProductName.isPresent()) {
+            throw new ResourceAlreadyExistsException(Product.class.getSimpleName(), "Product Name ", productDto.getName(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
+
         if (productDto.getProductCategoryDto() != null) {
-            productCategoryService.getById(productDto.getProductCategoryDto().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
+            productCategoryService.getById(productDto.getProductCategoryDto().getId()).orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
         }
         Product product = mapper.toEntity(productDto);
         productService.save(product);
@@ -66,11 +68,13 @@ public class ProductHandler {
     }
 
     public ResponseEntity<?> update(ProductDto productDto, Integer id) {
-        Product product = productService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), id));
+        Product product = productService.getById(id).orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), id));
+        Optional<Product> existProductName = productService.getByProductName(productDto.getName());
+        if (existProductName.isPresent()) {
+            throw new ResourceAlreadyExistsException(Product.class.getSimpleName(), "Product Name ", productDto.getName(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
         if (productDto.getProductCategoryDto() != null) {
-            ProductCategory productCategory = productCategoryService.getById(productDto.getProductCategoryDto().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
+            ProductCategory productCategory = productCategoryService.getById(productDto.getProductCategoryDto().getId()).orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), productDto.getProductCategoryDto().getId()));
             product.setProductCategory(productCategory);
         }
         mapper.updateEntityFromDto(productDto, product);
