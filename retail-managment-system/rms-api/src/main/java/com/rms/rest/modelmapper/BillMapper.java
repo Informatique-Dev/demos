@@ -50,7 +50,7 @@ public abstract class BillMapper {
 
 
     @InheritInverseConfiguration
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+
     public  abstract Bill updateEntityFromDto(BillDto billDto, @MappingTarget Bill bill);
 
 

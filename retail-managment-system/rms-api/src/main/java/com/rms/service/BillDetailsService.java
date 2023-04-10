@@ -1,4 +1,5 @@
 package com.rms.service;
+import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
 import com.rms.repository.BillDetailsRepository;
 import lombok.AllArgsConstructor;
@@ -14,8 +15,9 @@ public class BillDetailsService {
 
     private BillDetailsRepository BillDetailsRepository;
 
-    public BillDetails save(BillDetails billDetails) {
-        return BillDetailsRepository.save(billDetails);
+    public List<BillDetails> save(Bill bill,List<BillDetails> billDetailsList) {
+        billDetailsList.forEach(billDetails -> billDetails.setBill(bill));
+        return BillDetailsRepository.saveAll(billDetailsList);
     }
     public BillDetails update(BillDetails billDetails) {
         return BillDetailsRepository.save(billDetails);
@@ -27,6 +29,10 @@ public class BillDetailsService {
 
     public Page<BillDetails> getAll(Integer page , Integer size) {
         return BillDetailsRepository.findAll(PageRequest.of(page,size));
+    }
+
+    public List<BillDetails>getBillDetailsByBillId(Integer billId){
+        return BillDetailsRepository.getBillDetailsByBillID(billId);
     }
 
 

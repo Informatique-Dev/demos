@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bill-details")
@@ -32,11 +33,7 @@ public class BillDetailsController {
     public ResponseEntity<?> getById(@RequestParam("id") Integer id){
         return billDetailsHandler.getById(id);
     }
-    @PostMapping
-    @Operation(summary = "Add", description = "this api for add new BillDetails")
-    public ResponseEntity<?> save(@Validated(InsertValidation.class) @RequestBody BillDetailsDto billDetailsDto){
-        return billDetailsHandler.save(billDetailsDto);
-    }
+
     @PutMapping("/{id}")
     @Operation(summary = "update", description = "this api for update new BillDetails")
     public ResponseEntity<?> update
