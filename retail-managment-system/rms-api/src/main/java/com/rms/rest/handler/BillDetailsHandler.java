@@ -39,11 +39,6 @@ public class BillDetailsHandler {
 
     public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
     {
-        for (BillDetailsDto billDetailsDto :billDetailsDtoList ){
-            Product product = productService.getById(billDetailsDto.getProduct().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
-            product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
-        }
 
         Bill bill = billService.getById(billId)
                 .orElseThrow(()->new ResourceNotFoundException(Bill.class.getSimpleName(),billId));
