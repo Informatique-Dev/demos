@@ -1,9 +1,7 @@
 package com.rms.rest.handler;
-
 import com.rms.domain.core.Product;
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
-import com.rms.domain.sales.Customer;
 import com.rms.rest.dto.BillDetailsDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
 import com.rms.rest.exception.ErrorCodes;
@@ -20,7 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -40,16 +37,20 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
-    public ResponseEntity <?>save(BillDetailsDto billDetailsDto)
+    public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
     {
-        Product product = productService.getById(billDetailsDto.getProduct().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
+        for (BillDetailsDto billDetailsDto :billDetailsDtoList ){
+            Product product = productService.getById(billDetailsDto.getProduct().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
+            product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
+        }
 
-       product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
-        BillDetails billDetails=billDetailsMapper.toEntity(billDetailsDto);
-        billDetailsService.save(billDetails);
-        BillDetailsDto dto =billDetailsMapper.toDto(billDetails);
-        return ResponseEntity.ok(dto);
+        Bill bill = billService.getById(billId)
+                .orElseThrow(()->new ResourceNotFoundException(Bill.class.getSimpleName(),billId));
+        List<BillDetails> billDetails=billDetailsMapper.toEntity(billDetailsDtoList);
+        billDetailsService.save(bill,billDetails);
+        List<BillDetailsDto>  dtos =billDetailsMapper.toDto(billDetails);
+        return ResponseEntity.ok(dtos);
     }
 
     public ResponseEntity<?> getById(Integer id){
