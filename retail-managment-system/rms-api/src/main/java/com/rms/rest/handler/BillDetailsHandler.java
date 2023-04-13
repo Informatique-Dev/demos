@@ -1,5 +1,4 @@
 package com.rms.rest.handler;
-
 import com.rms.domain.core.Product;
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
@@ -19,7 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -41,11 +39,16 @@ public class BillDetailsHandler {
 
     public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
     {
+        for (BillDetailsDto billDetailsDto :billDetailsDtoList ){
+            Product product = productService.getById(billDetailsDto.getProduct().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
+            product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
+        }
         Bill bill = billService.getById(billId)
                 .orElseThrow(()->new ResourceNotFoundException(Bill.class.getSimpleName(),billId));
         List<BillDetails> billDetails=billDetailsMapper.toEntity(billDetailsDtoList);
         billDetailsService.save(bill,billDetails);
-       List<BillDetailsDto>  dtos =billDetailsMapper.toDto(billDetails);
+        List<BillDetailsDto>  dtos =billDetailsMapper.toDto(billDetails);
         return ResponseEntity.ok(dtos);
     }
 
@@ -71,12 +74,11 @@ public class BillDetailsHandler {
         }
 
         billDetailsMapper.updateEntityFromDto(billDetailsDto,billDetails);
-        billDetailsService.update(billDetails);
-        BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
-        return ResponseEntity.ok(dto);
+billDetailsService.update(billDetails);
+BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
+return ResponseEntity.ok(dto);
 
     }
-
 
     public ResponseEntity<?> delete(Integer id){
         BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));

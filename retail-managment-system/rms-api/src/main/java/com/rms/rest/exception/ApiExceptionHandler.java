@@ -131,6 +131,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
+    @ExceptionHandler(InvalidInputException.class)
+    protected ResponseEntity<Object> InvalidInputException(
+            InvalidInputException ex) {
 
+        List<String> details = new ArrayList<String>();
+        details.add(ex.getMessage());
+
+        ApiError apiError = new ApiError(HttpStatus.CONFLICT, ex.getCode(), LocalDateTime.now(), "Input Value not Valid", details);
+
+        return new ResponseEntity<>(apiError, apiError.getStatus());
+    }
 
 }
