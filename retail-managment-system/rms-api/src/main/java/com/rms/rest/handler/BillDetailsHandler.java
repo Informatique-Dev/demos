@@ -27,16 +27,18 @@ public class BillDetailsHandler {
     private BillService billService;
     private ProductService productService;
     private BillDetailsMapper billDetailsMapper;
-    private PaginationMapper paginationMapper ;
-    public ResponseEntity<?> getAll(Integer page , Integer size){
-        Page<BillDetails> billDetaills=billDetailsService.getAll(page,size);
-        List<BillDetailsDto> dtos= billDetailsMapper.toDto(billDetaills.getContent());
+    private PaginationMapper paginationMapper;
+
+    public ResponseEntity<?> getAll(Integer page, Integer size) {
+        Page<BillDetails> billDetaills = billDetailsService.getAll(page, size);
+        List<BillDetailsDto> dtos = billDetailsMapper.toDto(billDetaills.getContent());
         PaginatedResultDto<BillDetailsDto> paginatedResultDto = new PaginatedResultDto<>();
         paginatedResultDto.setData(dtos);
         paginatedResultDto.setPagination(paginationMapper.toDto(billDetaills));
         return ResponseEntity.ok(paginatedResultDto);
     }
 
+ 
     public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
     {
         for (BillDetailsDto billDetailsDto :billDetailsDtoList ){
@@ -52,41 +54,59 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(dtos);
     }
 
-    public ResponseEntity<?> getById(Integer id){
-        BillDetails billDetails= billDetailsService.getById(id)
-                .orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
+    public ResponseEntity<?> getById(Integer id) {
+        BillDetails billDetails = billDetailsService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(BillDetails.class.getSimpleName(), id));
 
-        BillDetailsDto dto=billDetailsMapper.toDto(billDetails);
+        BillDetailsDto dto = billDetailsMapper.toDto(billDetails);
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> update(BillDetailsDto billDetailsDto,Integer id){
-        BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
-        if(billDetailsDto.getBill()!=null) {
+    public ResponseEntity<?> update(BillDetailsDto billDetailsDto, Integer id) {
+        BillDetails billDetails = billDetailsService.getById(id).orElseThrow(() -> new ResourceNotFoundException(BillDetails.class.getSimpleName(), id));
+        if (billDetailsDto.getBill() != null) {
             Bill bill = billService.getById(billDetailsDto.getBill().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), billDetailsDto.getBill().getId()));
             billDetails.setBill(bill);
         }
-        if(billDetailsDto.getPrice()!=null) {
+        if (billDetailsDto.getPrice() != null) {
             Product product = productService.getById(billDetailsDto.getProduct().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), billDetailsDto.getProduct().getId()));
             billDetails.setProduct(product);
         }
 
-        billDetailsMapper.updateEntityFromDto(billDetailsDto,billDetails);
-billDetailsService.update(billDetails);
-BillDetailsDto dto=  billDetailsMapper.toDto(billDetails);
-return ResponseEntity.ok(dto);
+ 
+        billDetailsMapper.updateEntityFromDto(billDetailsDto, billDetails);
+        billDetailsService.update(billDetails);
+        BillDetailsDto dto = billDetailsMapper.toDto(billDetails);
+        return ResponseEntity.ok(dto);
+ 
+ 
 
     }
+ 
 
+ 
+    public ResponseEntity<?> findAllBillDetailsByBillId(Integer id) {
+        billService.getById(id).orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
+        List<BillDetails> billDetails = billDetailsService.getAllBillDetailsByBillId(id);
+        List<BillDetailsDto> dtos = billDetailsMapper.toDto(billDetails);
+        return ResponseEntity.ok(dtos);
+    }
+
+ 
     public ResponseEntity<?> delete(Integer id){
         BillDetails billDetails= billDetailsService.getById(id).orElseThrow(()->new ResourceNotFoundException(BillDetails.class.getSimpleName(),id));
+ 
 
+ 
+    public ResponseEntity<?> delete(Integer id) {
+        BillDetails billDetails = billDetailsService.getById(id).orElseThrow(() -> new ResourceNotFoundException(BillDetails.class.getSimpleName(), id));
+ 
         try {
             billDetailsService.delete(billDetails);
-        }catch (Exception e){
-            throw new ResourceRelatedException(BillDetails.class.getSimpleName(),"Id",id.toString(),ErrorCodes.RELATED_RESOURCE.getCode());
+        } catch (Exception e) {
+            throw new ResourceRelatedException(BillDetails.class.getSimpleName(), "Id", id.toString(), ErrorCodes.RELATED_RESOURCE.getCode());
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
