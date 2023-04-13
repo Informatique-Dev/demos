@@ -4,6 +4,8 @@ public enum ErrorCodes {
     DUPLICATE_RESOURCE("100", "Resource already exists"),
     RELATED_RESOURCE("200", "Resource has a relations"),
     UPDATE_BLOCKED("300", "Update Blocked"),
+ 
+    BUSINESS_VALIDATION("303", "Resource Violates Business Validation"),
 
     PAYMENT_TYPE_NOT_VALID("301", "not valid");
     private String code;

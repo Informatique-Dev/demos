@@ -76,6 +76,7 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(dto);
 
     }
+ 
 
     public ResponseEntity<?> findAllBillDetailsByBillId(Integer id) {
         billService.getById(id).orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
@@ -85,9 +86,10 @@ public class BillDetailsHandler {
     }
 
 
+ 
     public ResponseEntity<?> delete(Integer id) {
         BillDetails billDetails = billDetailsService.getById(id).orElseThrow(() -> new ResourceNotFoundException(BillDetails.class.getSimpleName(), id));
-
+ 
         try {
             billDetailsService.delete(billDetails);
         } catch (Exception e) {

@@ -33,10 +33,11 @@ public class BillDetailsService {
     public Page<BillDetails> getAll(Integer page, Integer size) {
         return BillDetailsRepository.findAll(PageRequest.of(page, size));
     }
-
+ 
     public List<BillDetails> getAllBillDetailsByBillId(Integer billId) {
         return BillDetailsRepository.findBillDetailsByBillId(billId);
     }
+ 
 
 
     public void delete(BillDetails BillDetails) {
