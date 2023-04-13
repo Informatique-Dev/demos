@@ -1,21 +1,23 @@
 package com.rms.rest.handler;
 import com.rms.domain.core.Product;
+import com.rms.domain.sales.Customer;
 import com.rms.domain.sales.OrderItem;
+import com.rms.domain.sales.PaymentType;
 import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
-import com.rms.rest.exception.ErrorCodes;
-import com.rms.rest.exception.ResourceNotFoundException;
-import com.rms.rest.exception.ResourceRelatedException;
-import com.rms.rest.exception.Response;
+import com.rms.rest.exception.*;
 import com.rms.rest.modelmapper.OrderItemMapper;
 import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.OrderItemService;
 import com.rms.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import java.security.InvalidAlgorithmParameterException;
 import java.util.List;
 
 @Component
@@ -44,16 +46,23 @@ public class OrderItemHandler {
     }
 
 
-    public  ResponseEntity<?>  save(OrderItemDto orderItemDto) {
-        Product product =productService.getById(orderItemDto.getProduct().getId())
-                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), orderItemDto.getProduct().getId()));
-       OrderItem orderItem =mapper.toEntity(orderItemDto);
-       orderItem.setUnitPrice(product.getCashPrice()*orderItem.getQuantity());
+    public  ResponseEntity<?>  save(OrderItemDto orderItemDto)  {
+        Product product = productService.getById(orderItemDto.getProduct().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),orderItemDto.getProduct().getId()));
+
+
+          if(product.getQuantity()<orderItemDto.getQuantity()){
+              throw new InvalidInputException(InvalidInputException.class.getSimpleName(),
+                      orderItemDto.getQuantity()
+                      , ErrorCodes.INPUT_VALUE_NOT_VALID.getCode());
+          }
+           product.setQuantity(product.getQuantity()-orderItemDto.getQuantity());
+
+        OrderItem orderItem =mapper.toEntity(orderItemDto);
+        orderItem.setUnitPrice(product.getCashPrice()*orderItem.getQuantity());
         OrderItemDto dto = mapper.toDto(orderItemService.save(orderItem));
         return ResponseEntity.ok(dto);
     }
-
-
     public ResponseEntity<?> getById(Integer id) {
         OrderItem orderItem= orderItemService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
