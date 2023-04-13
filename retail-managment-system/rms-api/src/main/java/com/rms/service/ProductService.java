@@ -24,6 +24,10 @@ public class ProductService {
     public Page<Product> getByProductCategory(Integer catId ,Integer page , Integer size ) {
         return productRepository.getByProductCategory(catId ,PageRequest.of(page,size));
     }
+    public Optional<Product> getByProductName(String productName) {
+        return productRepository.findByProductName(productName);
+    }
+
 
     public Product save(Product product) {
         return productRepository.save(product);
