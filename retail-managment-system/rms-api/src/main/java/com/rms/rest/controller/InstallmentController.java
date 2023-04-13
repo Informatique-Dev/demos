@@ -29,12 +29,6 @@ public class InstallmentController {
     }
 
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update", description = "this api for update installment")
-    public ResponseEntity<?> update(@RequestBody InstallmentDto installment, @PathVariable Integer id) {
-        return installmentHandler.update(installment, id);
-    }
-
     @DeleteMapping("/{id}")
     @Operation(summary = "delete installment By Id")
     public ResponseEntity<?> delete(@PathVariable Integer id) {

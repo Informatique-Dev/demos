@@ -1,13 +1,9 @@
 package com.rms.rest.controller;
-import com.rms.rest.dto.OrderItemDto;
 import com.rms.rest.handler.OrderItemHandler;
-import com.rms.rest.validation.InsertValidation;
-import com.rms.rest.validation.UpdateValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,16 +20,6 @@ public class OrderItemController {
                                      @RequestParam (value = "size" , defaultValue = "10") Integer size)
     {
         return OrderItemHandler.getAll(page,size);
-    }
-
-
-    @PutMapping("/{id}")
-    @Operation(summary = "Update", description = "this api for update OrderItem")
-    public ResponseEntity<?> update(
-            @Validated (UpdateValidation.class)
-            @RequestBody OrderItemDto orderItemDto,
-            @PathVariable Integer id) {
-        return OrderItemHandler.update(orderItemDto,id);
     }
 
     @DeleteMapping("/{id}")

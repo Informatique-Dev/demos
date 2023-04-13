@@ -59,14 +59,58 @@ public class OrderHandler {
                 .orElseThrow(() -> new ResourceNotFoundException(Customer.class.getSimpleName(), dto.getCustomer().getId()));
         order.setEmployee(employee);
         order.setCustomer(customer);
+        updateOrderItem(order.getId(), dto);
 
+        List<OrderItemDto> orderItemsByOrderId = orderItemHandler.findOrderItemsByOrderId(order.getId());
+        double total = orderItemsByOrderId.stream().mapToDouble(d -> d.getProduct().getCashPrice() * d.getQuantity()).sum();
+        dto.setTotalPrice(total);
+        dto.setRemainingAmount(Math.abs(total-dto.getPaidAmount()));
 
+        if (dto.getPaymentType().equals(PaymentType.CASH) && dto.getInstallments() == null ){
+                installmentHandler.deleteAll(id);
+        }else if (dto.getPaymentType().equals(PaymentType.INSTALLMENT)&& dto.getInstallments() != null ){
+            updateInstallment(order.getId(), dto);
+        }
+        else{
+            throw new PaymentTypeNotValidException(PaymentType.class.getSimpleName(), dto.getPaymentType().name()
+                    , ErrorCodes.PAYMENT_TYPE_NOT_VALID.getCode());
+
+        }
         mapper.updateEntityFromDto(dto, order);
         orderService.update(order);
         OrderDto orderDto = mapper.toDto(order);
         return ResponseEntity.ok(orderDto);
     }
+    private void updateOrderItem(Integer id, OrderDto dto) {
+        Order order = orderService.getById(id).
+                orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
+        OrderDto orderDto = mapper.toDto(order);
+        List<OrderItemDto> orderItems = new ArrayList<>();
+        for (OrderItemDto orderItemDto : dto.getOrderItems()) {
+            orderItemDto.setOrder(orderDto);
+            orderItemHandler.update(orderItemDto,orderItemDto.getId());
+            orderItems.add(orderItemDto);
+        }
+    }
+    private void updateInstallment(Integer id, OrderDto orderDto) {
 
+        Order order = orderService.getById(id).
+                orElseThrow(() -> new ResourceNotFoundException(Order.class.getSimpleName(), id));
+        OrderDto dto = mapper.toDto(order);
+        List<InstallmentDto> installmentDtos = new ArrayList<>();
+
+            for (InstallmentDto installmentDto : orderDto.getInstallments()) {
+                installmentDto.setOrder(dto);
+                installmentDto.setInstallmentAmount(orderDto.getRemainingAmount());
+                installmentDto.setRemainingAmount(installmentDto.getInstallmentAmount() - installmentDto.getPaymentAmount());
+                if (installmentDto.getPaymentAmount() > orderDto.getRemainingAmount())
+                {
+                    installmentDto.setRemainingAmount(0.0);
+                }
+                installmentHandler.update(installmentDto,installmentDto.getId());
+                installmentDtos.add(installmentDto);
+            }
+    }
 
 
 

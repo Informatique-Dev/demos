@@ -73,7 +73,11 @@ public class OrderItemHandler {
     public ResponseEntity<?> update(OrderItemDto orderItemDto,Integer id) {
         OrderItem orderItem = orderItemService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(OrderItem.class.getSimpleName(),id));
+        Product product =productService.getById(orderItemDto.getProduct().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), orderItemDto.getProduct().getId()));
+
         mapper.updateEntityFromDto(orderItemDto, orderItem);
+        orderItem.setUnitPrice(product.getCashPrice()*orderItem.getQuantity());
         orderItemService.update(orderItem);
         OrderItemDto dto = mapper.toDto(orderItem);
         return ResponseEntity.ok(dto);
