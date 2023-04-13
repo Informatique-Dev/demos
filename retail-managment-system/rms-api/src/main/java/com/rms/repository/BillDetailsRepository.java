@@ -10,5 +10,5 @@ import java.util.List;
 public interface BillDetailsRepository extends JpaRepository<BillDetails, Integer> {
 
     @Query("select b from BillDetails b where b.bill.id = :billId")
-    List<BillDetails>getBillDetailsByBillID(@Param("billId")Integer billId);
+    List<BillDetails>findBillDetailsByBillId(@Param("billId")Integer billId);
 }
