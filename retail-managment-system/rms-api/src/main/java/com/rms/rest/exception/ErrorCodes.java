@@ -7,7 +7,11 @@ public enum ErrorCodes {
  
     BUSINESS_VALIDATION("303", "Resource Violates Business Validation"),
 
-    PAYMENT_TYPE_NOT_VALID("301", "not valid");
+    PAYMENT_TYPE_NOT_VALID("301", "not valid"),
+    INPUT_VALUE_NOT_VALID("305", "not valid" );
+
+
+
     private String code;
     private String desc;
 
