@@ -19,6 +19,9 @@ import { EmployeeComponent } from './employee/employee.component';
 
 import { AddTransactionComponent } from './investor-page/add-transaction/add-transaction.component';
 import { SupplierComponent } from './supplier/supplier.component';
+import { UserComponent } from './user/user.component';
+import { RoleAssignComponent } from './user/role-assign/role-assign/role-assign.component';
+import { RoleComponent } from './role/role.component';
 
 
 const routes: Routes = [
@@ -33,6 +36,9 @@ const routes: Routes = [
   { path: 'transaction', component: TransactionComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'supplier', component: SupplierComponent },
+  { path:'user', component:UserComponent },
+  { path:'role', component:RoleComponent },
+  { path:'user/:id', component : RoleAssignComponent }
 
 
 ];
@@ -51,6 +57,9 @@ const routes: Routes = [
     ReceiptComponent,
     AddTransactionComponent,
     SupplierComponent,
+    UserComponent,
+    RoleAssignComponent,
+    RoleComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
 

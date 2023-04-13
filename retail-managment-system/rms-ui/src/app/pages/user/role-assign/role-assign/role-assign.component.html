@@ -1,0 +1,112 @@
+<div class="container">
+    <div class=" text-center mat-typography mt-4">
+      <div>
+        <h3 class="pt-3 mat-headline panel-title fw-bold">
+          {{ "user.assign-user-role" | translate }}
+        </h3>
+      </div>
+    </div>
+    <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
+        <div
+          class="child-height w-100 overflow-scroll data-table bg-white"
+        >
+            <div class="p-4 d-flex row text-center">
+                <div class="col">
+                    <label class="user-details-label fs-5 fw-bolder">{{ "user.name" | translate }}</label>
+                    <span class="user-details fw-bold">  {{fullName}}</span>
+                </div>
+                <div class="col">
+                    <label class="user-details-label fs-5 fw-bolder">{{ "user.username" | translate }}</label>
+                    <span class="user-details fw-bold">  {{userName}}</span>
+                </div>
+                
+            </div>
+             <table
+            class="col w-100"
+            mat-table
+            [dataSource]="allRolesById"
+          >
+
+          
+           <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                {{ "no" | translate }}.
+              </th>
+              <td mat-cell *matCellDef="let i = index" class="pt-2">
+                {{ i + 1 }}
+              </td>
+            </ng-container>
+    
+              <ng-container matColumnDef="roles">
+                <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+                  {{ "roles.roles" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" class="pt-2">
+                  {{element.role.englishName}}
+                </td>
+              </ng-container>
+  
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" class="update-icon pt-2">
+                <button
+                  class="btn table-button"
+                  (click)="openConfirmationDialog(element)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container> 
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr class="mat-row spinner-row" *matNoDataRow>
+              <td>
+                <app-loading-spinner></app-loading-spinner>
+              </td>
+            </tr>
+          </table>
+            <mat-paginator [length]="totaItem"
+              [pageSizeOptions]="[10,5,25,100]"
+              (page)="$event;onPaginationChange($event)"
+              showFirstLastButtons
+              aria-label="Select page"
+              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+            </mat-paginator>
+        </div>
+
+        <div class="col-lg-4 p-3 bg-light">
+            <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
+                <h3 class="panel-title float-start">
+                    {{ 'user.assign-role-to-user' | translate }}
+                  </h3>
+            </div>
+            <div class="panel-body ">
+                <form [formGroup]="assignUserRoleForm">
+                  <fieldset class="row justify-content-center">
+                    
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>{{ "roles.role" | translate }}</mat-label>
+                        <mat-select
+                          formControlName="role"
+                          type="text"
+                          matInput
+                          placeholder="{{ 'user.choose-role' | translate }}"
+                          [compareWith]="compareRolesFn"
+                        >
+                          <mat-option *ngFor="let role of allRoles" [value]="role">
+                            {{ role.englishName }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>     
+                  </fieldset>
+                </form>
+              </div>
+    
+              <div class="actions pb-5 float-end mb-5">
+                <button class="btn me-3" (click)="onSubmit()" [disabled]="userRoleSubmit">
+                  {{ "add" | translate }}
+                </button>
+              </div>
+        </div>
+

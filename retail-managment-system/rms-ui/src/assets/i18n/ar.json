@@ -27,7 +27,9 @@
     "products": "المنتجات",
     "profits": "الارباح",
     "employees":"الموظفين",
-    "suppliers":"الموردين"
+    "suppliers":"الموردين",
+    "users":"المستخدمين",
+    "roles":"المهام"
 
   },
   "home-page": {
@@ -266,5 +268,41 @@
           "added-successfuly": "تم اضافة المورد بنجاح",
           "delete-successfuly": "تم مسح المورد بنجاح",
           "close": "اغلاق"
+        },
+        "user":{
+          "users":"المستخدمين",
+          "user":"المستخدم",
+          "user-name":"اسم المستخدم",
+          "password":"كلمة السر",
+          "required":"مطلوب",
+          "employee-field":"الموظف",
+          "enter-user-name":"ادخل اسم المستخدم",
+          "user-name-field":"اسم المستخدم ",
+          "updated-successfully":"تم تعديل المستخدم بنجاح",
+          "close":"اغلاق",
+          "added-successfully":"تم اضافة المستخدم بنجاح",
+          "deleted-successfully":"تم حذف المستخدم بنجاح",
+          "assign-user-role":"اضافة المهام للمستخدمين",
+          "name":"الاسم: ",
+          "username":"اسم المستخدم: ",
+          "assign-role-to-user":"تعيين مهام إلى مستخدم",
+          "choose-role":"اختار المهمة",
+          "assigned-role-successfully":"تم تعيين المهمة للمستخدم بنجاح",
+          "deleted-role-successfully":"تم حذف المهمة من المستخدم بنجاح"
+        },
+        "roles":{
+          "roles":"المهام",
+          "role":"المهمة",
+          "role-arabic-name":"الاسم بالعربية",
+          "enter-arabic-name-field":"أدخل الاسم باللغة العربية",
+          "arabic-name-field":"اسم المهمة بالعربية هو",
+          "role-english-name":"الاسم بالانجليزية",
+          "enter-english-name-field":"أدخل الاسم باللغة الانجليزية",
+          "role-code":"الكود",
+          "required":"اجباري",
+          "close":"اغلاق",
+          "updated-successfully": "تمت تعديل المهمة بنجاح",
+          "added-successfully":"تمت اضافة المهمة بنجاح",
+          "deleted-successfully":"تمت حذف المهمة بنجاح"
         }
 }
