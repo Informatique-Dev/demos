@@ -29,8 +29,8 @@ public class InstallmentController {
 
     @GetMapping("/due")
     @Operation(summary = "Get By dueDate", description = "this api for get installments by dueDate")
-    public ResponseEntity<?> getDueInstallments() {
-        return installmentHandler.getDueInstallments();
+    public ResponseEntity<?> getDueInstallments( @RequestParam(value = "page", defaultValue = "0") Integer page, @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return installmentHandler.getDueInstallments( page, size);
     }
 
 

@@ -39,12 +39,15 @@ public class InstallmentHandler {
         return ResponseEntity.ok(dto);
     }
 
-    public ResponseEntity<?> getDueInstallments() {
+    public ResponseEntity<?> getDueInstallments(Integer page, Integer size) {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate monthBegin = LocalDate.now().withDayOfMonth(1);
         LocalDate monthEnd = LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
-        List<Installment> installments = installmentService.getByDueDate(Date.from(monthBegin.atStartOfDay(defaultZoneId).toInstant()), Date.from(monthEnd.atStartOfDay(defaultZoneId).toInstant()));
-        List<InstallmentDto> dtos = mapper.toDto(installments);
+        Page<Installment> installments = installmentService.getByDueDate(Date.from(monthBegin.atStartOfDay(defaultZoneId).toInstant()), Date.from(monthEnd.atStartOfDay(defaultZoneId).toInstant()), page, size);
+       List<InstallmentDto> dtos = mapper.toDto(installments.getContent());
+        PaginatedResultDto<InstallmentDto> paginatedResult = new PaginatedResultDto<>();
+        paginatedResult.setData(dtos);
+        paginatedResult.setPagination(paginationMapper.toDto(installments));
         return ResponseEntity.ok(dtos);
     }
 

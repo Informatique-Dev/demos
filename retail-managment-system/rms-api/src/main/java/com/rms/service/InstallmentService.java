@@ -24,8 +24,8 @@ public class InstallmentService {
         return installmentRepository.findAll(PageRequest.of(page, size));
     }
 
-    public List<Installment> getByDueDate(Date startDate, Date endDate) {
-        return installmentRepository.findByDueDate(startDate, endDate);
+    public Page<Installment> getByDueDate(Date startDate, Date endDate ,Integer page, Integer size) {
+        return installmentRepository.findByDueDate(startDate, endDate,PageRequest.of(page, size));
     }
 
     public List<Installment> getByCustomerInstallments(Integer customerId) {
