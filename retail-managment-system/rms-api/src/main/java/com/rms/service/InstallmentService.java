@@ -1,7 +1,6 @@
 package com.rms.service;
 
 import com.rms.domain.sales.Installment;
-import com.rms.domain.sales.OrderItem;
 import com.rms.repository.InstallmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,21 +20,20 @@ public class InstallmentService {
         return installmentRepository.findById(id);
     }
 
-    public Page<Installment> getAll(Integer page , Integer size ) {
-        return installmentRepository.findAll(PageRequest.of(page,size));
+    public Page<Installment> getAll(Integer page, Integer size) {
+        return installmentRepository.findAll(PageRequest.of(page, size));
     }
 
-    public List<Installment> getDueInstallments(Date startDate, Date endDate) {
-        return installmentRepository.getDueInstallments(startDate, endDate);
+    public Page<Installment> getByDueDate(Date startDate, Date endDate ,Integer page, Integer size) {
+        return installmentRepository.findByDueDate(startDate, endDate,PageRequest.of(page, size));
     }
 
-    public List<Installment> getCustomerInstallments(Integer customerId) {
-        return installmentRepository.getByCustomerId(customerId);
+    public List<Installment> getByCustomerInstallments(Integer customerId) {
+        return installmentRepository.findByCustomerId(customerId);
     }
 
-    public Page<Installment> getByCustomerNationalId(String nationalId , Integer page , Integer size)
-    {
-        return installmentRepository.getByCustomerNationalId(nationalId, PageRequest.of(page,size));
+    public Page<Installment> getByCustomerNationalId(String nationalId, Integer page, Integer size) {
+        return installmentRepository.findByCustomerNationalId(nationalId, PageRequest.of(page, size));
     }
 
     public Installment save(Installment installment) {
@@ -49,13 +47,14 @@ public class InstallmentService {
     public void delete(Installment installment) {
         installmentRepository.delete(installment);
     }
+
     public void deleteALL(List<Installment> installments) {
         installmentRepository.deleteAll(installments);
     }
 
 
-    public List<Installment> getInstallmentsByOrderId(Integer orderId){
-        return installmentRepository.findInstallmentsByOrderId(orderId);
+    public List<Installment> getByOrderId(Integer orderId) {
+        return installmentRepository.findByOrderId(orderId);
     }
 
 
