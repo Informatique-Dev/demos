@@ -117,8 +117,8 @@
       <div class="col-lg-4 p-3 bg-light">
         <section>
           <div>
-            <div class="panel-heading pt-3 ps-1 mb-5">
-              <h3 class="panel-title float-start">
+            <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
+              <h3 class="panel-title">
                 {{
                   productForm.controls["id"].value
                     ? ("update" | translate)
@@ -129,7 +129,7 @@
               </h3>
   
               <mat-icon
-                class="add-icon me-4 float-end"
+                class="add-icon me-4"
                 (click)="restartForm(); isButtonVisible = true"
                 [hidden]="isButtonVisible"
                 >add</mat-icon

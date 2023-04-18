@@ -78,7 +78,7 @@
         </table>
       </div>
       <div class="col-lg-4 p-3 bg-light">
-        <div class="pt-3 ps-1">
+        <div class="pt-3 ps-1 d-flex justify-content-between">
           <h3 class="panel-title">
             {{
               addProfitsForm.controls["id"].value
@@ -88,7 +88,7 @@
             {{ "profits.profits" | translate }}
           </h3>
           <mat-icon
-            class="add-icon me-4 float-end"
+            class="add-icon me-4"
             (click)="restartForm(); isButtonVisible = true"
             [hidden]="isButtonVisible"
           >

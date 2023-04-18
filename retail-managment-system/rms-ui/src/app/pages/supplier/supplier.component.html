@@ -102,7 +102,7 @@
       </div>
     <div class="content col-md-4 col-sm-6 bg-light">
       <section>
-        <div class="panel-heading pt-3 ps-1">
+        <div class="panel-heading pt-3 ps-1 d-flex justify-content-between">
           <h3 class="panel-title ms-1">
             {{
               supplierForm.controls["id"].value
@@ -112,7 +112,7 @@
             {{ "suppliers.supplier" | translate }}
           </h3>
           <mat-icon
-            class="add-icon me-4 float-end"
+            class="add-icon me-4"
             (click)="restartForm(); isButtonVisible = true"
             [hidden]="isButtonVisible"
             >add</mat-icon

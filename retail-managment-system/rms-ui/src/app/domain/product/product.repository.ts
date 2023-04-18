@@ -5,6 +5,8 @@ import { Product } from './models/product';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
 import { SettingsService } from 'src/app/core/services/settings.service';
 import { Observable } from 'rxjs';
+import { Response } from 'src/app/core/models/response';
+
 
 
 @Injectable({
@@ -23,8 +25,8 @@ SettingsService.configurationEnvironment.api.baseUrl
   getResourceUrl(): string {
     return 'product';
   }
-  filterProductsById(id:number): Observable<Response>{
-    return this.httpClient.get<Response>(`${this.productCategoryUrl}category/${id}/product`)
+  filterProductsById(id:number): Observable<Response<Product>>{
+    return this.httpClient.get<Response<Product>>(`${this.productCategoryUrl}category/${id}/product`)
   }
 
   toServerModel(entity: Product): any {

@@ -315,7 +315,7 @@
     "store":"المخزن",
     "our-stores": "المخازن",
     "store-name": "اسم المخزن",
-    "store-address":"العنوان",
+    "address":"العنوان",
     "required": "اجباري",
     "max-length":"يجب ان يكون اقل من 100 حرف",
     "name-field": "حقل ادخال اسم المخزن ",

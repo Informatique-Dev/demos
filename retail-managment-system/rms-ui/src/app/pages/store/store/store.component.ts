@@ -33,8 +33,8 @@ export class StoreComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'name',
-    'address',
     'responsible',
+    'address',
     'update',
     'delete'
   ]
@@ -48,7 +48,7 @@ export class StoreComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.storgeForm()
+    this.storesForm()
     this.getAllEmployee()
   }
 
@@ -71,7 +71,7 @@ export class StoreComponent implements OnInit {
   })
  }
 
-  storgeForm(){
+  storesForm(){
     this.storeForm = this.build.group({
       id:[''],
       name:['',Validators.maxLength(100)],
