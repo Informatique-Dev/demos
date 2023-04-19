@@ -28,8 +28,5 @@
                                  constraintName="FK_PROFIT_DETAILS_ON_PRODUCT" referencedColumnNames="id"
                                  referencedTableName="products"/>
     </changeSet>
-    <changeSet id="1681901112802-3" author="HP (generated)">
-        <dropColumn columnName="payment_type" tableName="order_items"/>
-    </changeSet>
 
 </databaseChangeLog>
