@@ -20,7 +20,7 @@
     </div>
     <div class="fit-content d-flex flex-lg-row flex-column my-4 mx-auto shadow-lg fixed-height">
         <div *ngIf="isTableVisible"
-          class="child-height w-100 px-5 overflow-scroll data-table bg-white"
+          class="child-height w-100 px-5 overflow-scroll data-table bg-white position-relative" 
         >
             <table
             class="col w-100"
@@ -96,7 +96,7 @@
               (page)="$event;onPaginationChange($event)"
               showFirstLastButtons
               aria-label="Select page"
-              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 position-absolute bottom-0">
             </mat-paginator>
         </div>
   
@@ -182,7 +182,7 @@
               </form>
             </div>
   
-            <div class="actions pb-5 float-end">
+            <div class="actions float-end">
               <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
                 {{
                   storeForm.controls["id"].value
