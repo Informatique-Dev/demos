@@ -288,7 +288,9 @@
           "assign-role-to-user":"تعيين مهام إلى مستخدم",
           "choose-role":"اختار المهمة",
           "assigned-role-successfully":"تم تعيين المهمة للمستخدم بنجاح",
-          "deleted-role-successfully":"تم حذف المهمة من المستخدم بنجاح"
+          "deleted-role-successfully":"تم حذف المهمة من المستخدم بنجاح",
+          "password-field-pattern":"كلمة المرور يجب ان تحتوي على حروف كبيرة و حروف صغيره و ارقام و رموز",
+          "password-field-length":"كلمة المرور يجب ان تكون 8 حروف ع الاقل"
         },
         "roles":{
           "roles":"المهام",

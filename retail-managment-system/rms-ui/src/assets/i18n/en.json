@@ -289,7 +289,9 @@
         "assign-role-to-user":"Assign new role to user",
         "choose-role":"Choose role",
         "assigned-role-successfully":"Role assigned to user successfully",
-        "deleted-role-successfully":"Role deleted from user successfully"
+        "deleted-role-successfully":"Role deleted from user successfully",
+        "password-field-pattern":"Password must have capital and small letters, numbers and special characters",
+        "password-field-length":"Password should be at least 8 characters"
       },
       "roles":{
         "roles":"Roles",

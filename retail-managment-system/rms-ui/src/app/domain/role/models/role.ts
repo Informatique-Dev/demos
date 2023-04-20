@@ -1,5 +1,4 @@
 export interface Role {
-    role: any
     id:number
     version:number
     arabicName:string

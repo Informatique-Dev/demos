@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
   userSubmit: boolean = false
   currentUserData!: User;
   isUserButtonVisible: boolean = true
+  hide:boolean = true
   displayedColumns:string[]=[
     'id',
     'userName',
@@ -51,14 +52,13 @@ export class UserComponent implements OnInit {
     this.getAllUsers();
     this.getAllEmployees();
     this.userForm();
-    console.log(this.allUsers)
   }
 
  userForm() {
     this.usersForm = this.build.group({
       id: [''],
       userName: ['', [Validators.required,Validators.maxLength(16)]],
-      password: [''],
+      password: ['',[Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-])./),Validators.minLength(8)]],
       employee: [''],
       role:['']
     });
@@ -67,7 +67,6 @@ export class UserComponent implements OnInit {
  getAllUsers(): void {
    this.userRepository.getList({  page: this.page,size: this.size,}).subscribe((result:any) => {
      this.allUsers = result.data;
-     console.log(this.allUsers)
      this.totaItem = result.pagination.itemCount;
        });
  }
@@ -132,7 +131,6 @@ export class UserComponent implements OnInit {
  getAllEmployees(): void {
    this.employeeRepository.getList().subscribe((result) => {
      this.employees = result.data;
-     console.log(this.employees)
    });
  }
 

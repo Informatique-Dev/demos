@@ -19,12 +19,12 @@ export class UserRepository extends ResourceService<User>{
      return 'user'
    }
 
-   assignRoleToServerModel(entity:Role):any{
+   assignRoleToServerModel(entity):any{
     return {
       id: entity.role.id
     }
    }
-   assignRole(resource:Role,id:number):Observable<any>{
+   assignRoleToUser(resource:Role,id:number):Observable<any>{
       return this.httpClient
         .post(`${this.APIUrl}/${id}/role`, this.assignRoleToServerModel(resource))
         .pipe(
@@ -34,7 +34,7 @@ export class UserRepository extends ResourceService<User>{
         );
     }
 
-    deleteRole(id: string | number): Observable<any> {
+    deleteRoleOfUser(id: string | number): Observable<any> {
       return this.httpClient.delete(`${this.APIUrl}-role/${id}`).pipe(
         catchError((err) => {
           throw new Error(err.message);

@@ -1,189 +1,164 @@
 <div class="container">
-    <div class=" text-center mat-typography mt-4">
-      <div>
-        <h3 class="pt-3 mat-headline panel-title fw-bold">
-          {{ "user.users" | translate }}
-        </h3>
-      </div>
+  <div class=" text-center mat-typography mt-4">
+    <div>
+      <h3 class="pt-3 mat-headline panel-title fw-bold">
+        {{ "user.users" | translate }}
+      </h3>
     </div>
-    <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
-        <div
-          class="child-height w-100 overflow-scroll data-table bg-white"
-        >
-            <table
-            class="col w-100"
-            mat-table
-            [dataSource]="allUsers"
-          >
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-                {{ "no" | translate }}.
-              </th>
-              <td mat-cell *matCellDef="let i = index" class="pt-2">
-                {{ i + 1 }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="userName">
-              <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-                {{ "user.user-name" | translate }}
-              </th>
-              <td mat-cell *matCellDef="let element" class="pt-2">
-                {{ element.userName }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="employee">
-              <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-                {{ "employee.employee" | translate }}
-              </th>
-              <td mat-cell *matCellDef="let element" class="pt-2">
-                {{ element.employee?.fullName }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="role">
-              <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-                {{ "roles.roles" | translate }}
-              </th>
-              <td mat-cell *matCellDef="let element" class="pt-2">
-                <button class="btn table-button fw-bold" (click)="navigateUserRole(element.id)">
-                    {{ "roles.roles" | translate }}
-                </button>
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element" class="update-icon pt-2">
-                <button class="btn table-button" (click)="fetchUserData(element)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button
-                  class="btn table-button"
-                  (click)="openConfirmationDialog(element)"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </td>
-            </ng-container>
-  
-            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            <tr class="mat-row spinner-row" *matNoDataRow>
-              <td>
-                <app-loading-spinner></app-loading-spinner>
-              </td>
-            </tr>
-          </table>          
-            <mat-paginator [length]="totaItem"
-              [pageSizeOptions]="[10,5,25,100]"
-              (page)="$event;onPaginationChange($event)"
-              showFirstLastButtons
-              aria-label="Select page"
-              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
-            </mat-paginator>
-        </div>
-  
-        <div class="col-lg-4 p-3 bg-light">
-                <div>
-                  <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
-                    <h3 class="panel-title">
-                      {{
+  </div>
+  <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
+    <div class="child-height w-100 overflow-scroll data-table bg-white">
+      <table class="col w-100" mat-table [dataSource]="allUsers">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "no" | translate }}.
+          </th>
+          <td mat-cell *matCellDef="let i = index" class="pt-2">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "user.user-name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.userName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="employee">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "employee.employee" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.employee?.fullName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "roles.roles" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            <button class="btn table-button fw-bold" (click)="navigateUserRole(element.id)">
+              {{ "roles.roles" | translate }}
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="update-icon pt-2">
+            <button class="btn table-button" (click)="fetchUserData(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="btn table-button" (click)="openConfirmationDialog(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr class="mat-row spinner-row" *matNoDataRow>
+          <td>
+            <app-loading-spinner></app-loading-spinner>
+          </td>
+        </tr>
+      </table>
+      <mat-paginator [length]="totaItem" [pageSizeOptions]="[10,5,25,100]" (page)="$event;onPaginationChange($event)"
+        showFirstLastButtons aria-label="Select page"
+        class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+      </mat-paginator>
+    </div>
+
+    <div class="col-lg-4 p-3 bg-light">
+      <div>
+        <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
+          <h3 class="panel-title">
+            {{
                         usersForm.controls["id"].value
                           ? ("update" | translate)
                           : ("add" | translate)
                       }}
-        
-                      {{ "user.user" | translate }}
-                    </h3>
-        
-                    <mat-icon
-                      class="add-icon me-4 float-end"
-                      (click)="restartForm(); isUserButtonVisible = true"
-                      [hidden]="isUserButtonVisible"
-                      >add</mat-icon
-                    >
-                  </div>
-                </div>
 
-              <div class="panel-body ">
-                <form [formGroup]="usersForm">
-                  <fieldset class="row justify-content-center">
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>{{
+            {{ "user.user" | translate }}
+          </h3>
+
+          <mat-icon class="add-icon me-4 float-end" (click)="restartForm(); isUserButtonVisible = true"
+            [hidden]="isUserButtonVisible">add</mat-icon>
+        </div>
+      </div>
+
+      <div class="panel-body ">
+        <form [formGroup]="usersForm">
+          <fieldset class="row justify-content-center">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{
                         "user.user-name" | translate
                       }}</mat-label>
-                      <input
-                        formControlName="userName"
-                        type="text"
-                        matInput
-                        placeholder="{{ 'user.enter-user-name' | translate }}"
-                      />
-                      <mat-error
-                        *ngIf="usersForm.controls['userName'].hasError('required')"
-                      >
-                        {{ "user.user-name-field" | translate }}
-    
-                        <strong> {{ "user.required" | translate }}</strong>
-                      </mat-error>
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label> {{ "user.password" | translate }}</mat-label>
-                      <input
-                        formControlName="password"
-                        type="text"
-                        matInput
-                        placeholder="{{ 'user.password' | translate }}"
-                      />
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>{{ "employee.employee" | translate }}</mat-label>
-                      <mat-select
-                        formControlName="employee"
-                        type="text"
-                        matInput
-                        placeholder="{{ 'user.employee-field' | translate }}"
-                        [compareWith]="compareFn"
-                      >
-                        <mat-option *ngFor="let cat of employees" [value]="cat">
-                          {{ cat.fullName }}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error
-                        *ngIf="
+              <input formControlName="userName" type="text" matInput
+                placeholder="{{ 'user.enter-user-name' | translate }}" />
+              <mat-error *ngIf="usersForm.controls['userName'].hasError('required')">
+                {{ "user.user-name-field" | translate }}
+
+                <strong> {{ "user.required" | translate }}</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label> {{ "user.password" | translate }}</mat-label>
+              <input formControlName="password" type="text" matInput [type]="hide ? 'password' : 'text'" placeholder="{{ 'user.password' | translate }}" />
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>
+                  {{hide ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+              </button>
+              <mat-error *ngIf="usersForm.controls['password'].hasError('pattern')">
+                {{'user.password-field-pattern'|translate}}</mat-error>
+                <mat-error *ngIf="usersForm.controls['password'].hasError('minlength')">
+                  {{'user.password-field-length'|translate}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "employee.employee" | translate }}</mat-label>
+              <mat-select formControlName="employee" type="text" matInput
+                placeholder="{{ 'user.employee-field' | translate }}" [compareWith]="compareFn">
+                <mat-option *ngFor="let cat of employees" [value]="cat">
+                  {{ cat.fullName }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="
                           usersForm.controls['employee'].hasError(
                             'required'
                           )
-                        "
-                      >
-                        {{ "user.employee-field" | translate
+                        ">
+                {{ "user.employee-field" | translate
                         }}<strong> {{ "user.required" | translate }}</strong>
-                      </mat-error>
-                    </mat-form-field>     
-                  </fieldset>
-                </form>
-              </div>
-    
-              <div class="actions pb-5 float-end mb-5">
-                <button class="btn me-3" (click)="onUsersSubmit()" [disabled]="userSubmit">
-                  {{
+              </mat-error>
+            </mat-form-field>
+          </fieldset>
+        </form>
+      </div>
+
+      <div class="actions pb-5 float-end mb-5">
+        <button class="btn me-3" (click)="onUsersSubmit()" [disabled]="userSubmit">
+          {{
                     usersForm.controls["id"].value
                       ? ("update" | translate)
                       : ("add" | translate)
                   }}
-                </button>
-                <button class="btn me-3" mat-button (click)="resetUsersForm()">
-                  {{
+        </button>
+        <button class="btn me-3" mat-button (click)="resetUsersForm()">
+          {{
                     usersForm.controls["id"].value
                       ? ("reset" | translate)
                       : ("clear" | translate)
                   }}
-                </button>
-              </div>          
-        </div>
+        </button>
+      </div>
     </div>
   </div>
-  
+</div>

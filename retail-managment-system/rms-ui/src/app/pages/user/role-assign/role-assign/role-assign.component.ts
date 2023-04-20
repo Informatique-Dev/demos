@@ -99,7 +99,7 @@ export class RoleAssignComponent implements OnInit {
   assignRoleToUser(){
     this.isUserRoleButtonVisible = true;
    this.submit = true;
-   this.userRepository.assignRole(this.assignUserRoleForm.value,this.activeID).subscribe(
+   this.userRepository.assignRoleToUser(this.assignUserRoleForm.value,this.activeID).subscribe(
      () => {
        this.getAllRolesById();
        this.submit = false;
@@ -118,7 +118,7 @@ export class RoleAssignComponent implements OnInit {
   }
 
   deleteRoleFromUser(role: UserRole){
-    this.userRepository.deleteRole(role.id).subscribe(() => {
+    this.userRepository.deleteRoleOfUser(role.id).subscribe(() => {
       this.getAllRolesById();
       this.snackBar.open(
         this.translate.instant('user.deleted-role-successfully'),
