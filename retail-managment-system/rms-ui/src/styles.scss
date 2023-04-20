@@ -42,7 +42,6 @@ body {
   {
     color: #002d40 !important;
   }
-// @media (min-width: 992px) {
   .fixed-height{
       height: auto;
   }
@@ -50,15 +49,6 @@ body {
     max-height: 650px;
     min-height: 400px;
 }
-// }
-// @media (max-width: 991.98px) {
-//   .fixed-height{
-//       height:auto
-//   }
-//   .child-height{
-//       height: 650px;
-//   }
-// }
   .spinner-row{
     position: sticky;
     margin: 70px auto;
