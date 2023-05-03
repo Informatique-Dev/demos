@@ -28,12 +28,6 @@ public class ProfitDetailsController {
         return profitDetailsHandler.getById(id);
     }
 
-    @PostMapping
-    @Operation(summary = "Add", description = "this api for add profit Details")
-    public ResponseEntity<?> add(@RequestBody ProfitDetailsDto profitDetails) {
-        return profitDetailsHandler.save(profitDetails);
-    }
-
 
     @PutMapping("/{id}")
     @Operation(summary = "Update", description = "this api for update profit Details")

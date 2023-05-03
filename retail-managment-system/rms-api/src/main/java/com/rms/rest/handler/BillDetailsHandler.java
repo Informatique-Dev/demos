@@ -1,4 +1,5 @@
 package com.rms.rest.handler;
+
 import com.rms.domain.core.Product;
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
@@ -29,6 +31,8 @@ public class BillDetailsHandler {
     private BillDetailsMapper billDetailsMapper;
     private PaginationMapper paginationMapper;
 
+    private ProfitDetailsHandler profitDetailsHandler;
+
     public ResponseEntity<?> getAll(Integer page, Integer size) {
         Page<BillDetails> billDetaills = billDetailsService.getAll(page, size);
         List<BillDetailsDto> dtos = billDetailsMapper.toDto(billDetaills.getContent());
@@ -38,19 +42,19 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(paginatedResultDto);
     }
 
- 
-    public ResponseEntity <?>save(int billId,List<BillDetailsDto> billDetailsDtoList)
-    {
-        for (BillDetailsDto billDetailsDto :billDetailsDtoList ){
+
+    public ResponseEntity<?> save(int billId, List<BillDetailsDto> billDetailsDtoList) {
+        for (BillDetailsDto billDetailsDto : billDetailsDtoList) {
             Product product = productService.getById(billDetailsDto.getProduct().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(),billDetailsDto.getProduct().getId()));
-            product.setQuantity(billDetailsDto.getQuantity()+product.getQuantity());
+                    .orElseThrow(() -> new ResourceNotFoundException(Product.class.getSimpleName(), billDetailsDto.getProduct().getId()));
+            product.setQuantity(billDetailsDto.getQuantity() + product.getQuantity());
         }
         Bill bill = billService.getById(billId)
-                .orElseThrow(()->new ResourceNotFoundException(Bill.class.getSimpleName(),billId));
-        List<BillDetails> billDetails=billDetailsMapper.toEntity(billDetailsDtoList);
-        billDetailsService.save(bill,billDetails);
-        List<BillDetailsDto>  dtos =billDetailsMapper.toDto(billDetails);
+                .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), billId));
+        List<BillDetails> billDetails = billDetailsMapper.toEntity(billDetailsDtoList);
+        billDetailsService.save(bill, billDetails);
+        profitDetailsHandler.save(billDetails);
+        List<BillDetailsDto> dtos = billDetailsMapper.toDto(billDetails);
         return ResponseEntity.ok(dtos);
     }
 
@@ -75,18 +79,16 @@ public class BillDetailsHandler {
             billDetails.setProduct(product);
         }
 
- 
+
         billDetailsMapper.updateEntityFromDto(billDetailsDto, billDetails);
         billDetailsService.update(billDetails);
         BillDetailsDto dto = billDetailsMapper.toDto(billDetails);
         return ResponseEntity.ok(dto);
- 
- 
+
 
     }
- 
 
- 
+
     public ResponseEntity<?> findAllBillDetailsByBillId(Integer id) {
         billService.getById(id).orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
         List<BillDetails> billDetails = billDetailsService.getAllBillDetailsByBillId(id);
@@ -94,10 +96,10 @@ public class BillDetailsHandler {
         return ResponseEntity.ok(dtos);
     }
 
- 
+
     public ResponseEntity<?> delete(Integer id) {
         BillDetails billDetails = billDetailsService.getById(id).orElseThrow(() -> new ResourceNotFoundException(BillDetails.class.getSimpleName(), id));
- 
+
         try {
             billDetailsService.delete(billDetails);
         } catch (Exception e) {

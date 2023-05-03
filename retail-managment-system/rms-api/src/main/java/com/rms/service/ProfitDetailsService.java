@@ -31,6 +31,10 @@ public class ProfitDetailsService {
         return profitDetailsRepository.save(profitDetails);
     }
 
+    public Optional<ProfitDetails> findByProductId(Integer productId) {
+        return profitDetailsRepository.findProfitDetailsByProductId(productId);
+    }
+
     public void delete(ProfitDetails profitDetails) {
         profitDetailsRepository.delete(profitDetails);
     }
