@@ -294,6 +294,7 @@
         },
         "roles":{
           "roles":"المهام",
+          "add-roles":"اضافة مهام",
           "role":"المهمة",
           "role-arabic-name":"الاسم بالعربية",
           "enter-arabic-name-field":"أدخل الاسم باللغة العربية",

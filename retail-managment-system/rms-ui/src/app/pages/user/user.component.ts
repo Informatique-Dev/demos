@@ -59,13 +59,13 @@ export class UserComponent implements OnInit {
       id: [''],
       userName: ['', [Validators.required,Validators.maxLength(16)]],
       password: ['',[Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-])./),Validators.minLength(8)]],
-      employee: [''],
+      employee: ['',[Validators.required]],
       role:['']
     });
   }
 
  getAllUsers(): void {
-   this.userRepository.getList({  page: this.page,size: this.size,}).subscribe((result:any) => {
+   this.userRepository.getList({  page: this.page,size: this.size}).subscribe((result:any) => {
      this.allUsers = result.data;
      this.totaItem = result.pagination.itemCount;
        });

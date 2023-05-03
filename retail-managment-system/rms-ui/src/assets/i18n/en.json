@@ -295,6 +295,7 @@
       },
       "roles":{
         "roles":"Roles",
+        "add-roles":"Add Roles",
         "role":"Role",
         "role-arabic-name":"Arabic name",
         "enter-arabic-name-field":"Enter name in arabic",

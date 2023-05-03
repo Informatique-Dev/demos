@@ -79,7 +79,7 @@ export class RoleAssignComponent implements OnInit {
   getUserById(){
     this.userRepository.get(this.activeID).subscribe((result:any)=>{
       this.userById = result
-      this.fullName = result.employee.fullName
+      this.fullName = result.employee?.fullName
       this.userName = result.userName
     })
   }
