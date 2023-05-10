@@ -1,0 +1,147 @@
+<div class="container">
+  <div class=" text-center mat-typography mt-4">
+    <div>
+      <h3 class="pt-3 mat-headline panel-title fw-bold">
+        {{ "roles.roles" | translate }}
+      </h3>
+    </div>
+  </div>
+  <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
+    <div
+          class="child-height w-100 overflow-scroll data-table bg-white"
+        >
+        <table
+        class="col w-100"
+        mat-table
+        [dataSource]="allRoles"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "no" | translate }}.
+          </th>
+          <td mat-cell *matCellDef="let i = index" class="pt-2">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="englishName">
+          <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+            {{ "roles.role-english-name" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" class="pt-2">
+            {{ element.englishName }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="arabicName">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "roles.role-arabic-name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="pt-2">
+              {{ element.arabicName }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "roles.role-code" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="pt-2">
+              {{ element.code }}
+            </td>
+          </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="update-icon pt-2">
+            <button class="btn table-button" (click)="fetchData(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              class="btn table-button"
+              (click)="openConfirmationDialog(element)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr class="mat-row spinner-row" *matNoDataRow>
+          <td>
+            <app-loading-spinner></app-loading-spinner>
+          </td>
+        </tr>
+      </table>          
+        <mat-paginator [length]="totaItem"
+          [pageSizeOptions]="[10,5,25,100]"
+          (page)="$event;onPaginationChange($event)"
+          showFirstLastButtons
+          aria-label="Select page"
+          class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+        </mat-paginator>
+    </div>
+    <div class="col-lg-4 p-3 bg-light">
+        <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
+            <h3 class="panel-title">
+              {{
+                          rolesForm.controls["id"].value
+                            ? ("update" | translate)
+                            : ("add" | translate)
+                        }}
+        
+              {{ "roles.role" | translate }}
+            </h3>
+        
+            <mat-icon class="add-icon me-4 float-end" (click)="restartRoleForm(); isRoleButtonVisible = true"
+              [hidden]="isRoleButtonVisible">add</mat-icon>
+          </div>        
+          <div class="panel-body ">
+            <form [formGroup]="rolesForm">
+              <fieldset class="row justify-content-center">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{
+                            "roles.role-arabic-name" | translate
+                          }}</mat-label>
+                  <input formControlName="arabicName" type="text" matInput
+                    placeholder="{{ 'roles.enter-arabic-name-field' | translate }}" />
+                  <mat-error *ngIf="rolesForm.controls['arabicName'].hasError('required')">
+                    {{ "roles.arabic-name-field" | translate }}
+        
+                    <strong> {{ "user.required" | translate }}</strong>
+                  </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label> {{ "roles.role-english-name" | translate }}</mat-label>
+                  <input formControlName="englishName" type="text" matInput
+                    placeholder="{{ 'roles.enter-english-name-field' | translate }}" />
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label> {{ "roles.role-code" | translate }}</mat-label>
+                  <input formControlName="code" type="text" matInput placeholder="{{ 'roles.role-code' | translate }}" />
+                </mat-form-field>
+        
+              </fieldset>
+            </form>
+          </div>
+        
+          <div class="actions pb-5 float-end">
+            <button class="btn me-3" (click)="onRolesSubmit()" [disabled]="roleSubmit">
+              {{
+                        rolesForm.controls["id"].value
+                          ? ("update" | translate)
+                          : ("add" | translate)
+                      }}
+            </button>
+            <button class="btn me-3" mat-button (click)="resetRolesForm()">
+              {{
+                        rolesForm.controls["id"].value
+                          ? ("reset" | translate)
+                          : ("clear" | translate)
+                      }}
+            </button>
+          </div>
+      </div>
+  </div>    
+</div>

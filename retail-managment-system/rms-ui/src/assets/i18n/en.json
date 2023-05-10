@@ -28,7 +28,9 @@
     "products": "Products",
     "profits": "Profits",
     "employees": "Employees",
-    "suppliers":"Suppliers"
+    "suppliers":"Suppliers",
+    "users":"Users",
+    "roles":"Roles"
   },
   "home-page": {
     "order": "Order",
@@ -267,5 +269,44 @@
         "added-successfuly": "Supplier Added Successfuly!",
         "delete-successfuly": "Supplier Deleted Successfuly!",
         "close": "close"
+      },
+      "user":{
+        "users":"Users",
+        "user":"User",
+        "user-name":"User Name",
+        "password":"Password",
+        "required":"Required",
+        "employee-field":"Employee",
+        "enter-user-name":"Enter user's name",
+        "user-name-field":"User name is",
+        "updated-successfully":"User updated successfully",
+        "close":"Close",
+        "added-successfully":"User added successfully",
+        "deleted-successfully":"User deleted successfully",
+        "assign-user-role":"Assign role to users",
+        "name":"Name: ",
+        "username":"User name: ",
+        "assign-role-to-user":"Assign new role to user",
+        "choose-role":"Choose role",
+        "assigned-role-successfully":"Role assigned to user successfully",
+        "deleted-role-successfully":"Role deleted from user successfully",
+        "password-field-pattern":"Password must have capital and small letters, numbers and special characters",
+        "password-field-length":"Password should be at least 8 characters"
+      },
+      "roles":{
+        "roles":"Roles",
+        "add-roles":"Add Roles",
+        "role":"Role",
+        "role-arabic-name":"Arabic name",
+        "enter-arabic-name-field":"Enter name in arabic",
+        "arabic-name-field":"Arabic name is ",
+        "role-english-name":"English name",
+        "enter-english-name-field":"Enter name in english",
+        "role-code":"Code",
+        "required":"required",
+        "close":"Close",
+        "updated-successfully": "Role updated successfully",
+        "added-successfully":"Role added successfully",
+        "deleted-successfully":"Role deleted successfully"
       }
 }
