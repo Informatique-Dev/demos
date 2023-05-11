@@ -18,6 +18,9 @@ import { Transaction } from 'src/app/domain/transaction/models/transaction';
 import { TransactionRepository } from 'src/app/domain/transaction/transaction.repository';
 import { Supplier } from 'src/app/domain/supplier/models/supplier.model';
 import { SupplierRepository } from 'src/app/domain/supplier/supplier.repository';
+import { Store } from 'src/app/domain/store/models/store';
+import { storeRepository } from './../../domain/store/store.repository';
+
 
 @Component({
   selector: 'app-home-page',
@@ -34,6 +37,7 @@ export class HomePageComponent implements OnInit {
   allProfits:Profit[]=[];
   allEmployee:Employee[]=[];
   allSuppliers:Supplier[]=[];
+  allStores:Store[]=[]
   constructor(
     private router: Router,
     private productRepository: ProductRepository,
@@ -44,7 +48,8 @@ export class HomePageComponent implements OnInit {
     private RepositoryService:RepositoryService,
     private employeeRepository:EmployeeRepository,
     private transactionRepository: TransactionRepository,
-    private supplierRepository: SupplierRepository
+    private supplierRepository: SupplierRepository,
+    private storeRepository:storeRepository
 
 
   ) {}
@@ -92,6 +97,10 @@ export class HomePageComponent implements OnInit {
   }
   openSupplier() {
     this.router.navigate(['/supplier']);
+  }
+
+  openStore(){
+    this.router.navigate(['/store'])
   }
 
   getAllProducts(): void {
