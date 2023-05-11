@@ -88,13 +88,28 @@
       "sidebar.roles" | translate
     }}</a>
   </p>
-  <p>
-    <a
-      mat-button
-      routerLink="store"
-      routerLinkActive="active"
-      class="fs-5"
-      >{{ "sidebar.store" | translate }}</a
-    >
-  </p>
+
+    <mat-expansion-panel [class.mat-elevation-z0]="true" class="">
+      <mat-expansion-panel-header>
+      <a mat-button class="fs-5">
+        {{ "sidebar.store" | translate }}
+      </a>
+        
+      </mat-expansion-panel-header>
+      <mat-nav-list class="d-flex flex-column justify-content-between p-0 align-items-center">
+        <a 
+        class="mb-2 lh-1"
+        mat-button
+        routerLinkActive="active-link"
+        routerLink="store"
+         >Add Store</a>
+        <a 
+        class="lh-1"
+        mat-button
+        routerLinkActive="active-link"
+        routerLink="search-store"
+        >Search Store</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+    
 </div>

@@ -55,11 +55,8 @@ export class StoreComponent implements OnInit {
  getStores(responsible:string){
   this.storeRepository.filterStoreByEmployee(this.page,this.size,responsible).subscribe(result=>{
     this.allStores = result.data
-    this.isTableVisible = true
-    this.currentResponsible = responsible
     this.totaItem = result.pagination.itemCount
     if(this.allStores.length == 0){
-      this.isTableVisible = false
       this.snackBar.open(
         this.translate.instant('store.no-stores'),
         this.translate.instant('store.close'),
@@ -81,10 +78,8 @@ export class StoreComponent implements OnInit {
   }
 
   onPaginationChange(event: PageEvent) {
-
     this.page  = event.pageIndex;
     this.size = event.pageSize;
-    this.getStores(this.currentResponsible)
   }
   
   fetchData(store:Store): void {
@@ -118,7 +113,8 @@ export class StoreComponent implements OnInit {
     this.isButtonVisible = true;
     this.submit = true;
     this.storeRepository.add(this.storeForm.value).subscribe(
-      () => {
+      (result) => {
+        this.currentResponsible = result.responsible.fullName
         this.getStores(this.currentResponsible)
         this.submit = false;
         this.snackBar.open(

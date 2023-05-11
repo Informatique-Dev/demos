@@ -315,7 +315,7 @@
     "store":"المخزن",
     "our-stores": "المخازن",
     "store-name": "اسم المخزن",
-    "address":"العنوان",
+    "store-address":"العنوان",
     "required": "اجباري",
     "max-length":"يجب ان يكون اقل من 100 حرف",
     "name-field": "حقل ادخال اسم المخزن ",
@@ -325,6 +325,7 @@
     "delete-successfuly": "تم الحذف بنجاح",
     "no-stores":" لا يوجد مخازن تحت هذا الاسم",
     "close": "اغلاق",
-    "choose-employee":"اختار اسم الموظف"
+    "choose-employee":"اختار اسم الموظف",
+    "search-stores":"البحث عن مخزن"
   }
 }

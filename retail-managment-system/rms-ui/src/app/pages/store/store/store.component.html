@@ -6,20 +6,8 @@
         </h3>
       </div>
     </div>
-    <div class="custom-filter col-sm-4 col-md-4 column d-flex w-30">
-      <mat-form-field appearance="outline" color="primary" class="shadow bg-white rounded">
-        <mat-label>
-          {{'employee.employee' | translate}}
-        </mat-label>
-          <mat-select panelClass="mt-5 data-table">
-            <mat-option *ngFor="let type of employees" [value]="type" (click)="getStores(type.fullName)">
-              {{type.fullName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-    </div>
     <div class="fit-content d-flex flex-lg-row flex-column my-4 mx-auto shadow-lg fixed-height">
-        <div *ngIf="isTableVisible"
+        <div
           class="child-height w-100 px-5 overflow-scroll data-table bg-white position-relative" 
         >
             <table
@@ -56,7 +44,7 @@
   
             <ng-container matColumnDef="address">
               <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
-                {{ "store.address" | translate }}
+                {{ "store.store-address" | translate }}
               </th>
               <td mat-cell *matCellDef="let element" class="pt-2">
                 {{ element.address }}

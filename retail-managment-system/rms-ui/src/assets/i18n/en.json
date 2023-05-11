@@ -316,7 +316,7 @@
     "store":"Store",
     "our-stores": "Stores",
     "store-name": "Store name",
-    "address":"Address",
+    "store-address":"Address",
     "required": "required",
     "max-length":" should be less than 100 characters",
     "name-field": " Store Name is",
@@ -326,6 +326,7 @@
     "delete-successfuly": "Store Deleted Successfuly!",
     "no-stores":" No Stores found under this name!",
     "close": "Close!",
-    "choose-employee":"Choose Employee"
+    "choose-employee":"Choose Employee",
+    "search-stores":"Search for store"
   }
 }
