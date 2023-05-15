@@ -30,6 +30,7 @@ export class StoreComponent implements OnInit {
   submit: boolean = false
   employees:Employee[]=[]
   storeForm!:FormGroup
+  isDataExist: boolean = false
   displayedColumns: string[] = [
     'id',
     'name',
@@ -50,13 +51,16 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
     this.storesForm()
     this.getAllEmployee()
+    console.log(this.currentResponsible)
   }
 
  getStores(responsible:string){
   this.storeRepository.filterStoreByEmployee(this.page,this.size,responsible).subscribe(result=>{
     this.allStores = result.data
+    this.isDataExist = true
     this.totaItem = result.pagination.itemCount
     if(this.allStores.length == 0){
+      this.isDataExist = false
       this.snackBar.open(
         this.translate.instant('store.no-stores'),
         this.translate.instant('store.close'),
