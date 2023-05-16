@@ -14,5 +14,7 @@ public class LookupEntity extends  AuditingEntity{
     private String code;
 
     private boolean enabled;
+    
+    // test jenkins
 
 }
