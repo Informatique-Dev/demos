@@ -9,9 +9,9 @@
     <div class="custom-filter col-sm-4 col-md-4 column d-flex w-30">
       <mat-form-field appearance="outline" color="primary" class="shadow bg-white rounded">
         <mat-label>
-          {{'employee.employee' | translate}}
+          {{!isDataAdded?('employee.employee'|translate):currentResponsible}}
         </mat-label>
-          <mat-select panelClass="mt-5 data-table">
+          <mat-select panelClass="mt-5 data-table" (selectionChange)="restartForm()">
             <mat-option *ngFor="let type of employees" [value]="type" (click)="getStores(type.fullName)">
               {{type.fullName}}
             </mat-option>

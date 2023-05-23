@@ -31,6 +31,7 @@ export class StoreComponent implements OnInit {
   employees:Employee[]=[]
   storeForm!:FormGroup
   isDataExist: boolean = false
+  isDataAdded:boolean = false
   displayedColumns: string[] = [
     'id',
     'name',
@@ -51,7 +52,6 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
     this.storesForm()
     this.getAllEmployee()
-    console.log(this.currentResponsible)
   }
 
  getStores(responsible:string){
@@ -96,7 +96,8 @@ export class StoreComponent implements OnInit {
     this.isButtonVisible = true;
     this.submit = true;
     this.storeRepository.update(this.storeForm.value).subscribe(
-      () => {
+      (result) => {
+        this.currentResponsible = result.responsible.fullName
         this.getStores(this.currentResponsible)
         this.submit = false;
         this.snackBar.open(
@@ -121,6 +122,7 @@ export class StoreComponent implements OnInit {
         this.currentResponsible = result.responsible.fullName
         this.getStores(this.currentResponsible)
         this.submit = false;
+        this.isDataAdded = true
         this.snackBar.open(
           this.translate.instant('store.added-successfuly'),
           this.translate.instant('store.close'),
