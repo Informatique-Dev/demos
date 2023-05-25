@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from 'src/app/domain/store/models/store';
@@ -32,6 +32,7 @@ export class StoreComponent implements OnInit {
   storeForm!:FormGroup
   isDataExist: boolean = false
   isDataAdded:boolean = false
+  filterControl = new FormControl('')
   displayedColumns: string[] = [
     'id',
     'name',
@@ -57,6 +58,7 @@ export class StoreComponent implements OnInit {
  getStores(responsible:string){
   this.storeRepository.filterStoreByEmployee(this.page,this.size,responsible).subscribe(result=>{
     this.allStores = result.data
+    this.currentResponsible = responsible
     this.isDataExist = true
     this.totaItem = result.pagination.itemCount
     if(this.allStores.length == 0){
@@ -84,8 +86,13 @@ export class StoreComponent implements OnInit {
   onPaginationChange(event: PageEvent) {
     this.page  = event.pageIndex;
     this.size = event.pageSize;
+    this.getStores(this.currentResponsible)
   }
   
+  changeResponsible(){
+    this.page = 0
+    this.restartForm()
+  }
   fetchData(store:Store): void {
     this.isButtonVisible = false;
     this.storeForm.patchValue(store)
@@ -121,6 +128,7 @@ export class StoreComponent implements OnInit {
       (result) => {
         this.currentResponsible = result.responsible.fullName
         this.getStores(this.currentResponsible)
+        this.filterControl.setValue(this.currentResponsible)
         this.submit = false;
         this.isDataAdded = true
         this.snackBar.open(

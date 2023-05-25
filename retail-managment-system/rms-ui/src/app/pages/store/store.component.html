@@ -11,7 +11,7 @@
         <mat-label>
           {{!isDataAdded?('employee.employee'|translate):currentResponsible}}
         </mat-label>
-          <mat-select panelClass="mt-5 data-table" (selectionChange)="restartForm()">
+          <mat-select panelClass="mt-5 data-table" (selectionChange)="changeResponsible()" [formControl]="filterControl">
             <mat-option *ngFor="let type of employees" [value]="type" (click)="getStores(type.fullName)">
               {{type.fullName}}
             </mat-option>
@@ -100,7 +100,8 @@
       </div>
       <mat-paginator *ngIf="isDataExist" [length]="totaItem"
             [pageSizeOptions]="[10,5,25,100]"
-            (page)="$event;onPaginationChange($event)"
+            [pageIndex]="page"
+            (page)="onPaginationChange($event)"
             showFirstLastButtons
             aria-label="Select page"
             class="w-100 fw-bold fs-6 d-flex justify-content-center py-3 ">
