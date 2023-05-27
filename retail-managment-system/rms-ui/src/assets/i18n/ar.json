@@ -30,7 +30,8 @@
     "suppliers":"الموردين",
     "users":"المستخدمين",
     "roles":"المهام"
-
+,
+    "store":"المخزن"
   },
   "home-page": {
     "order": "الطلبات",
@@ -43,6 +44,7 @@
     "profits": "الارباح",
     "employee": "الموظفين",
     "suppliers": "الموردين",
+    "store":"المخزن",
     "home-content": " لكن لا بد أن أوضح لك أن كل هذه الأفكار المغلوطة حول استنكار  النشوة وتمجيد الألم نشأت بالفعل، وسأعرض لك التفاصيل لتكتشف حقيقة وأساس تلك السعادة البشرية،.",
 
     "no-of-orders": "عدد الطلبات",
@@ -53,7 +55,8 @@
     "no-of-categories": "عدد الفئات",
     "no-of-products": "عدد المنتجات",
     "no-of-profits": "عدد الارباح",
-    "no-of-suppliers": "عدد الموردين"
+    "no-of-suppliers": "عدد الموردين",
+    "no-of-stores":"عدد المخازن"
   },
   "home-footer": {
     "first-pargraph": "سنظل دائمًا الاسم الذي يحظى بأعلى ثقة العملاء وشركاء النجاح من خلال منتجاتنا وخدماتنا من أجل مجتمع أفضل.",
@@ -307,5 +310,22 @@
           "updated-successfully": "تمت تعديل المهمة بنجاح",
           "added-successfully":"تمت اضافة المهمة بنجاح",
           "deleted-successfully":"تمت حذف المهمة بنجاح"
-        }
+        },
+  "store":{
+    "store":"المخزن",
+    "our-stores": "المخازن",
+    "store-name": "اسم المخزن",
+    "store-address":"العنوان",
+    "required": "اجباري",
+    "max-length":"يجب ان يكون اقل من 100 حرف",
+    "name-field": "حقل ادخال اسم المخزن ",
+    "employee-field": "حقل ادخال اسم الموظف",
+    "updated-successfuly": "تم التعديل بنجاح",
+    "added-successfuly": "تم الاضافة بنجاح",
+    "delete-successfuly": "تم الحذف بنجاح",
+    "no-stores":" لا يوجد مخازن تحت هذا الاسم",
+    "close": "اغلاق",
+    "choose-employee":"اختار اسم الموظف",
+    "search-stores":"البحث عن مخزن"
+  }
 }

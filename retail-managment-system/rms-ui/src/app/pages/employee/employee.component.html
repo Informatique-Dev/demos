@@ -84,7 +84,7 @@
   
         </div>
         <div class="col-lg-4 p-3 bg-light">
-            <div class="panel-heading py-4 pt-4 ps-1">
+            <div class="panel-heading py-4 pt-4 ps-1 d-flex justify-content-between">
               <h3 class="panel-title ms-1">
                 {{
                   employeeForm.controls["id"].value
@@ -92,13 +92,14 @@
                     : ("add" | translate)
                 }}
                 {{ "employee.employee" | translate }}
-                <mat-icon
-                class="add-icon me-4 float-end"
+                
+              </h3>
+              <mat-icon
+                class="add-icon me-4"
                 (click)="restartForm(); isButtonVisible = true"
                 [hidden]="isButtonVisible"
                 >add</mat-icon
               >
-              </h3>
     
             </div>
             <div>

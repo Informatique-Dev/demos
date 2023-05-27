@@ -3,15 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from './models/product';
 import { CategoryRepository } from 'src/app/domain/category/category.repository';
-import { Category } from 'src/app/domain/category/models/category';
+import { SettingsService } from 'src/app/core/services/settings.service';
 import { Observable } from 'rxjs';
-import { Response } from '../../core/models/response';
+import { Response } from 'src/app/core/models/response';
+
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductRepository extends ResourceService<Product> {
+  
+protected readonly productCategoryUrl =
+SettingsService.configurationEnvironment.api.baseUrl
   constructor(
     httpClient: HttpClient,
     public categoryRepository: CategoryRepository
@@ -21,8 +25,8 @@ export class ProductRepository extends ResourceService<Product> {
   getResourceUrl(): string {
     return 'product';
   }
-  filterProductsById(id:number):Observable<Response<Category>>{
-    return this.categoryRepository.getListById(`${id}/product`)
+  filterProductsById(id:number): Observable<Response<Product>>{
+    return this.httpClient.get<Response<Product>>(`${this.productCategoryUrl}category/${id}/product`)
   }
 
   toServerModel(entity: Product): any {

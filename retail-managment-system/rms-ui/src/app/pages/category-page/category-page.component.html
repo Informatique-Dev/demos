@@ -59,9 +59,9 @@
       </div>
 
     <div class=" col-lg-4 p-3 bg-light">
-      <div class="panel-heading pt-3 ps-1 mb-5">
+      <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
         <div>
-          <h3 class="float-start">
+          <h3 class="panel-title">
             {{
               categoryForm.controls["id"].value
                 ? ("update" | translate)
@@ -72,7 +72,7 @@
         </div>
 
         <mat-icon
-          class="add-icon float-end"
+          class="add-icon"
           (click)="restartForm()"
           [hidden]="!categoryForm.controls['id'].value"
         >

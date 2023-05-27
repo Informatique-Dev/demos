@@ -30,7 +30,8 @@
     "employees": "Employees",
     "suppliers":"Suppliers",
     "users":"Users",
-    "roles":"Roles"
+    "roles":"Roles",
+    "store":"Store"
   },
   "home-page": {
     "order": "Order",
@@ -43,6 +44,7 @@
     "profits": "Profits",
     "employee":"Employees",
     "suppliers":"Suppliers",
+    "store":"Store",
     "home-content": " If you’re reading this, you’ve probably been tasked with creatingan Arabic website or landing page. ",
 
     "no-of-orders": " No of Orders ",
@@ -55,7 +57,8 @@
     "no-of-products": " No of Products ",
     "no-of-profits": "No of Profits",
     "no-of-suppleis": "No of Profits",
-    "no-of-suppliers":"No of Suppliers"
+    "no-of-suppliers":"No of Suppliers",
+    "no-of-stores":"No of Stores"
   },
   "home-footer": {
     "first-pargraph": "We will always remain the name that has the highest trust from customers, .",
@@ -308,5 +311,22 @@
         "updated-successfully": "Role updated successfully",
         "added-successfully":"Role added successfully",
         "deleted-successfully":"Role deleted successfully"
-      }
+      },
+  "store":{
+    "store":"Store",
+    "our-stores": "Stores",
+    "store-name": "Store name",
+    "store-address":"Address",
+    "required": "required",
+    "max-length":" should be less than 100 characters",
+    "name-field": " Store Name is",
+    "employee-field": "  Store's employee is ",
+    "updated-successfuly": "Store Updated Successfuly!",
+    "added-successfuly": "Store Added Successfuly!",
+    "delete-successfuly": "Store Deleted Successfuly!",
+    "no-stores":" No Stores found under this name!",
+    "close": "Close!",
+    "choose-employee":"Choose Employee",
+    "search-stores":"Search for store"
+  }
 }

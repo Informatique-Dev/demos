@@ -1,0 +1,214 @@
+<div class="container">
+    <div class="mat-typography text-center mt-4">
+      <div>
+        <h3 class="pt-3 mat-headline panel-title fw-bold">
+          {{ "store.our-stores" | translate }}
+        </h3>
+      </div>
+    </div>
+    <div class="custom-filter col-sm-4 col-md-4 column d-flex w-30">
+      <mat-form-field appearance="outline" color="primary" class="shadow bg-white rounded">
+        <mat-label>
+          {{!isDataAdded?('employee.employee'|translate):currentResponsible}}
+        </mat-label>
+          <mat-select panelClass="mt-5 data-table" (selectionChange)="changeResponsible()" [formControl]="filterControl">
+            <mat-option *ngFor="let type of employees" [value]="type" (click)="getStores(type.fullName)">
+              {{type.fullName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="d-flex flex-lg-row flex-column my-4 mx-auto shadow-lg fixed-height">
+      <div class="w-100">
+        <div
+        class="child-height position-relative overflow-scroll data-table w-100 bg-white " 
+      >
+          <table
+          class="col w-100"
+          mat-table
+          [dataSource]="allStores"
+        >
+        
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "no" | translate }}.
+            </th>
+            <td mat-cell *matCellDef="let i = index" class="pt-2">
+              {{ i + 1 }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="pt-2">
+              {{ element.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="responsible">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "employee.employee" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="pt-2">
+              {{ element.responsible.fullName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6">
+              {{ "store.store-address" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element" class="pt-2">
+              {{ element.address }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="update-icon pt-2">
+              <button class="btn table-button" (click)="fetchData(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" class="delete-icon pt-2">
+                  <button
+                  class="btn table-button"
+                  (click)="openConfirmationDialog(element)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr class="mat-row spinner-row" *matNoDataRow>
+            <td>
+              <app-loading-spinner></app-loading-spinner>
+            </td>
+          </tr>
+        </table>      
+            <div *ngIf="!isDataExist" class="position-absolute top-50 start-50 translate-middle-x alert-text">
+              <p class="text-center">You can Chosse or Add Employee</p>
+          </div>
+          
+      </div>
+      <mat-paginator *ngIf="isDataExist" [length]="totaItem"
+            [pageSizeOptions]="[10,5,25,100]"
+            [pageIndex]="page"
+            (page)="onPaginationChange($event)"
+            showFirstLastButtons
+            aria-label="Select page"
+            class="w-100 fw-bold fs-6 d-flex justify-content-center py-3 ">
+          </mat-paginator>
+      </div>
+        
+  
+        <div class="p-3 bg-light mx-auto">
+          <section>
+            <div class="panel-heading pt-3 ps-1 mb-5 d-flex justify-content-between">
+              <h3 class="panel-title">
+                {{
+                  storeForm.controls["id"].value
+                    ? ("update" | translate)
+                    : ("add" | translate)
+                }}
+  
+                {{ "store.store" | translate }}
+              </h3>
+  
+              <mat-icon
+                class="add-icon me-4"
+                (click)="restartForm(); isButtonVisible = true"
+                [hidden]="isButtonVisible"
+                >add</mat-icon
+              >
+            </div>
+            <div class="panel-body">
+              <form [formGroup]="storeForm">
+                <fieldset class="row justify-content-center">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{
+                      "store.store-name" | translate
+                    }}</mat-label>
+                    <input
+                      formControlName="name"
+                      type="text"
+                      matInput
+                      placeholder="{{ 'enter-your-name' | translate }}"
+                    />
+                    <mat-error
+                      *ngIf="storeForm.controls['name'].hasError('maxlength')"
+                    >  
+                    {{ "store.store-name" | translate }}
+                      <strong> {{ "store.max-length" | translate }}</strong>
+                    </mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label> {{ "store.store-address" | translate }}</mat-label>
+                    <input
+                      formControlName="address"
+                      type="text"
+                      matInput
+                      placeholder="{{ 'store.store-address' | translate }}"
+                    />
+                    <mat-error
+                      *ngIf="storeForm.controls['address'].hasError('required')"
+                    >
+                      {{ "store.store-address" | translate }}
+  
+                      <strong> {{ "store.required" | translate }}</strong>
+                    </mat-error>
+                    <mat-error
+                      *ngIf="storeForm.controls['address'].hasError('maxlength')"
+                    >
+                      {{ "store.address" | translate }}
+  
+                      <strong> {{ "store.max-length" | translate }}</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{ "employee.employee" | translate }}</mat-label>
+                    <mat-select
+                      formControlName="responsible"
+                      type="text"
+                      matInput
+                      placeholder="{{ 'store.employee-field' | translate }}"
+                      [compareWith]="compareFn"
+                    >
+                      <mat-option *ngFor="let employee of employees" [value]="employee">
+                        {{ employee.fullName }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </fieldset>
+              </form>
+            </div>
+  
+            <div class="actions float-end">
+              <button class="btn me-3" (click)="onSubmit()" [disabled]="submit">
+                {{
+                  storeForm.controls["id"].value
+                    ? ("update" | translate)
+                    : ("add" | translate)
+                }}
+              </button>
+              <button class="btn me-3" mat-button (click)="resetForm()">
+                {{
+                  storeForm.controls["id"].value
+                    ? ("reset" | translate)
+                    : ("clear" | translate)
+                }}
+              </button>
+            </div>
+          </section>
+        </div>
+    </div>
+  </div>
+  
