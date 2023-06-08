@@ -1,0 +1,53 @@
+{
+  "name": "standalone-app",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "dev:ssr": "ng run standalone-app:serve-ssr",
+    "serve:ssr": "node dist/standalone-app/server/main.js",
+    "build:ssr": "ng build && ng run standalone-app:server",
+    "prerender": "ng run standalone-app:prerender"
+  },
+  "browser": {
+    "zlib": false
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^16.0.4",
+    "@angular/common": "^16.0.4",
+    "@angular/compiler": "^16.0.4",
+    "@angular/core": "^16.0.4",
+    "@angular/forms": "^16.0.4",
+    "@angular/platform-browser": "^16.0.4",
+    "@angular/platform-browser-dynamic": "^16.0.4",
+    "@angular/platform-server": "^16.0.4",
+    "@angular/router": "^16.0.4",
+    "@nguniversal/express-engine": "^16.0.2",
+    "express": "^4.15.2",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.5.2",
+    "zone.js": "~0.13.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.0.4",
+    "@angular/cli": "~16.0.4",
+    "@angular/compiler-cli": "^16.0.4",
+    "@nguniversal/builders": "^16.0.2",
+    "@types/express": "^4.17.0",
+    "@types/jasmine": "~4.3.0",
+    "@types/node": "^14.15.0",
+    "jasmine-core": "~4.5.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "typescript": "~4.9.3"
+  }
+}
