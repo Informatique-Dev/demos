@@ -24,7 +24,7 @@ spring:
       ddl-auto: none
 
     properties:
-      hibernate:
+      9+hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     #        default_schema: rms_core
     show-sql: true
@@ -45,4 +45,15 @@ spring:
     default-schema: public
 
 
-
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+        type: INFO
+app:
+  jwt:
+    token:
+      expiration-in-ms: 86400000
+    refresh:
+      expiration-in-ms: 108000000
