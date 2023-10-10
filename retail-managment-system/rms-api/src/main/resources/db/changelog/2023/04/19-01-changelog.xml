@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1681901112802-1" author="HP (generated)">
+        <createTable tableName="profit_details">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profit_details"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="bill_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1681901112802-2" author="HP (generated)">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="profit_details"
+                                 constraintName="FK_PROFIT_DETAILS_ON_PRODUCT" referencedColumnNames="id"
+                                 referencedTableName="products"/>
+    </changeSet>
+
+</databaseChangeLog>

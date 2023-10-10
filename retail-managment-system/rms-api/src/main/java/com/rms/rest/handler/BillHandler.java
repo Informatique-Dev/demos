@@ -1,4 +1,5 @@
 package com.rms.rest.handler;
+
 import com.rms.domain.purchase.Bill;
 import com.rms.domain.purchase.BillDetails;
 import com.rms.domain.purchase.Supplier;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,46 +35,42 @@ public class BillHandler {
 
     private BillDetailsService billDetailsService;
 
-    public ResponseEntity<?>getById(Integer id)
-    {
-      Bill bill = billService.getById(id)
-              .orElseThrow(()-> new ResourceNotFoundException(Bill.class.getSimpleName(),id));
-        BillDto billDto=billMapper.toDto(bill);
+    public ResponseEntity<?> getById(Integer id) {
+        Bill bill = billService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
+        BillDto billDto = billMapper.toDto(bill);
         return ResponseEntity.ok(billDto);
     }
-    public ResponseEntity<?>getAll(Integer page , Integer size)
-    {
-        Page<Bill> bills =billService.getAll(page,size);
-        List<BillDto>billDtos = billMapper.toDto(bills.getContent());
+
+    public ResponseEntity<?> getAll(Integer page, Integer size) {
+        Page<Bill> bills = billService.getAll(page, size);
+        List<BillDto> billDtos = billMapper.toDto(bills.getContent());
         PaginatedResultDto<BillDto> paginatedResultDto = new PaginatedResultDto<>();
         paginatedResultDto.setData(billDtos);
         paginatedResultDto.setPagination(paginationMapper.toDto(bills));
         return ResponseEntity.ok(paginatedResultDto);
     }
-    public  ResponseEntity<?>save(BillDto billDto)
-    {
-        Supplier supplier =supplierService.getById(billDto.getSupplierDto().getId())
-            .orElseThrow(() -> new ResourceNotFoundException(Supplier.class.getSimpleName(),billDto.getId()));
-        if(billDto.getBillDetailsDtoList()==null || billDto.getBillDetailsDtoList().size()==0)
-        {
-            throw new BusinessValidationException(Bill.class.getName()," requested id",billDto.getId().toString(),ErrorCodes.BUSINESS_VALIDATION.getCode());
+
+    public ResponseEntity<?> save(BillDto billDto) {
+        Supplier supplier = supplierService.getById(billDto.getSupplierDto().getId())
+                .orElseThrow(() -> new ResourceNotFoundException(Supplier.class.getSimpleName(), billDto.getId()));
+        if (billDto.getBillDetailsDtoList() == null || billDto.getBillDetailsDtoList().size() == 0) {
+            throw new BusinessValidationException(Bill.class.getName(), " requested id", billDto.getId().toString(), ErrorCodes.BUSINESS_VALIDATION.getCode());
         }
         Bill bill = billMapper.toEntity(billDto);
         bill.setSupplier(supplier);
         bill.setDate(LocalDate.now());
-        if(billService.findBillNumber(bill.getBillNo()).isPresent())
-        {
-            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(),"bill Number",bill.getBillNo(),ErrorCodes.RELATED_RESOURCE.getCode());
+        if (billService.findBillNumber(bill.getBillNo()).isPresent()) {
+            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(), "bill Number", bill.getBillNo(), ErrorCodes.RELATED_RESOURCE.getCode());
 
         }
 
-            billService.save(bill);
-            BillDto dto = billMapper.toDto(bill);
-            if(billDto.getBillDetailsDtoList()!=null)
-            {
-                billDetailsHandler.save(bill.getId(),billDto.getBillDetailsDtoList());
-            }
-            return ResponseEntity.ok(dto);
+        billService.save(bill);
+        BillDto dto = billMapper.toDto(bill);
+        if (billDto.getBillDetailsDtoList() != null) {
+            billDetailsHandler.save(bill.getId(), billDto.getBillDetailsDtoList());
+        }
+        return ResponseEntity.ok(dto);
 
     }
 
@@ -81,16 +79,15 @@ public class BillHandler {
 
         Bill bill = billService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
-        if(billDto.getSupplierDto()!=null) {
+        if (billDto.getSupplierDto() != null) {
             Supplier supplier = supplierService.getById(billDto.getSupplierDto().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), billDto.getSupplierDto().getId()));
             bill.setSupplier(supplier);
         }
 
-        Optional<Bill>billNumExist=billService.findBillNumber(billDto.getBillNo());
-        if(billNumExist.isPresent() && !billNumExist.get().getId().equals(id))
-        {
-            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(),"bill Number",bill.getBillNo(),ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        Optional<Bill> billNumExist = billService.findBillNumber(billDto.getBillNo());
+        if (billNumExist.isPresent() && !billNumExist.get().getId().equals(id)) {
+            throw new ResourceAlreadyExistsException(Bill.class.getSimpleName(), "bill Number", bill.getBillNo(), ErrorCodes.DUPLICATE_RESOURCE.getCode());
 
         }
 
@@ -102,10 +99,10 @@ public class BillHandler {
         BillDto dto = billMapper.toDto(bill);
         return ResponseEntity.ok(dto);
     }
- 
+
     public ResponseEntity<?> delete(Integer id) {
-        Bill bill=  billService.getById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(),id));
+        Bill bill = billService.getById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Bill.class.getSimpleName(), id));
         try {
             billService.delete(bill);
         } catch (Exception exception) {
@@ -113,9 +110,6 @@ public class BillHandler {
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response("deleted"));
     }
-
-
-
 
 
 }
