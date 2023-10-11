@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/domain/login/user';
+import { User } from 'src/app/domain/login/models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
-
+import { LoginRepository } from '../../../domain/login/login.repository';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,29 +17,32 @@ export class LoginComponent implements OnInit {
   loginUsers:User[]=[];
    
    constructor(private formBuilder : FormBuilder,
-    private authservice :AuthService,) { 
+    private authService :AuthService,private router:Router,private loginRepository:LoginRepository) { 
    
   }
 
   ngOnInit(): void {
     this.loginmentForm();
-    this.setUsers();
   }
 
   loginmentForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['' , [Validators.required]],
+      username: ['' , [Validators.required]],
       password: ['' , [Validators.required]],
     });
   }
 
-  setUsers(){
-   this.authservice.storeUsers();
-  }
-
   login(user: User)
   {
-   this.authservice.logIn(user)
+   this.loginRepository.add(user).subscribe((response)=>{
+    if(response.message!=""){
+      this.authService.setToken(response.accessToken);
+      this.router.navigate(['/home']);
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
+  })
   }
 }
 
