@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf,Injector } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
