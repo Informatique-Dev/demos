@@ -56,6 +56,11 @@
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row spinner-row" *matNoDataRow>
+              <td>
+                <app-loading-spinner></app-loading-spinner>
+              </td>
+            </tr>
           </table>
           <mat-paginator
               (page)="handlePageEvent($event)"
@@ -111,7 +116,7 @@
                   formControlName="brand"
                   type="text"
                   matInput
-                  placeholder="{{ 'enter-your-name' | translate }}"
+                  placeholder="{{ 'product.brand' | translate }}"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-50">
@@ -122,7 +127,7 @@
                   formControlName="cashPrice"
                   type="number"
                   matInput
-                  placeholder="{{ 'enter-your-name' | translate }}"
+                  placeholder="{{ 'product.Price' | translate }}"
                 />
                 <mat-error
                 *ngIf="cashPrice!.errors?.['required']">
@@ -138,7 +143,7 @@
                   formControlName="quantity"
                   type="number"
                   matInput
-                  placeholder="{{ 'enter-your-name' | translate }}"
+                  placeholder="{{ 'product.quantity' | translate }}"
                 />
                
               </mat-form-field>
@@ -166,7 +171,7 @@
                   formControlName="modelNo"
                   type="text"
                   matInput
-                  placeholder="{{ 'enter-your-name' | translate }}"
+                  placeholder="{{ 'product.model-no' | translate }}"
                 />
                
               </mat-form-field>
