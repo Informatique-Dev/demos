@@ -18,7 +18,10 @@
             هذا الحقل <strong>مطلوب</strong>
           </mat-error>
           <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('minlength')">
-            يجب أن يحتوي علي <strong>11</strong> رقم
+           يجب أن لا يقل عن <strong>11</strong> رقم
+          </mat-error>
+          <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('maxlength')">
+             يجب أن لا يزيد عن <strong>11</strong> رقم
           </mat-error>
           <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('pattern')">
              يجب أن يحتوي <strong>أرقام</strong> 
@@ -34,8 +37,11 @@
               هذا الحقل <strong>مطلوب</strong>
             </mat-error>
             <mat-error *ngIf="communicationForm.controls['phone'].hasError('minlength')">
-              يجب أن يحتوي علي <strong>11</strong> رقم
-            </mat-error>
+              يجب أن لا يقل عن <strong>11</strong> رقم
+             </mat-error>
+             <mat-error *ngIf="communicationForm.controls['phone'].hasError('maxlength')">
+                يجب أن لا يزيد عن <strong>11</strong> رقم
+             </mat-error>
             <mat-error *ngIf="communicationForm.controls['phone'].hasError('pattern')">
                يجب أن يحتوي <strong>أرقام</strong> 
             </mat-error>

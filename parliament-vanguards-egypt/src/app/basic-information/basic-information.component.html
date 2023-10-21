@@ -28,7 +28,10 @@
             matInput placeholder="ادخل رقم القومي 14 رقم "/>
             
             <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('minlength')">
-              يجب أن يكون <strong>14</strong>رقم
+                يجب أن لا يقل عن <strong>14</strong>رقم
+            </mat-error>
+            <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('maxlength')">
+                يجب أن لا يزيد عن <strong>14</strong>رقم
             </mat-error>
             <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('pattern')">
                 هذا الحقل يجب أن يكون<strong>أرقام</strong>

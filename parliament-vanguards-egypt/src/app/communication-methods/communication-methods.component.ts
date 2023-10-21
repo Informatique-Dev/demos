@@ -15,8 +15,8 @@ export class CommunicationMethodsComponent implements OnInit {
   
   Form() {
     this.communicationForm = this.formBuilder.group({
-      parentPhone: ['', [Validators.required,Validators.minLength(11),Validators.pattern("^[0-9]*$")]],
-      phone: ['',[Validators.required,Validators.minLength(11),Validators.pattern("^[0-9]*$")]],
+      parentPhone: ['', [Validators.required,Validators.minLength(11),Validators.maxLength(11),Validators.pattern("^[0-9]*$")]],
+      phone: ['',[Validators.required,Validators.minLength(11),Validators.maxLength(11),Validators.pattern("^[0-9]*$")]],
       email: ['', [Validators.required,Validators.email]],
       address: ['',Validators.required],
       

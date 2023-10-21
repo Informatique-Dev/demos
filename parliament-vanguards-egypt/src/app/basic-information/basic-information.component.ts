@@ -32,7 +32,7 @@ ngOnInit(): void {
 Form() {
   this.basicInformationForm = this.formBuilder.group({
     name: ['', [Validators.required,Validators.pattern("^[أ-ي]*$")]],
-    nationalId: ['',[Validators.required,Validators.minLength(14),Validators.pattern("^[0-9]*$")]],
+    nationalId: ['',[Validators.required,Validators.minLength(14),Validators.maxLength(14),Validators.pattern("^[0-9]*$")]],
     entity: ['', [Validators.required]],
     governorate: ['',Validators.required],
     adminDepartment: ['', [Validators.required]],
