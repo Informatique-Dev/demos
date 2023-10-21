@@ -1,0 +1,101 @@
+<br><br>
+
+<div class="container">
+  <h1 >المؤهل الدراسي</h1>
+<div class="row w-100 d-flex">
+  <div class="col-md-6 col-sm-12 col-12 " >
+    <br><br>
+    <div class="panel-body ">
+    <form [formGroup]="qualificationForm">
+      <fieldset class="row justify-content-center"dir="rtl">
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>المرحلة الدراسية</mat-label>
+          <mat-select  required formControlName="educationalLevel">
+            <mat-option *ngFor="let educationalLevel of educationalLevelData" [value]="educationalLevel">
+              {{educationalLevel}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="qualificationForm.controls['educationalLevel'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>السنة الدراسية</mat-label>
+          <mat-select  required formControlName="educationalYear">
+            <mat-option *ngFor="let educationalYear of educationalYearData" [value]="educationalYear">
+              {{educationalYear}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="qualificationForm.controls['educationalYear'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label>اسم المدرسة / الجامعة / المعهد</mat-label>
+          <input required
+            formControlName="schoolName"
+            type="text"
+            matInput />
+            <mat-error *ngIf="qualificationForm.controls['schoolName'].hasError('required')">
+              هذا الحقل <strong>مطلوب</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50 control" appearance="outline">
+          <mat-label>مهارات اللغة</mat-label>
+          <mat-select required formControlName="languageSkills">
+            <mat-option *ngFor="let languageSkills of languageSkillsData" [value]="languageSkills">
+              {{languageSkills}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="qualificationForm.controls['languageSkills'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50 control" appearance="outline">
+          <mat-label>درجة اجادة اللغة</mat-label>
+          <mat-select  required formControlName="languageLevel">
+            <mat-option *ngFor="let languageLevel of languageLevelData" [value]="languageLevel">
+              {{languageLevel}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="qualificationForm.controls['languageLevel'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label> أذكر الدورات التدريبية الحاصل عليها</mat-label>
+          <textarea matInput required formControlName="trainingCourses"></textarea>
+          <mat-error *ngIf="qualificationForm.controls['trainingCourses'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+    </fieldset>
+    </form>
+  </div>
+  </div>
+  <div class=" col-md-6 col-sm-12 col-12 ">
+    <img src="assets/Parliament-Egypt-Img.png" alt="">
+    <br><br>
+    <div class="btn-next-back">
+      <div class="px-5">
+        <button mat-mini-fab  matStepperPrevious class="btn-next">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button class="btn-hidden">
+        </button>
+        <button mat-mini-fab  matStepperNext class="btn-next"
+        [style.color]="qualificationForm.invalid ? 'white':'white'"
+        [style.background]="qualificationForm.invalid ? 'gray':'rgb(109, 95, 234)'"
+        [disabled]="qualificationForm.invalid">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div> 
+    </div>
+  </div>
+  
+</div>
+</div>
+<br>
+
+
+

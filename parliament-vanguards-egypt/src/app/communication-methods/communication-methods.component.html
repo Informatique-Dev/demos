@@ -1,0 +1,93 @@
+<br><br>
+
+<div class="container">
+  <h1 >طرق التواصل</h1>
+<div class="row w-100 d-flex">
+  <div class="col-md-6 col-sm-12 col-12 " >
+    <br><br>
+    <div class="panel-body ">
+    <form [formGroup]="communicationForm">
+      <fieldset class="row justify-content-center"dir="rtl">
+        <mat-form-field class="w-50" appearance="outline" >
+          <mat-label >رقم هاتف ولي الأمر - واتس اب</mat-label>
+          <input 
+            formControlName="parentPhone"
+            type="text" required
+            matInput/>
+          <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+          <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('minlength')">
+            يجب أن يحتوي علي <strong>11</strong> رقم
+          </mat-error>
+          <mat-error *ngIf="communicationForm.controls['parentPhone'].hasError('pattern')">
+             يجب أن يحتوي <strong>أرقام</strong> 
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>رقم الهاتف - واتس اب</mat-label>
+          <input 
+            formControlName="phone"
+            type="text" required
+            matInput />
+            <mat-error *ngIf="communicationForm.controls['phone'].hasError('required')">
+              هذا الحقل <strong>مطلوب</strong>
+            </mat-error>
+            <mat-error *ngIf="communicationForm.controls['phone'].hasError('minlength')">
+              يجب أن يحتوي علي <strong>11</strong> رقم
+            </mat-error>
+            <mat-error *ngIf="communicationForm.controls['phone'].hasError('pattern')">
+               يجب أن يحتوي <strong>أرقام</strong> 
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label>البريد اللإلكتروني</mat-label>
+          <input 
+            formControlName="email"
+            type="text" required
+            matInput />
+            <mat-error *ngIf="communicationForm.controls['email'].hasError('required')">
+              هذا الحقل <strong>مطلوب</strong>
+            </mat-error>
+            <mat-error *ngIf="communicationForm.controls['email'].hasError('email')">
+               <strong>  يجب إدخال إيميل صحيح </strong> 
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label>عنوان السكن بالتفصيل (مدينة - شارع - رقم المنزل)</mat-label>
+          <textarea matInput required formControlName="address"></textarea>
+          <mat-error *ngIf="communicationForm.controls['address'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+    </fieldset>
+    </form>
+  </div>
+  </div>
+  <div class=" col-md-6 col-sm-12 col-12 ">
+    <img src="assets/Parliament-Egypt-Img.png" alt="">
+    <br><br>
+    <div class="btn-next-back">
+      <div class="px-5">
+        <button mat-mini-fab  matStepperPrevious class="btn-next">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button class="btn-hidden">
+        </button>
+        <button mat-mini-fab  matStepperNext class="btn-next"
+        [style.color]="communicationForm.invalid ? 'white':'white'"
+        [style.background]="communicationForm.invalid ? 'gray':'rgb(109, 95, 234)'"
+        [disabled]="communicationForm.invalid">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div> 
+    </div>
+  </div>
+  
+</div>
+</div>
+<br>
+
+
+
+
