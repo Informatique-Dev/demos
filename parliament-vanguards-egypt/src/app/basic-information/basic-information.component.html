@@ -9,7 +9,7 @@
       <fieldset class="row justify-content-center"dir="rtl">
         <mat-form-field class="w-50" appearance="outline">
           <mat-label>الأسم الرباعي</mat-label>
-          <input 
+          <input
             formControlName="name"
             type="text" required
             matInput placeholder="ادخل اسمك الرباعي باللغة العربية"/>
@@ -22,11 +22,11 @@
         </mat-form-field>
         <mat-form-field class="w-50" appearance="outline" >
           <mat-label >الرقم القومي</mat-label>
-          <input 
+          <input
             formControlName="nationalId"
             type="text" required
             matInput placeholder="ادخل رقم القومي 14 رقم "/>
-            
+
             <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('minlength')">
                 يجب أن لا يقل عن <strong>14</strong>رقم
             </mat-error>
@@ -51,7 +51,7 @@
             هذا الحقل <strong>مطلوب</strong>
           </mat-error>
         </mat-form-field>
-        
+
         <mat-form-field class="w-50 control" appearance="outline">
           <mat-label>القسم الاداري</mat-label>
           <mat-select formControlName="adminDepartment" required  >
@@ -85,12 +85,12 @@
           <mat-error *ngIf="basicInformationForm.controls['birthDate'].hasError('required')">
             هذا الحقل <strong>مطلوب</strong>
           </mat-error>
-        </mat-form-field> 
-       
-       <div class="container-fluid mt-3 p-0">
+        </mat-form-field>
+
+        <div class="container">
           <div class="row">
-            <div class="col-4 col-sm-4 ">
-              <mat-form-field  appearance="outline" class="control">
+            <div class="col-md-12">
+              <mat-form-field  appearance="outline" class="control col-md-4">
                 <mat-label>النوع</mat-label>
                 <mat-select formControlName="type" required >
                   <mat-option *ngFor="let type of typeData" [value]="type">
@@ -101,35 +101,35 @@
                    هذا الحقل <strong>مطلوب</strong>
                 </mat-error>
               </mat-form-field>
-              </div>
-              <div class=" col-4 col-sm-4 ">
-                <mat-form-field appearance="outline" class="control">
-                  <mat-label>الديانة</mat-label>
-                  <mat-select formControlName="religion" required >
-                    <mat-option *ngFor="let religion of religionData" [value]="religion">
-                      {{religion}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="basicInformationForm.controls['religion'].hasError('required')">
-                    هذا الحقل <strong>مطلوب</strong>
-                  </mat-error>
-                </mat-form-field>
-                </div>
-            <div class="col-4 col-sm-4 ">
-              <mat-form-field  appearance="outline" class="control">
+
+
+              <mat-form-field appearance="outline" class="control col-md-4 p-2">
+                <mat-label>الديانة</mat-label>
+                <mat-select formControlName="religion" required >
+                  <mat-option *ngFor="let religion of religionData" [value]="religion">
+                    {{religion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="basicInformationForm.controls['religion'].hasError('required')">
+                  هذا الحقل <strong>مطلوب</strong>
+                </mat-error>
+              </mat-form-field>
+
+
+              <mat-form-field  appearance="outline" class="control col-md-4">
                 <mat-label>هل لديك إعاقة</mat-label>
                 <mat-select formControlName="disability" required >
                   <mat-option *ngFor="let disability of disabilityData" [value]="disability">
                     {{disability}}
                   </mat-option>
-                 
+
                 </mat-select>
                 <mat-error *ngIf="basicInformationForm.controls['disability'].hasError('required')">
                   هذا الحقل <strong>مطلوب</strong>
                 </mat-error>
               </mat-form-field>
-            </div>
-          </div>
+              </div>
+              </div>
         </div>
     </fieldset>
     </form>
@@ -146,7 +146,7 @@
         [disabled]="basicInformationForm.invalid">
          <mat-icon>arrow_back</mat-icon>
        </button>
-     </div> 
+     </div>
    </div>
   </div>
 </div>
