@@ -1,0 +1,57 @@
+<br><br>
+
+<div class="container">
+  <h1 >المرفقات</h1>
+<div class="row w-100 d-flex">
+  <div class="col-md-6 col-sm-12 col-12 " >
+    <br><br>
+    <div class="panel-body ">
+    <form [formGroup]="attachmentForm">
+      <fieldset class="row justify-content-center"dir="rtl">
+        <label for="formFile" class="form-label">خلفية بيضاء 6x صورة شخصية</label>
+        <input formControlName="personalImage" class="form-control" type="file" id="formFile" required>
+        <small class="text-danger" *ngIf="attachmentForm.controls['personalImage']?.touched&&attachmentForm.controls['personalImage']?.invalid">هذا الحقل مطلوب</small> 
+    
+        <label for="formFile" class="form-label label-file"> صورة البطاقة أو شهادة الميلاد </label>
+        <input class="form-control" formControlName="cardImage" type="file" id="formFile" required>
+        <small class="text-danger" *ngIf="attachmentForm.controls['cardImage']?.touched&&attachmentForm.controls['cardImage']?.invalid">هذا الحقل مطلوب</small> 
+      
+        <label for="formFile" class="form-label label-file"> كارنية مركز الشباب أو النادي </label>
+        <input class="form-control" formControlName="youthCenterCard" type="file" id="formFile" required>
+        <small class="text-danger" *ngIf="attachmentForm.controls['youthCenterCard']?.touched&&attachmentForm.controls['youthCenterCard']?.invalid">هذا الحقل مطلوب</small> 
+        
+        <label for="formFile" class="form-label label-file"> إثبات قيد دراسي أو الكارنية الدراسي</label>
+        <input class="form-control" formControlName="proofAcademicEnrollment" type="file" id="formFile" required>
+        <small class="text-danger" *ngIf="attachmentForm.controls['proofAcademicEnrollment']?.touched&&attachmentForm.controls['proofAcademicEnrollment']?.invalid">هذا الحقل مطلوب</small> 
+        
+    </fieldset>
+    </form>
+  </div>
+  </div>
+  <div class=" col-md-6 col-sm-12 col-12 ">
+    <img src="assets/Parliament-Egypt-Img.png" alt="">
+    <br><br>
+    <div class="btn-next-back">
+      <div class="px-5">
+        <button mat-mini-fab  matStepperPrevious class="btn-next">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button class="btn-hidden">
+        </button>
+        <button mat-mini-fab  color="primary" matStepperNext class="btn-next"
+        [style.color]="attachmentForm.invalid ? 'white':'white'"
+        [style.background]="attachmentForm.invalid ? 'gray':'rgb(109, 95, 234)'"
+        [disabled]="attachmentForm.invalid">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div> 
+    </div>
+  </div>
+  
+</div>
+</div>
+<br>
+
+
+
+

@@ -1,0 +1,154 @@
+<br><br>
+<div class="container">
+  <h1 >البيانات الأساسية</h1>
+<div class="row w-100 d-flex">
+  <div class="col-md-6 col-sm-12 col-12 " >
+    <br><br>
+    <div class="panel-body ">
+    <form [formGroup]="basicInformationForm">
+      <fieldset class="row justify-content-center"dir="rtl">
+        <mat-form-field class="w-50" appearance="outline">
+          <mat-label>الأسم الرباعي</mat-label>
+          <input 
+            formControlName="name"
+            type="text" required
+            matInput placeholder="ادخل اسمك الرباعي باللغة العربية"/>
+            <mat-error *ngIf="basicInformationForm.controls['name'].hasError('required')">
+             هذا الحقل <strong>مطلوب</strong>
+            </mat-error>
+            <mat-error  *ngIf="basicInformationForm.controls['name'].hasError('pattern')">
+              <strong>الاسم يجب أن يكون باللغة العربية</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50" appearance="outline" >
+          <mat-label >الرقم القومي</mat-label>
+          <input 
+            formControlName="nationalId"
+            type="text" required
+            matInput placeholder="ادخل رقم القومي 14 رقم "/>
+            
+            <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('minlength')">
+              يجب أن يكون <strong>14</strong>رقم
+            </mat-error>
+            <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('pattern')">
+                هذا الحقل يجب أن يكون<strong>أرقام</strong>
+            </mat-error>
+            <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('required')">
+              هذا الحقل <strong>مطلوب</strong>
+           </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label>الجهة التابعة</mat-label>
+          <mat-select required  formControlName="entity">
+            <mat-option *ngFor="let entity of entityData" [value]="entity">
+             {{entity}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="basicInformationForm.controls['entity'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="w-50 control" appearance="outline">
+          <mat-label>القسم الاداري</mat-label>
+          <mat-select formControlName="adminDepartment" required  >
+            <mat-option *ngFor="let adminDepartment of adminDepartmentData" [value]="adminDepartment">
+             {{adminDepartment}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="basicInformationForm.controls['adminDepartment'].hasError('required')">
+           هذا الحقل  <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50 control" appearance="outline">
+          <mat-label>المحافظة</mat-label>
+          <mat-select formControlName="governorate" required>
+            <mat-option *ngFor="let governorate of governorateData" [value]="governorate">
+              {{governorate}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="basicInformationForm.controls['governorate'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 control" appearance="outline">
+          <mat-label>تاريخ الميلاد</mat-label>
+          <input required
+            formControlName="birthDate"
+            [matDatepicker]="picker"
+            matInput />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="basicInformationForm.controls['birthDate'].hasError('required')">
+            هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field> 
+       
+       <div class="container-fluid mt-3 p-0">
+          <div class="row">
+            <div class="col-4 col-sm-4 ">
+              <mat-form-field  appearance="outline" class="control">
+                <mat-label>النوع</mat-label>
+                <mat-select formControlName="type" required >
+                  <mat-option *ngFor="let type of typeData" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="basicInformationForm.controls['type'].hasError('required')">
+                   هذا الحقل <strong>مطلوب</strong>
+                </mat-error>
+              </mat-form-field>
+              </div>
+              <div class=" col-4 col-sm-4 ">
+                <mat-form-field appearance="outline" class="control">
+                  <mat-label>الديانة</mat-label>
+                  <mat-select formControlName="religion" required >
+                    <mat-option *ngFor="let religion of religionData" [value]="religion">
+                      {{religion}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="basicInformationForm.controls['religion'].hasError('required')">
+                    هذا الحقل <strong>مطلوب</strong>
+                  </mat-error>
+                </mat-form-field>
+                </div>
+            <div class="col-4 col-sm-4 ">
+              <mat-form-field  appearance="outline" class="control">
+                <mat-label>هل لديك إعاقة</mat-label>
+                <mat-select formControlName="disability" required >
+                  <mat-option *ngFor="let disability of disabilityData" [value]="disability">
+                    {{disability}}
+                  </mat-option>
+                 
+                </mat-select>
+                <mat-error *ngIf="basicInformationForm.controls['disability'].hasError('required')">
+                  هذا الحقل <strong>مطلوب</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+    </fieldset>
+    </form>
+  </div>
+  </div>
+  <div class=" col-md-6 col-sm-12 col-12 ">
+    <img src="assets/Parliament-Egypt-Img.png" alt="">
+    <br><br>
+    <div class="btn-next-back">
+      <div class="px-5" style="flex-direction: row; justify-content: space-around;">
+       <button mat-mini-fab matStepperNext id="btn-next"
+        [style.color]="basicInformationForm.invalid ? 'white':'white'"
+        [style.background]="basicInformationForm.invalid ? 'gray':'rgb(109, 95, 234)'"
+        [disabled]="basicInformationForm.invalid">
+         <mat-icon>arrow_back</mat-icon>
+       </button>
+     </div> 
+   </div>
+  </div>
+</div>
+</div>
+<br>
+
+
+
