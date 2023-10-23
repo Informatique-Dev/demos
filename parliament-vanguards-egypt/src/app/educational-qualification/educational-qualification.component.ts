@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import educationalLevelDataJson from '../../assets/educational-level.json';
-import educationalYearDataJson from '../../assets/educational-year.json';
-import languageSkillsDataJson from '../../assets/language-skills.json';
-import languageLevelDataJson from '../../assets/language-level.json';
 @Component({
   selector: 'app-educational-qualification',
   templateUrl: './educational-qualification.component.html',
@@ -12,15 +8,27 @@ import languageLevelDataJson from '../../assets/language-level.json';
 export class EducationalQualificationComponent implements OnInit {
   qualificationForm!:FormGroup;
   educationalLevelData:string[]=[];
+  educationalLevels:string[]=[
+    "الإبتدائية","المتوسطة","الثانوية","الجامعية"
+]
   educationalYearData:string[]=[];
+  educationalYears:string[]=[
+    "2015","2016","2017","2018","2019","2020","2021","2022","2023"
+];
   languageSkillsData:string[]=[];
+  languageSkills:string[]=[
+    "العربية","الإنجليزية","الألمانية","الفرنسية"
+]
   languageLevelData:string[]=[];
+  languageLevels:string[]=[
+    "مبتدئ" ,"ما قبل المتوسط","متوسط","فوق المتوسط","متقدم"
+];
   constructor(private formBuilder:FormBuilder ){}
   ngOnInit(): void {
     this.Form();
     this.educationalLevel();
     this.educationalYear();
-    this.languageSkills();
+    this.getLanguageSkills();
     this.languageLevel();
   }
   
@@ -37,15 +45,15 @@ export class EducationalQualificationComponent implements OnInit {
   }
 
   educationalLevel(){
-    this.educationalLevelData=educationalLevelDataJson
+    this.educationalLevelData=this.educationalLevels
   }
   educationalYear(){
-    this.educationalYearData=educationalYearDataJson;
+    this.educationalYearData=this.educationalYears;
   }
-  languageSkills(){
-    this.languageSkillsData=languageSkillsDataJson;
+  getLanguageSkills(){
+    this.languageSkillsData=this.languageSkills;
   }
   languageLevel(){
-    this.languageLevelData=languageLevelDataJson;
+    this.languageLevelData=this.languageLevels;
   }
 }

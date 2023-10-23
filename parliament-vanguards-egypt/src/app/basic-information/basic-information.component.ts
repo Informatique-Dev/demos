@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import governorateDataJson from '../../assets/governorate.json';
-import typeDataJson from '../../assets/type.json';
-import religionDataJson from '../../assets/religion.json';
-import disabilityDataJson from '../../assets/disability.json';
-import adminDepartmentDataJson from '../../assets/admin-department.json';
-import entityDataJson from '../../assets/entity.json';
 @Component({
   selector: 'app-basic-information',
   templateUrl: './basic-information.component.html',
@@ -16,22 +11,38 @@ constructor(private formBuilder:FormBuilder){}
 basicInformationForm!:FormGroup;
 governorateData:string[]=[];
 typeData:string[]=[];
+types:string[]=[
+  "ذكر","أنثي"
+];
 religionData:string[]=[];
+religions:string[]=[
+  "مسلم","مسيحي"
+];
 disabilityData:string[]=[];
+disabilitys:string[]=[
+  "نعم","لا"
+]
 adminDepartmentData:string[]=[];
+adminDepartments:string[]=[
+  "أول أسيوط",
+  "ثان أسيوط"
+];
 entityData:string[]=[];
+entitys:string[]=[
+  "أسيوط","قنا","القاهرة","الجيزة"
+]
 ngOnInit(): void {
   this.Form();
   this.governorates();
-  this.types();
-  this.religions();
+  this.getTypes();
+  this.getReligions();
   this.disability();
   this.adminDepartment();
   this.entity();
 }
 Form() {
   this.basicInformationForm = this.formBuilder.group({
-    name: ['', [Validators.required,Validators.pattern("^[أ-ي]*$")]],
+    name: ['', [Validators.required,Validators.pattern("^[\u0621-\u064A _-]+$")]],
     nationalId: ['',[Validators.required,Validators.minLength(14),Validators.maxLength(14),Validators.pattern("^[0-9]*$")]],
     entity: ['', [Validators.required]],
     governorate: ['',Validators.required],
@@ -45,20 +56,20 @@ Form() {
 governorates(){
   this.governorateData=governorateDataJson;
 }
-types(){
-  this.typeData=typeDataJson;
+getTypes(){
+  this.typeData=this.types;
 }
-religions(){
-  this.religionData=religionDataJson;
+getReligions(){
+  this.religionData=this.religions;
 }
 disability(){
-  this.disabilityData=disabilityDataJson;
+  this.disabilityData=this.disabilitys;
 }
 adminDepartment(){
-  this.adminDepartmentData=adminDepartmentDataJson
+  this.adminDepartmentData=this.adminDepartments;
 }
 entity(){
-  this.entityData=entityDataJson
+  this.entityData=this.entitys;
 }
  
 }

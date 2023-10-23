@@ -2,6 +2,7 @@
 
 <div class="container">
   <h1 >طرق التواصل</h1>
+  <br>
 <div class="row w-100 d-flex">
   <div class="col-md-6 col-sm-12 col-12 " >
     <br><br>
@@ -9,7 +10,7 @@
     <form [formGroup]="communicationForm">
       <fieldset class="row justify-content-center"dir="rtl">
         <mat-form-field class="w-50" appearance="outline" >
-          <mat-label >رقم هاتف ولي الأمر - واتس اب</mat-label>
+          <mat-label >رقم الهاتف الأول</mat-label>
           <input 
             formControlName="parentPhone"
             type="text" required
@@ -28,14 +29,11 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="w-50" appearance="outline">
-          <mat-label>رقم الهاتف - واتس اب</mat-label>
+          <mat-label>رقم الهاتف الثاني</mat-label>
           <input 
             formControlName="phone"
-            type="text" required
+            type="text"
             matInput />
-            <mat-error *ngIf="communicationForm.controls['phone'].hasError('required')">
-              هذا الحقل <strong>مطلوب</strong>
-            </mat-error>
             <mat-error *ngIf="communicationForm.controls['phone'].hasError('minlength')">
               يجب أن لا يقل عن <strong>11</strong> رقم
              </mat-error>
@@ -68,6 +66,7 @@
         </mat-form-field>
     </fieldset>
     </form>
+    <br>
   </div>
   </div>
   <div class=" col-md-6 col-sm-12 col-12 ">

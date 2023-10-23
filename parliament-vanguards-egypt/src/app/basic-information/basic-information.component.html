@@ -7,7 +7,7 @@
     <div class="panel-body ">
     <form [formGroup]="basicInformationForm">
       <fieldset class="row justify-content-center"dir="rtl">
-        <mat-form-field class="w-50" appearance="outline">
+        <mat-form-field class="col-md-6 col-12 mt-4" appearance="outline">
           <mat-label>الأسم الرباعي</mat-label>
           <input
             formControlName="name"
@@ -20,7 +20,7 @@
               <strong>الاسم يجب أن يكون باللغة العربية</strong>
             </mat-error>
         </mat-form-field>
-        <mat-form-field class="w-50" appearance="outline" >
+        <mat-form-field class="col-md-6 col-12 mt-4" appearance="outline" >
           <mat-label >الرقم القومي</mat-label>
           <input
             formControlName="nationalId"
@@ -34,7 +34,7 @@
                 يجب أن لا يزيد عن <strong>14</strong>رقم
             </mat-error>
             <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('pattern')">
-                هذا الحقل يجب أن يكون<strong>أرقام</strong>
+                هذا الحقل يجب أن يكون <strong>أرقام</strong>
             </mat-error>
             <mat-error *ngIf="basicInformationForm.controls['nationalId'].hasError('required')">
               هذا الحقل <strong>مطلوب</strong>
@@ -51,18 +51,6 @@
             هذا الحقل <strong>مطلوب</strong>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="w-50 control" appearance="outline">
-          <mat-label>القسم الاداري</mat-label>
-          <mat-select formControlName="adminDepartment" required  >
-            <mat-option *ngFor="let adminDepartment of adminDepartmentData" [value]="adminDepartment">
-             {{adminDepartment}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="basicInformationForm.controls['adminDepartment'].hasError('required')">
-           هذا الحقل  <strong>مطلوب</strong>
-          </mat-error>
-        </mat-form-field>
         <mat-form-field class="w-50 control" appearance="outline">
           <mat-label>المحافظة</mat-label>
           <mat-select formControlName="governorate" required>
@@ -72,6 +60,17 @@
           </mat-select>
           <mat-error *ngIf="basicInformationForm.controls['governorate'].hasError('required')">
             هذا الحقل <strong>مطلوب</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-50 control" appearance="outline">
+          <mat-label>القسم الاداري</mat-label>
+          <mat-select formControlName="adminDepartment" required  >
+            <mat-option *ngFor="let adminDepartment of adminDepartmentData" [value]="adminDepartment">
+             {{adminDepartment}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="basicInformationForm.controls['adminDepartment'].hasError('required')">
+           هذا الحقل  <strong>مطلوب</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="w-100 control" appearance="outline">
@@ -133,6 +132,7 @@
         </div>
     </fieldset>
     </form>
+    <br>
   </div>
   </div>
   <div class=" col-md-6 col-sm-12 col-12 ">
