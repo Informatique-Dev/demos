@@ -1,0 +1,10 @@
+<mat-form-field style="width: 100%" appearance="outline">
+  <mat-label>{{ fieldName }}</mat-label>
+  <input matInput [type]="type" [formControl]="control" (blur)="fun()" />
+  <mat-hint *ngIf="hint" align="start"
+    ><strong>{{ hint }}</strong>
+  </mat-hint>
+  <mat-error>
+    <app-control-messages [control]="control" [fieldName]="fieldName"></app-control-messages>
+  </mat-error>
+</mat-form-field>

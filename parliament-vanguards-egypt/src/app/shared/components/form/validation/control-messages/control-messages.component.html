@@ -1,0 +1,4 @@
+<mat-error *ngIf="errorMessage && fieldName !== fieldNameWillNotShowMessage">{{errorMessage}}</mat-error>
+<mat-error *ngIf="showMessage&& requiredLength > 10"> يرجى إدخال  {{ requiredLength }} رقم </mat-error>
+<mat-error *ngIf="showMessage && requiredLength <= 10"> يرجى إدخال  {{ requiredLength }} ارقام </mat-error>
+<mat-error *ngIf="showMessage && minLength <= 10">  يرجى إدخال اكثر من {{ minLength }} ارقام </mat-error>

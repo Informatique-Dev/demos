@@ -1,0 +1,21 @@
+<div class="form-group fCairo mb-3">
+<mat-label >{{ fieldName }}</mat-label>
+<mat-form-field class="fCairo mb-3" style="width: 100%" appearance="outline">
+  <mat-select  *ngIf="!selectedValue" [compareWith]="compareFu" [formControl]="control">
+    <mat-option *ngIf="chooseLabel" [value]="''">اختر</mat-option>
+    <mat-option *ngIf="RequestLabel" [value]="''">جميع الطلبات</mat-option>
+    <mat-option *ngIf="degreeLabel" [value]="''">جميع الدرجات الوظيفية</mat-option>
+    <mat-option *ngIf="prosecutionLabel" [value]="''">جميع النيابات </mat-option>
+    <mat-option *ngIf="offerLabel" [value]="''">جميع العروض </mat-option>
+    <mat-option *ngIf="tripLabel" [value]="''">جميع الرحلات</mat-option>
+    <mat-option *ngFor="let d of data" [value]="d" [routerLink]="d.copm">{{ viewedValue ? d[viewedValue] : d }}</mat-option>
+  </mat-select>
+  <mat-select class="fCairo"  *ngIf="selectedValue" [formControl]="control">
+    <mat-option [value]="''">اختر</mat-option>
+    <mat-option *ngFor="let d of data" [value]="d[selectedValue]" [routerLink]="d.copm">{{ d[viewedValue] }}</mat-option>
+  </mat-select>
+  <mat-error>
+    <app-control-messages [control]="control" [fieldName]="fieldName"></app-control-messages>
+  </mat-error>
+</mat-form-field>
+</div>

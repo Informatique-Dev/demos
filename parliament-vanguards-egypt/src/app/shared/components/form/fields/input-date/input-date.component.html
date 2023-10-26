@@ -1,0 +1,12 @@
+<div class="form-group mb-3">
+  <mat-label  *ngIf="label">{{ fieldName }}</mat-label>
+<mat-form-field class="mb-3" style="width: 100%" appearance="outline">
+  <input  *ngIf="onchange" matInput [matDatepicker]="dp2" (dateChange)="onchange($event)" [readonly]="readonly" [formControl]="control" />
+  <input  *ngIf="!onchange" matInput [matDatepicker]="dp2" [readonly]="readonly" [formControl]="control" />
+  <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+  <mat-datepicker #dp2></mat-datepicker>
+  <mat-error>
+    <app-control-messages [control]="control" [fieldName]="fieldName"></app-control-messages>
+  </mat-error>
+</mat-form-field>
+</div>

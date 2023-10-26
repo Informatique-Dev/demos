@@ -40,7 +40,7 @@
               هذا الحقل <strong>مطلوب</strong>
            </mat-error>
         </mat-form-field>
-        <mat-form-field class="w-100 control" appearance="outline">
+        <mat-form-field class="w-50 control" appearance="outline">
           <mat-label>الجهة التابعة</mat-label>
           <mat-select required  formControlName="entity">
             <mat-option *ngFor="let entity of entityData" [value]="entity">
@@ -73,7 +73,7 @@
            هذا الحقل  <strong>مطلوب</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="w-100 control" appearance="outline">
+        <mat-form-field class="w-50 control" appearance="outline">
           <mat-label>تاريخ الميلاد</mat-label>
           <input required
             formControlName="birthDate"

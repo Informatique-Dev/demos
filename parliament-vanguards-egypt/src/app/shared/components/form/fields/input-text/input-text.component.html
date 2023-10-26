@@ -1,0 +1,41 @@
+<div class="form-group mb-3">
+  <mat-label  *ngIf="label">{{ fieldName }}</mat-label>
+<mat-form-field class="mb-3 "  style="width: 100%" appearance="outline" >
+  <input
+    matInput
+    [type]="type"
+    [formControl]="control"
+    appInputNumberOnly
+    [onlyNumber]="onlyNumber"
+    appInputEnglishCharOnly
+    [englishCharOnly]="englishCharOnly"
+    appInputArabicCharOnly
+    [arabicCharOnly]="arabicCharOnly"
+    [arabicCharOnlyWithoutNumber]="arabicCharOnlyWithoutNumber"
+    [ngClass]="{ makeArrows: arrowsNumberInputRemoved }"
+    [noWhiteSpace]="noWhiteSpace"
+    [min]="min"
+    [fraction]="fraction"
+    appInputLimiter
+    [readonly]="readonly"
+    [maxLength]="maxLength"
+    (blur)="fun()"
+    [(ngModel)]="value"
+  />
+  <mat-icon class="login fs-4"  *ngIf="inboxIcon" matPrefix>account_box</mat-icon>
+  <mat-icon class="login fs-4"  *ngIf="passwordIcon"  matPrefix>lock_outline</mat-icon>
+  <mat-hint *ngIf="hint" align="start"
+    ><strong>{{ hint }}</strong>
+  </mat-hint>
+  <mat-error>
+    <app-control-messages
+      [showMessage]="showMessage"
+      [fieldNameWillNotShowMessage]="fieldNameWillNotShowMessage"
+      [requiredLength]="requiredLength"
+      [minLength]="minLength"
+      [control]="control"
+      [fieldName]="fieldName"
+    ></app-control-messages>
+  </mat-error>
+</mat-form-field>
+</div>

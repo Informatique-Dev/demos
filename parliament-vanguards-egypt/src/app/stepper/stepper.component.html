@@ -1,28 +1,29 @@
-
-<mat-stepper [linear]="isLinear" #stepper dir="rtl">
-    <mat-step >
-      <form >
+<div class="container mt-3">
+  <mat-stepper [linear]="isLinear" #stepper dir="rtl">
+    <mat-step>
+      <form class="fCairo">
         <ng-template matStepLabel>البيانات الأساسية</ng-template>
         <app-basic-information></app-basic-information>
       </form>
     </mat-step>
-    <mat-step  label="طرق التواصل">
-      <form >
-       <app-communication-methods></app-communication-methods>
+    <mat-step label="طرق التواصل">
+      <form>
+        <app-communication-methods></app-communication-methods>
       </form>
     </mat-step>
-    <mat-step  label="المؤهل الدراسي">
-        <form >
-         <app-educational-qualification></app-educational-qualification>
-        </form>
-      </mat-step>
-      <mat-step  label="المرفقات">
-        <form >
-         <app-attachments></app-attachments>
-        </form>
-      </mat-step>
+    <mat-step label="المؤهل الدراسي">
+      <form>
+        <app-educational-qualification></app-educational-qualification>
+      </form>
+    </mat-step>
+    <mat-step label="المرفقات">
+      <form>
+        <app-attachments></app-attachments>
+      </form>
+    </mat-step>
     <mat-step>
       <ng-template matStepLabel>تأكيد</ng-template>
       <app-done></app-done>
     </mat-step>
   </mat-stepper>
+</div>
