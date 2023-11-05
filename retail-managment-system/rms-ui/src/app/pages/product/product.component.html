@@ -97,6 +97,19 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="addToCart">
+            <th mat-header-cell *matHeaderCellDef class="fw-bold fs-6"> {{ "product.add" | translate }}</th>
+            <td mat-cell *matCellDef="let element" class="d-flex" >
+              <button [disabled]="((element.quantity==0))? true:false" class="btn add table-button btn-secondary m-2 w-50"
+                      (click)="addToCart(element)">
+                Add to cart
+              </button>
+
+              <input type="number" class="form-control m-2 p-2 w-25" [value]="defaultValue" placeholder="quantity" min="1" (input)="updateQuantity(element , $event.target.value)"/>
+
+            </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true;"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           <tr class="mat-row spinner-row" *matNoDataRow>
@@ -104,7 +117,7 @@
               <app-loading-spinner></app-loading-spinner>
             </td>
           </tr>
-        </table>          
+        </table>
           <mat-paginator [length]="totaItem"
             [pageSizeOptions]="[10,5,25,100]"
             (page)="$event;onPaginationChange($event)"
@@ -124,10 +137,10 @@
                     ? ("update" | translate)
                     : ("add" | translate)
                 }}
-  
+
                 {{ "product.product" | translate }}
               </h3>
-  
+
               <mat-icon
                 class="add-icon me-4"
                 (click)="restartForm(); isButtonVisible = true"
