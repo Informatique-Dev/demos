@@ -9,4 +9,6 @@ export interface Product {
   cashPrice: number;
   quantity: number;
   productCategoryDto: Category;
+  orderQuantity:number;
+
 }

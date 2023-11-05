@@ -1,0 +1,156 @@
+
+<div class="container">
+  <div class=" text-center mat-typography mt-4">
+    <div>
+      <h3 class="pt-3 mat-headline panel-title fw-bold">
+        {{ "order.our-orders" | translate }}
+      </h3>
+    </div>
+  </div>
+
+  <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
+      <div
+        class="child-height w-100 overflow-scroll data-table bg-white"
+      >
+      <div class=" w-100 col-lg-6">
+        <div class="row mt-2" style=" margin-right:10px; margin-left:10px;">
+          <div class="col-sm-3 mb-3 " *ngFor="let product of orderProducts">
+        <div class="card border shadow-0 mb-3" >
+          <div class="card-header">{{"order.name"|translate}}{{product.name}}</div>
+          <div class="card-body">
+            <h6 class="card-title">{{"order.price"|translate}} {{product.cashPrice}}</h6>
+            <h6 class="card-title">Quantity: {{product.orderQuantity}}</h6>
+
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 p-3 bg-light">
+        <section>
+          <div>
+            <div class="panel-heading pt-2 ps-1 mb-3 d-flex justify-content-between">
+              <h3 class="panel-title">
+                {{ "order.add" | translate }}
+
+                {{ "order.order" | translate }}
+              </h3>
+
+            </div>
+          </div>
+          <div class="panel-body ">
+            <form [formGroup]="orderForm">
+              <fieldset class="row justify-content-center">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label> {{ "order.order-date" | translate }}</mat-label>
+                  <input
+                    formControlName="orderDate"
+                    type="date"
+                    matInput
+                    placeholder="{{ 'order.order-date' | translate }}"
+                  />
+
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>{{ "order.paid-amount" | translate }}</mat-label>
+                  <input
+                    formControlName="paidAmount"
+                    type="number"
+                    min="1"
+                    matInput
+                    placeholder="{{ 'order.paid-amount' | translate }}"
+                    required
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-50">
+                  <mat-label>{{ "order.remaining-amount" | translate }}</mat-label>
+                  <input
+                    formControlName="remainingAmount"
+                    type="number"
+                    min="1"
+                    matInput
+                    placeholder="{{ 'order.remaining-amount' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ "order.payment-type" | translate }}</mat-label>
+                  <mat-select
+                    formControlName="paymentType"
+                    placeholder="{{ 'order.payment-type' | translate }}"
+
+                  >
+                    <mat-option *ngFor="let pay of paymentType" [value]="pay" (click)="showInstallmentField(pay)">
+                      {{pay}}
+
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ "employee.employee" | translate }}</mat-label>
+                  <mat-select
+                    formControlName="employee"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'employee.employee' | translate }}"
+                  >
+                    <mat-option *ngFor="let emp of employees" [value]="emp">
+                      {{ emp.fullName }}
+                    </mat-option>
+                  </mat-select>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ "customrs.customer" | translate }}</mat-label>
+                  <mat-select
+                    formControlName="customer"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'customrs.customer' | translate }}"
+                  >
+                    <mat-option *ngFor="let cust of customers" [value]="cust">
+                      {{ cust.fullName }}
+                    </mat-option>
+                  </mat-select>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>{{ "order.total-price" | translate }}</mat-label>
+                  <input
+                    formControlName="totalPrice"
+                    type="number"
+                    min="1"
+                    matInput
+                    placeholder="{{ 'order.total-price' | translate }}"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100" *ngIf="showInstallment" >
+                  <mat-label>{{ "installments.installment" | translate }}</mat-label>
+                  <input
+                    formControlName="installments"
+                    type="text"
+                    matInput
+                    placeholder="{{ 'installments.installment' | translate }}"
+                  />
+                </mat-form-field>
+
+              </fieldset>
+            </form>
+          </div>
+          <div class="actions">
+            <button class=" add btn primary me-3" (click)="addOrder()">
+              {{'order.add'|translate}}
+            </button>
+
+          </div>
+
+        </section>
+      </div>
+  </div>
+</div>
+
+

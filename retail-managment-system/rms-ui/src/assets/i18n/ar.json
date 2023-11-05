@@ -83,7 +83,8 @@
     "delete-successfuly": "تم مسح المنتج بنجاح",
     "no-products":" لا يوجد منتجات تحت هذه الفئة",
     "close": "اغلاق",
-    "choose-by-category":"الفئة"
+    "choose-by-category":"الفئة",
+    "add":"اضافة"
   },
   "category": {
     "category": "الفئات",
@@ -327,5 +328,19 @@
     "close": "اغلاق",
     "choose-employee":"اختار اسم الموظف",
     "search-stores":"البحث عن مخزن"
+  },
+  "order":{
+    "our-orders":"الطلبات",
+    "add":"اضف",
+    "order":"الطلب",
+    "id":"رقم الطلب",
+    "version":"الاصدار",
+    "order-date":"تاريخ الطلب",
+    "paid-amount":"القيمة المدفوعة",
+    "remaining-amount":"القيمة المتبقية",
+    "total-price":"المبلغ كامل",
+    "payment-type":"طريقة الدفع",
+    "name":":الاسم",
+    "price":":السعر "
   }
 }

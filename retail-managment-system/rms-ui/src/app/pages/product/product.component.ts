@@ -10,6 +10,7 @@ import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/c
 import { TranslateService } from '@ngx-translate/core';
 import { Pagination } from 'src/app/core/models/pagination';
 import { PageEvent } from '@angular/material/paginator';
+import { SharedService } from 'src/app/shared/service/shared.service';
 
 @Component({
   selector: 'app-product',
@@ -18,6 +19,8 @@ import { PageEvent } from '@angular/material/paginator';
   encapsulation: ViewEncapsulation.None,
 })
 export class ProductComponent implements OnInit {
+  defaultValue:number=1;
+  products:Product[]=[];
   allProducts: Product[] = [];
   size: number = 10;
   page: number = 0;
@@ -35,6 +38,7 @@ export class ProductComponent implements OnInit {
     'price',
     'quantity',
     'actions',
+    'addToCart'
   ];
 
   constructor(
@@ -43,7 +47,8 @@ export class ProductComponent implements OnInit {
     private build: FormBuilder,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private sharedService:SharedService
   ) {}
 
   ngOnInit() {
@@ -51,6 +56,25 @@ export class ProductComponent implements OnInit {
     this.getAllTempCat();
     this.prodForm();
   }
+
+  updateQuantity(product: Product, newQuantity: number) {
+    product.orderQuantity = newQuantity;
+    this.sharedService.setQuantity(newQuantity);
+
+}
+
+addToCart(data:Product){
+  if (data.orderQuantity==undefined) {
+    data.orderQuantity=1;
+    this.sharedService.setQuantity(data.orderQuantity);
+    this.products.push(data);
+    this.sharedService.loadProducts(this.products);
+  }
+  else{
+    this.products.push(data);
+    this.sharedService.loadProducts(this.products);
+  }
+}
 
   productFilter(id : number){
      this.productRepository.filterProductsById(id).subscribe((result:any)=>{
@@ -63,7 +87,7 @@ export class ProductComponent implements OnInit {
             {
               duration: 2000,
             }
-          ); 
+          );
         }
     })
   }

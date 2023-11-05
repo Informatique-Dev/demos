@@ -85,7 +85,8 @@
     "delete-successfuly": "Product Deleted Successfuly!",
     "no-products":"No products found in this category!",
     "close": "close",
-    "choose-by-category":"Category"
+    "choose-by-category":"Category",
+    "add":"Add"
   },
   "category": {
     "category": "Category",
@@ -328,5 +329,19 @@
     "close": "Close!",
     "choose-employee":"Choose Employee",
     "search-stores":"Search for store"
+  },
+  "order":{
+    "our-orders":"Our Orders",
+    "add":"Add",
+    "order":"Order",
+    "id":"Id",
+    "version":"Version",
+    "order-date":"Order Date",
+    "paid-amount":"Paid Amount",
+    "remaining-amount":"Remaining Amount",
+    "total-price":"Total Price",
+    "payment-type":"Payment Type",
+    "name":"Name: ",
+    "price":"Price: "
   }
 }
