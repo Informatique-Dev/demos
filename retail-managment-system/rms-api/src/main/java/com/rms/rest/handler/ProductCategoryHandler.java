@@ -4,10 +4,7 @@ import com.rms.domain.core.ProductCategory;
 import com.rms.domain.investor.Transaction;
 import com.rms.rest.dto.ProductCategoryDto;
 import com.rms.rest.dto.common.PaginatedResultDto;
-import com.rms.rest.exception.ErrorCodes;
-import com.rms.rest.exception.ResourceNotFoundException;
-import com.rms.rest.exception.ResourceRelatedException;
-import com.rms.rest.exception.Response;
+import com.rms.rest.exception.*;
 import com.rms.rest.modelmapper.ProductCategoryMapper;
 import com.rms.rest.modelmapper.common.PaginationMapper;
 import com.rms.service.ProductCategoryService;
@@ -18,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -43,6 +41,14 @@ public class ProductCategoryHandler {
     }
 
     public ResponseEntity<ProductCategoryDto> save(ProductCategoryDto productCategoryDto) {
+        Optional<ProductCategory>productCategoryexist=productCategoryService.findByName(productCategoryDto.getName());
+
+        if(productCategoryexist.isPresent())
+        {
+
+            throw new ResourceAlreadyExistsException(ProductCategory.class.getSimpleName(),
+                    "product category name",productCategoryDto.getName(),ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
         ProductCategory productCategory = mapper.toEntity(productCategoryDto);
         productCategoryService.save(productCategory);
         ProductCategoryDto dto = mapper.toDto(productCategory);
@@ -50,9 +56,16 @@ public class ProductCategoryHandler {
     }
 
     public ResponseEntity<ProductCategoryDto> update(ProductCategoryDto productCategoryDto, Integer id) {
+        Optional<ProductCategory>productCategoryexist=productCategoryService.findByName(productCategoryDto.getName());
+        if(productCategoryexist.isPresent()&&!productCategoryexist.get().getId().equals(id))
+        {
+            throw new ResourceAlreadyExistsException(ProductCategory.class.getSimpleName(),
+                    "product category name",productCategoryDto.getName(),ErrorCodes.DUPLICATE_RESOURCE.getCode());
+        }
         ProductCategory productCategory = productCategoryService.getById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ProductCategory.class.getSimpleName(), id));
         mapper.updateEntityFromDto(productCategoryDto, productCategory);
+        productCategory.setId(id);
         productCategoryService.save(productCategory);
         ProductCategoryDto dto = mapper.toDto(productCategory);
         return ResponseEntity.ok(dto);
