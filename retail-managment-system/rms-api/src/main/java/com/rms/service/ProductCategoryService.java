@@ -23,6 +23,11 @@ public class ProductCategoryService {
         return productCategoryRepository.findById(id);
     }
 
+    public Optional<ProductCategory>findByName(String name)
+    {
+        return productCategoryRepository.findByName(name);
+    }
+
     public ProductCategory save(ProductCategory category) {
         return productCategoryRepository.save(category);
     }
