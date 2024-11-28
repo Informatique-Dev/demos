@@ -23,6 +23,7 @@ import { UserComponent } from './user/user.component';
 import { RoleAssignComponent } from './user/role-assign/role-assign/role-assign.component';
 import { RoleComponent } from './role/role.component';
 import { StoreComponent } from './store/store.component';
+import { OrderComponent } from './order/order/order.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path:'user', component:UserComponent },
   { path:'role', component:RoleComponent },
   { path:'user/:id', component : RoleAssignComponent },
-  { path: 'store', component: StoreComponent}
+  { path: 'store', component: StoreComponent},
+  {path:'order',component:OrderComponent}
 
 ];
 @NgModule({
@@ -62,6 +64,7 @@ const routes: Routes = [
     RoleAssignComponent,
     RoleComponent,
     StoreComponent,
+    OrderComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
 

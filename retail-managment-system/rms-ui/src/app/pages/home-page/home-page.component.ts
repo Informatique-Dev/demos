@@ -77,6 +77,10 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/customers']);
   }
 
+  openOrder(){
+    this.router.navigate(['/order'])
+  }
+
   openInvestors() {
     this.router.navigate(['/investor']);
   }
