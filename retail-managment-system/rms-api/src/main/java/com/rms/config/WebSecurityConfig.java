@@ -63,6 +63,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/auth/**").permitAll();
+        http.authorizeRequests().antMatchers("/customer/**","/installment/**",
+                "/investor/**","/employee/**","/profits/**"
+                ,"/role/**","/store/**","/supplier/**",
+                "/transaction/**","/user/**","/user-role/**").hasRole("ADMIN");
         //for swagger
         http.authorizeRequests().antMatchers("/v3/api-docs/*", "/v3/api-docs", "/swagger-ui.html", "/swagger-ui/*").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
