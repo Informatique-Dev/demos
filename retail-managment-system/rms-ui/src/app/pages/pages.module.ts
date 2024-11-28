@@ -23,12 +23,14 @@ import { UserComponent } from './user/user.component';
 import { RoleAssignComponent } from './user/role-assign/role-assign/role-assign.component';
 import { RoleComponent } from './role/role.component';
 import { StoreComponent } from './store/store.component';
+import { TestProductComponent } from './test-product/test-product.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home' },
   { path: 'home', component: HomePageComponent },
   { path: 'product', component: ProductComponent },
+  {path:'testProduct',component:TestProductComponent},
   {path: 'category',component: CategoryPageComponent},
   { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard] },
   { path: 'profits', component: ProfitComponent ,canActivate: [AuthGuard] },
@@ -62,6 +64,7 @@ const routes: Routes = [
     RoleAssignComponent,
     RoleComponent,
     StoreComponent,
+    TestProductComponent,
   ],
   imports: [RouterModule.forChild(routes), SharedModule, TranslateModule,AuthModule,NgxPrintModule],
 

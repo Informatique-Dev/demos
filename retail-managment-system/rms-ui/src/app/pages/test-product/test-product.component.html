@@ -1,0 +1,188 @@
+<br><br>
+<div class="container">
+    <div  class="custom-filter col-sm-4 col-md-4 column d-flex w-30">
+    <mat-form-field appearance="outline" color="primary" class=" shadow bg-white rounded">
+        <mat-label>
+            {{'product.choose-by-category' | translate}}
+          </mat-label>
+            <mat-select panelClass="mt-5 data-table">
+              <mat-option (click)="getAllProducts()">{{"all" | translate}}</mat-option>
+              <mat-option *ngFor="let category of allCategories" value="category" (click)="filterProductByCategory(category.id)">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+      </mat-form-field>
+      </div>
+    <div class="d-flex flex-lg-row flex-column my-4  shadow-lg fixed-height">
+        <div class="child-height col-lg-8 overflow-scroll data-table bg-white ">
+          <table mat-table [dataSource]="allProducts" class="col w-100">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef> Category </th>
+              <td mat-cell *matCellDef="let element"> {{ element.productCategoryDto.name }}</td>
+            </ng-container>
+          
+            <ng-container matColumnDef="brand">
+              <th mat-header-cell *matHeaderCellDef> Brand </th>
+              <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                  <button class="btn table-button" (click)="fillForm(element)"><mat-icon>edit</mat-icon></button>
+                  <button class="btn table-button" (click)="confirmDialog(element)"><mat-icon>delete</mat-icon></button>
+                 </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row spinner-row" *matNoDataRow>
+              <td>
+                <app-loading-spinner></app-loading-spinner>
+              </td>
+            </tr>
+          </table>
+          <mat-paginator
+              (page)="handlePageEvent($event)"
+              [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              showFirstLastButtons
+              aria-label="Select page"
+              class="fw-bold fs-6 d-flex justify-content-center pe-4 me-2 py-3 ">
+</mat-paginator>
+          
+  </div>
+
+  <div class="col-lg-4 p-3 bg-light">
+    <div class="panel-body ">
+        <div class=" pt-3 ps-1 mb-5 d-flex justify-content-between">
+            <h3 class="panel-title">
+                {{
+                    productFormConntrols.controls["id"].value
+                      ? ("update" | translate)
+                      : ("add" | translate)
+                  }}
+
+              {{ "product.product" | translate }}
+            </h3>
+
+            <mat-icon class="add-icon me-4" (click)="clearForm()" *ngIf="addButtonVisible">add</mat-icon>
+          </div>
+        
+        <form [formGroup]="productFormConntrols" (ngSubmit)="submitProduct()">
+          <fieldset class="row justify-content-center">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{
+                  "product.product-name" | translate
+                }}</mat-label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  matInput
+                  placeholder="{{ 'enter-your-name' | translate }}"
+                />
+                <mat-error
+                *ngIf="name!.errors?.['required']">
+                {{ "product.product-name" | translate
+                }}<strong> {{ "product.required" | translate }}</strong>
+              </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{
+                  "product.brand" | translate
+                }}</mat-label>
+                <input
+                  formControlName="brand"
+                  type="text"
+                  matInput
+                  placeholder="{{ 'product.brand' | translate }}"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-50">
+                <mat-label>{{
+                  "product.Price" | translate
+                }}</mat-label>
+                <input
+                  formControlName="cashPrice"
+                  type="number"
+                  matInput
+                  placeholder="{{ 'product.Price' | translate }}"
+                />
+                <mat-error
+                *ngIf="cashPrice!.errors?.['required']">
+                {{ "product.Price" | translate
+                }}<strong> {{ "product.required" | translate }}</strong>
+              </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-50">
+                <mat-label>{{
+                  "product.quantity" | translate
+                }}</mat-label>
+                <input
+                  formControlName="quantity"
+                  type="number"
+                  matInput
+                  placeholder="{{ 'product.quantity' | translate }}"
+                />
+               
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{
+                  "product.category" | translate
+                }}</mat-label>
+                <mat-select [compareWith]="compareFn" panelClass="mt-5 data-table" formControlName="productCategoryDto" value="element.name">
+                    <mat-option *ngFor="let category of allCategories" [value]="category">
+                      {{category.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                  *ngIf="category!.errors?.['required']">
+                  {{ "product.category-field" | translate
+                  }}<strong> {{ "product.required" | translate }}</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{
+                  "product.model-no" | translate
+                }}</mat-label>
+                <input
+                  formControlName="modelNo"
+                  type="text"
+                  matInput
+                  placeholder="{{ 'product.model-no' | translate }}"
+                />
+               
+              </mat-form-field>
+    </fieldset>
+    </form>
+    <div class="d-flex justify-content-center">
+   <button (click)="submitProduct()" class="btn me-3">{{productFormConntrols.controls["id"].value? ("update" |translate):("add" |translate)}}</button>
+   <button (click)="resetForm()" class="btn me-3">{{productFormConntrols.controls["id"].value? ("reset" |translate):("clear" |translate)}}</button>
+</div>    
+</div>        
+  </div>
+  </div>
+  </div>
+  
