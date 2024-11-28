@@ -43,7 +43,8 @@
               {{ "installments.customer-name" | translate }}
             </th>
             <td mat-cell *matCellDef="let element">
-              {{ element.order.customer.fullName }}
+               {{ element.order?.customer?.fullName }} 
+              
             </td>
           </ng-container>
 

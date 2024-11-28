@@ -56,9 +56,9 @@ export class InstallmentComponent implements OnInit  {
           const matchFilter:any[] = [];
           const filters = JSON.parse(filtersJson);
           filters.forEach(filter => {
-            data[filter.id] = data.order.customer.fullName;
+            data[filter.id] = data.order?.customer?.fullName;
             const val = data[filter.id] === null ? '' : data[filter.id];
-            matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+            matchFilter.push(val?.toLowerCase().includes(filter.value?.toLowerCase()));
           });
             return matchFilter.every(Boolean);
         };
